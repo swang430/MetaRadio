@@ -1,0 +1,81 @@
+{
+  "Header": {
+    "brandName": "Metaradio.tech",
+    "platform": "平台",
+    "solutions": "解决方案",
+    "resources": "资源",
+    "requestDemo": "请求演示",
+    "login": "登录 / 注册"
+  },
+  "Footer": {
+    "brandName": "Metaradio.tech",
+    "description": "面向无线系统的测量验证仿真。",
+    "quickLinks": "快速链接",
+    "contact": "联系我们",
+    "followUs": "关注我们",
+    "twitter": "推特",
+    "linkedIn": "领英",
+    "copyright": "© {year} Metaradio.tech. 保留所有权利。"
+  },
+  "Home": {
+    "heroTitle": "测量验证仿真",
+    "heroSubtitle": "为您的无线网络赋予地面实况 (Ground Truth)",
+    "requestDemo": "请求演示",
+    "corePlatformTitle": "核心平台",
+    "corePlatformDescription": "介绍 MetaSim 和 RaySense 的区域。",
+    "solutionsTitle": "解决方案亮点",
+    "solutionsDescription": "介绍虚拟路测等解决方案的区域。",
+    "trustTitle": "客户信任",
+    "trustDescription": "展示客户 Logo 的区域。"
+  },
+  "MetaSim": {
+    "pageTitle": "MetaSim：先进的射频仿真平台",
+    "aboutTitle": "关于 MetaSim",
+    "aboutDescription": "MetaSim 是一个为下一代无线网络设计的最先进的仿真平台。它利用真实的测量数据创建复杂射频环境的数字孪生，从而实现高精度的性能预测和网络优化。",
+    "featuresTitle": "核心功能",
+    "feature1": "测量验证仿真 (MVS) 核心",
+    "feature2": "高保真射线追踪传播模型",
+    "feature3": "支持 5G NR、Wi-Fi 6/7 及自定义波形",
+    "feature4": "可扩展的云原生架构",
+    "feature5": "用于自动化和集成的综合 API",
+    "imagePlaceholder": "产品图片占位符",
+    "specsTitle": "技术规格",
+    "specFeature": "特性",
+    "specSpecification": "规格",
+    "specFreqBands": "频段",
+    "specFreqBandsValue": "Sub-6 GHz, 24-100 GHz (FR2)",
+    "specScale": "最大几何尺度",
+    "specScaleValue": "10公里 x 10公里 城市环境",
+    "specDeployment": "部署方式",
+    "specDeploymentValue": "云 (AWS, Azure, GCP) 或本地部署",
+    "specInput": "输入数据格式",
+    "specInputValue": "CAD, GIS, OpenStreetMap"
+  },
+  "RaySense": {
+    "pageTitle": "RaySense：高保真射频信道探测仪",
+    "aboutTitle": "关于 RaySense",
+    "aboutDescription": "RaySense 是一款便携式高分辨率射频信道探测仪，旨在捕获无线环境的地面实况。它提供关键的测量数据来驱动我们的测量验证仿真 (MVS) 工作流，确保仿真精确反映现实。",
+    "featuresTitle": "核心功能",
+    "feature1": "超宽带信号捕获 (高达 6 GHz)",
+    "feature2": "多通道、MIMO 就绪架构 (高达 32x32)",
+    "feature3": "便携式加固设计，适用于外场测量",
+    "feature4": "高精度授时与同步 (GPSDO)",
+    "feature5": "自动化数据处理和信道参数提取",
+    "imagePlaceholder": "硬件图片占位符",
+    "specsTitle": "技术规格",
+    "specParameter": "参数",
+    "specSpecification": "规格",
+    "specFreqRange": "频率范围",
+    "specFreqRangeValue": "300 MHz - 6 GHz",
+    "specBandwidth": "瞬时带宽",
+    "specBandwidthValue": "100 MHz",
+    "specPorts": "射频端口",
+    "specPortsValue": "高达 32 TX / 32 RX",
+    "specDimensions": "尺寸",
+    "specDimensionsValue": "45厘米 x 30厘米 x 15厘米"
+  },
+  "Layout": {
+    "title": "Metaradio.tech",
+    "description": "测量验证仿真：为您的无线网络赋予地面实况"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "Header": {
+    "brandName": "Metaradio.tech",
+    "platform": "Platform",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "requestDemo": "Request a Demo",
+    "login": "Login / Register"
+  },
+  "Footer": {
+    "brandName": "Metaradio.tech",
+    "description": "Measurement-Validated Simulation for wireless systems.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "twitter": "Twitter",
+    "linkedIn": "LinkedIn",
+    "copyright": "© {year} Metaradio.tech. All rights reserved."
+  },
+  "Home": {
+    "heroTitle": "Measurement-Validated Simulation",
+    "heroSubtitle": "Bringing Ground Truth to Your Wireless Network",
+    "requestDemo": "Request a Demo",
+    "corePlatformTitle": "Core Platform",
+    "corePlatformDescription": "Area to introduce MetaSim and RaySense.",
+    "solutionsTitle": "Solution Highlights",
+    "solutionsDescription": "Area to introduce solutions like Virtual Drive Testing.",
+    "trustTitle": "Customer Trust",
+    "trustDescription": "Area to display customer logos."
+  },
+  "MetaSim": {
+    "pageTitle": "MetaSim: Advanced RF Simulation Platform",
+    "aboutTitle": "About MetaSim",
+    "aboutDescription": "MetaSim is a state-of-the-art simulation platform designed for the next generation of wireless networks. It leverages real-world measurement data to create digital twins of complex RF environments, enabling highly accurate performance prediction and network optimization.",
+    "featuresTitle": "Key Features",
+    "feature1": "Measurement-Validated Simulation (MVS) core",
+    "feature2": "High-fidelity ray-tracing propagation models",
+    "feature3": "Support for 5G NR, Wi-Fi 6/7, and custom waveforms",
+    "feature4": "Scalable cloud-native architecture",
+    "feature5": "Comprehensive API for automation and integration",
+    "imagePlaceholder": "Product Image Placeholder",
+    "specsTitle": "Technical Specifications",
+    "specFeature": "Feature",
+    "specSpecification": "Specification",
+    "specFreqBands": "Frequency Bands",
+    "specFreqBandsValue": "Sub-6 GHz, 24-100 GHz (FR2)",
+    "specScale": "Max Geometry Scale",
+    "specScaleValue": "10km x 10km urban environments",
+    "specDeployment": "Deployment",
+    "specDeploymentValue": "Cloud (AWS, Azure, GCP) or On-Premise",
+    "specInput": "Input Data Formats",
+    "specInputValue": "CAD, GIS, OpenStreetMap"
+  },
+  "RaySense": {
+    "pageTitle": "RaySense: High-Fidelity RF Channel Sounder",
+    "aboutTitle": "About RaySense",
+    "aboutDescription": "RaySense is a portable, high-resolution RF channel sounder designed to capture the ground truth of wireless environments. It provides the critical measurement data that powers our Measurement-Validated Simulation (MVS) workflow, ensuring that simulations accurately reflect reality.",
+    "featuresTitle": "Key Features",
+    "feature1": "Ultra-wideband signal capture (up to 6 GHz)",
+    "feature2": "Multi-channel, MIMO-ready architecture (up to 32x32)",
+    "feature3": "Portable and ruggedized for field measurements",
+    "feature4": "High-precision timing and synchronization (GPSDO)",
+    "feature5": "Automated data processing and channel parameter extraction",
+    "imagePlaceholder": "Hardware Image Placeholder",
+    "specsTitle": "Technical Specifications",
+    "specParameter": "Parameter",
+    "specSpecification": "Specification",
+    "specFreqRange": "Frequency Range",
+    "specFreqRangeValue": "300 MHz - 6 GHz",
+    "specBandwidth": "Instantaneous Bandwidth",
+    "specBandwidthValue": "100 MHz",
+    "specPorts": "RF Ports",
+    "specPortsValue": "Up to 32 TX / 32 RX",
+    "specDimensions": "Dimensions",
+    "specDimensionsValue": "45cm x 30cm x 15cm"
+  },
+  "Layout": {
+    "title": "Metaradio.tech",
+    "description": "Measurement-Validated Simulation: Bringing Ground Truth to Your Wireless Network"
+  }
+}
