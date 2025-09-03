@@ -25,7 +25,7 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg">{t('quickLinks')}</h3>
             <ul className="mt-2 space-y-2">
-              <li><Link href="/platform" className="hover:text-blue-400">{t_nav('platform')}</Link></li>
+              <li><Link href="/platform/hyperrt" className="hover:text-blue-400">{t_nav('platform')}</Link></li>
               <li><Link href="/solutions" className="hover:text-blue-400">{t_nav('solutions')}</Link></li>
               <li><Link href="/resources" className="hover:text-blue-400">{t_nav('resources')}</Link></li>
               <li><Link href="/contact" className="hover:text-blue-400">{t('contact')}</Link></li>

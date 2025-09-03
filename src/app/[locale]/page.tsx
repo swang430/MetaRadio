@@ -7,7 +7,7 @@ export default async function Home({params}: {params: {locale: string}}) {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white">
+      <section className="bg-gray-800 text-white">
         <div className="container mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
             {t('heroTitle')}
@@ -23,27 +23,54 @@ export default async function Home({params}: {params: {locale: string}}) {
         </div>
       </section>
 
-      {/* Placeholder for Core Platform Section */}
+      {/* Core Platform Section */}
       <section className="py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">{t('corePlatformTitle')}</h2>
-          <p className="mt-4 text-gray-600">{t('corePlatformDescription')}</p>
+          <div className="grid md:grid-cols-3 gap-8 mt-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{t('hyperRtTitle')}</h3>
+              <p className="mt-2 text-gray-600">{t('hyperRtDescription')}</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{t('raysenseTitle')}</h3>
+              <p className="mt-2 text-gray-600">{t('raysenseDescription')}</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{t('csiSensingTitle')}</h3>
+              <p className="mt-2 text-gray-600">{t('csiSensingDescription')}</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Placeholder for Solutions Section */}
+      {/* Solutions Section */}
       <section className="bg-gray-100 py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">{t('solutionsTitle')}</h2>
-          <p className="mt-4 text-gray-600">{t('solutionsDescription')}</p>
+          <div className="grid md:grid-cols-2 gap-8 mt-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{t('virtualDriveTestTitle')}</h3>
+              <p className="mt-2 text-gray-600">{t('virtualDriveTestDescription')}</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{t('mimoOtaTitle')}</h3>
+              <p className="mt-2 text-gray-600">{t('mimoOtaDescription')}</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Placeholder for Customer Trust Section */}
+      {/* Customer Trust Section */}
       <section className="py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">{t('trustTitle')}</h2>
-          <p className="mt-4 text-gray-600">{t('trustDescription')}</p>
+          <div className="flex justify-center items-center space-x-8 mt-8">
+            <img src="/images/keysight-logo.png" alt="Keysight" className="h-12" />
+            <img src="/images/spirent-logo.png" alt="Spirent" className="h-12" />
+            <img src="/images/ceyear-logo.png" alt="Ceyear" className="h-12" />
+            <img src="/images/k-h-logo.png" alt="K-H" className="h-12" />
+          </div>
         </div>
       </section>
     </>

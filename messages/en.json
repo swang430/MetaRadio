@@ -18,15 +18,22 @@
     "copyright": "© {year} Metaradio.tech. All rights reserved."
   },
   "Home": {
-    "heroTitle": "Measurement-Validated Simulation",
-    "heroSubtitle": "Bringing Ground Truth to Your Wireless Network",
+    "heroTitle": "Horizon One: The Market-Leading Virtual Integrated Test Solution",
+    "heroSubtitle": "We focus on high-growth areas such as automotive and satellite communications, solving our customers' most pressing testing challenges with integrated software and hardware solutions that merge deterministic channels with standardized models.",
     "requestDemo": "Request a Demo",
     "corePlatformTitle": "Core Platform",
-    "corePlatformDescription": "Area to introduce MetaSim and RaySense.",
-    "solutionsTitle": "Solution Highlights",
-    "solutionsDescription": "Area to introduce solutions like Virtual Drive Testing.",
-    "trustTitle": "Customer Trust",
-    "trustDescription": "Area to display customer logos."
+    "hyperRtTitle": "HyperRT Simulation Engine",
+    "hyperRtDescription": "The core of our platform, providing high-fidelity, real-time ray-tracing for the most demanding simulation scenarios.",
+    "raysenseTitle": "RaySense Sensing Equipment",
+    "raysenseDescription": "A series of portable, high-resolution sensing instruments designed to capture the ground truth of wireless environments.",
+    "csiSensingTitle": "CSI-based Positioning and Sensing",
+    "csiSensingDescription": "Leverage Channel State Information (CSI) for high-precision positioning and environmental sensing applications.",
+    "solutionsTitle": "Solutions",
+    "virtualDriveTestTitle": "Virtual Drive Testing",
+    "virtualDriveTestDescription": "Reduce the cost and complexity of physical drive tests by recreating real-world scenarios in the lab.",
+    "mimoOtaTitle": "MIMO OTA Testing",
+    "mimoOtaDescription": "Our software solution for MIMO OTA testing, enabling accurate and repeatable performance evaluation of wireless devices.",
+    "trustTitle": "Trusted by Industry Leaders"
   },
   "MetaSim": {
     "pageTitle": "MetaSim: Advanced RF Simulation Platform",

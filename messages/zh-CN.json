@@ -18,15 +18,22 @@
     "copyright": "© {year} Metaradio.tech. 保留所有权利。"
   },
   "Home": {
-    "heroTitle": "测量验证仿真",
-    "heroSubtitle": "为您的无线网络赋予地面实况 (Ground Truth)",
+    "heroTitle": "地平线一号：市场领先的虚拟集成测试解决方案",
+    "heroSubtitle": "我们聚焦于汽车和卫星通信等高增长领域，通过融合确定性信道与标准化模型的软硬件一体化产品，解决客户最紧迫的测试挑战。",
     "requestDemo": "请求演示",
     "corePlatformTitle": "核心平台",
-    "corePlatformDescription": "介绍 MetaSim 和 RaySense 的区域。",
-    "solutionsTitle": "解决方案亮点",
-    "solutionsDescription": "介绍虚拟路测等解决方案的区域。",
-    "trustTitle": "客户信任",
-    "trustDescription": "展示客户 Logo 的区域。"
+    "hyperRtTitle": "HyperRT 仿真引擎",
+    "hyperRtDescription": "我们平台的核心，为最苛刻的仿真场景提供高保真、实时的射线追踪。",
+    "raysenseTitle": "RaySense 感知设备",
+    "raysenseDescription": "一系列便携式高分辨率感知仪表，旨在捕获无线环境的地面实况。",
+    "csiSensingTitle": "基于CSI的定位和感知",
+    "csiSensingDescription": "利用信道状态信息（CSI）进行高精度定位和环境感知应用。",
+    "solutionsTitle": "解决方案",
+    "virtualDriveTestTitle": "虚拟路测",
+    "virtualDriveTestDescription": "通过在实验室中重现真实世界的场景，降低物理路测的成本和复杂性。",
+    "mimoOtaTitle": "MIMO OTA 测试",
+    "mimoOtaDescription": "我们的MIMO OTA测试软件解决方案，可对无线设备进行准确且可重复的性能评估。",
+    "trustTitle": "深受行业领导者信赖"
   },
   "MetaSim": {
     "pageTitle": "MetaSim：先进的射频仿真平台",

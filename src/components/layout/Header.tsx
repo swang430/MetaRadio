@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 const Header = () => {
@@ -11,12 +12,12 @@ const Header = () => {
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <Link href="/" className="text-xl font-semibold text-gray-700">
-            {t('brandName')}
+          <Link href="/zh-CN">
+            <Image src="/images/logo.png" alt="Metaradio Logo" width={150} height={40} />
           </Link>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/platform" className="py-2 px-3 text-gray-600 hover:text-blue-500">{t('platform')}</Link>
+          <Link href="/platform/hyperrt" className="py-2 px-3 text-gray-600 hover:text-blue-500">{t('platform')}</Link>
           <Link href="/solutions" className="py-2 px-3 text-gray-600 hover:text-blue-500">{t('solutions')}</Link>
           <Link href="/resources" className="py-2 px-3 text-gray-600 hover:text-blue-500">{t('resources')}</Link>
         </nav>

@@ -41,11 +41,17 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 │   └── theme.js          # 样式主题配置 (颜色, 字体)
 ├── /pages/               # 页面组件 (对应网站路由)
 │   ├── /platform/
+│   │   ├── /hyperrt/
+│   │   ├── /raysense/
+│   │   └── /csi-sensing/
 │   ├── /solutions/
+│   │   ├── /mimo-ota/
+│   │   └── /virtual-drive-testing/
 │   ├── /resources/
 │   └──...
 ├── /public/              # 静态资源 (图片, Logo, 字体)
 ├── /styles/              # 全局样式
+├── /old_website/         # 旧网站内容备份，用于内容迁移
 └── gemini.md             # 本开发规范文件
 
 
@@ -60,18 +66,21 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 
 2.  **任务 1.2: 全局布局**
     *   创建 `Header` 和 `Footer` 组件。
-    *   `Header`: 包含公司 Logo、基于站点地图的导航链接、以及两个关键的行动号召 (CTA) 按钮：“请求演示 (Request a Demo)” 和 “登录/注册 (Login/Register)”。后者初期可链接至一个“即将推出”的占位页面。
+    *   `Header`: 使用公司 Logo (`/public/images/logo.png`)、基于站点地图的导航链接、以及两个关键的行动号召 (CTA) 按钮：“请求演示 (Request a Demo)” 和 “登录/注册 (Login/Register)”。后者初期可链接至一个“即将推出”的占位页面。
     *   `Footer`: 包含站点地图链接、联系信息、社交媒体链接和版权声明。
 
 ### **阶段二：核心页面内容实现**
 
 3.  **任务 2.1: 首页 (Home)**
     *   **英雄区:** 实现一个引人注目的英雄区，背景采用动态、抽象的视觉效果（如代码生成的射线传播动画）。
-    *   **核心价值主张:** 清晰展示 H1 标题：“测量验证仿真：为您的无线网络赋予地面实况”，并附上简洁的副标题。
-    *   **内容模块:** 创建模块化组件来介绍核心平台、解决方案亮点和客户信任标志。
+    *   **核心价值主张:** 结合 `地平线一号1.1.html` 和 `gemini.md` 的内容，创建引人注目的英雄区。H1标题使用“地平线一号：市场领先的虚拟集成测试解决方案”，副标题使用“我们聚焦于汽车和卫星通信等高增长领域，通过融合确定性信道与标准化模型的软硬件一体化产品，解决客户最紧迫的测试挑战。”
+    *   **内容模块:** 
+        *   **核心平台:** 介绍 “HyperRT” 仿真引擎、“RaySense” 信道探测仪和 “CSI-based Positioning and Sensing” 平台。
+        *   **解决方案:** 重点展示“虚拟路测”和“MIMO OTA”等应用领域。
+        *   **客户信任:** 使用 `MIMO OTA DataSheet.html` 中提到的合作伙伴（Keysight, Spirent, 思仪, 坤恒）作为客户信任的标志。
 
 4.  **任务 2.2: 平台 (The Platform) 页面**
-    *   创建 `/pages/platform/metasim.js` 和 `/pages/platform/raysense.js` 页面，详细介绍软件和硬件产品。内容应结构化，包含功能列表、技术规格和高清产品图片。
+    *   创建 `/pages/platform/hyperrt.js`, `/pages/platform/raysense.js`, 和 `/pages/platform/csi-sensing.js` 页面，详细介绍软件和硬件产品。内容应结构化，包含功能列表、技术规格和高清产品图片。
     *   **关键任务:** 创建 `/pages/platform/mvs-workflow.js` 页面。实现一个基于垂直滚动的交互式动画 (`MVSWorkflowAnimation.js` 组件)，分步展示“测量 -> 建模 -> 仿真 -> 验证”的完整闭环工作流。
 
 ### **阶段三：解决方案与标准化产品**
@@ -88,9 +97,8 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
         *   以清晰的表格形式展示所有技术参数。
         *   在该区域右上角放置一个“下载 PDF”按钮。
 
-6.  **任务 3.2: 其他解决方案页面**
-    *   创建一个可复用的解决方案页面模板。
-    *   根据模板填充“私有 5G/6G 网络”、“智慧场馆”等页面的内容。
+6.  **任务 3.2: MIMO OTA 解决方案页面**
+    *   创建 `/pages/solutions/mimo-ota.js` 页面，详细介绍 MIMO OTA 测试解决方案。
 
 ### **阶段四：内容中心与后端集成**
 
@@ -179,4 +187,8 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 *   **中间件配置 (`middleware.ts`):**
     *   为了实现根路径 `/` 到默认语言路径 `/zh-CN` 的自动重定向，我们使用了 `next-intl` 提供的 `createMiddleware`。
     *   最终有效的 `matcher` 配置为 `['/', '/(zh-CN|en)/:path*']`。这个配置明确地匹配了根路径和所有带语言前缀的路径，确保了中间件在所有相关路径上都能正确执行。
+*   **临时解决方案 (Workaround):**
+    *   **问题**: 根路径 `/` 的重定向问题持续存在，为了不阻塞开发，我们采取了临时解决方案。
+    *   **方案**: 暂时将 `Header.tsx` 中的Logo链接直接指向 `/zh-CN`，而不是 `/`。这绕过了中间件的重定向问题。
+    *   **未来优化**: 这个问题被标记为技术债务，将在未来版本中重新审视并彻底解决中间件的根路径匹配问题。
 
