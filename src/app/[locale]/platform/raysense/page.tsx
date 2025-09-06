@@ -66,6 +66,19 @@ const RaySensePage = async ({params}: {params: {locale: string}}) => {
           </table>
         </div>
       </div>
+
+      <div className="mt-16">
+        <h2 className="text-3xl font-bold text-center mb-8">{t('mvsWorkflowTitle')}</h2>
+        <div className="content-box flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+          <div className="text-center"><div className="bg-blue-100 text-blue-800 rounded-full h-20 w-20 flex items-center justify-center mx-auto text-3xl">🗺️</div><p className="mt-2 font-semibold">{t('mvsStep1')}</p></div>
+          <div className="text-2xl text-gray-400 transform rotate-90 md:rotate-0">→</div>
+          <div className="text-center"><div className="bg-green-100 text-green-800 rounded-full h-20 w-20 flex items-center justify-center mx-auto text-3xl">📡</div><p className="mt-2 font-semibold">{t('mvsStep2')}</p></div>
+          <div className="text-2xl text-gray-400 transform rotate-90 md:rotate-0">→</div>
+          <div className="text-center"><div className="bg-yellow-100 text-yellow-800 rounded-full h-20 w-20 flex items-center justify-center mx-auto text-3xl">⚙️</div><p className="mt-2 font-semibold">{t('mvsStep3')}</p></div>
+          <div className="text-2xl text-gray-400 transform rotate-90 md:rotate-0">→</div>
+            <div className="text-center"><div className="bg-purple-100 text-purple-800 rounded-full h-20 w-20 flex items-center justify-center mx-auto text-3xl">🖥️</div><p className="mt-2 font-semibold">{t('mvsStep4')}</p></div>
+        </div>
+      </div>
     </div>
   );
 };

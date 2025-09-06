@@ -19,41 +19,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata({params}: {params: {locale: string}}): Promise<Metadata> {
-  const {locale} = params;
-  const t = await getTranslations({locale, namespace: 'Layout'});
+// export async function generateMetadata({params}: {params: {locale: string}}) {
+//   const t = await getTranslations({locale: params.locale, namespace: 'Layout'});
  
-  return {
-    title: t('title'),
-    description: t('description'),
-  };
-}
+//   return {
+//     title: t('title'),
+//     description: t('description'),
+//   };
+// }
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}));
 }
 
-export default async function RootLayout({
-  children,
-  params
-}: Readonly<{
+export default async function RootLayout({ children, params }: {
   children: React.ReactNode;
   params: {locale: string};
-}>) {
-  const {locale} = params;
+}) {
   let messages;
   try {
-    messages = (await import(`../../../messages/${locale}.json`)).default;
+    messages = (await import(`../../../messages/${params.locale}.json`)).default;
   } catch (error) {
     notFound();
   }
 
   return (
-    <html lang={locale}>
+    <html lang={params.locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={params.locale} messages={messages}>
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />

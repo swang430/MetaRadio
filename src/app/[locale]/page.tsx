@@ -61,18 +61,7 @@ export default async function Home({params}: {params: {locale: string}}) {
         </div>
       </section>
 
-      {/* Customer Trust Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold">{t('trustTitle')}</h2>
-          <div className="flex justify-center items-center space-x-8 mt-8">
-            <img src="/images/keysight-logo.png" alt="Keysight" className="h-12" />
-            <img src="/images/spirent-logo.png" alt="Spirent" className="h-12" />
-            <img src="/images/ceyear-logo.png" alt="Ceyear" className="h-12" />
-            <img src="/images/k-h-logo.png" alt="K-H" className="h-12" />
-          </div>
-        </div>
-      </section>
+      
     </>
   );
 }

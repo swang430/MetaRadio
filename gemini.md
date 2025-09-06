@@ -77,7 +77,7 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
     *   **内容模块:** 
         *   **核心平台:** 介绍 “HyperRT” 仿真引擎、“RaySense” 信道探测仪和 “CSI-based Positioning and Sensing” 平台。
         *   **解决方案:** 重点展示“虚拟路测”和“MIMO OTA”等应用领域。
-        *   **客户信任:** 使用 `MIMO OTA DataSheet.html` 中提到的合作伙伴（Keysight, Spirent, 思仪, 坤恒）作为客户信任的标志。
+        *   **客户信任:** 使用 `MIMO OTA DataSheet.html` 中提到的合作伙伴（Keysight, Spirent, 思仪, 坤恒）作为客户信任的标志。 (暂时移除，待Logo文件提供后添加)
 
 4.  **任务 2.2: 平台 (The Platform) 页面**
     *   创建 `/pages/platform/hyperrt.js`, `/pages/platform/raysense.js`, 和 `/pages/platform/csi-sensing.js` 页面，详细介绍软件和硬件产品。内容应结构化，包含功能列表、技术规格和高清产品图片。
@@ -85,17 +85,14 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 
 ### **阶段三：解决方案与标准化产品**
 
-5.  **任务 3.1: “虚拟路测 (Virtual Drive Testing)” 产品页**
+5.  **任务 3.1: “虚拟路测 (Virtual Drive Testing)” 解决方案页**
     *   创建 `/pages/solutions/virtual-drive-testing.js`。
-    *   **页面标题:** "Horizon One: 新一代虚拟路测平台"。
-    *   **交互式 Canvas 演示:**
-        *   开发 `VirtualDriveTest.js` Canvas 组件。
-        *   功能要求：允许用户通过下拉菜单选择不同场景（如“城市峡谷”、“高速公路”）。
-        *   Canvas 根据选择动态渲染该场景的简化 3D 模型，并实时演算射线传播路径。
-        *   所有 Canvas 绘图样式（颜色、线宽）必须通过 `/lib/theme.js` 中的配置对象进行管理，以确保风格统一。
-    *   **技术规格 (Datasheet) 区域:**
-        *   以清晰的表格形式展示所有技术参数。
-        *   在该区域右上角放置一个“下载 PDF”按钮。
+    *   **页面核心**: 重点阐述“地平线一号”产品中的“路测数据转换”模块，突出将真实路测数据转化为可重复、高保真的实验室测试场景的核心价值。
+    *   **内容结构**:
+        *   **挑战**: 阐述物理路测的痛点（成本、效率、可重复性）。
+        *   **解决方案**: 介绍“地平线一号”如何通过数据转换和实验室复现来解决这些痛点。
+        *   **核心流程**: 以图文形式，分步展示“数据采集 → 自动化处理 → 虚拟场景复现”的核心工作流。
+        *   **客户价值**: 总结方案带来的好处，如降本增效、提升测试覆盖率等。
 
 6.  **任务 3.2: MIMO OTA 解决方案页面**
     *   创建 `/pages/solutions/mimo-ota.js` 页面，详细介绍 MIMO OTA 测试解决方案。
@@ -108,9 +105,13 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
     *   创建不同资源类型的详情页模板。
 
 8.  **任务 4.2: Headless CMS 集成**
-    *   在选择的 Headless CMS 中定义内容模型 (Content Models)，包括：`Page`, `Solution`, `Product`, `ResourceArticle`, `TeamMember` 等。
-    *   在 `/lib/api.js` 中实现从 CMS 获取数据的函数。
-    *   将所有页面的静态内容替换为从 CMS 获取的动态数据。
+    *   **目标**: 将网站的静态内容（如产品介绍、解决方案描述等）迁移到Headless CMS中，实现内容与代码的分离。
+    *   **技术选型**: 以 Strapi (开源, 本地部署) 为例进行初步集成。
+    *   **步骤**:
+        1.  **设置Strapi**: 在本地环境中快速搭建一个Strapi项目。
+        2.  **定义内容模型**: 在Strapi后台，根据现有页面定义`Product`, `Solution`, `ResourceArticle`等内容类型 (Content-Types)。
+        3.  **创建API客户端**: 在 `/lib/api.js` 中，实现与Strapi API交互的函数，用于获取各类内容。
+        4.  **概念验证 (POC)**: 将“资源中心”页面的模拟数据，替换为通过API从Strapi获取的真实数据，验证整个流程的通畅性。
 
 9.  **任务 4.3: 动态 PDF 生成**
     *   创建 API 路由 `/api/generate-pdf.js`。
@@ -176,8 +177,9 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
     *   在 `src/app/[locale]/layout.tsx` 中，`generateMetadata` 会根据当前的 `locale` 参数从相应的翻译文件 (`messages/[locale].json`) 中获取 `Layout.title` 和 `Layout.description`。
 
 *   **`params` 对象的异步特性:**
-    *   **问题**: 在 Next.js App Router 中，页面和布局组件的 `params` 对象是一个 `Promise`。
-    *   **解决方案**: 不能直接在函数签名中解构 `locale`，例如 `({params: {locale}})`。必须先接收 `params` 对象，然后在函数体内解构，例如 `const {locale} = params;`。
+    *   **问题**: 在 Next.js App Router 中，页面和布局组件的 `params` 对象是一个 `Promise`。这导致在尝试直接解构 `locale` 时（例如 `({params: {locale}})`），会在服务器日志中产生大量错误 `Error: Route [...] used `params.locale`. `params` should be awaited before using its properties.`。
+    *   **已尝试的解决方案**: 我们尝试了多种方法，包括在组件内部解构 (`const {locale} = params;`)、直接使用 `params.locale`、重启开发服务器、暂时移除 `generateMetadata` 函数等，但该问题仍然存在。这可能与 `next-intl` 和 Next.js 15 的某个底层交互有关。
+    *   **临时搁置**: 为避免阻塞开发，此问题暂时搁置，留待后续集中解决。它目前不影响页面的正常渲染，但会造成日志混乱。
     *   **影响范围**: 此问题影响所有需要从 `params` 中读取 `locale` 的地方，包括 `generateMetadata`, `RootLayout` 以及所有页面组件。
 
 *   **`getTranslations` 的使用:**
