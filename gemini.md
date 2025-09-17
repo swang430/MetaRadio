@@ -117,6 +117,28 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
         3.  **创建API客户端**: 在 `/lib/api.js` 中，实现与Strapi API交互的函数，用于获取各类内容。
         4.  **概念验证 (POC)**: 将“资源中心”页面的模拟数据，替换为通过API从Strapi获取的真实数据，验证整个流程的通畅性。
 
+### 4.2.1 集成实现笔记 (Implementation Notes)
+
+在本地集成 Strapi 作为 Headless CMS 的概念验证过程中，我们确定了以下关键实践和设计决策：
+
+1.  **项目结构**: Strapi 项目 (`metaradio-cms`) 被创建在主网站项目的根目录下。
+    *   **配置冲突解决**: 为了解决 Strapi 的 Vite 构建系统与主项目 `postcss.config.mjs` 的冲突，在 `metaradio-cms` 目录内创建了一个空的 `postcss.config.mjs` 文件进行覆盖。
+
+2.  **API 响应格式**: 本地 Strapi 实例的 API 响应默认是**扁平化 (flat)** 的，它不包含 `attributes` 包装层。所有前端获取逻辑都必须直接访问 `data.name` 而不是 `data.attributes.name`。
+
+3.  **内容模型 (Content-Types)**:
+    *   **`Solution` 模型**: 已创建，包含 `name` (Text), `description` (Rich Text), 和 `slug` (UID, 附加到 name 字段) 字段。
+
+4.  **权限管理**: 对于需要在前端公开访问的任何内容类型（如 `Solution`），必须在 "Settings" -> "Roles" -> "Public" 中，为其勾选 `find` 和 `findOne` 权限。
+
+5.  **国际化 (i18n)**:
+    *   前端在请求 API 时，必须通过查询参数传递当前语言环境，例如: `/api/solutions?locale=zh-CN`。
+    *   如果某个条目没有对应的语言版本，API 将返回一个包含空 `data` 数组 (`"data": []`) 的 `200 OK` 响应。前端代码需要能正确处理这种情况。
+
+6.  **前端数据获取**:
+    *   所有与 Strapi 的交互逻辑都被抽象到 `/lib/api.js` 文件中，以便复用。
+    *   页面组件（如 `solutions/page.tsx`）应为服务器组件，直接调用 `lib/api.js` 中的函数来获取数据。
+
 9.  **任务 4.3: 动态 PDF 生成**
     *   创建 API 路由 `/api/generate-pdf.js`。
     *   该接口接收一个参数（如 `solutionSlug`）。
@@ -203,4 +225,3 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 *   这使得所有嵌套在其中的**客户端组件**都能通过 `useTranslations` Hook 访问到 i18n 上下文，而**服务器组件**则继续通过 `getTranslations` 和 `props` 传递来工作。
 
 所有未来的开发都将以此为蓝图，通过“服务器包裹客户端”的模式，清晰地分离职责，确保应用的性能和可维护性。原有的 `params` 异步问题和中间件问题，将在此统一架构下得到妥善管理。
-
