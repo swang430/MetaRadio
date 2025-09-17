@@ -1,7 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 
-const HyperRtPage = async ({params}: {params: {locale: string}}) => {
-  const t = await getTranslations({locale: params.locale, namespace: 'HyperRT'});
+const HyperRtPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+  const t = await getTranslations({locale, namespace: 'HyperRT'});
 
   return (
     <div className="container mx-auto px-6 py-12">

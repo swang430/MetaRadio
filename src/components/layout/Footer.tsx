@@ -2,11 +2,12 @@
 
 import React from 'react';
 import Link from 'next/link';
-import {useTranslations} from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 const Footer = () => {
   const t = useTranslations('Footer');
-  const t_nav = useTranslations('Header'); // Using Header namespace for nav links as defined in JSON
+  const t_nav = useTranslations('Header');
+  const locale = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -25,10 +26,10 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg">{t('quickLinks')}</h3>
             <ul className="mt-2 space-y-2">
-              <li><Link href="/platform/hyperrt" className="hover:text-blue-400">{t_nav('platform')}</Link></li>
-              <li><Link href="/solutions" className="hover:text-blue-400">{t_nav('solutions')}</Link></li>
-              <li><Link href="/resources" className="hover:text-blue-400">{t_nav('resources')}</Link></li>
-              <li><Link href="/contact" className="hover:text-blue-400">{t('contact')}</Link></li>
+              <li><Link href={`/${locale}/platform`} className="hover:text-blue-400">{t_nav('platform')}</Link></li>
+              <li><Link href={`/${locale}/solutions`} className="hover:text-blue-400">{t_nav('solutions')}</Link></li>
+              <li><Link href={`/${locale}/resources`} className="hover:text-blue-400">{t_nav('resources')}</Link></li>
+              <li><Link href={`/${locale}/contact`} className="hover:text-blue-400">{t('contact')}</Link></li>
             </ul>
           </div>
 
@@ -43,7 +44,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500">
-          <p>{t('copyright', {year: currentYear})}</p>
+          <p>{t('copyright', { year: currentYear })}</p>
         </div>
       </div>
     </footer>

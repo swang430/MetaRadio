@@ -41,10 +41,12 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 │   └── theme.js          # 样式主题配置 (颜色, 字体)
 ├── /pages/               # 页面组件 (对应网站路由)
 │   ├── /platform/
+│   │   ├── index.js        # [新增] 平台索引页, 概述所有平台产品
 │   │   ├── /hyperrt/
 │   │   ├── /raysense/
 │   │   └── /csi-sensing/
 │   ├── /solutions/
+│   │   ├── index.js        # [新增] 解决方案索引页, 概述所有解决方案
 │   │   ├── /mimo-ota/
 │   │   └── /virtual-drive-testing/
 │   ├── /resources/
@@ -66,7 +68,7 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 
 2.  **任务 1.2: 全局布局**
     *   创建 `Header` 和 `Footer` 组件。
-    *   `Header`: 使用公司 Logo (`/public/images/logo.png`)、基于站点地图的导航链接、以及两个关键的行动号召 (CTA) 按钮：“请求演示 (Request a Demo)” 和 “登录/注册 (Login/Register)”。后者初期可链接至一个“即将推出”的占位页面。
+    *   `Header`: 使用公司 Logo (`/public/images/logo.png`)、基于站点地图的导航链接、以及两个关键的行动号召 (CTA) 按钮：“请求演示 (Request a Demo)” 和 “登录/注册 (Login/Register)”。导航链接中的“平台”和“解决方案”应指向各自的索引页 (`/platform` 和 `/solutions`)，而不是具体的产品/方案页面。后者初期可链接至一个“即将推出”的占位页面。
     *   `Footer`: 包含站点地图链接、联系信息、社交媒体链接和版权声明。
 
 ### **阶段二：核心页面内容实现**
@@ -80,12 +82,14 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
         *   **客户信任:** 使用 `MIMO OTA DataSheet.html` 中提到的合作伙伴（Keysight, Spirent, 思仪, 坤恒）作为客户信任的标志。 (暂时移除，待Logo文件提供后添加)
 
 4.  **任务 2.2: 平台 (The Platform) 页面**
+    *   **[新增] 创建平台索引页**: 创建 `/pages/platform/index.js`，作为平台板块的着陆页。该页面应清晰地展示并链接到所有核心平台产品。
     *   创建 `/pages/platform/hyperrt.js`, `/pages/platform/raysense.js`, 和 `/pages/platform/csi-sensing.js` 页面，详细介绍软件和硬件产品。内容应结构化，包含功能列表、技术规格和高清产品图片。
     *   **关键任务:** 创建 `/pages/platform/mvs-workflow.js` 页面。实现一个基于垂直滚动的交互式动画 (`MVSWorkflowAnimation.js` 组件)，分步展示“测量 -> 建模 -> 仿真 -> 验证”的完整闭环工作流。
 
 ### **阶段三：解决方案与标准化产品**
 
 5.  **任务 3.1: “虚拟路测 (Virtual Drive Testing)” 解决方案页**
+    *   **[新增] 创建解决方案索引页**: 创建 `/pages/solutions/index.js`，作为解决方案板块的着陆页，展示并链接到所有解决方案。
     *   创建 `/pages/solutions/virtual-drive-testing.js`。
     *   **页面核心**: 重点阐述“地平线一号”产品中的“路测数据转换”模块，突出将真实路测数据转化为可重复、高保真的实验室测试场景的核心价值。
     *   **内容结构**:
@@ -168,29 +172,35 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 
 ---
 
-## 7.0 i18n 实现说明
+## 7.0 i18n 实现说明与核心开发原则
 
-在项目开发过程中，我们遇到并解决了一些关于 `next-intl` 和 Next.js App Router 的具体问题。这些经验对于未来的开发和维护至关重要。
+为了彻底解决在开发中遇到的 i18n “震荡”问题，我们确立以下核心开发原则，所有组件的开发和重构都必须严格遵守。
 
-*   **动态元数据 (Dynamic Metadata):**
-    *   为了实现多语言的页面标题和描述，我们使用了 Next.js 的 `generateMetadata` 函数。
-    *   在 `src/app/[locale]/layout.tsx` 中，`generateMetadata` 会根据当前的 `locale` 参数从相应的翻译文件 (`messages/[locale].json`) 中获取 `Layout.title` 和 `Layout.description`。
+### 7.1 核心原则：服务器组件优先与客户端组件隔离
 
-*   **`params` 对象的异步特性:**
-    *   **问题**: 在 Next.js App Router 中，页面和布局组件的 `params` 对象是一个 `Promise`。这导致在尝试直接解构 `locale` 时（例如 `({params: {locale}})`），会在服务器日志中产生大量错误 `Error: Route [...] used `params.locale`. `params` should be awaited before using its properties.`。
-    *   **已尝试的解决方案**: 我们尝试了多种方法，包括在组件内部解构 (`const {locale} = params;`)、直接使用 `params.locale`、重启开发服务器、暂时移除 `generateMetadata` 函数等，但该问题仍然存在。这可能与 `next-intl` 和 Next.js 15 的某个底层交互有关。
-    *   **临时搁置**: 为避免阻塞开发，此问题暂时搁置，留待后续集中解决。它目前不影响页面的正常渲染，但会造成日志混乱。
-    *   **影响范围**: 此问题影响所有需要从 `params` 中读取 `locale` 的地方，包括 `generateMetadata`, `RootLayout` 以及所有页面组件。
+问题的根源在于 Next.js App Router 的核心设计：**服务器组件 (Server Components)** 与 **客户端组件 (Client Components)** 的分离。我们必须根据组件的职责来选择正确的类型和对应的 i18n 实现方式。
 
-*   **`getTranslations` 的使用:**
-    *   为了确保在服务端组件中获取正确的翻译，我们明确地将 `locale` 和 `namespace` 传递给 `getTranslations` 函数。
-    *   示例: `const t = await getTranslations({locale, namespace: 'Home'});`
+1.  **默认一切皆为服务器组件 (Server-First)**
+    *   **职责**: 负责数据获取、文件访问、和绝大部分的页面渲染。
+    *   **i18n 实现**: 必须显式地从页面/布局的 `params` 中获取 `locale`，然后使用 `getTranslations` **异步**获取翻译文本。
+    *   **示例**: `const t = await getTranslations({locale, namespace: 'Page'});`
 
-*   **中间件配置 (`middleware.ts`):**
-    *   为了实现根路径 `/` 到默认语言路径 `/zh-CN` 的自动重定向，我们使用了 `next-intl` 提供的 `createMiddleware`。
-    *   最终有效的 `matcher` 配置为 `['/', '/(zh-CN|en)/:path*']`。这个配置明确地匹配了根路径和所有带语言前缀的路径，确保了中间件在所有相关路径上都能正确执行。
-*   **临时解决方案 (Workaround):**
-    *   **问题**: 根路径 `/` 的重定向问题持续存在，为了不阻塞开发，我们采取了临时解决方案。
-    *   **方案**: 暂时将 `Header.tsx` 中的Logo链接直接指向 `/zh-CN`，而不是 `/`。这绕过了中间件的重定向问题。
-    *   **未来优化**: 这个问题被标记为技术债务，将在未来版本中重新审视并彻底解决中间件的根路径匹配问题。
+2.  **仅在必要时使用客户端组件 (Isolate Interactivity)**
+    *   **“必要时”是指**: 组件需要处理用户交互（如 `onClick`）、管理状态（如 `useState`）、或使用浏览器独有的 API 时。
+    *   **i18n 实现**: 在组件顶部声明 `'use client'`。使用 `useTranslations` **Hook** 来获取翻译。它无需关心 `locale` 来自何处，因为 `NextIntlClientProvider` 会通过 React Context 提供。
+    *   **示例**: `const t = useTranslations('Component');`
+
+3.  **严禁为了便利而滥用 `'use client'`**
+    *   **反模式**: 一个纯展示性组件（如 `Header`, `Footer`）为了方便使用 `useTranslations` Hook 而被声明为 `'use client'`。
+    *   **正确模式**: 纯展示性组件应保持为**服务器组件**。其所需的翻译文本应由其父级服务器组件通过 `getTranslations` 获取后，以 **props** 的形式传递下来。
+    *   **收益**: 显著减少发送到客户端的 JavaScript 体积，优化初始加载性能。
+
+### 7.2 架构蓝图：`layout.tsx` 作为桥梁
+
+我们的根布局 `src/app/[locale]/layout.tsx` 是实践上述原则的完美范例：
+*   它自身是一个**服务器组件**，负责接收 `locale` 参数并获取 `messages`。
+*   它使用 `<NextIntlClientProvider>` 将 `locale` 和 `messages` **注入**到客户端世界。
+*   这使得所有嵌套在其中的**客户端组件**都能通过 `useTranslations` Hook 访问到 i18n 上下文，而**服务器组件**则继续通过 `getTranslations` 和 `props` 传递来工作。
+
+所有未来的开发都将以此为蓝图，通过“服务器包裹客户端”的模式，清晰地分离职责，确保应用的性能和可维护性。原有的 `params` 异步问题和中间件问题，将在此统一架构下得到妥善管理。
 

@@ -197,5 +197,17 @@
     "blog1Desc": "第一篇博客文章的简要说明。",
     "whitepaper2Title": "第二份白皮书的标题",
     "whitepaper2Desc": "第二份白皮书的简要说明。"
+  },
+  "PlatformIndex": {
+    "pageTitle": "我们强大的技术平台",
+    "pageDescription": "探索构成我们测量验证仿真 (MVS) 核心的软件和硬件技术。",
+    "MvsWorkflowCard": {
+      "title": "MVS 工作流",
+      "description": "查看我们“测量验证仿真”核心方法的实际应用。"
+    }
+  },
+  "SolutionsIndex": {
+    "pageTitle": "我们的端到端解决方案",
+    "pageDescription": "从虚拟路测到 MIMO OTA，探索我们如何利用核心平台解决行业最紧迫的挑战。"
   }
 }

@@ -1,7 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 
-const CsiSensingPage = async ({params}: {params: {locale: string}}) => {
-  const {locale} = params;
+const CsiSensingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
   const t = await getTranslations({locale, namespace: 'CsiSensing'});
 
   return (

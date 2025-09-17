@@ -197,5 +197,17 @@
     "blog1Desc": "A brief description of the first blog post.",
     "whitepaper2Title": "Title of the second whitepaper",
     "whitepaper2Desc": "A brief description of the second whitepaper."
+  },
+  "PlatformIndex": {
+    "pageTitle": "Our Powerful Technology Platform",
+    "pageDescription": "Explore the software and hardware technologies that form the core of our Measurement-Validated Simulation (MVS).",
+    "MvsWorkflowCard": {
+      "title": "MVS Workflow",
+      "description": "See our core methodology of Measurement-Validated Simulation in action."
+    }
+  },
+  "SolutionsIndex": {
+    "pageTitle": "Our End-to-End Solutions",
+    "pageDescription": "From Virtual Drive Testing to MIMO OTA, explore how we leverage our core platform to solve the industry's most pressing challenges."
   }
 }

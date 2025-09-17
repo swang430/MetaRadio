@@ -4,7 +4,15 @@ const withNextIntlConfig = withNextIntl('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // You can add other Next.js config here if needed
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/zh-CN',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default withNextIntlConfig(nextConfig);

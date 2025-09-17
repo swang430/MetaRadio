@@ -1,16 +1,27 @@
-'use client';
+type DiagramTranslations = {
+  networkTitle: string;
+  networkDescription: string;
+  environmentTitle: string;
+  environmentDescription: string;
+  interfaceTitle: string;
+  interfaceDescription: string;
+  automationTitle: string;
+  automationDescription: string;
+  conversionTitle: string;
+  conversionDescription: string;
+};
 
-import { useTranslations } from 'next-intl';
+type DiagramProps = {
+  translations: DiagramTranslations;
+};
 
-const HorizonOneDiagram = () => {
-  const t = useTranslations('VirtualDriveTesting.diagram');
-
+const HorizonOneDiagram = ({ translations }: DiagramProps) => {
   const modules = [
-    { id: 'network', title: t('networkTitle'), description: t('networkDescription'), icon: '📡' },
-    { id: 'environment', title: t('environmentTitle'), description: t('environmentDescription'), icon: '🌍' },
-    { id: 'interface', title: t('interfaceTitle'), description: t('interfaceDescription'), icon: '🔌' },
-    { id: 'automation', title: t('automationTitle'), description: t('automationDescription'), icon: '🤖' },
-    { id: 'conversion', title: t('conversionTitle'), description: t('conversionDescription'), icon: '🔄' },
+    { id: 'network', title: translations.networkTitle, description: translations.networkDescription, icon: '📡' },
+    { id: 'environment', title: translations.environmentTitle, description: translations.environmentDescription, icon: '🌍' },
+    { id: 'interface', title: translations.interfaceTitle, description: translations.interfaceDescription, icon: '🔌' },
+    { id: 'automation', title: translations.automationTitle, description: translations.automationDescription, icon: '🤖' },
+    { id: 'conversion', title: translations.conversionTitle, description: translations.conversionDescription, icon: '🔄' },
   ];
 
   return (

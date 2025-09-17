@@ -1,8 +1,7 @@
 import HorizonOneDiagram from '@/components/solutions/HorizonOneDiagram';
 import {getTranslations} from 'next-intl/server';
 
-const VirtualDriveTestingPage = async ({params}: {params: {locale: string}}) => {
-  const {locale} = params;
+const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
 
   return (
@@ -30,7 +29,18 @@ const VirtualDriveTestingPage = async ({params}: {params: {locale: string}}) => 
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-8">{t('solutionTitle')}</h2>
           <p className="text-lg text-center text-gray-600 max-w-3xl mx-auto mb-12">{t('solutionDescription')}</p>
-          <HorizonOneDiagram />
+          <HorizonOneDiagram translations={{
+            networkTitle: t('diagram.networkTitle'),
+            networkDescription: t('diagram.networkDescription'),
+            environmentTitle: t('diagram.environmentTitle'),
+            environmentDescription: t('diagram.environmentDescription'),
+            interfaceTitle: t('diagram.interfaceTitle'),
+            interfaceDescription: t('diagram.interfaceDescription'),
+            automationTitle: t('diagram.automationTitle'),
+            automationDescription: t('diagram.automationDescription'),
+            conversionTitle: t('diagram.conversionTitle'),
+            conversionDescription: t('diagram.conversionDescription'),
+          }} />
         </div>
       </section>
 
