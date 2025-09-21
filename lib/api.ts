@@ -40,3 +40,29 @@ export function extractTextFromDescription(description: any): string {
   }
   return 'Description not available.';
 }
+
+// 定义Platform接口并导出
+export interface Platform {
+  id: number;
+  name: string;
+  description: any;
+  slug: string;
+}
+
+/**
+ * 从Strapi获取所有平台产品
+ * @param {string} locale - The locale to fetch.
+ * @returns {Promise<Platform[]>} - A promise that resolves to an array of platforms.
+ */
+export async function getPlatforms(locale: string): Promise<Platform[]> {
+  const res = await fetch(`${STRAPI_URL}/api/platforms?locale=${locale}`, {
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch platforms from Strapi');
+  }
+
+  const json = await res.json();
+  return json.data;
+}

@@ -1,44 +1,15 @@
-'use client';
-
-import { useLocale, useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getPlatforms, extractTextFromDescription } from '../../../../lib/api';
 
-const PlatformIndexPage = () => {
-  const locale = useLocale();
-  const t = useTranslations('PlatformIndex');
-  const t_home = useTranslations('Home');
-
-  const platformCards = [
-    {
-      href: `/${locale}/platform/hyperrt`,
-      imgSrc: '/images/product.png',
-      alt: 'HyperRT',
-      title: t_home('hyperRtTitle'),
-      description: t_home('hyperRtDescription'),
-    },
-    {
-      href: `/${locale}/platform/raysense`,
-      imgSrc: '/images/product.png',
-      alt: 'RaySense',
-      title: t_home('raysenseTitle'),
-      description: t_home('raysenseDescription'),
-    },
-    {
-      href: `/${locale}/platform/csi-sensing`,
-      imgSrc: '/images/product.png',
-      alt: 'CSI Sensing',
-      title: t_home('csiSensingTitle'),
-      description: t_home('csiSensingDescription'),
-    },
-    {
-      href: `/${locale}/platform/mvs-workflow`,
-      imgSrc: '/images/product.png',
-      alt: 'MVS Workflow',
-      title: t('MvsWorkflowCard.title'),
-      description: t('MvsWorkflowCard.description'),
-    },
-  ];
+export default async function PlatformIndexPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  const t = await getTranslations({ locale, namespace: 'PlatformIndex' });
+  const platforms = await getPlatforms(locale);
 
   return (
     <div className="container mx-auto px-6 py-12">
@@ -48,26 +19,26 @@ const PlatformIndexPage = () => {
       </p>
 
       <div className="grid md:grid-cols-4 gap-8">
-        {platformCards.map((card) => (
+        {platforms.map((platform) => (
           <Link
-            key={card.href}
-            href={card.href}
+            key={platform.id}
+            href={`/${locale}/platform/${platform.slug}`}
             className="block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
           >
             <Image
-              src={card.imgSrc}
-              alt={card.alt}
+              src={'/images/product.png'} // Placeholder image
+              alt={platform.name}
               width={120}
               height={120}
               className="mx-auto mb-6"
             />
-            <h3 className="text-2xl font-bold mb-2">{card.title}</h3>
-            <p className="text-gray-600">{card.description}</p>
+            <h3 className="text-2xl font-bold mb-2">{platform.name}</h3>
+            <p className="text-gray-600">
+              {extractTextFromDescription(platform.description)}
+            </p>
           </Link>
         ))}
       </div>
     </div>
   );
-};
-
-export default PlatformIndexPage;
+}
