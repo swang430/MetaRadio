@@ -49,11 +49,6 @@ export interface Platform {
   slug: string;
 }
 
-/**
- * 从Strapi获取所有平台产品
- * @param {string} locale - The locale to fetch.
- * @returns {Promise<Platform[]>} - A promise that resolves to an array of platforms.
- */
 export async function getPlatforms(locale: string): Promise<Platform[]> {
   const res = await fetch(`${STRAPI_URL}/api/platforms?locale=${locale}`, {
     cache: 'no-store',
@@ -65,4 +60,55 @@ export async function getPlatforms(locale: string): Promise<Platform[]> {
 
   const json = await res.json();
   return json.data;
+}
+
+// 定义Resource接口并导出
+export interface Resource {
+  id: number;
+  Title: string;
+  Description: any;
+  slug: string;
+  type: 'White Paper' | 'Case Study' | 'Blog Post';
+  publicationDate: string;
+}
+
+/**
+ * 从Strapi获取所有资源
+ * @param {string} locale - The locale to fetch.
+ * @returns {Promise<Resource[]>} - A promise that resolves to an array of resources.
+ */
+export async function getResources(locale: string): Promise<Resource[]> {
+  const res = await fetch(`${STRAPI_URL}/api/resources?locale=${locale}`, {
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch resources from Strapi');
+  }
+
+  const json = await res.json();
+  // 按发布日期降序排序
+  return json.data.sort((a: Resource, b: Resource) => 
+    new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime()
+  );
+}
+
+/**
+ * 根据 slug 从 Strapi 获取单个解决方案
+ * @param {string} slug - The slug of the solution to fetch.
+ * @returns {Promise<Solution | null>} - A promise that resolves to a single solution or null if not found.
+ */
+export async function getSolutionBySlug(slug: string): Promise<Solution | null> {
+  const res = await fetch(`${STRAPI_URL}/api/solutions?filters[slug][$eq]=${slug}`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch solution from Strapi');
+  }
+
+  const json = await res.json();
+  if (json.data && json.data.length > 0) {
+    return json.data[0]; // 返回数组中的第一个元素
+  }
+
+  return null;
 }

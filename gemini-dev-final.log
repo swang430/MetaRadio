@@ -1,0 +1,1400 @@
+
+> website@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.2
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.55:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 3.1s (804 modules)
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en 200 in 3892ms
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /[locale]/platform/raysense in 264ms (791 modules)
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 735ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 22ms
+ ✓ Compiled /[locale]/platform in 148ms (784 modules)
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform 200 in 454ms
+ ✓ Compiled /[locale]/platform/mvs-workflow in 156ms (791 modules)
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/mvs-workflow 200 in 450ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en 200 in 52ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 62ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 54ms
+ ✓ Compiled /[locale]/resources in 298ms (788 modules)
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/resources 200 in 620ms
+ ✓ Compiled /[locale]/solutions in 150ms (795 modules)
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 435ms
+ ✓ Compiled /[locale]/platform in 99ms (518 modules)
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 146ms
+ ✓ Compiled /[locale]/platform/hyperrt in 322ms (802 modules)
+Error: Route "/[locale]/platform/hyperrt" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at HyperRtPage (src/app/[locale]/platform/hyperrt/page.tsx:3:40)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const HyperRtPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                        ^
+  4 |   const t = await getTranslations({locale, namespace: 'HyperRT'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/platform/hyperrt" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/hyperrt 200 in 619ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 44ms
+ ✓ Compiled /[locale]/platform/csi-sensing in 161ms (804 modules)
+Error: Route "/[locale]/platform/csi-sensing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at CsiSensingPage (src/app/[locale]/platform/csi-sensing/page.tsx:3:43)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const CsiSensingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                           ^
+  4 |   const t = await getTranslations({locale, namespace: 'CsiSensing'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/platform/csi-sensing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/csi-sensing 200 in 445ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 49ms
+ ✓ Compiled /[locale]/platform/mvs-workflow in 161ms (527 modules)
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/mvs-workflow 200 in 217ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 49ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 46ms
+ ✓ Compiled /[locale]/solutions/mimo-ota in 181ms (811 modules)
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at MimoOtaPage (src/app/[locale]/solutions/mimo-ota/page.tsx:3:40)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const MimoOtaPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                        ^
+  4 |   const t = await getTranslations({locale, namespace: 'MimoOta'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/mimo-ota 200 in 479ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 39ms
+ ✓ Compiled /[locale]/solutions/virtual-drive-testing in 211ms (814 modules)
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/virtual-drive-testing 200 in 499ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 56ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 60ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 80ms
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/virtual-drive-testing 200 in 58ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 381ms
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/resources 200 in 122ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 37ms
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at MimoOtaPage (src/app/[locale]/solutions/mimo-ota/page.tsx:3:40)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const MimoOtaPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                        ^
+  4 |   const t = await getTranslations({locale, namespace: 'MimoOta'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/mimo-ota 200 in 75ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 55ms
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/virtual-drive-testing 200 in 56ms
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/solutions/virtual-drive-testing 200 in 65ms
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/virtual-drive-testing 200 in 51ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 64ms
+Error: Route "/[locale]/platform/csi-sensing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at CsiSensingPage (src/app/[locale]/platform/csi-sensing/page.tsx:3:43)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const CsiSensingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                           ^
+  4 |   const t = await getTranslations({locale, namespace: 'CsiSensing'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/platform/csi-sensing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/csi-sensing 200 in 55ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 40ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 62ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 92ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 51ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 48ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 46ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 149ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 65ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 384ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 699ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 250ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 56ms
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/resources 200 in 69ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 52ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 63ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 35ms
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at VirtualDriveTestingPage (src/app/[locale]/solutions/virtual-drive-testing/page.tsx:4:52)
+  2 | import {getTranslations} from 'next-intl/server';
+  3 |
+> 4 | const VirtualDriveTestingPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                                    ^
+  5 |   const t = await getTranslations({locale, namespace: 'VirtualDriveTesting'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/solutions/virtual-drive-testing" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/virtual-drive-testing 200 in 51ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions 200 in 113ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 30ms
+ ✓ Compiled in 808ms (812 modules)
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 196ms
+ ✓ Compiled /[locale]/platform/raysense in 182ms (518 modules)
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 292ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 45ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 53ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 51ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 232ms
+ ✓ Compiled /favicon.ico in 313ms (535 modules)
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /favicon.ico 200 in 695ms
+ GET /favicon.ico 200 in 697ms
+ GET /apple-touch-icon.png 404 in 694ms
+ GET /apple-touch-icon-precomposed.png 404 in 695ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform 200 in 50ms
+ ✓ Compiled /[locale]/platform/mvs-workflow in 127ms (540 modules)
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/mvs-workflow 200 in 201ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 80ms
+ ✓ Compiled in 487ms (812 modules)
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 174ms
+ ✓ Compiled in 331ms (812 modules)
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 66ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 194ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 89ms
+ ✓ Compiled /[locale]/platform/raysense in 171ms (518 modules)
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 284ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/raysense 200 in 56ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 52ms
+ ✓ Compiled /[locale]/solutions in 187ms (523 modules)
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/solutions 200 in 248ms
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/solutions" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/solutions 200 in 20ms
+ ✓ Compiled /[locale]/resources in 120ms (526 modules)
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/resources 200 in 173ms
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/resources" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/resources 200 in 17ms
+Error: Route "/[locale]/platform" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform 200 in 57ms
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/mvs-workflow 200 in 54ms
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/platform/mvs-workflow" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/platform/mvs-workflow 200 in 46ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN 200 in 48ms
+ ✓ Compiled /[locale]/solutions/mimo-ota in 99ms (528 modules)
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at MimoOtaPage (src/app/[locale]/solutions/mimo-ota/page.tsx:3:40)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const MimoOtaPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                        ^
+  4 |   const t = await getTranslations({locale, namespace: 'MimoOta'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /zh-CN/solutions/mimo-ota 200 in 160ms
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RootLayout (src/app/[locale]/layout.tsx:36:13)
+  34 | export default async function RootLayout({
+  35 |   children,
+> 36 |   params: { locale },
+     |             ^
+  37 | }: {
+  38 |   children: React.ReactNode;
+  39 |   params: { locale: string };
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at MimoOtaPage (src/app/[locale]/solutions/mimo-ota/page.tsx:3:40)
+  1 | import {getTranslations} from 'next-intl/server';
+  2 |
+> 3 | const MimoOtaPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                        ^
+  4 |   const t = await getTranslations({locale, namespace: 'MimoOta'});
+  5 |
+  6 |   return (
+Error: Route "/[locale]/solutions/mimo-ota" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/solutions/mimo-ota 200 in 46ms
+Error: Route "/[locale]" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en 200 in 48ms
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at RaySensePage (src/app/[locale]/platform/raysense/page.tsx:4:41)
+  2 | import React from 'react';
+  3 |
+> 4 | const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+    |                                         ^
+  5 |   const t = await getTranslations({locale, namespace: 'RaySense'});
+  6 |
+  7 |   return (
+Error: Route "/[locale]/platform/raysense" used `params.locale`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at Module.generateMetadata (src/app/[locale]/layout.tsx:21:52)
+  19 | });
+  20 |
+> 21 | export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+     |                                                    ^
+  22 |   const t = await getTranslations({locale, namespace: 'Layout'});
+  23 |  
+  24 |   return {
+ GET /en/platform/raysense 200 in 77ms
+[?25h
