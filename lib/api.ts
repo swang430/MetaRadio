@@ -9,6 +9,12 @@ export interface Solution {
   name: string;
   description: any;
   slug: string;
+  challenge?: any;
+  solution_details?: any;
+  benefits?: any;
+  challenge_title?: string;
+  solution_details_title?: string;
+  benefits_title?: string;
 }
 
 /**
@@ -92,6 +98,7 @@ export async function getResources(locale: string): Promise<Resource[]> {
     new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime()
   );
 }
+
 
 /**
  * 根据 slug 从 Strapi 获取单个解决方案

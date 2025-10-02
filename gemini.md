@@ -19,6 +19,8 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
 
 样式: Tailwind CSS - 用于快速、一致的 UI 开发。所有样式应通过 @apply 指令或配置文件进行管理，以确保品牌一致性。
 
+富文本渲染 (Rich Text Rendering): @strapi/blocks-react-renderer - 用于将 Strapi 富文本编辑器返回的 JSON 数据安全、正确地渲染为 React 组件，实现内容与展示的完全解耦。
+
 动态 PDF 生成: 后端 API 路由，使用 Puppeteer 或类似库，根据 CMS 内容动态生成 PDF。
 
 交互式 Canvas: 原生 HTML5 Canvas API 或使用轻量级库如 Konva.js 进行封装，以简化交互逻辑。
@@ -138,9 +140,9 @@ Gemini.md: Metaradio.tech 下一代网站开发规范
     *   **前端请求**: 前端代码在请求 API 时，通过 `?locale=zh-CN` 或 `?locale=en` 查询参数来请求特定语言版本的内容。Strapi 会自动返回对应语言的 `title` 和 `description`，而 `slug` 保持不变。此策略已在现有 `lib/api.ts` 的 `getSolutions` 等函数中实现。
     *   **内容创建流程**: 为确保 `slug` 的正确生成和共享，必须遵循“**先英文，后中文**”的原则：先创建内容的英文版，使其根据英文标题生成一个唯一的、非本地化的 `slug`；然后，再从该英文条目中创建中文的本地化版本，此时 `slug` 字段会被锁定，而中文标题则可以自由填写。
 
-6.  **前端数据获取**:
-    *   所有与 Strapi 的交互逻辑都被抽象到 `/lib/api.ts` 文件中，以便复用。
-    *   页面组件（如 `solutions/page.tsx`）应为服务器组件，直接调用 `lib/api.ts` 中的函数来获取数据。
+6.  **前端数据获取与渲染**: 
+    *   **数据获取**: 所有与 Strapi 的交互逻辑都被抽象到 `/lib/api.ts` 文件中，以便复用。页面组件应为服务器组件，直接调用 `lib/api.ts` 中的函数来获取数据。
+    *   **富文本渲染**: 为了正确且安全地渲染从 Strapi 获取的富文本内容（包含多种格式），**必须**使用官方推荐的 `@strapi/blocks-react-renderer` 库。前端页面直接将从 API 收到的原始富文本 JSON 对象传递给该库的 `<BlocksRenderer />` 组件。**严禁**手动编写转换函数（如 `blocksToMarkdown`），因为这种方式脆弱且难以维护。此方法确保了内容和展示的完全解耦。
 
 9.  **任务 4.3: 动态 PDF 生成**
     *   创建 API 路由 `/api/generate-pdf.js`。
