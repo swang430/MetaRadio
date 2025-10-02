@@ -36,13 +36,14 @@ const createPdfTemplate = (solution: Solution) => {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug');
+  const locale = searchParams.get('locale');
 
   if (!slug) {
     return new NextResponse('Missing slug parameter', { status: 400 });
   }
 
   try {
-    const solution = await getSolutionBySlug(slug);
+    const solution = await getSolutionBySlug(slug, locale || 'en');
 
     if (!solution) {
       return new NextResponse(`Solution with slug "${slug}" not found`, { status: 404 });

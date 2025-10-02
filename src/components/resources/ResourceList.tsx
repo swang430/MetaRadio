@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useState } from 'react';
 import { Resource, extractTextFromDescription } from '../../../lib/api'; // 导入我们定义的类型
 
@@ -10,6 +10,7 @@ interface ResourceListProps {
 
 export default function ResourceList({ resources }: ResourceListProps) {
   const t = useTranslations('Resources');
+  const locale = useLocale();
   const [filter, setFilter] = useState('All');
 
   // 将Strapi中的类型映射到翻译文本
@@ -37,7 +38,7 @@ export default function ResourceList({ resources }: ResourceListProps) {
           <div key={resource.id} className="bg-white p-6 rounded-lg shadow-lg flex flex-col">
             <h3 className="text-xl font-bold mb-2">{resource.Title}</h3>
             <p className="text-gray-700 flex-grow">{extractTextFromDescription(resource.Description)}</p>
-            <a href={`/resources/${resource.slug}`} className="text-blue-600 hover:underline mt-4 self-start">{t('readMore')} →</a>
+            <a href={`/${locale}/resources/${resource.slug}`} className="text-blue-600 hover:underline mt-4 self-start">{t('readMore')} →</a>
           </div>
         ))}
       </div>

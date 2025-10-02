@@ -6,7 +6,7 @@ import Link from 'next/link';
 // 这是一个动态页面，它会接收 slug 作为参数
 export default async function SolutionDetailPage({ params: { locale, slug } }: { params: { locale: string, slug: string } }) {
   const t = await getTranslations({ locale, namespace: 'VirtualDriveTesting' });
-  const solution = await getSolutionBySlug(slug);
+  const solution = await getSolutionBySlug(slug, locale);
 
   // 如果根据 slug 找不到解决方案，显示404页面
   if (!solution) {
@@ -26,7 +26,7 @@ export default async function SolutionDetailPage({ params: { locale, slug } }: {
         
         {/* 下载PDF按钮 */}
         <Link 
-          href={`/api/generate-pdf?slug=${solution.slug}`}
+          href={`/api/generate-pdf?slug=${solution.slug}&locale=${locale}`}
           className="inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
           target="_blank" // 在新标签页中打开以开始下载
         >

@@ -98,8 +98,8 @@ export async function getResources(locale: string): Promise<Resource[]> {
  * @param {string} slug - The slug of the solution to fetch.
  * @returns {Promise<Solution | null>} - A promise that resolves to a single solution or null if not found.
  */
-export async function getSolutionBySlug(slug: string): Promise<Solution | null> {
-  const res = await fetch(`${STRAPI_URL}/api/solutions?filters[slug][$eq]=${slug}`);
+export async function getSolutionBySlug(slug: string, locale: string): Promise<Solution | null> {
+  const res = await fetch(`${STRAPI_URL}/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch solution from Strapi');
