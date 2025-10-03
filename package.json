@@ -1,0 +1,35 @@
+{
+  "name": "metaradio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed:strapi": "node -r dotenv/config scripts/seed-strapi.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "dotenv": "^17.2.3",
+    "next": "^14.2.33",
+    "postcss": "^8.5.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^24.6.2",
+    "@types/react": "^19.2.0",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.3"
+  }
+}

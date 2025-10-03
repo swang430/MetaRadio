@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_content_media_blocks",
+  "info": {
+    "displayName": "MediaBlock",
+    "description": "图文混排组件"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "videos"]
+    },
+    "orientation": {
+      "type": "enumeration",
+      "enum": ["left", "right"],
+      "default": "left"
+    },
+    "actions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_before_afters",
+  "info": {
+    "displayName": "BeforeAfterSection",
+    "description": "前后对比区块"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "rt.before-after"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_grid_feature_cards",
+  "info": {
+    "displayName": "FeatureCard",
+    "description": "产品或能力卖点卡片"
+  },
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "component": "shared.link"
+    }
+  }
+}

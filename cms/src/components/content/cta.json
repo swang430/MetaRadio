@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_content_ctas",
+  "info": {
+    "displayName": "CTA",
+    "description": "号召性动作区块"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "text"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.link"
+    }
+  }
+}

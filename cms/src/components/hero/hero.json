@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_hero_heros",
+  "info": {
+    "displayName": "Hero",
+    "description": "首页或区块的 Hero 内容"
+  },
+  "attributes": {
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "subhead": {
+      "type": "text"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "bgMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "videos"]
+    },
+    "ctaPrimary": {
+      "type": "component",
+      "component": "shared.link"
+    },
+    "ctaSecondary": {
+      "type": "component",
+      "component": "shared.link"
+    }
+  }
+}

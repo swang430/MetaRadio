@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_stat_groups",
+  "info": {
+    "displayName": "StatGroup",
+    "description": "统计数据组合"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "metrics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.metric"
+    }
+  }
+}

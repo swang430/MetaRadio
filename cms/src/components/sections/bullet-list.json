@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_bullet_lists",
+  "info": {
+    "displayName": "BulletList",
+    "description": "能力点列表区块"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.bullet"
+    }
+  }
+}

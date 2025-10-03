@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_bullets",
+  "info": {
+    "displayName": "Bullet",
+    "description": "能力点列表项"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "files"]
+    }
+  }
+}

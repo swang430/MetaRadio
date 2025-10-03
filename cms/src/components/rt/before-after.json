@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_rt_before_afters",
+  "info": {
+    "displayName": "BeforeAfter",
+    "description": "方案前后对比"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "beforeMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "videos"]
+    },
+    "afterMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "videos"]
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

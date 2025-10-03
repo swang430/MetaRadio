@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_cards_case_cards",
+  "info": {
+    "displayName": "CaseCard",
+    "description": "案例卡片"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "client": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

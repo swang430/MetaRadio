@@ -1,0 +1,44 @@
+{
+  "name": "metaradio-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Strapi v5 project for MetaRadio content automation",
+  "engines": {
+    "node": ">=18.0.0 <=20.x"
+  },
+  "scripts": {
+    "develop": "node scripts/dev.js",
+    "start": "strapi start",
+    "build": "strapi build && node scripts/copy-static.js",
+    "clean": "strapi clean",
+    "copy:static": "node scripts/copy-static.js",
+    "postinstall": "strapi telemetry:disable"
+  },
+  "dependencies": {
+    "@strapi/plugin-content-manager": "5.0.0-beta.5",
+    "@strapi/plugin-content-type-builder": "5.0.0-beta.5",
+    "@strapi/plugin-email": "5.0.0-beta.5",
+    "@strapi/plugin-graphql": "5.0.0-beta.5",
+    "@strapi/plugin-i18n": "5.0.0-beta.5",
+    "@strapi/plugin-upload": "5.0.0-beta.5",
+    "@strapi/plugin-users-permissions": "5.0.0-beta.5",
+    "@strapi/provider-upload-local": "5.0.0-beta.5",
+    "@strapi/strapi": "5.0.0-beta.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.30.1",
+    "styled-components": "5.2.1",
+    "better-sqlite3": "^9.4.3",
+    "dotenv": "^16.4.5"
+  },
+  "overrides": {
+    "@strapi/admin": "5.0.0-beta.5",
+    "styled-components": "5.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "chokidar": "^3.6.0"
+  }
+}

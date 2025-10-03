@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": "可配置页面"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.seo"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "hero.hero",
+        "content.media-block",
+        "content.cta",
+        "sections.feature-grid",
+        "sections.stat-group",
+        "sections.bullet-list",
+        "sections.case-showcase",
+        "sections.post-list",
+        "sections.tech-flow",
+        "sections.before-after",
+        "sections.cta-banner"
+      ]
+    }
+  }
+}

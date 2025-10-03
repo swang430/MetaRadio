@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_sections_feature_grids",
+  "info": {
+    "displayName": "FeatureGrid",
+    "description": "特性栅格区块"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "intro": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "grid.feature-card"
+    }
+  }
+}

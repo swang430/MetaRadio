@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_cards_post_cards",
+  "info": {
+    "displayName": "PostCard",
+    "description": "文章列表卡片"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "category": {
+      "type": "string"
+    },
+    "estimate": {
+      "type": "integer",
+      "default": 5
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_tech_flows",
+  "info": {
+    "displayName": "TechFlow",
+    "description": "技术步骤流程"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "rt.tech-step"
+    }
+  }
+}

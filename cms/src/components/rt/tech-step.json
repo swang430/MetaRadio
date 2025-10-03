@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_rt_tech_steps",
+  "info": {
+    "displayName": "TechStep",
+    "description": "技术流程步骤"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text"
+    }
+  }
+}

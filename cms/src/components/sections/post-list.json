@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_post_lists",
+  "info": {
+    "displayName": "PostList",
+    "description": "洞察文章列表"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "posts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.post-card"
+    }
+  }
+}
