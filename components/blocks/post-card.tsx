@@ -5,10 +5,11 @@ type PostCardProps = {
   excerpt?: string | null;
   href: string;
   category?: string | null;
-  estimate?: number | null;
+  estimateLabel?: string | null;
+  readMoreLabel?: string | null;
 };
 
-export function PostCard({ title, excerpt, href, category, estimate }: PostCardProps) {
+export function PostCard({ title, excerpt, href, category, estimateLabel, readMoreLabel }: PostCardProps) {
   return (
     <article className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
       <div className="flex-1">
@@ -21,8 +22,8 @@ export function PostCard({ title, excerpt, href, category, estimate }: PostCardP
         {excerpt ? <p className="mt-2 text-sm text-slate-600">{excerpt}</p> : null}
       </div>
       <div className="mt-4 text-xs text-slate-500">
-        {estimate ? <span>阅读 {estimate} 分钟 · </span> : null}
-        <span>继续阅读 →</span>
+        {estimateLabel ? <span>{estimateLabel}</span> : null}
+        <span>{readMoreLabel || 'Continue reading →'}</span>
       </div>
     </article>
   );

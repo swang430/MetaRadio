@@ -32,9 +32,7 @@ async function copyComponents() {
 }
 
 async function syncOnce() {
-  if (!(await fs.pathExists(path.join(distDir, 'src')))) {
-    return false;
-  }
+  await fs.ensureDir(path.join(distDir, 'src'));
   const [copiedContentTypes, copiedComponents] = await Promise.all([
     copyContentTypes(),
     copyComponents(),
@@ -73,6 +71,7 @@ async function main() {
     .watch([
       path.join(srcDir, 'api'),
       path.join(srcDir, 'components'),
+      path.join(distDir, 'src'),
     ], { ignoreInitial: true })
     .on('add', scheduleSync)
     .on('addDir', scheduleSync)

@@ -158,6 +158,33 @@ postcss.config.mjs
 1. 按目录创建文件并写入基础实现。
 2. 页面顶部插入 `<Nav />`。
 3. 样式统一 Tailwind。
+
+## 11. 近期路线图与优先级
+
+### 当前进展
+- ✅ 多语言架构已落地：目录迁移至 `app/[locale]/**`，默认 `zh` 并支持 `en`，导航/区块/Meta 均接入 `lib/i18n` 字典与链接本地化。
+- ✅ 内容分层已覆盖通信、汽车、无人机、机器人、卫星、通感一体、高精定位等行业，`lib/mock-data.ts`、`scripts/seed-strapi.mjs`、`cms/src/seed.ts` 对应扩充。
+- ✅ 引入 Vitest，现有单元测试覆盖 `localizeHref` 等数据契约，可通过 `npm test` 运行。
+- ⚠️ ESLint 尚未初始化（`npm run lint` 会触发 Next 提示），待团队确认配置方案。
+
+### 多语言（最高优先级）
+- 目录调整为 `app/[locale]/...`，默认生成 `zh`，预留 `en`；`app/layout.tsx` 负责检测 locale 并复用导航与区块渲染。
+- 统一 `lib/strapi.ts` 接口的 `locale` 参数，所有页面调用时显式传递；若 Strapi 未命中，回退到多语言 mock。
+- 在导航、Meta 标签、CTA 等文本位加入语言包（命名空间分组：`common`、`marketing` 等），初始使用简单对象导出，后续可接入翻译服务。
+- `next.config.mjs` 内开启 i18n routes（`locales: ['zh', 'en']`）并约定默认语言为 `zh`。
+
+### 内容分层落地
+- 基于行业维度扩充 `Solution`、`CaseStudy`、`Article` 模型数据：通信、汽车通信（虚拟路测）、无人机、机器人、卫星、通感一体化、定位。
+- Strapi `seed.ts` 与 `scripts/seed-strapi.mjs` 同步新增多行业内容，并通过动态区块体现差异化卖点（如时间线、指标矩阵、合作流程）。
+- `lib/mock-data.ts` 与动态区块组件保持同构结构，确保无 CMS 时仍有完整演示。
+- 规划新区块组件（如 `sections.industry-matrix`、`sections.timeline`）时优先在此文档登记字段结构，保持 Next 与 Strapi 的 contract 同步。
+- 明确内容投放顺序：先补核心行业解决方案页面 → 对应案例/文章 → 资源下载或 CTA。
+
+### 测试与质量
+- 引入 `vitest` + `@testing-library/react` 进行组件渲染与数据映射测试，重点覆盖 `BlocksRenderer`、导航、语言切换逻辑。
+- 针对 `lib/strapi.ts` 编写单元测试与契约测试，模拟多语言 fallback、缺失字段等场景。
+- 在 CI（待配置）中运行 `lint` + `vitest`，并为未来 e2e（Playwright）预留脚本占位。
+- 记录测试基线与约定：新增区块/接口必须附带最小测试覆盖或更新现有限定快照。
 4. 图片使用 `next/image`。
 5. API 降级为 mock 时不报错。
 

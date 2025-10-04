@@ -1,4 +1,5 @@
 import { CaseCard } from './case-card';
+import type { Locale } from '@/lib/i18n/config';
 
 type CaseShowcaseProps = {
   title?: string | null;
@@ -10,9 +11,11 @@ type CaseShowcaseProps = {
     client?: string | null;
     summary?: string | null;
   }>;
+  locale?: Locale;
+  viewDetailLabel?: string | null;
 };
 
-export function CaseShowcase({ title, intro, cases }: CaseShowcaseProps) {
+export function CaseShowcase({ title, intro, cases, locale, viewDetailLabel }: CaseShowcaseProps) {
   if (!cases?.length) return null;
   return (
     <section className="py-16">
@@ -25,8 +28,10 @@ export function CaseShowcase({ title, intro, cases }: CaseShowcaseProps) {
               key={item.id || item.slug}
               title={item.title}
               href={`/marketing/cases/${item.slug}`}
+              locale={locale}
               client={item.client}
               summary={item.summary}
+              viewDetailLabel={viewDetailLabel}
             />
           ))}
         </div>

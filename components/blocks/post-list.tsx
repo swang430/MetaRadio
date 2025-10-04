@@ -1,4 +1,5 @@
 import { PostCard } from './post-card';
+import type { Locale } from '@/lib/i18n/config';
 
 type PostListProps = {
   title?: string | null;
@@ -10,10 +11,19 @@ type PostListProps = {
     excerpt?: string | null;
     category?: string | null;
     estimate?: number | null;
+    readMoreLabel?: string | null;
   }>;
+  locale?: Locale;
 };
 
-export function PostList({ title, intro, posts }: PostListProps) {
+function formatReadMinutes(locale: Locale, minutes: number) {
+  if (locale === 'en') {
+    return `≈ ${minutes} min read · `;
+  }
+  return `阅读 ${minutes} 分钟 · `;
+}
+
+export function PostList({ title, intro, posts, locale = 'zh' }: PostListProps) {
   if (!posts?.length) return null;
   return (
     <section className="py-16">
@@ -28,7 +38,10 @@ export function PostList({ title, intro, posts }: PostListProps) {
               excerpt={post.excerpt}
               href={`/marketing/blog/${post.slug}`}
               category={post.category}
-              estimate={post.estimate ?? 5}
+              estimateLabel={
+                post.estimate ? formatReadMinutes(locale, post.estimate) : undefined
+              }
+              readMoreLabel={post.readMoreLabel}
             />
           ))}
         </div>

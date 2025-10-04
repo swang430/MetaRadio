@@ -10,9 +10,14 @@ import { PostList } from './post-list';
 import { StatGroup } from './stat-group';
 import { TechFlow } from './tech-flow';
 import { DynamicZoneBlock } from '@/lib/strapi-types';
+import type { Locale } from '@/lib/i18n/config';
+import type { Dictionary } from '@/lib/i18n/dictionaries';
+import { localizeHref } from '@/lib/i18n/navigation';
 
 type BlocksRendererProps = {
   blocks?: DynamicZoneBlock[] | null;
+  locale?: Locale;
+  dictionary?: Dictionary;
 };
 
 type MediaInput = {
@@ -46,24 +51,33 @@ function toMedia(media?: MediaInput | null):
   };
 }
 
-function toAction(action?: { name?: string | null; url?: string | null } | null) {
+function toAction(
+  action?: { name?: string | null; url?: string | null } | null,
+  locale?: Locale
+) {
   if (!action) return undefined;
-  return { name: action.name || null, url: action.url || null };
+  return { name: action.name || null, url: localizeHref(action.url || null, locale) };
 }
 
-function mapLinks(links?: Array<{ id?: number | string; name?: string | null; url?: string | null }> | null) {
+function mapLinks(
+  links?: Array<{ id?: number | string; name?: string | null; url?: string | null }> | null,
+  locale?: Locale
+) {
   if (!links) return [];
   return links
     .filter((link) => link?.name && link?.url)
     .map((link) => ({
       id: link.id ?? link.url,
       name: link.name,
-      url: link.url,
+      url: localizeHref(link.url, locale),
     }));
 }
 
-export function BlocksRenderer({ blocks }: BlocksRendererProps) {
+export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererProps) {
   if (!blocks?.length) return null;
+
+  const featureCardLearnMore = dictionary?.components.featureCard.learnMore;
+  const postCardReadMore = dictionary?.components.postCard.readMore;
 
   return (
     <Fragment>
@@ -76,8 +90,8 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                 headline={block.headline}
                 subhead={block.subhead}
                 summary={block.summary}
-                primaryAction={toAction(block.ctaPrimary)}
-                secondaryAction={toAction(block.ctaSecondary)}
+                primaryAction={toAction(block.ctaPrimary, locale)}
+                secondaryAction={toAction(block.ctaSecondary, locale)}
                 media={toMedia(block.bgMedia)}
               />
             );
@@ -91,7 +105,8 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                   block.items?.map((item: any) => ({
                     title: item.title,
                     description: item.desc,
-                    href: item.link?.url,
+                    href: localizeHref(item.link?.url, locale),
+                    linkLabel: item.link?.name || featureCardLearnMore,
                   })) || []
                 }
               />
@@ -148,6 +163,8 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                 key={`case-showcase-${index}`}
                 title={block.title}
                 intro={block.intro}
+                locale={locale}
+                viewDetailLabel={dictionary?.pages.cases.viewDetail}
                 cases={
                   block.cases?.map((item: any) => ({
                     id: item.id,
@@ -173,8 +190,10 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                     excerpt: item.excerpt,
                     category: item.category,
                     estimate: item.estimate,
+                    readMoreLabel: postCardReadMore,
                   })) || []
                 }
+                locale={locale}
               />
             );
           case 'sections.before-after':
@@ -199,7 +218,7 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                 key={`cta-banner-${index}`}
                 title={block.title}
                 description={block.body}
-                items={mapLinks(block.links)}
+                items={mapLinks(block.links, locale)}
               />
             );
           case 'content.media-block':
@@ -210,7 +229,7 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                 body={block.body}
                 orientation={block.orientation}
                 media={toMedia(block.media)}
-                actions={mapLinks(block.actions)}
+                actions={mapLinks(block.actions, locale)}
               />
             );
           case 'content.cta':
@@ -219,7 +238,7 @@ export function BlocksRenderer({ blocks }: BlocksRendererProps) {
                 key={`cta-${index}`}
                 title={block.title}
                 description={block.body}
-                items={mapLinks(block.links)}
+                items={mapLinks(block.links, locale)}
               />
             );
           default:

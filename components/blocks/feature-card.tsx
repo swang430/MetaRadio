@@ -6,9 +6,10 @@ type FeatureCardProps = {
   description?: string | null;
   href?: string | null;
   icon?: ReactNode;
+  linkLabel?: string | null;
 };
 
-export function FeatureCard({ title, description, href, icon }: FeatureCardProps) {
+export function FeatureCard({ title, description, href, icon, linkLabel }: FeatureCardProps) {
   const content = (
     <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-lg">
       <div className="flex items-start gap-4">
@@ -18,7 +19,9 @@ export function FeatureCard({ title, description, href, icon }: FeatureCardProps
           {description ? <p className="mt-2 text-sm text-slate-600">{description}</p> : null}
         </div>
       </div>
-      {href ? <p className="mt-4 text-sm font-medium text-indigo-600">了解更多 →</p> : null}
+      {href ? (
+        <p className="mt-4 text-sm font-medium text-indigo-600">{linkLabel || 'Learn more →'}</p>
+      ) : null}
     </div>
   );
 

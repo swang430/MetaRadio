@@ -15,6 +15,7 @@ import {
   mockSiteSettings,
   mockSolutions,
 } from './mock-data';
+import { DEFAULT_LOCALE, resolveLocale, type Locale } from './i18n/config';
 
 const STRAPI_URL = process.env.STRAPI_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
 const TOKEN = process.env.STRAPI_API_TOKEN;
@@ -46,6 +47,24 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefin
   }
 }
 
+function resolveMockLocale(locale?: string): Locale {
+  return resolveLocale(locale);
+}
+
+function getMockPage(slug: string, locale?: string) {
+  const resolved = resolveMockLocale(locale);
+  return mockPages[resolved]?.[slug] || mockPages[DEFAULT_LOCALE]?.[slug];
+}
+
+function getMockCollection<T>(collection: Record<Locale, T>, locale?: string): T {
+  const resolved = resolveMockLocale(locale);
+  return collection[resolved] || collection[DEFAULT_LOCALE];
+}
+
+function hasBlocks(entity?: { attributes?: { blocks?: unknown[] | null } }) {
+  return Boolean(entity?.attributes?.blocks && entity.attributes.blocks.length > 0);
+}
+
 export async function getSiteSettings(): Promise<SiteSettingEntity> {
   if (!STRAPI_URL) return mockSiteSettings;
   const data = await api<StrapiResponse<SiteSettingEntity>>('/api/site-setting?populate=defaultSeo,socialLinks');
@@ -53,97 +72,106 @@ export async function getSiteSettings(): Promise<SiteSettingEntity> {
   return mockSiteSettings;
 }
 
-export async function getPageBySlug(slug: string, locale = 'zh'): Promise<PageEntity | undefined> {
+export async function getPageBySlug(slug: string, locale?: string): Promise<PageEntity | undefined> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
     populate: 'deep',
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<PageEntity[]>>(`/api/pages?${params.toString()}`);
   const entity = response?.data?.[0];
-  if (entity) return entity;
-  return mockPages[slug];
+  if (entity && hasBlocks(entity)) return entity;
+  return getMockPage(slug, resolved);
 }
 
-export async function listSolutions(locale = 'zh'): Promise<SolutionEntity[]> {
+export async function listSolutions(locale?: string): Promise<SolutionEntity[]> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({ populate: 'deep' });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<SolutionEntity[]>>(`/api/solutions?${params.toString()}`);
   if (response?.data?.length) return response.data;
-  return mockSolutions;
+  return getMockCollection(mockSolutions, resolved);
 }
 
-export async function getSolutionBySlug(slug: string, locale = 'zh'): Promise<SolutionEntity | undefined> {
+export async function getSolutionBySlug(slug: string, locale?: string): Promise<SolutionEntity | undefined> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
     populate: 'deep',
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<SolutionEntity[]>>(`/api/solutions?${params.toString()}`);
   const entity = response?.data?.[0];
-  if (entity) return entity;
-  return mockSolutions.find((item) => item.attributes.slug === slug);
+  if (entity && hasBlocks(entity)) return entity;
+  return getMockCollection(mockSolutions, resolved).find((item) => item.attributes.slug === slug);
 }
 
-export async function listCaseStudies(locale = 'zh'): Promise<CaseStudyEntity[]> {
+export async function listCaseStudies(locale?: string): Promise<CaseStudyEntity[]> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams();
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<CaseStudyEntity[]>>(`/api/case-studies?${params.toString()}`);
   if (response?.data?.length) return response.data;
-  return mockCaseStudies;
+  return getMockCollection(mockCaseStudies, resolved);
 }
 
-export async function getCaseStudyBySlug(slug: string, locale = 'zh'): Promise<CaseStudyEntity | undefined> {
+export async function getCaseStudyBySlug(slug: string, locale?: string): Promise<CaseStudyEntity | undefined> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<CaseStudyEntity[]>>(`/api/case-studies?${params.toString()}`);
   const entity = response?.data?.[0];
   if (entity) return entity;
-  return mockCaseStudies.find((item) => item.attributes.slug === slug);
+  return getMockCollection(mockCaseStudies, resolved).find((item) => item.attributes.slug === slug);
 }
 
-export async function listArticles(locale = 'zh', page = 1, pageSize = 9): Promise<ArticleEntity[]> {
+export async function listArticles(locale?: string, page = 1, pageSize = 9): Promise<ArticleEntity[]> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     sort: 'publishedAt:desc',
     'pagination[page]': String(page),
     'pagination[pageSize]': String(pageSize),
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<ArticleEntity[]>>(`/api/articles?${params.toString()}`);
   if (response?.data?.length) return response.data;
-  return mockArticles;
+  return getMockCollection(mockArticles, resolved);
 }
 
-export async function getArticleBySlug(slug: string, locale = 'zh'): Promise<ArticleEntity | undefined> {
+export async function getArticleBySlug(slug: string, locale?: string): Promise<ArticleEntity | undefined> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<ArticleEntity[]>>(`/api/articles?${params.toString()}`);
   const entity = response?.data?.[0];
   if (entity) return entity;
-  return mockArticles.find((item) => item.attributes.slug === slug);
+  return getMockCollection(mockArticles, resolved).find((item) => item.attributes.slug === slug);
 }
 
-export async function listResources(locale = 'zh'): Promise<ResourceEntity[]> {
+export async function listResources(locale?: string): Promise<ResourceEntity[]> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams();
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<ResourceEntity[]>>(`/api/resources?${params.toString()}`);
   if (response?.data?.length) return response.data;
-  return mockResources;
+  return getMockCollection(mockResources, resolved);
 }
 
-export async function getResourceBySlug(slug: string, locale = 'zh'): Promise<ResourceEntity | undefined> {
+export async function getResourceBySlug(slug: string, locale?: string): Promise<ResourceEntity | undefined> {
+  const resolved = resolveMockLocale(locale);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
   });
-  if (locale) params.append('locale', locale);
+  params.append('locale', resolved);
   const response = await api<StrapiResponse<ResourceEntity[]>>(`/api/resources?${params.toString()}`);
   const entity = response?.data?.[0];
   if (entity) return entity;
-  return mockResources.find((item) => item.attributes.slug === slug);
+  return getMockCollection(mockResources, resolved).find((item) => item.attributes.slug === slug);
 }
 
 export function hasStrapiConfig() {
