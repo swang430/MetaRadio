@@ -216,3 +216,15 @@ postcss.config.mjs
 - 将数据初始化逻辑写入 `cms/src/index.ts` 的 `bootstrap()` 或保留在仓库已有的 `scripts/seed-strapi.mjs`，脚本读取 `.env` 后批量调用 Strapi REST/Entity Service，保证幂等；首次启动后可一键同步模型与基础内容。
 - 在根级 `.env`、`.env.local` 配置 `STRAPI_API_URL`、`STRAPI_API_TOKEN` 等变量，Next 端缺省时使用静态 mock，确保开发环境可独立运行。
 - CI/CD 需新增 Strapi 构建校验步骤，确保 schema 与 seed 变更可通过 `npm run cms:build`、`npm run seed:strapi` 完成，避免人工操作。
+
+### 2025-03-14 首页重构更新
+- Hero：左右双栏布局，右侧玻璃面板用于展示产品插画/亮点要点，可替换 Strapi 资产。
+- Pain Points：12 栅格错落排列，卡片底部保留 figureHint 以对接动效或插图。
+- Solution：左侧插图/流程容器（指标卡 + Placeholder），右侧卖点列表与 CTA，适配大图内容。
+- Workflow：横向 5 步流程，新增连接线与 token 标签，强调时间线感。
+- Applications：引入 wide/standard/banner 三类卡片，使行业卡片尺寸丰富；预留 illustration 文本描述插图。
+- Advantages：顶部圆角指标条展示部署/误差/频段，下方四列小卡。
+- CTA：保持渐变背景与双 CTA，邮件链接为主。
+- 数据结构：`buildHomeContent` 中补充 visual、figureHint、milestones、illustration、metrics 等字段，以驱动上述布局。
+- 测试：`npx tsc --noEmit` 受仓库 CJS/ESM 配置冲突影响未通过（verbatimModuleSyntax + NodeNext）；需待全局配置决策后处理。
+
