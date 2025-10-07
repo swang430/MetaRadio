@@ -1,4 +1,4 @@
-import { CaseCard } from '@/components/blocks/case-card';
+import { BlocksRenderer } from '@/components/blocks/renderer';
 import { Nav } from '@/components/nav';
 import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
@@ -13,30 +13,30 @@ export default async function CasesPage({ params }: { params: { locale?: string 
   const cases = await listCaseStudies(locale);
   const copy = dictionary.pages.cases;
 
+  // Transform the fetched data into the format our BlocksRenderer expects.
+  const blocks = [
+    {
+      __component: 'hero.hero',
+      theme: 'dark',
+      headline: copy.title,
+      summary: copy.intro,
+    },
+    {
+      __component: 'sections.case-showcase',
+      theme: 'light',
+      title: '',
+      intro: '',
+      // Defensive coding: use attributes if they exist, otherwise use the object itself.
+      cases: cases.map((item) => item.attributes || item),
+    },
+  ];
+
   return (
-    <div>
+    <div className="relative bg-white">
       <Nav locale={locale} dictionary={dictionary} />
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">{copy.title}</h1>
-            <p className="mt-4 text-base text-slate-600">{copy.intro}</p>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {cases.map((item) => (
-              <CaseCard
-                key={item.id}
-                title={item.attributes.title}
-                href={`/marketing/cases/${item.attributes.slug}`}
-                locale={locale}
-                client={item.attributes.client}
-                summary={item.attributes.summary}
-                viewDetailLabel={copy.viewDetail}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <main>
+        <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+      </main>
     </div>
   );
 }

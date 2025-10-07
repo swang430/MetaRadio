@@ -16,8 +16,15 @@ function renderCover(article: Awaited<ReturnType<typeof getArticleBySlug>>) {
   const attr: any = media.data.attributes || media.data;
   if (!attr?.url) return null;
   return (
-    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-slate-200">
-      <Image src={attr.url} alt={attr.alternativeText || article?.attributes.title || 'article cover'} fill sizes="100vw" className="object-cover" />
+    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-card">
+      <Image
+        src={attr.url}
+        alt={attr.alternativeText || article?.attributes.title || 'article cover'}
+        fill
+        sizes="100vw"
+        className="object-cover"
+      />
+      <span className="pointer-events-none absolute inset-4 rounded-3xl border border-white/10" />
     </div>
   );
 }
@@ -30,27 +37,29 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const { title, excerpt, content, tags } = article.attributes;
 
   return (
-    <div>
+    <div className="relative">
       <Nav locale={locale} dictionary={dictionary} />
-      <article className="pb-16">
-        <header className="bg-slate-50 py-12">
-          <div className="container mx-auto px-6">
-            {tags?.length ? (
-              <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-indigo-600">
-                {tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-indigo-50 px-3 py-1 text-indigo-600">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-            <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">{title}</h1>
-            {excerpt ? <p className="mt-4 max-w-3xl text-base text-slate-600">{excerpt}</p> : null}
+      <article className="relative pb-24">
+        <header className="relative py-20">
+          <div className="container px-6">
+            <div className="max-w-3xl space-y-4">
+              {tags?.length ? (
+                <div className="flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-brand-200/80">
+                  {tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/10 bg-white/10 px-3 py-1">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              <h1 className="font-display text-3xl text-white md:text-4xl lg:text-[2.75rem]">{title}</h1>
+              {excerpt ? <p className="text-base text-slate-200/80 sm:text-lg">{excerpt}</p> : null}
+            </div>
           </div>
         </header>
-        <div className="container mx-auto space-y-10 px-6 pt-10">
+        <div className="container space-y-12 px-6">
           {renderCover(article)}
-          {content ? <div className="prose prose-lg prose-slate" dangerouslySetInnerHTML={{ __html: content }} /> : null}
+          {content ? <div className="prose prose-lg" dangerouslySetInnerHTML={{ __html: content }} /> : null}
         </div>
       </article>
     </div>

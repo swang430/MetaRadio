@@ -11,12 +11,20 @@ export default async function AboutPage({ params }: { params: { locale?: string 
   const locale: Locale = resolveLocale(params?.locale);
   const dictionary = getDictionary(locale);
   const page = await getPageBySlug('company', locale);
-  const blocks = page?.attributes.blocks || [];
+  const originalBlocks = page?.attributes.blocks || [];
+
+  // Inject the alternating theme property into each block
+  const blocks = originalBlocks.map((block, index) => ({
+    ...block,
+    theme: index % 2 === 0 ? 'dark' : 'light',
+  }));
 
   return (
-    <div>
+    <div className="relative bg-white">
       <Nav locale={locale} dictionary={dictionary} />
-      <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+      <main>
+        <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+      </main>
     </div>
   );
 }

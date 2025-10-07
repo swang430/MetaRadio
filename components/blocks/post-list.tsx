@@ -26,11 +26,12 @@ function formatReadMinutes(locale: Locale, minutes: number) {
 export function PostList({ title, intro, posts, locale = 'zh' }: PostListProps) {
   if (!posts?.length) return null;
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-6">
-        {title ? <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">{title}</h2> : null}
-        {intro ? <p className="mt-3 max-w-2xl text-base text-slate-600">{intro}</p> : null}
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <section className="relative py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_circle_at_10%_10%,rgba(14,165,233,0.1),transparent)]" />
+      <div className="container relative px-6">
+        {title ? <h2 className="font-display text-3xl text-white md:text-4xl">{title}</h2> : null}
+        {intro ? <p className="mt-3 max-w-2xl text-base text-slate-200/75 sm:text-lg">{intro}</p> : null}
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {posts.map((post) => (
             <PostCard
               key={post.id || post.slug}

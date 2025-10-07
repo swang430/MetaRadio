@@ -13,76 +13,72 @@ export function Nav({ locale, dictionary }: NavProps) {
   const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
   const to = (path: string) => localizeHref(path, locale) || path;
 
+  const navItems = [
+    { label: common.nav.solutions, href: '/marketing/solutions' },
+    { label: common.nav.products, href: '/marketing/products' },
+    { label: common.nav.capabilities, href: '/capabilities' },
+    { label: common.nav.cases, href: '/marketing/cases' },
+    { label: common.nav.insights, href: '/marketing/blog' },
+    { label: common.nav.resources, href: '/marketing/resources' },
+    { label: common.nav.about, href: '/company' },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
-      <nav className="container mx-auto flex flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center justify-between gap-3 sm:justify-start">
-          <Link href={to('/')} className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-lg bg-indigo-600" />
-            <span className="text-xl font-bold tracking-tight" aria-label={common.brandName}>
-              {common.brandName}
-            </span>
-          </Link>
-          <Link
-            href={localizeHref('/', otherLocale) || '/'}
-            className="text-sm text-slate-600 transition-colors hover:text-indigo-600 sm:hidden"
-          >
-            {common.actions.switchLocale}
-          </Link>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:flex sm:flex-wrap sm:items-center sm:gap-x-8">
-            <li>
-              <Link href={to('/marketing/solutions')} className="hover:text-indigo-600">
-                {common.nav.solutions}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/marketing/products')} className="hover:text-indigo-600">
-                {common.nav.products}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/capabilities')} className="hover:text-indigo-600">
-                {common.nav.capabilities}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/marketing/cases')} className="hover:text-indigo-600">
-                {common.nav.cases}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/marketing/blog')} className="hover:text-indigo-600">
-                {common.nav.insights}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/marketing/resources')} className="hover:text-indigo-600">
-                {common.nav.resources}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/company')} className="hover:text-indigo-600">
-                {common.nav.about}
-              </Link>
-            </li>
-            <li>
-              <Link href={to('/contact')} className="hover:text-indigo-600">
-                {common.nav.contact}
-              </Link>
-            </li>
-          </ul>
-          <div className="hidden sm:flex items-center gap-3">
+    <header className="sticky top-0 z-40 border-b border-slate-700 bg-dark-background">
+      <div className="px-6">
+        <div className="glass-panel flex flex-col gap-5 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center justify-between gap-4 sm:justify-start">
+            <Link href={to('/')} className="group flex items-center gap-3">
+              <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 via-brand-400 to-sky-400 text-white shadow-glow transition group-hover:scale-105">
+                <span className="text-lg font-semibold">MR</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display text-lg font-semibold text-slate-100">
+                  {common.brandName}
+                </span>
+                <span className="text-xs uppercase tracking-[0.3em] text-slate-400">Ray Tracing Intelligence</span>
+              </div>
+            </Link>
             <Link
               href={localizeHref('/', otherLocale) || '/'}
-              className="text-sm text-slate-600 transition-colors hover:text-indigo-600"
+              className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-slate-200 transition hover:border-brand-400 hover:bg-brand-400/20 sm:hidden"
             >
               {common.actions.switchLocale}
             </Link>
           </div>
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+            <ul className="grid grid-cols-2 gap-3 text-sm text-slate-200 sm:flex sm:flex-wrap sm:items-center sm:gap-5">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={to(item.href)}
+                    className="inline-flex items-center gap-1 rounded-full border border-transparent px-3 py-1.5 transition hover:border-white/20 hover:bg-white/5 hover:text-white"
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex items-center justify-between gap-3 sm:justify-end">
+              <Link
+                href={localizeHref('/', otherLocale) || '/'}
+                className="hidden rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-brand-400 hover:bg-brand-400/20 sm:inline-flex"
+              >
+                {common.actions.switchLocale}
+              </Link>
+              <Link
+                href={to('/contact')}
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-sky-400 px-4 py-2 text-sm font-semibold text-white shadow-glow transition hover:scale-[1.02]"
+              >
+                {common.nav.contact}
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

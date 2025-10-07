@@ -12,56 +12,57 @@ export default async function ContactPage({ params }: { params: { locale?: strin
   const copy = dictionary.pages.contact;
 
   return (
-    <div>
+    <div className="relative">
       <Nav locale={locale} dictionary={dictionary} />
       <Section title={copy.title} intro={copy.intro}>
-        <form className="max-w-2xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="grid gap-4 md:grid-cols-2">
-            <div>
-              <label className="text-sm text-slate-600" htmlFor="contact-name">
+        <form className="max-w-2xl space-y-6 rounded-3xl border border-white/10 bg-white/5 p-8 shadow-card backdrop-blur">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300/70" htmlFor="contact-name">
                 {copy.nameLabel}
               </label>
               <input
                 id="contact-name"
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
                 placeholder={copy.namePlaceholder}
               />
             </div>
-            <div>
-              <label className="text-sm text-slate-600" htmlFor="contact-email">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300/70" htmlFor="contact-email">
                 {copy.emailLabel}
               </label>
               <input
                 id="contact-email"
                 type="email"
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
                 placeholder={copy.emailPlaceholder}
               />
             </div>
-            <div className="md:col-span-2">
-              <label className="text-sm text-slate-600" htmlFor="contact-need">
+            <div className="md:col-span-2 flex flex-col gap-2">
+              <label className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-300/70" htmlFor="contact-need">
                 {copy.needLabel}
               </label>
               <textarea
                 id="contact-need"
                 rows={4}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-400 focus:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-400/40"
                 placeholder={copy.needPlaceholder}
               />
             </div>
-            <div className="md:col-span-2 flex items-center justify-between">
-              <label className="inline-flex items-center gap-2 text-sm">
+            <div className="md:col-span-2 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <label className="inline-flex items-center gap-3 text-sm text-slate-200/80">
                 <input
                   type="checkbox"
-                  className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-white/20 bg-white/10 text-brand-400 focus:ring-brand-300"
                 />
                 {copy.privacyLabel}
               </label>
               <button
                 type="button"
-                className="rounded-xl bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-sky-400 px-6 py-3 text-sm font-semibold text-white shadow-glow transition hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
               >
                 {copy.submit}
+                <span aria-hidden>→</span>
               </button>
             </div>
           </div>

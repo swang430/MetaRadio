@@ -10,6 +10,11 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
+    env: {
+      STRAPI_API_URL: '',
+      STRAPI_API_TOKEN: '',
+      NEXT_PUBLIC_STRAPI_URL: '',
+    },
     coverage: {
       reporter: ['text', 'html'],
     },

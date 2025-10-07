@@ -44,37 +44,47 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   const relatedCases = extractRelatedCases(solution);
 
   return (
-    <div>
+    <div className="relative">
       <Nav locale={locale} dictionary={dictionary} />
-      <header className="bg-slate-50 py-12">
-        <div className="container mx-auto px-6">
-          <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">{title}</h1>
-          {excerpt ? <p className="mt-4 max-w-2xl text-base text-slate-600">{excerpt}</p> : null}
-        </div>
-      </header>
-      <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
-      {relatedCases.length ? (
-        <section className="py-16">
-          <div className="container mx-auto px-6">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              {dictionary.pages.solutions.relatedCasesHeading}
-            </h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {relatedCases.map((item) => (
-                <CaseCard
-                  key={item.id}
-                  title={item.title}
-                  href={`/marketing/cases/${item.slug}`}
-                  locale={locale}
-                  client={item.client}
-                  summary={item.summary}
-                  viewDetailLabel={dictionary.pages.cases.viewDetail}
-                />
-              ))}
+      <main className="relative space-y-24 pb-24">
+        <section className="relative py-20">
+          <div className="container px-6">
+            <div className="max-w-3xl space-y-4">
+              <span className="inline-flex h-2 w-16 items-center rounded-full bg-gradient-to-r from-brand-400 via-brand-300 to-sky-300" />
+              <h1 className="font-display text-3xl text-white md:text-4xl lg:text-[2.75rem]">{title}</h1>
+              {excerpt ? <p className="text-base text-slate-200/80 sm:text-lg">{excerpt}</p> : null}
             </div>
           </div>
         </section>
-      ) : null}
+
+        <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+
+        {relatedCases.length ? (
+          <section className="relative py-20">
+            <div className="container px-6">
+              <div className="max-w-3xl space-y-3">
+                <span className="inline-flex h-2 w-16 items-center rounded-full bg-gradient-to-r from-brand-400 via-brand-300 to-sky-300" />
+                <h2 className="font-display text-2xl text-white md:text-3xl">
+                  {dictionary.pages.solutions.relatedCasesHeading}
+                </h2>
+              </div>
+              <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {relatedCases.map((item) => (
+                  <CaseCard
+                    key={item.id}
+                    title={item.title}
+                    href={`/marketing/cases/${item.slug}`}
+                    locale={locale}
+                    client={item.client}
+                    summary={item.summary}
+                    viewDetailLabel={dictionary.pages.cases.viewDetail}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+      </main>
     </div>
   );
 }

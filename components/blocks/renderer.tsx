@@ -3,7 +3,7 @@ import { BeforeAfterSection } from './before-after';
 import { BulletList } from './bullet-list';
 import { CaseShowcase } from './case-showcase';
 import { CTABanner } from './cta-banner';
-import { FeatureGridSection } from './feature-card';
+import { FeatureGridSection } from './feature-grid-section';
 import { Hero } from './hero';
 import { MediaBlock } from './media-block';
 import { PostList } from './post-list';
@@ -82,14 +82,15 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
   return (
     <Fragment>
       {blocks.map((block, index) => {
+        const { theme = 'light' } = block as any; // Default to light theme
+
         switch (block.__component) {
           case 'hero.hero':
             return (
               <Hero
                 key={`hero-${index}`}
-                headline={block.headline}
-                subhead={block.subhead}
-                summary={block.summary}
+                theme={theme}
+                {...block}
                 primaryAction={toAction(block.ctaPrimary, locale)}
                 secondaryAction={toAction(block.ctaSecondary, locale)}
                 media={toMedia(block.bgMedia)}
@@ -99,100 +100,67 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
             return (
               <FeatureGridSection
                 key={`feature-grid-${index}`}
-                title={block.title}
-                intro={block.intro}
-                items={
-                  block.items?.map((item: any) => ({
-                    title: item.title,
-                    description: item.desc,
-                    href: localizeHref(item.link?.url, locale),
-                    linkLabel: item.link?.name || featureCardLearnMore,
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                items={block.items?.map((item: any) => ({
+                  ...item,
+                  href: localizeHref(item.link?.url, locale),
+                  linkLabel: item.link?.name || featureCardLearnMore,
+                }))}
               />
             );
           case 'sections.stat-group':
             return (
               <StatGroup
                 key={`stat-group-${index}`}
-                title={block.title}
-                description={block.description}
-                metrics={
-                  block.metrics?.map((metric: any) => ({
-                    id: metric.id,
-                    label: metric.label,
-                    value: metric.value,
-                    suffix: metric.suffix || metric.unit,
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                metrics={block.metrics?.map((metric: any) => ({
+                  ...metric,
+                  suffix: metric.suffix || metric.unit,
+                }))}
               />
             );
           case 'sections.bullet-list':
             return (
               <BulletList
                 key={`bullet-list-${index}`}
-                title={block.title}
-                intro={block.intro}
-                items={
-                  block.items?.map((item: any) => ({
-                    title: item.title,
-                    description: item.description,
-                    icon: toMedia(item.icon),
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                items={block.items?.map((item: any) => ({
+                  ...item,
+                  icon: toMedia(item.icon),
+                }))}
               />
             );
           case 'sections.tech-flow':
             return (
               <TechFlow
                 key={`tech-flow-${index}`}
-                title={block.title}
-                intro={block.intro}
-                steps={
-                  block.steps?.map((step: any) => ({
-                    id: step.id,
-                    name: step.name,
-                    desc: step.desc,
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                steps={block.steps?.map((step: any) => ({
+                  ...step,
+                }))}
               />
             );
           case 'sections.case-showcase':
             return (
               <CaseShowcase
                 key={`case-showcase-${index}`}
-                title={block.title}
-                intro={block.intro}
+                theme={theme}
+                {...block}
                 locale={locale}
                 viewDetailLabel={dictionary?.pages.cases.viewDetail}
-                cases={
-                  block.cases?.map((item: any) => ({
-                    id: item.id,
-                    title: item.title,
-                    slug: item.slug,
-                    client: item.client,
-                    summary: item.summary,
-                  })) || []
-                }
               />
             );
           case 'sections.post-list':
             return (
               <PostList
                 key={`post-list-${index}`}
-                title={block.title}
-                intro={block.intro}
-                posts={
-                  block.posts?.map((item: any) => ({
-                    id: item.id,
-                    title: item.title,
-                    slug: item.slug,
-                    excerpt: item.excerpt,
-                    category: item.category,
-                    estimate: item.estimate,
-                    readMoreLabel: postCardReadMore,
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                readMoreLabel={postCardReadMore}
                 locale={locale}
               />
             );
@@ -200,23 +168,21 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
             return (
               <BeforeAfterSection
                 key={`before-after-${index}`}
-                title={block.title}
-                items={
-                  block.items?.map((item: any) => ({
-                    id: item.id,
-                    title: item.title,
-                    description: item.description,
-                    beforeMedia: toMedia(item.beforeMedia),
-                    afterMedia: toMedia(item.afterMedia),
-                  })) || []
-                }
+                theme={theme}
+                {...block}
+                items={block.items?.map((item: any) => ({
+                  ...item,
+                  beforeMedia: toMedia(item.beforeMedia),
+                  afterMedia: toMedia(item.afterMedia),
+                }))}
               />
             );
           case 'sections.cta-banner':
             return (
               <CTABanner
                 key={`cta-banner-${index}`}
-                title={block.title}
+                theme={theme}
+                {...block}
                 description={block.body}
                 items={mapLinks(block.links, locale)}
               />
@@ -225,9 +191,8 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
             return (
               <MediaBlock
                 key={`media-block-${index}`}
-                title={block.title}
-                body={block.body}
-                orientation={block.orientation}
+                theme={theme}
+                {...block}
                 media={toMedia(block.media)}
                 actions={mapLinks(block.actions, locale)}
               />
@@ -236,7 +201,8 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
             return (
               <CTABanner
                 key={`cta-${index}`}
-                title={block.title}
+                theme={theme}
+                {...block}
                 description={block.body}
                 items={mapLinks(block.links, locale)}
               />

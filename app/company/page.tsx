@@ -1,15 +1,15 @@
-import { Nav } from '@/components/nav';
-import { Section } from '@/components/section';
+import type { Metadata } from 'next';
+import LocalePage, {
+  generateMetadata as generateLocaleMetadata,
+  revalidate as localeRevalidate,
+} from '../[locale]/company/page';
+import { DEFAULT_LOCALE } from '@/lib/i18n/config';
 
-export default function AboutPage(){
-  return (
-    <div>
-      <Nav />
-      <Section title="关于我们" intro="MetaRadio — 射线跟踪与通信测试的一体化平台。">
-        <div className="prose prose-slate max-w-none">
-          <p>这里放公司介绍、团队、伙伴与证书内容。</p>
-        </div>
-      </Section>
-    </div>
-  );
+export const revalidate = localeRevalidate;
+
+export default function CompanyPage() {
+  return <LocalePage params={{ locale: DEFAULT_LOCALE }} />;
 }
+
+export const generateMetadata = (context: { params: { locale?: string } }): Promise<Metadata> | Metadata =>
+  generateLocaleMetadata({ params: { locale: DEFAULT_LOCALE, ...(context.params ?? {}) } });

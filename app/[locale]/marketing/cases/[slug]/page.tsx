@@ -23,60 +23,65 @@ export default async function CasePage({ params }: CasePageProps) {
   const { title, client, summary, challenge, approach, result, kpi } = caseStudy.attributes;
 
   return (
-    <div>
+    <div className="relative">
       <Nav locale={locale} dictionary={dictionary} />
-      <section className="bg-slate-50 py-12">
-        <div className="container mx-auto px-6">
-          <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600">
-            {client || copy.clientFallback}
-          </p>
-          <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">{title}</h1>
-          {summary ? <p className="mt-4 max-w-2xl text-base text-slate-600">{summary}</p> : null}
-        </div>
-      </section>
-      <section className="py-16">
-        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-[2fr,1fr]">
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900">{copy.challenge}</h2>
-              {renderRich(challenge) || (
-                <p className="mt-3 text-sm text-slate-600">{copy.contentFallback}</p>
-              )}
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900">{copy.approach}</h2>
-              {renderRich(approach) || (
-                <p className="mt-3 text-sm text-slate-600">{copy.contentFallback}</p>
-              )}
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-slate-900">{copy.result}</h2>
-              {renderRich(result) || (
-                <p className="mt-3 text-sm text-slate-600">{copy.contentFallback}</p>
-              )}
+      <main className="relative space-y-24 pb-24">
+        <section className="relative py-20">
+          <div className="container px-6">
+            <div className="max-w-3xl space-y-4">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-brand-200/80">
+                {client || copy.clientFallback}
+              </span>
+              <h1 className="font-display text-3xl text-white md:text-4xl lg:text-[2.75rem]">{title}</h1>
+              {summary ? <p className="text-base text-slate-200/80 sm:text-lg">{summary}</p> : null}
             </div>
           </div>
-          <aside className="space-y-6">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-slate-900">{copy.metricsHeading}</h3>
-              <ul className="mt-4 space-y-3">
-                {kpi?.length
-                  ? kpi.map((metric) => (
-                      <li key={metric.label} className="flex items-baseline justify-between text-sm text-slate-600">
-                        <span>{metric.label}</span>
-                        <span className="text-xl font-semibold text-indigo-600">
-                          {metric.value}
-                          {metric.unit ? <span className="ml-1 text-sm text-slate-500">{metric.unit}</span> : null}
-                        </span>
-                      </li>
-                    ))
-                  : null}
-              </ul>
-              {!kpi?.length ? <p className="text-sm text-slate-500">{copy.metricsFallback}</p> : null}
+        </section>
+
+        <section className="relative">
+          <div className="container grid gap-12 px-6 lg:grid-cols-[2fr,1fr]">
+            <div className="space-y-12">
+              <div>
+                <h2 className="font-display text-2xl text-white">{copy.challenge}</h2>
+                {renderRich(challenge) || (
+                  <p className="mt-4 text-sm text-slate-200/75">{copy.contentFallback}</p>
+                )}
+              </div>
+              <div>
+                <h2 className="font-display text-2xl text-white">{copy.approach}</h2>
+                {renderRich(approach) || (
+                  <p className="mt-4 text-sm text-slate-200/75">{copy.contentFallback}</p>
+                )}
+              </div>
+              <div>
+                <h2 className="font-display text-2xl text-white">{copy.result}</h2>
+                {renderRich(result) || (
+                  <p className="mt-4 text-sm text-slate-200/75">{copy.contentFallback}</p>
+                )}
+              </div>
             </div>
-          </aside>
-        </div>
-      </section>
+            <aside className="space-y-6">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-card">
+                <h3 className="font-display text-lg text-white">{copy.metricsHeading}</h3>
+                <ul className="mt-6 space-y-3">
+                  {kpi?.length
+                    ? kpi.map((metric) => (
+                        <li key={metric.label} className="flex items-baseline justify-between text-sm text-slate-200/80">
+                          <span>{metric.label}</span>
+                          <span className="font-display text-2xl text-brand-200">
+                            {metric.value}
+                            {metric.unit ? <span className="ml-1 text-sm text-slate-300/70">{metric.unit}</span> : null}
+                          </span>
+                        </li>
+                      ))
+                    : null}
+                </ul>
+                {!kpi?.length ? <p className="text-sm text-slate-400/80">{copy.metricsFallback}</p> : null}
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }

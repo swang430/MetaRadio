@@ -26,8 +26,10 @@ type BeforeAfterSectionProps = {
 function MediaPanel({ label, media }: { label: string; media?: BeforeAfterItem['beforeMedia'] }) {
   return (
     <div className="flex flex-col gap-4">
-      <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</span>
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+      <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200/80">
+        {label}
+      </span>
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-card">
         {media?.url ? (
           <Image
             src={media.url}
@@ -37,8 +39,11 @@ function MediaPanel({ label, media }: { label: string; media?: BeforeAfterItem['
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">暂无素材</div>
+          <div className="flex h-full w-full items-center justify-center text-sm text-slate-200/70">
+            暂无素材
+          </div>
         )}
+        <span className="pointer-events-none absolute inset-4 rounded-3xl border border-white/10" />
       </div>
     </div>
   );
@@ -47,16 +52,16 @@ function MediaPanel({ label, media }: { label: string; media?: BeforeAfterItem['
 export function BeforeAfterSection({ title, items }: BeforeAfterSectionProps) {
   if (!items?.length) return null;
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-6">
-        {title ? <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">{title}</h2> : null}
-        <div className="mt-10 grid gap-12">
+    <section className="relative py-20">
+      <div className="container px-6">
+        {title ? <h2 className="font-display text-3xl text-white md:text-4xl">{title}</h2> : null}
+        <div className="mt-12 grid gap-14">
           {items.map((item, index) => (
             <div key={item.id || index} className="grid gap-8 lg:grid-cols-2">
-              <div>
-                {item.title ? <h3 className="text-2xl font-semibold text-slate-900">{item.title}</h3> : null}
+              <div className="space-y-3">
+                {item.title ? <h3 className="font-display text-2xl text-white">{item.title}</h3> : null}
                 {item.description ? (
-                  <p className="mt-3 text-sm text-slate-600">{item.description}</p>
+                  <p className="text-sm text-slate-200/75 sm:text-base">{item.description}</p>
                 ) : null}
               </div>
               <div className="grid gap-6 md:grid-cols-2">
