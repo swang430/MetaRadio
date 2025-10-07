@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import clsx from 'clsx';
+import { BaseCard } from './base-card';
 
 type PostCardProps = {
   title: string;
@@ -7,39 +9,58 @@ type PostCardProps = {
   category?: string | null;
   estimateLabel?: string | null;
   readMoreLabel?: string | null;
+  theme?: 'dark' | 'light';
 };
 
-export function PostCard({ title, excerpt, href, category, estimateLabel, readMoreLabel }: PostCardProps) {
+export function PostCard({ title, excerpt, href, category, estimateLabel, readMoreLabel, theme = 'dark' }: PostCardProps) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 shadow-card transition hover:border-brand-400/40">
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100">
-        <div className="h-full w-full bg-[radial-gradient(420px_circle_at_0%_0%,rgba(14,165,233,0.18),transparent)]" />
-      </div>
-      <div className="relative flex-1 space-y-3">
-        {category ? (
-          <span className="inline-flex w-fit items-center rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.35em] text-brand-200/80">
-            {category}
-          </span>
-        ) : null}
-        <h3 className="font-display text-xl text-white">
-          <Link
-            href={href}
-            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+    <BaseCard href={href} theme={theme}>
+      <div className="relative flex h-full flex-col gap-4 pt-4">
+        <div className="flex-grow space-y-3">
+          {category ? (
+            <span
+              className={clsx(
+                'inline-flex w-fit items-center rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.35em]',
+                {
+                  'border-white/15 bg-white/10 text-brand-200/80': theme === 'dark',
+                  'border-slate-200 bg-slate-100 text-brand-600': theme === 'light',
+                }
+              )}
+            >
+              {category}
+            </span>
+          ) : null}
+          <h3
+            className={clsx('font-display text-xl', { 'text-white': theme === 'dark', 'text-slate-900': theme === 'light' })}
           >
             {title}
-          </Link>
-        </h3>
-        {excerpt ? <p className="text-sm text-slate-200/80">{excerpt}</p> : null}
-      </div>
-      <div className="relative mt-6 flex items-center justify-between text-xs font-semibold text-slate-300/80">
-        {estimateLabel ? <span>{estimateLabel}</span> : <span />}
-        <span className="inline-flex items-center gap-2 text-brand-200 group-hover:gap-3">
-          {readMoreLabel || 'Continue reading'}
-          <span aria-hidden className="text-sm">
-            →
+          </h3>
+          {excerpt ? (
+            <p className={clsx('text-sm', { 'text-slate-300': theme === 'dark', 'text-slate-600': theme === 'light' })}>
+              {excerpt}
+            </p>
+          ) : null}
+        </div>
+        <div
+          className={clsx('relative mt-4 flex items-center justify-between text-xs font-semibold', {
+            'text-slate-300/80': theme === 'dark',
+            'text-slate-500': theme === 'light',
+          })}
+        >
+          {estimateLabel ? <span>{estimateLabel}</span> : <span />}
+          <span
+            className={clsx('inline-flex items-center gap-2 group-hover:gap-3', {
+              'text-brand-300': theme === 'dark',
+              'text-brand-500': theme === 'light',
+            })}
+          >
+            {readMoreLabel || 'Continue reading'}
+            <span aria-hidden className="text-sm">
+              →
+            </span>
           </span>
-        </span>
+        </div>
       </div>
-    </article>
+    </BaseCard>
   );
 }

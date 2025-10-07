@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import clsx from 'clsx';
+import { BaseCard } from './base-card';
 
 export type BulletProps = {
   title: string;
@@ -9,28 +11,45 @@ export type BulletProps = {
     width?: number | null;
     height?: number | null;
   } | null;
+  theme?: 'dark' | 'light';
 };
 
-export function Bullet({ title, description, icon }: BulletProps) {
+export function Bullet({ title, description, icon, theme = 'dark' }: BulletProps) {
   return (
-    <div className="group flex gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-card transition hover:border-brand-400/40">
-      {icon?.url ? (
-        <Image
-          src={icon.url}
-          alt={icon.alt || 'bullet icon'}
-          width={icon.width || 48}
-          height={icon.height || 48}
-          className="h-12 w-12 rounded-2xl object-cover shadow-inner"
-        />
-      ) : (
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-lg font-semibold text-brand-200 shadow-inner">
-          •
+    <BaseCard theme={theme} className="p-6">
+      <div className="relative flex h-full gap-4">
+        {icon?.url ? (
+          <Image
+            src={icon.url}
+            alt={icon.alt || 'bullet icon'}
+            width={icon.width || 48}
+            height={icon.height || 48}
+            className="h-12 w-12 flex-shrink-0 rounded-lg object-cover shadow-inner"
+          />
+        ) : (
+          <div
+            className={clsx(
+              'flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg text-lg font-semibold',
+              {
+                'bg-slate-700 text-brand-300': theme === 'dark',
+                'bg-slate-100 text-brand-500': theme === 'light',
+              }
+            )}
+          >
+            •
+          </div>
+        )}
+        <div>
+          <h3 className={clsx('font-display text-lg', { 'text-white': theme === 'dark', 'text-slate-900': theme === 'light' })}>
+            {title}
+          </h3>
+          {description ? (
+            <p className={clsx('mt-2 text-sm', { 'text-slate-300': theme === 'dark', 'text-slate-600': theme === 'light' })}>
+              {description}
+            </p>
+          ) : null}
         </div>
-      )}
-      <div>
-        <h3 className="font-display text-lg text-white">{title}</h3>
-        {description ? <p className="mt-2 text-sm text-slate-200/80">{description}</p> : null}
       </div>
-    </div>
+    </BaseCard>
   );
 }

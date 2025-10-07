@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { Locale } from '@/lib/i18n/config';
 import { localizeHref } from '@/lib/i18n/navigation';
+import clsx from 'clsx';
+import { BaseCard } from './base-card';
 
 type CaseCardProps = {
   title: string;
@@ -9,37 +11,54 @@ type CaseCardProps = {
   client?: string | null;
   summary?: string | null;
   viewDetailLabel?: string | null;
+  theme?: 'dark' | 'light';
 };
 
-export function CaseCard({ title, href, locale, client, summary, viewDetailLabel }: CaseCardProps) {
+export function CaseCard({ title, href, locale, client, summary, viewDetailLabel, theme = 'dark' }: CaseCardProps) {
   const localizedHref = localizeHref(href, locale) || href;
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 shadow-card transition hover:border-brand-400/40">
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100">
-        <div className="h-full w-full bg-[radial-gradient(420px_circle_at_0%_-10%,rgba(79,70,229,0.2),transparent)]" />
-      </div>
-      <div className="relative flex flex-col gap-3">
-        {client ? (
-          <p className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.28em] text-slate-200/80">
-            {client}
-          </p>
-        ) : null}
-        <h3 className="font-display text-xl text-white">
-          <Link
-            href={localizedHref}
-            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-200"
+    <BaseCard href={localizedHref} theme={theme}>
+      <div className="relative flex h-full flex-col gap-4 pt-4">
+        <div className="flex-grow">
+          {client ? (
+            <p
+              className={clsx(
+                'mb-3 inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-medium uppercase tracking-[0.28em]',
+                {
+                  'border-white/15 bg-white/10 text-slate-200/80': theme === 'dark',
+                  'border-slate-200 bg-slate-100 text-slate-600': theme === 'light',
+                }
+              )}
+            >
+              {client}
+            </p>
+          ) : null}
+          <h3
+            className={clsx('font-display text-xl', { 'text-white': theme === 'dark', 'text-slate-900': theme === 'light' })}
           >
             {title}
-          </Link>
-        </h3>
-        {summary ? <p className="text-sm text-slate-200/80">{summary}</p> : null}
-      </div>
-      <span className="relative mt-6 inline-flex items-center gap-2 text-xs font-semibold text-brand-200/90 transition group-hover:gap-3">
-        {viewDetailLabel || 'View details →'}
-        <span aria-hidden className="text-base">
-          →
+          </h3>
+          {summary ? (
+            <p className={clsx('mt-2 text-sm', { 'text-slate-300': theme === 'dark', 'text-slate-600': theme === 'light' })}>
+              {summary}
+            </p>
+          ) : null}
+        </div>
+        <span
+          className={clsx(
+            'relative mt-4 inline-flex items-center gap-2 text-xs font-semibold transition group-hover:gap-3',
+            {
+              'text-brand-300': theme === 'dark',
+              'text-brand-500': theme === 'light',
+            }
+          )}
+        >
+          {viewDetailLabel || 'View details'}
+          <span aria-hidden className="text-base">
+            →
+          </span>
         </span>
-      </span>
-    </article>
+      </div>
+    </BaseCard>
   );
 }

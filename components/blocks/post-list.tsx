@@ -1,5 +1,6 @@
 import { PostCard } from './post-card';
 import type { Locale } from '@/lib/i18n/config';
+import clsx from 'clsx';
 
 type PostListProps = {
   title?: string | null;
@@ -14,6 +15,7 @@ type PostListProps = {
     readMoreLabel?: string | null;
   }>;
   locale?: Locale;
+  theme?: 'dark' | 'light';
 };
 
 function formatReadMinutes(locale: Locale, minutes: number) {
@@ -23,14 +25,36 @@ function formatReadMinutes(locale: Locale, minutes: number) {
   return `阅读 ${minutes} 分钟 · `;
 }
 
-export function PostList({ title, intro, posts, locale = 'zh' }: PostListProps) {
+export function PostList({ title, intro, posts, locale = 'zh', theme = 'dark' }: PostListProps) {
   if (!posts?.length) return null;
   return (
-    <section className="relative py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(600px_circle_at_10%_10%,rgba(14,165,233,0.1),transparent)]" />
+    <section
+      className={clsx('relative py-20', {
+        'bg-dark-background': theme === 'dark',
+        'bg-white': theme === 'light',
+      })}
+    >
       <div className="container relative px-6">
-        {title ? <h2 className="font-display text-3xl text-white md:text-4xl">{title}</h2> : null}
-        {intro ? <p className="mt-3 max-w-2xl text-base text-slate-200/75 sm:text-lg">{intro}</p> : null}
+        {title ? (
+          <h2
+            className={clsx('font-display text-3xl md:text-4xl', {
+              'text-white': theme === 'dark',
+              'text-slate-900': theme === 'light',
+            })}
+          >
+            {title}
+          </h2>
+        ) : null}
+        {intro ? (
+          <p
+            className={clsx('mt-3 max-w-2xl text-base sm:text-lg', {
+              'text-slate-200/75': theme === 'dark',
+              'text-slate-600': theme === 'light',
+            })}
+          >
+            {intro}
+          </p>
+        ) : null}
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {posts.map((post) => (
             <PostCard
@@ -39,10 +63,9 @@ export function PostList({ title, intro, posts, locale = 'zh' }: PostListProps) 
               excerpt={post.excerpt}
               href={`/marketing/blog/${post.slug}`}
               category={post.category}
-              estimateLabel={
-                post.estimate ? formatReadMinutes(locale, post.estimate) : undefined
-              }
+              estimateLabel={post.estimate ? formatReadMinutes(locale, post.estimate) : undefined}
               readMoreLabel={post.readMoreLabel}
+              theme={theme}
             />
           ))}
         </div>
