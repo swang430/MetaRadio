@@ -1,0 +1,6 @@
+fix(pages): Finalize theme unification and fix subpage errors
+
+- Apply theme-aware refactoring to all remaining detail pages (`CaseStudy`, `Blog`) to ensure visual consistency.
+- Implement defensive data handling in `generateStaticParams` for all collection types to prevent runtime errors with mock data.
+- Correct typography configuration in `tailwind.config.js` to ensure `.prose` styles render correctly in light themes.
+- Fix styling on the Contact page to ensure text legibility.

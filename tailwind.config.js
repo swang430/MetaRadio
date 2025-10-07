@@ -12,6 +12,22 @@ module.exports = {
         '2xl': '4rem',
       },
     },
+    // The typography styles should be a direct child of theme, not inside extend.
+    typography: ({ theme }) => ({
+      DEFAULT: {
+        css: {
+          '--tw-prose-body': theme('colors.slate[700]'),
+          '--tw-prose-headings': theme('colors.slate[900]'),
+          '--tw-prose-links': theme('colors.brand[600]'),
+          '--tw-prose-bold': theme('colors.slate[900]'),
+          // Invert colors for dark mode
+          '--tw-prose-invert-body': theme('colors.slate[300]'),
+          '--tw-prose-invert-headings': theme('colors.white'),
+          '--tw-prose-invert-links': theme('colors.brand[400]'),
+          '--tw-prose-invert-bold': theme('colors.white'),
+        },
+      },
+    }),
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', 'Inter', 'sans-serif'],
@@ -40,21 +56,6 @@ module.exports = {
         card: '0 20px 45px -24px rgba(15,23,42,0.35)',
       },
       borderRadius: { '3xl': '1.75rem', '4xl': '2.25rem' },
-      typography: ({ theme }) => ({
-        DEFAULT: {
-          css: {
-            '--tw-prose-body': theme('colors.slate[700]'),
-            '--tw-prose-headings': theme('colors.slate[900]'),
-            '--tw-prose-links': theme('colors.brand[600]'),
-            '--tw-prose-bold': theme('colors.slate[900]'),
-            // Invert colors for dark mode
-            '--tw-prose-invert-body': theme('colors.slate[300]'),
-            '--tw-prose-invert-headings': theme('colors.white'),
-            '--tw-prose-invert-links': theme('colors.brand[400]'),
-            '--tw-prose-invert-bold': theme('colors.white'),
-          },
-        },
-      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],
