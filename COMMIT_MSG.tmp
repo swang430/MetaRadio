@@ -1,9 +1,0 @@
-feat(components): Introduce BaseCard and unify all card components
-
-- Create a new `BaseCard` component to centralize common card styling, including themes, borders, shadows, and hover effects. This improves maintainability and ensures a consistent look and feel.
-
-- Refactor `FeatureCard`, `CaseCard`, `PostCard`, and `Bullet` to use the new `BaseCard` component, significantly simplifying their code.
-
-- Complete the site-wide theme unification by fixing style inconsistencies on remaining subpages (Products, Capabilities, etc.).
-
-- Document the new `BaseCard` architecture and style modification guide in `gemini.md`.
