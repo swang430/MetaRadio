@@ -11,19 +11,38 @@ export default async function ProductsPage({ params }: { params: { locale?: stri
   const locale: Locale = resolveLocale(params?.locale);
   const dictionary = getDictionary(locale);
   const page = await getPageBySlug('products', locale);
-  const originalBlocks = page?.attributes.blocks || [];
+  const rawBlocks = Array.isArray(page?.attributes?.blocks) ? page?.attributes?.blocks : [];
+  const ensureHero = () => ({
+    __component: 'hero.hero',
+    theme: 'dark',
+    headline:
+      page?.attributes?.title ||
+      (locale === 'en' ? 'Products' : '核心产品'),
+    summary:
+      page?.attributes?.excerpt ||
+      (locale === 'en'
+        ? 'Ray-tracing solvers, dynamic OTA toolchains, and virtual drive platforms for communications R&D.'
+        : '覆盖通信仿真、动态 OTA 与虚拟路测的一体化产品组合。'),
+  });
 
-  // Inject the alternating theme property into each block
-  const blocks = originalBlocks.map((block, index) => ({
-    ...block,
-    theme: index % 2 === 0 ? 'dark' : 'light',
-  }));
+  const blocksWithTheme =
+    rawBlocks.length > 0
+      ? rawBlocks.map((block, index) => {
+          if (block?.theme) return block;
+          const defaultTheme = index % 2 === 0 ? 'dark' : 'light';
+          return { ...block, theme: defaultTheme };
+        })
+      : [ensureHero()];
+
+  if (!blocksWithTheme.some((block) => block?.__component === 'hero.hero')) {
+    blocksWithTheme.unshift(ensureHero());
+  }
 
   return (
     <div className="relative bg-white">
       <Nav locale={locale} dictionary={dictionary} />
       <main>
-        <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+        <BlocksRenderer blocks={blocksWithTheme} locale={locale} dictionary={dictionary} />
       </main>
     </div>
   );
@@ -32,7 +51,7 @@ export default async function ProductsPage({ params }: { params: { locale?: stri
 export async function generateMetadata({ params }: { params: { locale?: string } }): Promise<Metadata> {
   const locale: Locale = resolveLocale(params?.locale);
   const page = await getPageBySlug('products', locale);
-  const seo = page?.attributes.seo;
+  const seo = page?.attributes?.seo;
   const fallbackTitle = locale === 'en' ? 'Products · MetaRadio' : '核心产品 · MetaRadio';
   const fallbackDescription =
     locale === 'en'

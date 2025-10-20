@@ -1,5 +1,6 @@
 import { PostCard } from './post-card';
 import type { Locale } from '@/lib/i18n/config';
+import { localizeHref } from '@/lib/i18n/navigation';
 import clsx from 'clsx';
 
 type PostListProps = {
@@ -16,6 +17,7 @@ type PostListProps = {
   }>;
   locale?: Locale;
   theme?: 'dark' | 'light';
+  readMoreLabel?: string | null;
 };
 
 function formatReadMinutes(locale: Locale, minutes: number) {
@@ -25,7 +27,7 @@ function formatReadMinutes(locale: Locale, minutes: number) {
   return `阅读 ${minutes} 分钟 · `;
 }
 
-export function PostList({ title, intro, posts, locale = 'zh', theme = 'dark' }: PostListProps) {
+export function PostList({ title, intro, posts, locale = 'zh', theme = 'dark', readMoreLabel }: PostListProps) {
   if (!posts?.length) return null;
   return (
     <section
@@ -61,10 +63,13 @@ export function PostList({ title, intro, posts, locale = 'zh', theme = 'dark' }:
               key={post.id || post.slug}
               title={post.title}
               excerpt={post.excerpt}
-              href={`/marketing/blog/${post.slug}`}
+              href={
+                localizeHref(`/marketing/blog/${post.slug}`, locale) ||
+                `/marketing/blog/${post.slug}`
+              }
               category={post.category}
               estimateLabel={post.estimate ? formatReadMinutes(locale, post.estimate) : undefined}
-              readMoreLabel={post.readMoreLabel}
+              readMoreLabel={post.readMoreLabel || readMoreLabel || undefined}
               theme={theme}
             />
           ))}

@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed:strapi": "node -r dotenv/config scripts/seed-strapi.mjs"
+    "seed:strapi": "node scripts/seed-strapi.js",
+    "clear:strapi": "node scripts/clear-strapi.js"
   },
   "keywords": [],
   "author": "",

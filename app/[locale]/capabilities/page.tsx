@@ -11,19 +11,38 @@ export default async function CapabilitiesPage({ params }: { params: { locale?: 
   const locale: Locale = resolveLocale(params?.locale);
   const dictionary = getDictionary(locale);
   const page = await getPageBySlug('capabilities', locale);
-  const originalBlocks = page?.attributes.blocks || [];
+  const rawBlocks = Array.isArray(page?.attributes?.blocks) ? page?.attributes?.blocks : [];
+  const ensureHero = () => ({
+    __component: 'hero.hero',
+    theme: 'dark',
+    headline:
+      page?.attributes?.title ||
+      (locale === 'en' ? 'Capabilities' : '技术能力'),
+    summary:
+      page?.attributes?.excerpt ||
+      (locale === 'en'
+        ? 'Materials modelling, ray-tracing solvers, and AI closed-loop calibration for digital twins.'
+        : '从材质参数化到 AI 闭环的电磁数字孪生核心能力。'),
+  });
 
-  // Inject the alternating theme property into each block
-  const blocks = originalBlocks.map((block, index) => ({
-    ...block,
-    theme: index % 2 === 0 ? 'dark' : 'light',
-  }));
+  const blocksWithTheme =
+    rawBlocks.length > 0
+      ? rawBlocks.map((block, index) => {
+          if (block?.theme) return block;
+          const defaultTheme = index % 2 === 0 ? 'dark' : 'light';
+          return { ...block, theme: defaultTheme };
+        })
+      : [ensureHero()];
+
+  if (!blocksWithTheme.some((block) => block?.__component === 'hero.hero')) {
+    blocksWithTheme.unshift(ensureHero());
+  }
 
   return (
     <div className="relative bg-white">
       <Nav locale={locale} dictionary={dictionary} />
       <main>
-        <BlocksRenderer blocks={blocks} locale={locale} dictionary={dictionary} />
+        <BlocksRenderer blocks={blocksWithTheme} locale={locale} dictionary={dictionary} />
       </main>
     </div>
   );
@@ -32,7 +51,7 @@ export default async function CapabilitiesPage({ params }: { params: { locale?: 
 export async function generateMetadata({ params }: { params: { locale?: string } }): Promise<Metadata> {
   const locale: Locale = resolveLocale(params?.locale);
   const page = await getPageBySlug('capabilities', locale);
-  const seo = page?.attributes.seo;
+  const seo = page?.attributes?.seo;
   const fallbackTitle = locale === 'en' ? 'Capabilities · MetaRadio' : '技术能力 · MetaRadio';
   const fallbackDescription =
     locale === 'en'

@@ -94,39 +94,53 @@
 
 ---
 
-## 5. 核心技术栈
+## 5. Strapi 项目重建记录
+
+在开发过程中，我们遇到了由 Strapi v5 beta 版本引发的、无法通过常规手段解决的 bug（包括 i18n API 行为不一致、数据库状态损坏等）。最终，我们采取了彻底重建 `cms/` 目录的方案来解决问题。
+
+**重建流程：**
+1.  **删除旧项目**: `rm -rf cms/`
+2.  **创建新项目**: `npx create-strapi-app@latest cms --quickstart` (在 v20 Node.js 环境下)
+3.  **重建内容模型**: 通过 `write_file` 工具，将所有内容类型和组件的 `schema.json` 文件重新写入 `cms/src/api/` 和 `cms/src/components/` 目录。
+4.  **注入数据**: 在 Strapi 服务器启动后，运行 `npm run seed:strapi` 脚本，将所有中英文内容注入到全新的数据库中。
+
+这个流程确保了我们拥有一个基于 Strapi v5 最新稳定版、100% 干净且功能完整的后台系统。
+
+---
+
+## 6. 核心技术栈
 
 - **前端框架**: Next.js 14+ (App Router)
 - **编程语言**: TypeScript
 - **UI/样式**: Tailwind CSS v3 (Stable)
-- **内容管理 (CMS)**: Strapi v5 (通过 REST API)
+- **内容管理 (CMS)**: Strapi v5 (Stable)
 - **测试框架**: Vitest
 
-## 6. 项目结构与约定
+## 7. 项目结构与约定
 
 - **`app/[locale]/`**: 国际化路由的根目录。
 - **`components/blocks/`**: 专门用于渲染 Strapi 动态区块（Dynamic Zones）的组件。
 - **`lib/strapi.ts`**: 封装了所有与 Strapi API 的交互。
 - **`cms/`**: 独立的 Strapi v5 项目。
 
-## 7. 代码规范
+## 8. 代码规范
 
-### 7.1. TypeScript 与组件
+### 8.1. TypeScript 与组件
 - **函数式组件**: 始终使用函数式组件和 Hooks。
 - **图片**: 必须使用 `next/image` 组件处理图片。
 
-### 7.2. 样式 (Tailwind CSS)
+### 8.2. 样式 (Tailwind CSS)
 - **遵循设计规范**: 严格遵循 `tailwind.config.js` 中定义的规范。
 
-### 7.3. 数据获取 (Strapi)
+### 8.3. 数据获取 (Strapi)
 - **统一入口**: 所有数据获取请求必须通过 `lib/strapi.ts` 中的函数进行。
 
-## 8. 测试
+## 9. 测试
 
 - **测试框架**: 使用 Vitest。
 - **运行测试**: `npm test`。
 
-## 9. Git 与提交流程
+## 10. Git 与提交流程
 
 - **提交前检查**: `npm test`。
 - **Commit Message**: 清晰、简洁，描述“目的”。

@@ -20,7 +20,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   // Defensive coding: use attributes if they exist, otherwise use the object itself.
   const attrs = article.attributes || article;
-  const { title, excerpt, content, tags } = attrs;
+  const { title, excerpt, content, tags, cover } = attrs;
 
   // Create a blocks array to use the standard renderer
   const blocks = [
@@ -30,11 +30,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       headline: title,
       summary: excerpt,
       tags: tags,
+      bgMedia: cover,
     },
     {
       __component: 'content.media-block',
       theme: 'light',
       body: content,
+      media: cover,
     },
   ];
 

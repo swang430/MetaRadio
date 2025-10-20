@@ -1,14 +1,20 @@
-import seed from './seed';
+// import type { Core } from '@strapi/strapi';
 
 export default {
-  register() {
-    // 可在此注册自定义扩展、钩子或中间件
-  },
-  bootstrap({ strapi }: { strapi: any }) {
-    // 启动时自动执行幂等数据初始化
-    if (process.env.ENABLE_STRAPI_SEED === 'true') {
-      return seed(strapi);
-    }
-    return Promise.resolve();
-  },
+  /**
+   * An asynchronous register function that runs before
+   * your application is initialized.
+   *
+   * This gives you an opportunity to extend code.
+   */
+  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+
+  /**
+   * An asynchronous bootstrap function that runs before
+   * your application gets started.
+   *
+   * This gives you an opportunity to set up your data model,
+   * run jobs, or perform some special logic.
+   */
+  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
 };

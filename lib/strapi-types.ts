@@ -93,7 +93,7 @@ export type SolutionEntity = StrapiEntity<SolutionAttributes>;
 export type ResourceAttributes = {
   title: string;
   slug: string;
-  desc?: string | null;
+  description?: string | null;
   link?: LinkField | null;
   file?: {
     data?: StrapiMedia | null;

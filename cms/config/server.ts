@@ -1,8 +1,7 @@
-export default ({ env }: { env: any }) => ({
+export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
   app: {
-    keys: env.array('APP_KEYS', ['dev-key-1', 'dev-key-2']),
+    keys: env.array('APP_KEYS'),
   },
-  url: env('PUBLIC_URL'),
 });

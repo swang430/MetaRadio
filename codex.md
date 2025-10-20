@@ -80,14 +80,14 @@
 - `Solution`：`title`，`slug`，`blocks`，`relatedCases`
 - `CaseStudy`：`title`，`slug`，`client`，`challenge`，`approach`，`result`，`kpi[]`
 - `Article`：`title`，`slug`，`excerpt`，`cover`，`content`
-- `Resource`：`title`，`desc`，`file`
+- `Resource`：`title`，`description`，`file`
 
 ### Components
 - `seo/Seo`：`metaTitle`,`metaDescription`,`ogImage`
 - `shared/Metric`：`label`,`value`,`unit`
 - `shared/Link`：`name`,`url`
 - `hero/Hero`：`headline`,`subhead`,`bgMedia`,`ctaPrimary`,`ctaSecondary`
-- `grid/FeatureCard`：`icon`,`title`,`desc`,`link`
+- `grid/FeatureCard`：`icon`,`title`,`description`,`link`
 - `rt/TechStep`：`name`,`desc`
 - `rt/BeforeAfter`：`title`,`beforeMedia`,`afterMedia`
 
@@ -227,4 +227,3 @@ postcss.config.mjs
 - CTA：保持渐变背景与双 CTA，邮件链接为主。
 - 数据结构：`buildHomeContent` 中补充 visual、figureHint、milestones、illustration、metrics 等字段，以驱动上述布局。
 - 测试：`npx tsc --noEmit` 受仓库 CJS/ESM 配置冲突影响未通过（verbatimModuleSyntax + NodeNext）；需待全局配置决策后处理。
-

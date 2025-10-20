@@ -6,15 +6,14 @@
   },
   "attributes": {
     "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": ["images", "files"]
+      "type": "string",
+      "required": false
     },
     "title": {
       "type": "string",
       "required": true
     },
-    "desc": {
+    "description": {
       "type": "text"
     },
     "link": {
