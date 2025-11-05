@@ -65,3 +65,62 @@
 - `BeforeAfterSection` 等旧组件仅支持暗底，需要时增补亮色主题支持并更新 Tailwind 样式。
 - `tsconfig.json` 启用 `verbatimModuleSyntax`，引入第三方库时注意使用 `import` 与 `require` 的兼容性。
 - 持续跟踪 `codex.md` 路线图（如首页重构字段），确保 `buildHomeContent` 与 CMS schema 同步演进。
+
+---
+### Strapi v5 控制与数据管理总结
+
+本文档总结了项目如何以“代码即 CMS”的原则来管理 Strapi v5 的内容。
+
+#### 1. Strapi 版本
+项目 CMS 使用 **Strapi v5.26.0**。所有操作都应与此版本兼容。
+
+#### 2. 核心控制方式
+本项目通过两种主要方式与 Strapi 交互：
+
+*   **A) REST API 交互 (外部脚本)**
+    *   **用途**: 数据填充 (Seeding)。
+    *   **脚本**: `scripts/seed-strapi.mjs`
+    *   **工作原理**: 此脚本通过 `fetch` 直接调用 Strapi 的 REST API (`/api/...`)。它使用 `upsert` 逻辑，根据 `slug` 检查内容是否存在，然后决定是创建还是更新。
+    *   **执行前提**: Strapi 服务必须正在运行，且环境变量 `STRAPI_API_URL` 和 `STRAPI_API_TOKEN` 必须在脚本运行环境中可用。
+    *   **优点**: 逻辑清晰，与 Strapi 服务解耦，易于通过 HTTP 调试。
+
+*   **B) 程序化 Strapi 实例 (内部脚本)**
+    *   **用途**: 数据清理和批量操作。
+    *   **脚本**: `scripts/clear-strapi.js`
+    *   **工作原理**: 此脚本会以编程方式加载一个完整的 Strapi 应用实例。加载后，它使用 `strapi.db.query()` API 直接与数据库交互来删除数据。
+    *   **执行前提**: 无需运行 Strapi 服务，脚本本身会引导一个实例。
+    *   **优点**: 功能强大，性能高，可以访问所有 Strapi 内部服务，无需 API Token。
+
+#### 3. 国际化 (i18n) 内容管理
+Strapi 的 i18n 功能允许内容存在多种语言版本。正确的创建流程如下：
+
+1.  **创建主语言条目**: 首先，创建一个语言版本的内容（例如 `locale: 'en'`）。
+2.  **获取主语言 ID**: 从创建操作的响应中获得该条目的 `id`。
+3.  **创建并关联本地化条目**: 接着，创建其他语言版本（例如 `locale: 'zh'`）。在创建这个新版本时，必须在其数据中包含 `localizations` 字段，指向主语言条目的 `id`。
+
+**示例 (伪代码)**：
+```javascript
+// 1. 创建英文版本
+const enEntry = await strapi.entityService.create('api::article.article', {
+  data: { title: 'Hello World', slug: 'hello', locale: 'en' }
+});
+
+// 2. 使用其 ID 创建中文版本并关联
+const zhEntry = await strapi.entityService.create('api::article.article', {
+  data: {
+    title: '你好世界',
+    slug: 'hello', // slug 可以相同
+    locale: 'zh',
+    localizations: [enEntry.id] // 关键步骤
+  }
+});
+```
+当前的 `seed-strapi.mjs` 脚本为每个条目设置了 `locale: 'zh'`，但没有实现与其他语言版本的关联。这是导致之前国际化数据混乱的关键原因。
+
+#### 4. 推荐的开发流程
+1.  **修改结构**: 在 `cms/src/api` 或 `cms/src/components` 中修改 JSON schema 文件。
+2.  **更新种子数据**: 根据结构变化，调整 `scripts/seed-strapi.mjs` 中的数据和逻辑。确保遵循上述的 i18n 创建流程。
+3.  **重置数据库**: 在本地开发时，运行 `npm run clear:strapi` 清理旧数据。
+4.  **填充新数据**: 运行 `npm run seed:strapi` 将更新后的内容注入 Strapi。
+
+---

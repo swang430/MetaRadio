@@ -1,146 +1,106 @@
-# Gemini - MetaRadio 项目开发规范
+# MetaRadio Codex 开发日志 (Gemini)
 
-本文件旨在记录和指导 MetaRadio 项目的开发工作，确保代码的一致性、可维护性和高质量。所有开发活动都应遵循本文档中列出的规范。
+## 核心原则
+- **CMS 即代码 (CMS as Code)**：所有 Strapi 的内容类型、组件和种子数据都应通过代码（JSON schema, seed scripts）管理，而不是通过管理后台手动操作。这确保了环境的一致性和可重复性。
+- **国际化 (i18n) 优先**：所有面向用户的内容（从页面到组件）都必须支持多语言。默认语言为中文 (`zh`)，并支持英文 (`en`)。
+- **Mock 数据作为后备**：前端应用在无法连接到 Strapi API 时，应能无缝回退到本地的 mock 数据。这保证了开发和演示的稳定性。
 
-## 1. 核心开发哲学：CMS 即代码 (CMS as Code)
+## 关键决策与上下文
+- **Strapi 版本**：项目使用 Strapi v5。v4 到 v5 在插件 API、中间件和程序化使用方面有较大变化。特别是，v5 强化了通过 `strapi.entityService` 和 `strapi.db.query` 进行数据操作的模式。
+- **i18n 插件**：`@strapi/plugin-i18n` 是实现国际化的核心。在内容类型的 schema 中，通过 `pluginOptions: { i18n: { localized: true } }` 来标记需要本地化的字段。
+- **种子脚本 (`seed-strapi.mjs`)**：
+    - **执行方式**：这是一个独立的 ES Module 脚本，通过 `node scripts/seed-strapi.mjs` 执行。它直接与 Strapi 的 REST API 交互，因此需要在 `.env` 文件中配置 `STRAPI_API_URL` 和 `STRAPI_API_TOKEN`。
+    - **逻辑**：脚本采用 `upsert` 逻辑。它首先根据 `slug` 或其他唯一标识符查询条目是否存在。如果存在，则更新；如果不存在，则创建。这使得脚本可以重复运行而不会产生重复数据。
+    - **国际化处理**：目前的种子脚本主要填充了 `zh`（中文）内容。要实现完整的双语填充，需要对脚本进行扩展：
+        1.  首先创建 `en`（英文）版本的内容。
+        2.  然后，使用返回的 `id`，为 `zh` 版本创建一个新的条目，并通过 `localizations` 字段将其与英文版本关联起来。
+- **清理脚本 (`clear-strapi.js`)**：
+    - **执行方式**：这是一个 CommonJS 脚本，通过 `node scripts/clear-strapi.js` 执行。
+    - **逻辑**：它以编程方式启动一个 Strapi 实例（`bootstrapStrapi`），然后使用 `strapi.db.query` API 来查找并删除所有集合类型中的数据。这种方式比直接操作数据库更安全，因为它会触发 Strapi 的生命周期钩子。
+- **前端数据获取 (`lib/strapi.ts`)**：
+    - 封装了所有对 Strapi API 的请求。
+    - 包含一个 `try...catch` 块，当 API 请求失败时（例如网络错误或 Strapi 服务未运行），它会 `console.error` 并返回 `null` 或空数组。
+    - 调用此模块的更高层函数（例如页面组件中的 `getStaticProps` 或 `getServerSideProps`）负责处理 `null` 情况并加载 `lib/mock-data.js` 中的 mock 数据。
 
-本项目最核心、最与众不同的技术特点是 **Strapi 内容模型与架构的自动化、代码化初始化**。这套“CMS 即代码”的哲学是我们必须严格遵守的最高准则。
-
-- **核心原则**: 所有的 Strapi 内容模型（Collection Types）、单一类型（Single Types）和组件（Components）的**结构（Schema）都必须在代码中定义**。这些定义以 `.json` 文件的形式存在于 `cms/src/` 目录下，并接受 Git 版本控制。
-
-- **严禁手动修改**: **严禁通过 Strapi 的管理后台（Admin UI）对内容模型、组件结构进行任何创建、修改或删除操作**。管理后台仅用于日常的**内容条目**（Entries）增删改查，例如发布一篇新文章。
-
-- **正确的工作流程 (当需要修改内容结构时)**:
-  1. **定义 Schema**: 在 `cms/src/api/` 或 `cms/src/components/` 目录中，通过修改或创建 `.json` 文件来更新结构。
-  2. **更新种子数据 (可选)**: 如果结构变更需要初始数据，请同步更新 `cms/src/seed.ts` 或 `scripts/seed-strapi.mjs` 脚本。
-  3. **应用变更**: 在本地环境中，运行相应的命令（如 `npm run cms:build` 或 `npm run seed:strapi`）来使代码中的结构变更生效。
-
-- **为何如此**:
-  - **版本控制与可追溯**: 所有的结构变更都有清晰的 Git 记录，可以轻松追溯、审查和回滚。
-  - **环境一致性**: 保证开发、测试、生产等所有环境的 CMS 结构完全一致，杜绝“在我这里是好的”这类问题。
-  - **自动化与可移植性**: 为 CI/CD 自动化部署和新环境的快速搭建奠定了基础。
-
----
-
-## 2. 前端设计与布局优化哲学
-
-为提升网站的视觉表现力与信息传达效率，前端开发需遵循以下优化哲学。
-
-- **核心约束**: 所有布局和设计优化都必须在**不修改 Strapi 内容模型**的前提下完成。我们通过更具创意的前端组件设计来重新诠释已有的数据。
-
-- **架构统一**:
-  - **推广模块化**: 所有页面，包括首页，都应优先采用 `components/blocks/renderer.tsx` 的动态区块渲染机制。这可以统一项目架构，并为内容团队提供最大灵活性。
-
-- **设计原则**:
-  - **引入视觉对比与呼吸感**:
-    - **明暗交替**: 打破单一的深色背景，在页面不同章节（区块）间策略性地使用浅色背景（如 `bg-slate-50`），形成视觉节奏感，提升长篇内容的可读性。
-    - **创造呼吸空间**: 通过调整区块宽度、增加外边距等方式，在内容周围提供充足的“留白”，避免信息过载。
-  - **建立视觉焦点与节奏**:
-    - **克制地使用特效**: 将冲击力强的视觉效果（如辉光 `shadow-glow`、复杂渐变）集中用于最重要的区块（如页面主视觉 Hero、最终行动号召 CTA），避免视觉过载。其他内容区块应更注重清晰的排版和优雅的布局。
-    - **打破布局单调**: 综合运用对称、不对称、交错网格等多种布局方式，创造更富动感的视觉流线，避免用户在垂直滚动时感到枯燥。
-
----
-
-## 3. 样式架构：分层控制
-
-项目的样式系统分为三层，每一层各司其职，确保了全局统一和局部灵活。
-
-- **第一层 (全局基础): `app/globals.css`**
-  - **职责**: 定义最底层的、全局通用的基础样式，如 `<body>` 的默认字体、字体平滑效果、以及 CSS 变量。
-  - **原则**: 此文件**不应包含**任何具体的元素颜色定义（如 `h1 { color: ... }`）。所有颜色应由下一层或第三层通过功能类（utility classes）来控制，以避免样式冲突。
-
-- **第二层 (全局设计系统): `tailwind.config.js`**
-  - **职责**: 定义整个项目的“设计语言”，是我们所有样式的“唯一真实来源”。包括：
-    - **调色盘**: `colors.brand`、`dark.background` 等所有品牌和语义化颜色。
-    - **排版**: `fontFamily`、`fontSize` 等字体族和字号，以及通过 `@tailwindcss/typography` 插件对 `.prose` 富文本的样式进行统一配置。
-    - **尺寸体系**: 间距、圆角、边框宽度等。
-    - **效果**: `boxShadow` (阴影) 等。
-  - **原则**: 所有组件都应优先使用这里定义好的值（如 `bg-brand-500`）。需要全局修改某一风格时（如调整品牌色），应优先修改此文件。
-
-- **第三层 (组件局部应用): 各组件文件 (`*.tsx`)**
-  - **职责**: 在具体的组件内部，通过组合使用 Tailwind 功能类，来应用第二层定义的设计规范，从而构建出组件的最终外观。
-  - **原则**: 组件的样式应该由其自身代码决定，并能根据传入的属性（如 `theme: 'light' | 'dark'`）来动态切换外观。这是实现组件化和局部控制的关键。
-
-### 架构实践：通过“组合”实现样式统一
-
-为避免在多个卡片类组件（如 `FeatureCard`, `CaseCard`, `PostCard`）中重复编写相同的样式代码，我们采用“组合优于继承”的原则：
-- **创建 `BaseCard` 组件**: 我们创建了一个 `components/blocks/base-card.tsx` 基础组件，它封装了所有卡片共有的样式逻辑（如主题切换、边框、阴影、强调线、悬停效果等）。
-- **改造具体卡片**: `FeatureCard` 等组件现在通过调用 `BaseCard` 作为“底座”，然后只在内部负责排列自己独特的内容（如图标、客户名称等）。
-- **优势**: 这种方式极大地提高了代码的可维护性。未来需要统一修改所有卡片的风格时，只需修改 `BaseCard` 一个文件即可。
+## 后续步骤与改进方向
+1.  **完善 `seed-strapi.mjs` 的 i18n 支持**：
+    -   将现有的中文数据调整为英文 (`en`) 作为基础语言。
+    -   在创建完英文条目后，紧接着为每个条目创建中文 (`zh`) 版本，并正确设置 `localizations` 关联。
+2.  **统一脚本执行环境**：`seed-strapi.mjs` (ESM) 和 `clear-strapi.js` (CJS) 使用了不同的模块系统。可以考虑将 `clear-strapi.js` 也重构为 ESM，以保持一致性。
+3.  **在 `package.json` 中添加统一的命令**：
+    -   `"seed:strapi": "node scripts/seed-strapi.mjs"`
+    -   `"clear:strapi": "node scripts/clear-strapi.js"`
+    -   `"reset:strapi": "npm run clear:strapi && npm run seed:strapi"`
+    这样可以简化开发流程。
+4.  **Strapi v5 插件配置**：`cms/config/plugins.ts` 文件当前为空。对于 i18n，虽然默认配置通常足够，但任何需要自定义的行为（例如默认区域设置）都应在此处明确配置。例如：
+    ```typescript
+    export default {
+      'i18n': {
+        enabled: true,
+        config: {
+          defaultLocale: 'zh',
+          locales: ['zh', 'en'],
+        },
+      },
+    };
+    ```
+    需要验证这是否是 v5 的正确配置方式。
 
 ---
+### Strapi v5 控制与数据管理总结
 
-## 4. 未来如何修改设计风格
+本文档总结了项目如何以“代码即 CMS”的原则来管理 Strapi v5 的内容。
 
-基于上述分层架构，未来的设计风格迭代将非常高效。以下是不同修改场景的操作指南：
+#### 1. Strapi 版本
+项目 CMS 使用 **Strapi v5.26.0**。所有操作都应与此版本兼容。
 
-### 场景一：修改全局颜色或字体
-- **目标**: 更改品牌主色、基础文字颜色、背景色、全局字体等。
-- **操作文件**: `tailwind.config.js`
-- **方法**: 修改 `theme.extend.colors` 或 `theme.extend.fontFamily` 中的对应值。
-- **影响范围**: **全局**。网站上所有使用到这些设计令牌的地方都会自动更新。
+#### 2. 核心控制方式
+本项目通过两种主要方式与 Strapi 交互：
 
-### 场景二：修改通用组件的样式
-- **目标**: 统一修改某一类组件的外观，例如所有卡片、按钮的样式。
-- **操作文件**: 如果是卡片类组件，优先修改 `components/blocks/base-card.tsx`。否则，修改对应的独立组件文件。
-- **方法**: 在该组件文件中，修改其元素的 Tailwind 样式类。
-- **影响范围**: **全局**。网站上所有使用到该组件的地方都会自动更新为新样式。
+*   **A) REST API 交互 (外部脚本)**
+    *   **用途**: 数据填充 (Seeding)。
+    *   **脚本**: `scripts/seed-strapi.mjs`
+    *   **工作原理**: 此脚本通过 `fetch` 直接调用 Strapi 的 REST API (`/api/...`)。它使用 `upsert` 逻辑，根据 `slug` 检查内容是否存在，然后决定是创建还是更新。
+    *   **执行前提**: Strapi 服务必须正在运行，且环境变量 `STRAPI_API_URL` 和 `STRAPI_API_TOKEN` 必须在脚本运行环境中可用。
+    *   **优点**: 逻辑清晰，与 Strapi 服务解耦，易于通过 HTTP 调试。
 
-### 场景三：调整特定页面的布局
-- **目标**: 只改变某个页面的区块顺序或布局，例如将“解决方案”页面的区块从“暗-亮”交替改为“亮-暗”交替。
-- **操作文件**: 对应的页面文件，例如 `app/[locale]/marketing/solutions/page.tsx`。
-- **方法**: 修改该页面组件中 `blocks` 数组的生成逻辑，调整其中每个区块的 `theme` 或 `layout` 属性的值和顺序。
-- **影响范围**: **局部**。仅限被修改的那一个页面。
+*   **B) 程序化 Strapi 实例 (内部脚本)**
+    *   **用途**: 数据清理和批量操作。
+    *   **脚本**: `scripts/clear-strapi.js`
+    *   **工作原理**: 此脚本会以编程方式加载一个完整的 Strapi 应用实例。加载后，它使用 `strapi.db.query()` API 直接与数据库交互来删除数据。
+    *   **执行前提**: 无需运行 Strapi 服务，脚本本身会引导一个实例。
+    *   **优点**: 功能强大，性能高，可以访问所有 Strapi 内部服务，无需 API Token。
+
+#### 3. 国际化 (i18n) 内容管理
+Strapi 的 i18n 功能允许内容存在多种语言版本。正确的创建流程如下：
+
+1.  **创建主语言条目**: 首先，创建一个语言版本的内容（例如 `locale: 'en'`）。
+2.  **获取主语言 ID**: 从创建操作的响应中获得该条目的 `id`。
+3.  **创建并关联本地化条目**: 接着，创建其他语言版本（例如 `locale: 'zh'`）。在创建这个新版本时，必须在其数据中包含 `localizations` 字段，指向主语言条目的 `id`。
+
+**示例 (伪代码)**：
+```javascript
+// 1. 创建英文版本
+const enEntry = await strapi.entityService.create('api::article.article', {
+  data: { title: 'Hello World', slug: 'hello', locale: 'en' }
+});
+
+// 2. 使用其 ID 创建中文版本并关联
+const zhEntry = await strapi.entityService.create('api::article.article', {
+  data: {
+    title: '你好世界',
+    slug: 'hello', // slug 可以相同
+    locale: 'zh',
+    localizations: [enEntry.id] // 关键步骤
+  }
+});
+```
+当前的 `seed-strapi.mjs` 脚本为每个条目设置了 `locale: 'zh'`，但没有实现与其他语言版本的关联。这是导致之前国际化数据混乱的关键原因。
+
+#### 4. 推荐的开发流程
+1.  **修改结构**: 在 `cms/src/api` 或 `cms/src/components` 中修改 JSON schema 文件。
+2.  **更新种子数据**: 根据结构变化，调整 `scripts/seed-strapi.mjs` 中的数据和逻辑。确保遵循上述的 i18n 创建流程。
+3.  **重置数据库**: 在本地开发时，运行 `npm run clear:strapi` 清理旧数据。
+4.  **填充新数据**: 运行 `npm run seed:strapi` 将更新后的内容注入 Strapi。
 
 ---
-
-## 5. Strapi 项目重建记录
-
-在开发过程中，我们遇到了由 Strapi v5 beta 版本引发的、无法通过常规手段解决的 bug（包括 i18n API 行为不一致、数据库状态损坏等）。最终，我们采取了彻底重建 `cms/` 目录的方案来解决问题。
-
-**重建流程：**
-1.  **删除旧项目**: `rm -rf cms/`
-2.  **创建新项目**: `npx create-strapi-app@latest cms --quickstart` (在 v20 Node.js 环境下)
-3.  **重建内容模型**: 通过 `write_file` 工具，将所有内容类型和组件的 `schema.json` 文件重新写入 `cms/src/api/` 和 `cms/src/components/` 目录。
-4.  **注入数据**: 在 Strapi 服务器启动后，运行 `npm run seed:strapi` 脚本，将所有中英文内容注入到全新的数据库中。
-
-这个流程确保了我们拥有一个基于 Strapi v5 最新稳定版、100% 干净且功能完整的后台系统。
-
----
-
-## 6. 核心技术栈
-
-- **前端框架**: Next.js 14+ (App Router)
-- **编程语言**: TypeScript
-- **UI/样式**: Tailwind CSS v3 (Stable)
-- **内容管理 (CMS)**: Strapi v5 (Stable)
-- **测试框架**: Vitest
-
-## 7. 项目结构与约定
-
-- **`app/[locale]/`**: 国际化路由的根目录。
-- **`components/blocks/`**: 专门用于渲染 Strapi 动态区块（Dynamic Zones）的组件。
-- **`lib/strapi.ts`**: 封装了所有与 Strapi API 的交互。
-- **`cms/`**: 独立的 Strapi v5 项目。
-
-## 8. 代码规范
-
-### 8.1. TypeScript 与组件
-- **函数式组件**: 始终使用函数式组件和 Hooks。
-- **图片**: 必须使用 `next/image` 组件处理图片。
-
-### 8.2. 样式 (Tailwind CSS)
-- **遵循设计规范**: 严格遵循 `tailwind.config.js` 中定义的规范。
-
-### 8.3. 数据获取 (Strapi)
-- **统一入口**: 所有数据获取请求必须通过 `lib/strapi.ts` 中的函数进行。
-
-## 9. 测试
-
-- **测试框架**: 使用 Vitest。
-- **运行测试**: `npm test`。
-
-## 10. Git 与提交流程
-
-- **提交前检查**: `npm test`。
-- **Commit Message**: 清晰、简洁，描述“目的”。
