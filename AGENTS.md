@@ -124,3 +124,52 @@ const zhEntry = await strapi.entityService.create('api::article.article', {
 4.  **填充新数据**: 运行 `npm run seed:strapi` 将更新后的内容注入 Strapi。
 
 ---
+
+### Strapi v5 程序化 Seed 操作指引（v5.26.x）
+
+以下规范总结了我们在调试 `solutions` / `resources` 页面时踩过的坑，后续同类脚本请严格参照：
+
+1. **运行环境**
+   - 始终在 **Node 20** 下执行（`nvm use 20`），否则 `better-sqlite3` 会因 ABI 不匹配报错。
+   - 脚本入口示例：
+     ```js
+     const { compileStrapi, createStrapi } = require('@strapi/strapi');
+     process.chdir(path.resolve(__dirname, '..', 'cms'));
+     require('dotenv').config({ path: '.env' });
+     const appContext = await compileStrapi();
+     const strapi = await createStrapi(appContext).load();
+     ```
+
+2. **新增 / 更新（Upsert）**
+   - 始终以 **Documents API** 为主：先 `documents.findMany({ filters: { slug }, locale: 'en', publicationState: 'preview', limit: 1 })`，拿到 `documentId` 后决定 update 或 create。
+   - 如果现有英文版本没有 `documentId`（v4 遗留），需要手动迁移/清理后再跑脚本，避免生成重复 slug。
+   - 中文版本必须通过 **Documents API** 在同一个 `documentId` 下创建：
+     ```js
+     await strapi.documents(uid).create({
+       documentId, // 来自英文主版本
+       locale: 'zh',
+       data: { ...payload, slug },
+       status: 'published',
+     });
+     ```
+   - 这样 en/zh 共用一个文档，后台切换语言时同一条记录即可编辑，也避免“删除不了”的 legacy 数据。
+
+3. **发布 / 草稿状态**
+   - 推荐在 `documents.create/update` 时直接传 `status: 'published'`，或更新完后调用 `documents.publish({ documentId, locale })`。这样 API 输出和后台显示一致。
+   - 如果只想保留草稿，把 `status` 去掉即可，发布操作再另行调用。
+
+4. **删除（单条 / 多语言）**
+   - 删除整条文档：`await strapi.documents(uid).delete({ documentId });`
+   - 只删除某个语言版本：`await strapi.documents(uid).delete({ documentId, locale: 'zh' });`
+   - 管理后台报错 `documentIds[0] must be a strapiID` 时，通常是遗留数据 `documentId = null`，只能通过脚本 `strapi.db.query(uid).delete({ where: { id } })` 清除。
+
+5. **清空集合**
+   - 遍历 `strapi.documents(uid).findMany()` 拿到全部 `documentId`，逐个 `delete({ documentId })`。
+   - 避免直接 `deleteMany`，否则会留下无 `documentId` 的孤儿草稿，后续无法在后台删除。
+
+6. **调试建议**
+   - 在种子脚本里打印每一步（例如“Updated English document (id=…)”）。
+   - 错误时附带 `documentId` / `id`，方便快速定位并手工清理。
+   - 记录写入结果，可利用 `datasource.log` 验证前端是否命中 Strapi。
+
+遵循以上流程，可以稳定地在 Strapi v5 中创建/更新中英双语内容，避免重复写入、草稿无法发布以及后台删除失败等问题。

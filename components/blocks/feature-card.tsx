@@ -12,6 +12,17 @@ export type FeatureCardProps = {
 };
 
 export function FeatureCard({ title, description, href, icon, linkLabel, theme = 'dark' }: FeatureCardProps) {
+  const renderIcon = () => {
+    if (typeof icon === 'string') {
+      return (
+        <span className="block text-xs font-semibold uppercase tracking-wide text-current whitespace-nowrap">
+          {icon}
+        </span>
+      );
+    }
+    return icon;
+  };
+
   return (
     <BaseCard href={href} theme={theme}>
       <div className="relative flex h-full flex-col gap-5 pt-4">
@@ -20,13 +31,13 @@ export function FeatureCard({ title, description, href, icon, linkLabel, theme =
             className={clsx(
               'flex h-12 w-12 items-center justify-center rounded-lg text-2xl',
               {
-                'bg-slate-700 text-brand-200': theme === 'dark',
-                'bg-slate-100 text-brand-500': theme === 'light',
-              }
-            )}
-          >
-            {icon}
-          </div>
+              'bg-slate-700 text-brand-200': theme === 'dark',
+              'bg-slate-100 text-brand-500': theme === 'light',
+            }
+          )}
+        >
+          {renderIcon()}
+        </div>
         ) : null}
         <div className="flex-grow">
           <h3 className={clsx('font-display text-xl', { 'text-white': theme === 'dark', 'text-slate-900': theme === 'light' })}>{title}</h3>

@@ -104,3 +104,27 @@ const zhEntry = await strapi.entityService.create('api::article.article', {
 4.  **填充新数据**: 运行 `npm run seed:strapi` 将更新后的内容注入 Strapi。
 
 ---
+
+### Strapi v5 i18n 内容填充的正确方法 (编程方式) - 已更正
+
+根据 `AGENTS.md` 中记载的成功经验，正确的种子脚本工作流应遵循以下规范，而不是使用 REST API。
+
+1.  **运行环境与启动**
+    *   脚本必须是 CommonJS (`.js`) 格式，以便使用 `require()`。
+    *   脚本必须通过加载一个内嵌的 Strapi 实例来执行，复用 `clear-strapi.js` 中的 `bootstrapStrapi` 方法。
+
+2.  **创建/更新主语言 (en) 内容**
+    *   使用 `strapi.db.query(uid).findOne()` 按 `slug` 和 `locale` 查找条目。
+    *   如果存在，使用 `strapi.entityService.update()` 更新。
+    *   如果不存在，使用 `strapi.entityService.create()` 创建。
+
+3.  **获取 `documentId`**
+    *   在创建或更新主语言内容后，必须再次查询该条目以获取其 `documentId`。这是关联多语言版本的唯一标识。
+
+4.  **创建/更新次语言 (zh) 内容**
+    *   **关键步骤**：必须使用 `strapi.documents(uid).create()` 方法来创建次语言版本。
+    *   传递给此方法的数据对象中，必须包含从主语言版本获取的 `documentId` 和新的 `locale: 'zh'`。
+
+5.  **发布内容**
+    *   `entityService` 和 `documents` API 默认只创建草稿。
+    *   必须调用 `strapi.documents(uid).publish({ documentId, locale: 'en' })` 和 `strapi.documents(uid).publish({ documentId, locale: 'zh' })` 来分别发布两个语言版本的内容。

@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import type { MouseEvent } from 'react';
 import type { Dictionary } from '@/lib/i18n/dictionaries';
-import type { Locale } from '@/lib/i18n/config';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from '@/lib/i18n/config';
 import { localizeHref } from '@/lib/i18n/navigation';
 
 type NavProps = {
@@ -12,6 +16,36 @@ export function Nav({ locale, dictionary }: NavProps) {
   const { common } = dictionary;
   const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
   const to = (path: string) => localizeHref(path, locale) || path;
+  const pathname = usePathname() || '/';
+  const router = useRouter();
+
+  const stripLocale = (path: string) => {
+    if (!path.startsWith('/')) return path;
+    const segments = path.split('/').filter(Boolean);
+    if (segments.length && SUPPORTED_LOCALES.includes(segments[0] as Locale)) {
+      segments.shift();
+    } else if (!segments.length) {
+      return '/';
+    }
+    return segments.length ? `/${segments.join('/')}` : '/';
+  };
+
+  const currentBasePath = stripLocale(pathname);
+  const buildLocalePath = (target: Locale) => {
+    if (target === DEFAULT_LOCALE) {
+      return currentBasePath || '/';
+    }
+    if (currentBasePath === '/' || currentBasePath === '') {
+      return `/${target}`;
+    }
+    return `/${target}${currentBasePath}`;
+  };
+
+  const localeSwitchHref = buildLocalePath(otherLocale);
+  const handleLocaleSwitch = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    router.push(localeSwitchHref);
+  };
 
   const navItems = [
     { label: common.nav.solutions, href: '/marketing/solutions' },
@@ -40,7 +74,8 @@ export function Nav({ locale, dictionary }: NavProps) {
               </div>
             </Link>
             <Link
-              href={localizeHref('/', otherLocale) || '/'}
+              href={localeSwitchHref}
+              onClick={handleLocaleSwitch}
               className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-slate-200 transition hover:border-brand-400 hover:bg-brand-400/20 sm:hidden"
             >
               {common.actions.switchLocale}
@@ -63,7 +98,8 @@ export function Nav({ locale, dictionary }: NavProps) {
 
             <div className="flex items-center justify-between gap-3 sm:justify-end">
               <Link
-                href={localizeHref('/', otherLocale) || '/'}
+                href={localeSwitchHref}
+                onClick={handleLocaleSwitch}
                 className="hidden rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:border-brand-400 hover:bg-brand-400/20 sm:inline-flex"
               >
                 {common.actions.switchLocale}

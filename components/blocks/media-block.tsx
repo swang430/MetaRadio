@@ -97,7 +97,7 @@ export function MediaBlock({
           {body ? (
             <div
               className={clsx('prose mt-5', {
-                'prose-invert': theme === 'dark',
+                'prose-invert text-white': theme === 'dark',
               })}
               dangerouslySetInnerHTML={{ __html: body }}
             />

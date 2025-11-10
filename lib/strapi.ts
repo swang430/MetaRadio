@@ -21,10 +21,7 @@ import { DEFAULT_LOCALE, resolveLocale, type Locale } from './i18n/config';
 const STRAPI_URL = process.env.STRAPI_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
 const TOKEN = process.env.STRAPI_API_TOKEN;
 const REVALIDATE_SECONDS = Number(process.env.REVALIDATE_SECONDS || 120);
-const DEBUG_DATA_SOURCE =
-  typeof process !== 'undefined'
-    ? process.env.DEBUG_DATA_SOURCE !== '0' && process.env.DEBUG_DATA_SOURCE !== 'false'
-    : false;
+const DEBUG_DATA_SOURCE = true; // Temporarily enabled for debugging
 const LOG_FILE_PATH = typeof process !== 'undefined' ? path.resolve(process.cwd(), 'datasource.log') : 'datasource.log';
 
 let appendFileAsync: ((path: string, data: string) => Promise<void>) | null = null;
@@ -54,7 +51,8 @@ async function writeDataLog(entry: Record<string, unknown>) {
       appendFileAsync = fs.appendFile;
     }
     const payload = { timestamp: new Date().toISOString(), ...entry };
-    await appendFileAsync!(LOG_FILE_PATH, `${JSON.stringify(payload)}\n`);
+    await appendFileAsync!(LOG_FILE_PATH, `${JSON.stringify(payload)}
+`);
   } catch (error) {
     console.warn('[data-log] failed to append log entry:', error);
   }
@@ -237,7 +235,7 @@ export async function getPageBySlug(slug: string, locale?: string): Promise<Page
 [DATA_SOURCE] Fetching page with slug: '${slug}', locale: '${resolved}'`);
   const params = new URLSearchParams({
     'filters[slug][$eq]': slug,
-    'filters[locale][$eq]': resolved,
+    locale: resolved,
   });
   appendPopulatePaths(params, [...BLOCK_POPULATE_PATHS, 'seo']);
   const response = await api<StrapiResponse<PageEntity[]>>(`/api/pages?${params.toString()}`);
