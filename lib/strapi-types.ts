@@ -17,6 +17,11 @@ export type SeoData = {
 export type StrapiEntity<T> = {
   id: number;
   attributes: T;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string | null;
+  locale?: string;
+  documentId?: string;
 };
 
 export type StrapiResponse<T> = {
@@ -29,6 +34,21 @@ export type LinkField = {
   url: string;
 };
 
+// Base types for block components
+export type MediaField = {
+  url?: string | null;
+  alt?: string | null;
+  width?: number | null;
+  height?: number | null;
+};
+
+export type ActionField = {
+  id?: number | string;
+  name?: string | null;
+  url?: string | null;
+};
+
+// Block type definitions
 export type HeroBlock = {
   __component: 'hero.hero';
   headline: string;
@@ -39,10 +59,104 @@ export type HeroBlock = {
   ctaSecondary?: { name?: string; url?: string } | null;
 };
 
-export type DynamicZoneBlock = {
-  __component: string;
-  [key: string]: any;
+export type FeatureGridBlock = {
+  __component: 'sections.feature-grid';
+  title?: string | null;
+  description?: string | null;
+  items?: Array<{
+    id?: number | string;
+    title?: string | null;
+    description?: string | null;
+    icon?: MediaField | null;
+    link?: ActionField | null;
+  }> | null;
 };
+
+export type StatGroupBlock = {
+  __component: 'sections.stat-group';
+  title?: string | null;
+  metrics?: Array<{
+    id?: number | string;
+    label?: string | null;
+    value?: string | null;
+    unit?: string | null;
+  }> | null;
+};
+
+export type BulletListBlock = {
+  __component: 'sections.bullet-list';
+  title?: string | null;
+  items?: Array<{
+    id?: number | string;
+    title?: string | null;
+    description?: string | null;
+    icon?: MediaField | null;
+  }> | null;
+};
+
+export type TechFlowBlock = {
+  __component: 'sections.tech-flow';
+  title?: string | null;
+  steps?: Array<{
+    id?: number | string;
+    title?: string | null;
+    description?: string | null;
+  }> | null;
+};
+
+export type BeforeAfterBlock = {
+  __component: 'sections.before-after';
+  title?: string | null;
+  items?: Array<{
+    id?: number | string;
+    title?: string | null;
+    description?: string | null;
+    beforeMedia?: MediaField | null;
+    afterMedia?: MediaField | null;
+  }> | null;
+};
+
+export type CaseShowcaseBlock = {
+  __component: 'sections.case-showcase';
+  title?: string | null;
+  description?: string | null;
+  cases?: Array<unknown> | null; // TODO: Define case type
+};
+
+export type PostListBlock = {
+  __component: 'sections.post-list';
+  title?: string | null;
+  posts?: Array<unknown> | null; // TODO: Define post type
+};
+
+export type CtaBannerBlock = {
+  __component: 'sections.cta-banner';
+  title?: string | null;
+  description?: string | null;
+  actions?: ActionField[] | null;
+};
+
+export type MediaContentBlock = {
+  __component: 'content.media-block';
+  title?: string | null;
+  body?: string | null;
+  media?: MediaField | null;
+  orientation?: 'left' | 'right' | null;
+  actions?: ActionField[] | null;
+};
+
+// Union type of all possible blocks
+export type DynamicZoneBlock =
+  | HeroBlock
+  | FeatureGridBlock
+  | StatGroupBlock
+  | BulletListBlock
+  | TechFlowBlock
+  | BeforeAfterBlock
+  | CaseShowcaseBlock
+  | PostListBlock
+  | CtaBannerBlock
+  | MediaContentBlock;
 
 export type PageAttributes = {
   title: string;

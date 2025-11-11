@@ -23,7 +23,7 @@ type BeforeAfterSectionProps = {
   items: BeforeAfterItem[];
 };
 
-function MediaPanel({ label, media }: { label: string; media?: BeforeAfterItem['beforeMedia'] }) {
+function MediaPanel({ label, media, itemTitle }: { label: string; media?: BeforeAfterItem['beforeMedia']; itemTitle?: string | null }) {
   return (
     <div className="flex flex-col gap-4">
       <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200/80">
@@ -33,7 +33,7 @@ function MediaPanel({ label, media }: { label: string; media?: BeforeAfterItem['
         {media?.url ? (
           <Image
             src={media.url}
-            alt={media.alt || `${label} illustration`}
+            alt={media.alt || (itemTitle ? `${label}: ${itemTitle}` : `${label} illustration`)}
             fill
             sizes="(min-width: 1024px) 40vw, 100vw"
             className="object-cover"
@@ -65,8 +65,8 @@ export function BeforeAfterSection({ title, items }: BeforeAfterSectionProps) {
                 ) : null}
               </div>
               <div className="grid gap-6 md:grid-cols-2">
-                <MediaPanel label="Before" media={item.beforeMedia} />
-                <MediaPanel label="After" media={item.afterMedia} />
+                <MediaPanel label="Before" media={item.beforeMedia} itemTitle={item.title} />
+                <MediaPanel label="After" media={item.afterMedia} itemTitle={item.title} />
               </div>
             </div>
           ))}

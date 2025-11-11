@@ -120,7 +120,7 @@ export function Hero({
             {media?.url ? (
               <Image
                 src={media.url}
-                alt={media.alt || 'Hero illustration'}
+                alt={media.alt || `Illustration for ${headline}`}
                 fill
                 priority
                 sizes="(min-width: 1024px) 40vw, (min-width: 768px) 50vw, 100vw"

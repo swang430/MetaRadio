@@ -1,4 +1,4 @@
-import {
+import type {
   ArticleEntity,
   CaseStudyEntity,
   PageEntity,
@@ -21,7 +21,7 @@ import { DEFAULT_LOCALE, resolveLocale, type Locale } from './i18n/config';
 const STRAPI_URL = process.env.STRAPI_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
 const TOKEN = process.env.STRAPI_API_TOKEN;
 const REVALIDATE_SECONDS = Number(process.env.REVALIDATE_SECONDS || 120);
-const DEBUG_DATA_SOURCE = true; // Temporarily enabled for debugging
+const DEBUG_DATA_SOURCE = process.env.NODE_ENV === 'development'; // Only log in development
 const LOG_FILE_PATH = typeof process !== 'undefined' ? path.resolve(process.cwd(), 'datasource.log') : 'datasource.log';
 
 let appendFileAsync: ((path: string, data: string) => Promise<void>) | null = null;
@@ -177,22 +177,29 @@ function getMockCollection<T>(collection: Record<Locale, T>, locale?: string): T
 
 function filterByLocale<T>(items: T[] | undefined, locale: Locale): T[] {
   if (!items?.length) return [];
-  return items.filter((item: any) => {
+  return items.filter((item) => {
     const attrs = toAttributes(item);
-    const itemLocale = (attrs as any)?.locale ?? (item as any)?.locale ?? null;
+    const itemLocale = typeof attrs === 'object' && attrs !== null && 'locale' in attrs
+      ? (attrs as { locale?: string }).locale
+      : typeof item === 'object' && item !== null && 'locale' in item
+      ? (item as { locale?: string }).locale
+      : null;
     return itemLocale === locale;
   });
 }
 
-type WithAttributes<T> = T & { attributes: any };
+type WithAttributes<T> = T & { attributes: Record<string, unknown> };
 
 function normalizeEntity<T>(entity: T | undefined): WithAttributes<T> | undefined {
   if (!entity) return entity as undefined;
-  const record = entity as any;
-  if (record && typeof record === 'object' && 'attributes' in record && record.attributes) {
+  if (typeof entity !== 'object' || entity === null) return entity as undefined;
+
+  const record = entity as Record<string, unknown>;
+  if ('attributes' in record && record.attributes) {
     return record as WithAttributes<T>;
   }
-  const { id, ...rest } = record || {};
+
+  const { id, ...rest } = record;
   return {
     ...record,
     attributes: rest,
@@ -311,8 +318,8 @@ export async function listSolutions(locale?: string): Promise<SolutionEntity[]> 
     entity: 'solutions',
     source: 'Mock',
     locale: resolved,
-    entries: (fallback as SolutionEntity[]).map((item: any) => {
-      const attrs = toAttributes(item);
+    entries: (fallback as SolutionEntity[]).map((item) => {
+      const attrs = toAttributes<SolutionAttributes>(item);
       return {
         slug: attrs?.slug ?? null,
         title: attrs?.title ?? null,
@@ -353,7 +360,10 @@ export async function getSolutionBySlug(slug: string, locale?: string): Promise<
   }
   log('Mock', `Using mock data for solution '${slug}'.`);
   const fallbackCollection = getMockCollection(mockSolutions, resolved) || [];
-  const fallback = (fallbackCollection as SolutionEntity[]).find((item: any) => (item.attributes || item).slug === slug);
+  const fallback = (fallbackCollection as SolutionEntity[]).find((item) => {
+    const attrs = item && typeof item === 'object' && 'attributes' in item ? item.attributes as SolutionAttributes : item as unknown as SolutionAttributes;
+    return attrs.slug === slug;
+  });
   const fallbackAttrs = fallback ? toAttributes(fallback) : undefined;
   logEntries({
     entity: 'solution',

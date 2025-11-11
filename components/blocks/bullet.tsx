@@ -21,7 +21,7 @@ export function Bullet({ title, description, icon, theme = 'dark' }: BulletProps
         {icon?.url ? (
           <Image
             src={icon.url}
-            alt={icon.alt || 'bullet icon'}
+            alt={icon.alt || `Icon for ${title}`}
             width={icon.width || 48}
             height={icon.height || 48}
             className="h-12 w-12 flex-shrink-0 rounded-lg object-cover shadow-inner"

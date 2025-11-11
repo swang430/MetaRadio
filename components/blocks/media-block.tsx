@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
+import DOMPurify from 'isomorphic-dompurify';
 
 type Action = {
   id?: number | string;
@@ -52,7 +53,7 @@ export function MediaBlock({
       )}
       <Image
         src={media.url}
-        alt={media.alt || 'media block image'}
+        alt={media.alt || `Illustration for ${title}`}
         fill
         sizes="(min-width: 1024px) 40vw, 100vw"
         className="object-cover"
@@ -99,7 +100,7 @@ export function MediaBlock({
               className={clsx('prose mt-5', {
                 'prose-invert text-white': theme === 'dark',
               })}
-              dangerouslySetInnerHTML={{ __html: body }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(body) }}
             />
           ) : null}
           {actions?.length ? (
