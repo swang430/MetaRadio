@@ -8,43 +8,54 @@
 ## 关键决策与上下文
 - **Strapi 版本**：项目使用 Strapi v5。v4 到 v5 在插件 API、中间件和程序化使用方面有较大变化。特别是，v5 强化了通过 `strapi.entityService` 和 `strapi.db.query` 进行数据操作的模式。
 - **i18n 插件**：`@strapi/plugin-i18n` 是实现国际化的核心。在内容类型的 schema 中，通过 `pluginOptions: { i18n: { localized: true } }` 来标记需要本地化的字段。
-- **种子脚本 (`seed-strapi.mjs`)**：
-    - **执行方式**：这是一个独立的 ES Module 脚本，通过 `node scripts/seed-strapi.mjs` 执行。它直接与 Strapi 的 REST API 交互，因此需要在 `.env` 文件中配置 `STRAPI_API_URL` 和 `STRAPI_API_TOKEN`。
-    - **逻辑**：脚本采用 `upsert` 逻辑。它首先根据 `slug` 或其他唯一标识符查询条目是否存在。如果存在，则更新；如果不存在，则创建。这使得脚本可以重复运行而不会产生重复数据。
-    - **国际化处理**：目前的种子脚本主要填充了 `zh`（中文）内容。要实现完整的双语填充，需要对脚本进行扩展：
-        1.  首先创建 `en`（英文）版本的内容。
-        2.  然后，使用返回的 `id`，为 `zh` 版本创建一个新的条目，并通过 `localizations` 字段将其与英文版本关联起来。
+- **种子脚本 (`seed-strapi.js`)**：
+    - **执行方式**：这是一个 CommonJS 脚本，通过 `npm run db:seed` 执行。它通过加载 Strapi 实例直接与数据库交互，比 REST API 更快且更可靠。
+    - **数据源**：数据存储在 `scripts/seed-data/` 目录下的独立文件中。
+    - **逻辑**：脚本采用智能同步逻辑。它首先清理遗留数据，然后创建主语言（英文）版本，获取 `documentId`，再创建次语言（中文）版本并关联到同一个 `documentId`。
 - **清理脚本 (`clear-strapi.js`)**：
-    - **执行方式**：这是一个 CommonJS 脚本，通过 `node scripts/clear-strapi.js` 执行。
-    - **逻辑**：它以编程方式启动一个 Strapi 实例（`bootstrapStrapi`），然后使用 `strapi.db.query` API 来查找并删除所有集合类型中的数据。这种方式比直接操作数据库更安全，因为它会触发 Strapi 的生命周期钩子。
+    - **执行方式**：这是一个 CommonJS 脚本，通过 `npm run db:clear` 执行。
+    - **逻辑**：它以编程方式启动一个 Strapi 实例，然后使用 `strapi.db.query` API 来查找并删除所有集合类型中的数据。
 - **前端数据获取 (`lib/strapi.ts`)**：
     - 封装了所有对 Strapi API 的请求。
     - 包含一个 `try...catch` 块，当 API 请求失败时（例如网络错误或 Strapi 服务未运行），它会 `console.error` 并返回 `null` 或空数组。
     - 调用此模块的更高层函数（例如页面组件中的 `getStaticProps` 或 `getServerSideProps`）负责处理 `null` 情况并加载 `lib/mock-data.js` 中的 mock 数据。
 
-## 后续步骤与改进方向
-1.  **完善 `seed-strapi.mjs` 的 i18n 支持**：
-    -   将现有的中文数据调整为英文 (`en`) 作为基础语言。
-    -   在创建完英文条目后，紧接着为每个条目创建中文 (`zh`) 版本，并正确设置 `localizations` 关联。
-2.  **统一脚本执行环境**：`seed-strapi.mjs` (ESM) 和 `clear-strapi.js` (CJS) 使用了不同的模块系统。可以考虑将 `clear-strapi.js` 也重构为 ESM，以保持一致性。
-3.  **在 `package.json` 中添加统一的命令**：
-    -   `"seed:strapi": "node scripts/seed-strapi.mjs"`
-    -   `"clear:strapi": "node scripts/clear-strapi.js"`
-    -   `"reset:strapi": "npm run clear:strapi && npm run seed:strapi"`
-    这样可以简化开发流程。
-4.  **Strapi v5 插件配置**：`cms/config/plugins.ts` 文件当前为空。对于 i18n，虽然默认配置通常足够，但任何需要自定义的行为（例如默认区域设置）都应在此处明确配置。例如：
-    ```typescript
-    export default {
-      'i18n': {
-        enabled: true,
-        config: {
-          defaultLocale: 'zh',
-          locales: ['zh', 'en'],
-        },
-      },
-    };
-    ```
-    需要验证这是否是 v5 的正确配置方式。
+## 常用命令 (Package.json)
+- **`npm run db:reset`**: 一键重置数据库（先清理后填充）。这是开发时的首选命令。
+- **`npm run db:seed`**: 仅运行填充脚本。
+- **`npm run db:clear`**: 仅运行清理脚本。
+- **`npm run db:inspect`**: 运行数据诊断工具，检查内容完整性和 i18n 关联。
+- **`npm run db:export`**: 将当前 Strapi 内容导出到 `scripts/seed-data/`。
+
+## 网站搬迁与数据迁移操作指南
+
+为了支持项目在不同环境（如本地到生产，或服务器迁移）之间的迁移，本项目提供了一套完整的**导出/导入**流程。
+
+### 1. 导出数据 (Backup/Export)
+此操作将当前 Strapi 数据库中的所有内容（包括所有语言版本）提取并保存为本地代码文件。这相当于对 CMS 内容进行“快照”。
+
+*   **命令**: `npm run db:export`
+*   **输出位置**: `scripts/seed-data/` 目录下的 `.js` 文件。
+*   **注意**: 运行前请确保 `scripts/seed-data/` 下的文件已提交到 Git，以便在导出后可以清晰地看到 diff 变化。
+
+### 2. 注入数据 (Restore/Import)
+此操作将本地 `scripts/seed-data/` 中的内容重新写入到 Strapi 数据库中。
+
+*   **场景 A: 全新环境或重置环境 (推荐)**
+    *   **命令**: `npm run db:reset`
+    *   **作用**: 先清空数据库，再重新写入。这是最干净、最安全的迁移方式，避免数据冲突。
+
+*   **场景 B: 增量更新**
+    *   **命令**: `npm run db:seed`
+    *   **作用**: 尝试更新现有条目或创建新条目。脚本具有幂等性（Idempotent），但为了保证关联关系的准确性，推荐使用 `db:reset`。
+
+### 3. 完整迁移流程示例
+假设你要将本地开发环境的内容迁移到生产服务器：
+
+1.  **本地**: 运行 `npm run db:export` 导出最新内容。
+2.  **本地**: 检查 Git 变更，提交并推送到远程仓库 (`git commit -am "chore: update seed data" && git push`)。
+3.  **服务器**: 拉取最新代码 (`git pull`)。
+4.  **服务器**: 运行 `npm run db:reset` 重置并填充数据库。
 
 ---
 ### Strapi v5 控制与数据管理总结
@@ -54,77 +65,55 @@
 #### 1. Strapi 版本
 项目 CMS 使用 **Strapi v5.26.0**。所有操作都应与此版本兼容。
 
-#### 2. 核心控制方式
-本项目通过两种主要方式与 Strapi 交互：
+#### 2. 核心控制方式 (统一编程接口)
+本项目所有数据管理脚本都位于 `scripts/` 目录下，统一使用 CommonJS (`.js`) 格式，通过引导 Strapi 实例 (`bootstrapStrapi`) 直接操作数据库。不再使用 REST API 进行数据填充。
 
-*   **A) REST API 交互 (外部脚本)**
-    *   **用途**: 数据填充 (Seeding)。
-    *   **脚本**: `scripts/seed-strapi.mjs`
-    *   **工作原理**: 此脚本通过 `fetch` 直接调用 Strapi 的 REST API (`/api/...`)。它使用 `upsert` 逻辑，根据 `slug` 检查内容是否存在，然后决定是创建还是更新。
-    *   **执行前提**: Strapi 服务必须正在运行，且环境变量 `STRAPI_API_URL` 和 `STRAPI_API_TOKEN` 必须在脚本运行环境中可用。
-    *   **优点**: 逻辑清晰，与 Strapi 服务解耦，易于通过 HTTP 调试。
-
-*   **B) 程序化 Strapi 实例 (内部脚本)**
-    *   **用途**: 数据清理和批量操作。
-    *   **脚本**: `scripts/clear-strapi.js`
-    *   **工作原理**: 此脚本会以编程方式加载一个完整的 Strapi 应用实例。加载后，它使用 `strapi.db.query()` API 直接与数据库交互来删除数据。
-    *   **执行前提**: 无需运行 Strapi 服务，脚本本身会引导一个实例。
-    *   **优点**: 功能强大，性能高，可以访问所有 Strapi 内部服务，无需 API Token。
+*   **填充 (Seeding)**: `scripts/seed-strapi.js`
+*   **清理 (Cleaning)**: `scripts/clear-strapi.js`
+*   **诊断 (Inspection)**: `scripts/inspect-strapi.js`
+*   **导出 (Exporting)**: `scripts/export-strapi.js`
 
 #### 3. 国际化 (i18n) 内容管理
 Strapi 的 i18n 功能允许内容存在多种语言版本。正确的创建流程如下：
 
-1.  **创建主语言条目**: 首先，创建一个语言版本的内容（例如 `locale: 'en'`）。
-2.  **获取主语言 ID**: 从创建操作的响应中获得该条目的 `id`。
-3.  **创建并关联本地化条目**: 接着，创建其他语言版本（例如 `locale: 'zh'`）。在创建这个新版本时，必须在其数据中包含 `localizations` 字段，指向主语言条目的 `id`。
+1.  **清洗数据**: 在创建前，必须从源数据中移除 `id`, `documentId` 等与特定环境绑定的字段。
+2.  **创建主语言条目**: 首先，创建一个语言版本的内容（例如 `locale: 'en'`）。
+3.  **获取 `documentId`**: 从创建操作的响应中获得该条目的 `documentId`。这是 Strapi v5 识别“同一文档不同版本”的唯一标识。
+4.  **创建次语言条目**: 创建其他语言版本（例如 `locale: 'zh'`）。**关键步骤**：必须将主语言版本的 `documentId` 显式传递给创建函数，确保它们被视为同一个文档的变体。
 
-**示例 (伪代码)**：
+**示例 (核心逻辑)**：
 ```javascript
 // 1. 创建英文版本
-const enEntry = await strapi.entityService.create('api::article.article', {
-  data: { title: 'Hello World', slug: 'hello', locale: 'en' }
+const enDoc = await strapi.documents(uid).create({
+  locale: 'en',
+  data: { title: 'Hello', slug: 'hello' }
 });
 
-// 2. 使用其 ID 创建中文版本并关联
-const zhEntry = await strapi.entityService.create('api::article.article', {
-  data: {
-    title: '你好世界',
-    slug: 'hello', // slug 可以相同
-    locale: 'zh',
-    localizations: [enEntry.id] // 关键步骤
-  }
+// 2. 使用其 documentId 创建中文版本
+await strapi.documents(uid).create({
+  documentId: enDoc.documentId, // <--- 关键关联
+  locale: 'zh',
+  data: { title: '你好', slug: 'hello' } // slug 可以相同
 });
 ```
-当前的 `seed-strapi.mjs` 脚本为每个条目设置了 `locale: 'zh'`，但没有实现与其他语言版本的关联。这是导致之前国际化数据混乱的关键原因。
-
-#### 4. 推荐的开发流程
-1.  **修改结构**: 在 `cms/src/api` 或 `cms/src/components` 中修改 JSON schema 文件。
-2.  **更新种子数据**: 根据结构变化，调整 `scripts/seed-strapi.mjs` 中的数据和逻辑。确保遵循上述的 i18n 创建流程。
-3.  **重置数据库**: 在本地开发时，运行 `npm run clear:strapi` 清理旧数据。
-4.  **填充新数据**: 运行 `npm run seed:strapi` 将更新后的内容注入 Strapi。
 
 ---
 
-### Strapi v5 i18n 内容填充的正确方法 (编程方式) - 已更正
+### [2025-11-23 更新] 数据诊断工具与最终 i18n 修复方案
 
-根据 `AGENTS.md` 中记载的成功经验，正确的种子脚本工作流应遵循以下规范，而不是使用 REST API。
+为了解决难以手动验证 Strapi 数据关联状态的问题，我们开发了诊断工具并修复了种子脚本的逻辑缺陷。
 
-1.  **运行环境与启动**
-    *   脚本必须是 CommonJS (`.js`) 格式，以便使用 `require()`。
-    *   脚本必须通过加载一个内嵌的 Strapi 实例来执行，复用 `clear-strapi.js` 中的 `bootstrapStrapi` 方法。
+#### 1. 新增工具：`scripts/inspect-strapi.js`
+这是一个专门的“侦探脚本”，用于快速诊断 Strapi 数据库中的内容状态。
+*   **功能**: 检查 Pages, Articles, Solutions, Cases, Resources 等核心内容类型的 i18n 关联。
+*   **原理**: 直接查询 entityService，并对比 EN 和 ZH 版本的 `documentId`。在 Strapi v5 中，互为翻译版本的条目必须共享同一个 `documentId`。
+*   **用法**: `npm run db:inspect`
 
-2.  **创建/更新主语言 (en) 内容**
-    *   使用 `strapi.db.query(uid).findOne()` 按 `slug` 和 `locale` 查找条目。
-    *   如果存在，使用 `strapi.entityService.update()` 更新。
-    *   如果不存在，使用 `strapi.entityService.create()` 创建。
+#### 2. `seed-strapi.js` 关键修复
+在修复 i18n 关联问题时，我们发现如果 `seed-data` 源文件中包含硬编码的旧 `documentId` (通常来自导出)，会导致 Strapi 在创建时混淆，从而创建两个独立的文档而不是关联它们。
 
-3.  **获取 `documentId`**
-    *   在创建或更新主语言内容后，必须再次查询该条目以获取其 `documentId`。这是关联多语言版本的唯一标识。
+**修复逻辑**:
+1.  **清洗 Payload**: 在创建或更新条目之前，必须从 payload 中**删除** `id`, `documentId`, `createdAt`, `updatedAt`, `publishedAt` 等字段。
+2.  **显式关联**: 在创建第二个语言版本时，必须将第一个版本生成的 `documentId` **同时**作为 `create()` 方法的参数**和** payload 数据的一部分传入。
 
-4.  **创建/更新次语言 (zh) 内容**
-    *   **关键步骤**：必须使用 `strapi.documents(uid).create()` 方法来创建次语言版本。
-    *   传递给此方法的数据对象中，必须包含从主语言版本获取的 `documentId` 和新的 `locale: 'zh'`。
-
-5.  **发布内容**
-    *   `entityService` 和 `documents` API 默认只创建草稿。
-    *   必须调用 `strapi.documents(uid).publish({ documentId, locale: 'en' })` 和 `strapi.documents(uid).publish({ documentId, locale: 'zh' })` 来分别发布两个语言版本的内容。
+此修复已验证通过，能够正确生成双语关联数据。
