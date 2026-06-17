@@ -1,6 +1,14 @@
 // This file contains all the functions to interact with the Headless CMS (e.g., Strapi).
 
-import { mockPlatforms, mockSolutions, mockSolutionBySlug, mockResources, mockResourceBySlug } from './mock-data';
+import {
+  mockPlatforms,
+  mockSolutions,
+  mockSolutionBySlug,
+  mockResources,
+  mockResourceBySlug,
+  mockDatasheets,
+  mockDatasheetBySlug,
+} from './mock-data';
 
 // 定义API的基础URL，方便未来修改
 const STRAPI_URL = process.env.STRAPI_URL || 'http://localhost:1337';
@@ -128,4 +136,64 @@ export async function getResourceBySlug(slug: string, locale: string): Promise<R
   );
   if (data && data.length > 0) return data[0];
   return mockResourceBySlug(slug, locale);
+}
+
+// ---------- Datasheet（L1-L3 共性技术 / V1-V6 行业方案）----------
+
+/** datasheet body 解析后的单个分节。结构与 metaradio-cms/scripts/import-datasheets.js 的 parseBody 对应。 */
+export interface DatasheetSection {
+  /** 由英文结构标记 slug 而来，如 hero / challenge-cards / specs-table。 */
+  id: string;
+  /** 英文结构标记，如 Hero / Challenge / Applications。 */
+  key?: string;
+  /** 中文小标题 / eyebrow，如「时代挑战」「典型应用」。 */
+  label?: string;
+  /** 原始完整标题文本。 */
+  heading: string;
+  /** 标题层级：1 = 主分节(#)，2/3 = 子分节(##/###)。 */
+  level: number;
+  /** `**Key:** value` 解析出的字段，如 Title / Description / Headline。 */
+  fields: Record<string, string>;
+  /** `- **Key:** value` 解析出的带标题条目（差异化、CTA 等）。 */
+  items: { title: string; text: string }[];
+  /** markdown 表格 → 每行一个对象（表头为键）。 */
+  table: Record<string, string>[];
+  /** 普通 bullet 列表。 */
+  bullets: string[];
+  /** 其余正文段落。 */
+  text: string;
+}
+
+export interface Datasheet {
+  id: number;
+  documentId?: string;
+  slug: string;
+  title: string;
+  product?: string;
+  category?: 'horizontal' | 'vertical';
+  code?: string;
+  version?: string;
+  audience?: string;
+  keywords?: string[];
+  body?: { sections: DatasheetSection[] } | null;
+  locale?: string;
+}
+
+/**
+ * 获取全部 datasheet（按 code 升序：L1-L3、V1-V6）。内容源不可达时降级为 mock。
+ */
+export async function getDatasheets(locale: string): Promise<Datasheet[]> {
+  const data = await fetchFromStrapi<Datasheet[]>(`/api/datasheets?locale=${locale}&sort=code:asc`);
+  return data && data.length > 0 ? data : mockDatasheets(locale);
+}
+
+/**
+ * 根据 slug 获取单个 datasheet（详情页用）。内容源不可达或未找到时回退 mock/返回 null。
+ */
+export async function getDatasheetBySlug(slug: string, locale: string): Promise<Datasheet | null> {
+  const data = await fetchFromStrapi<Datasheet[]>(
+    `/api/datasheets?filters[slug][$eq]=${slug}&locale=${locale}`,
+  );
+  if (data && data.length > 0) return data[0];
+  return mockDatasheetBySlug(slug, locale);
 }

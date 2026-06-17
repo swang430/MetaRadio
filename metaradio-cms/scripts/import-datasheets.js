@@ -76,8 +76,12 @@ function parseBody(body) {
     if (h) {
       flushTable();
       const headingRaw = h[2].trim();
-      const heading = headingRaw.split('·')[0].trim() || headingRaw;
-      cur = { id: slugify(heading), heading, level: h[1].length, fields: {}, items: [], table: [], bullets: [], text: '' };
+      // 标题形如「Challenge · 时代挑战」：· 前是英文结构标记(key，用于分类/id)，
+      // · 后是中文小标题(label，作为分节 eyebrow 展示)。两者都保留——之前只留 key 会丢失中文标题。
+      const segs = headingRaw.split('·').map((s) => s.trim()).filter(Boolean);
+      const key = segs[0] || headingRaw;
+      const label = segs.slice(1).join(' · ');
+      cur = { id: slugify(key), key, label, heading: headingRaw, level: h[1].length, fields: {}, items: [], table: [], bullets: [], text: '' };
       sections.push(cur);
       continue;
     }
@@ -90,14 +94,15 @@ function parseBody(body) {
     if (!line.trim()) continue;
 
     // - **Key:** value  → items（带标题的条目，如 Hero 字段 / 差异化条目 / CTA）
-    let kv = line.match(/^-\s*\*\*(.+?):\*\*\s*(.*)$/);
+    // 冒号同时支持半角 : 与全角 ：（差异化条目用全角，如 **L3 级…业界领先：**）。
+    let kv = line.match(/^-\s*\*\*(.+?)[:：]\*\*\s*(.*)$/);
     if (kv) {
       cur.items.push({ title: kv[1].trim(), text: kv[2].trim() });
       cur.fields[kv[1].trim()] = kv[2].trim();
       continue;
     }
     // **Key:** value  → fields（如 Title / Description）
-    kv = line.match(/^\*\*(.+?):\*\*\s*(.*)$/);
+    kv = line.match(/^\*\*(.+?)[:：]\*\*\s*(.*)$/);
     if (kv) {
       cur.fields[kv[1].trim()] = kv[2].trim();
       continue;
@@ -159,10 +164,9 @@ async function grantPublicRead(strapi) {
 }
 
 async function upsert(strapi, rec) {
-  const existing = await strapi.documents(UID).findMany({ filters: { slug: { $eq: rec.slug } }, locale: '*' });
-  for (const id of [...new Set((existing || []).map((d) => d.documentId).filter(Boolean))]) {
-    await strapi.documents(UID).delete({ documentId: id });
-  }
+  // 直接删底层行：deleteMany 清掉该 slug 的所有底层条目（含 draft/published 与各 locale），
+  // 避免 Documents API 默认状态只删单一变体、残留 draft 触发 slug 唯一性冲突。
+  await strapi.db.query(UID).deleteMany({ where: { slug: rec.slug } });
   await strapi.documents(UID).create({
     locale: rec.locale,
     status: 'published',

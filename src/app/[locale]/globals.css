@@ -12,6 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* 设计纲要 §6 视觉语言：品牌色板。Tailwind 4 会据此生成 bg-brand-navy / text-brand-cyan 等工具类。 */
+@theme {
+  --color-brand-navy: #0a1740;
+  --color-brand-navy-2: #14224d;
+  --color-brand-cyan: #00d1ff;
+  --color-brand-emerald: #10b981;
+  --color-brand-amber: #f59e0b;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

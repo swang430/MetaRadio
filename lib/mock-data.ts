@@ -4,7 +4,7 @@
 // 约定：
 // - 富文本字段使用 Strapi blocks 格式，兼容 extractTextFromDescription 与 BlocksRenderer。
 // - platform / solution 的 slug 与前端硬编码页面 / 动态路由保持一致。
-import type { Platform, Solution, Resource } from './api';
+import type { Platform, Solution, Resource, Datasheet, DatasheetSection } from './api';
 
 /** 生成 Strapi blocks 富文本（单段落）。 */
 const rich = (text: string) => [{ type: 'paragraph', children: [{ type: 'text', text }] }];
@@ -89,4 +89,88 @@ export function mockResources(locale: string): Resource[] {
 
 export function mockResourceBySlug(slug: string, locale: string): Resource | null {
   return RESOURCES[pick(locale)].find((r) => r.slug === slug) ?? null;
+}
+
+// ---------- Datasheet 兜底 ----------
+// 真实富内容由 Strapi 提供（seed-data/datasheets/*.md 导入）；这里仅在内容源不可达时
+// 兜底出目录与一个最小 hero，保证列表/详情页不空白、不崩溃。
+
+type DatasheetSeed = {
+  code: string;
+  slug: string;
+  category: 'horizontal' | 'vertical';
+  title: string;
+  product: string;
+  summary: string;
+};
+
+const DATASHEET_CATALOG: Record<MockLocale, DatasheetSeed[]> = {
+  'zh-CN': [
+    { code: 'L1', slug: 'l1-ray-tracing', category: 'horizontal', title: 'Lauraycs · 确定性射线跟踪仿真引擎', product: 'Lauraycs', summary: '以物理学第一性原理精确复现电磁波的反射、绕射与穿透，提供高保真信道与覆盖数据。' },
+    { code: 'L2', slug: 'l2-virtual-drive-test', category: 'horizontal', title: '虚拟路测与 HIL · 把外场带回实验室', product: 'Lauraycs VDT / HIL Suite', summary: '在实验室中重现真实路测与硬件在环场景，降本、提速、可重复。' },
+    { code: 'L3', slug: 'l3-em-twin', category: 'horizontal', title: '电磁孪生 · 数字孪生的电磁层', product: 'MetaRadio EM-Twin Platform', summary: '为数字孪生补上电磁层，让无线连接成为可知、可测、可预测的工程对象。' },
+    { code: 'V1', slug: 'v1-low-altitude', category: 'vertical', title: '低空经济 · 城市低空通信的电磁孪生', product: 'MetaRadio · Low Altitude', summary: '仿真城市楼宇间复杂低空信道，规划无人机航线，保障 C2 链路连续性。' },
+    { code: 'V2', slug: 'v2-satellite-ntn', category: 'vertical', title: '卫星 NTN · 星地一体的电磁孪生', product: 'MetaRadio · Satellite NTN', summary: '模拟 LEO/GEO 信号在地面建筑群中的覆盖与穿透，评估天地协同终端性能。' },
+    { code: 'V3', slug: 'v3-isac', category: 'vertical', title: 'ISAC 通感一体 · 让感知与通信在同一份电磁图中工作', product: 'MetaRadio · ISAC', summary: '在统一电磁图中联合优化感知与通信，支撑 ISAC 算法验证与性能评估。' },
+    { code: 'V4', slug: 'v4-autonomous-driving', category: 'vertical', title: '自动驾驶 · V2X 与车路云通信的电磁孪生', product: 'MetaRadio · Autonomous Driving', summary: '复现城市峡谷、隧道、立交桥的复杂车路场景，验证车载通信链路。' },
+    { code: 'V5', slug: 'v5-robotics', category: 'vertical', title: '机器人 · 工厂级电磁孪生与无线可靠性', product: 'MetaRadio · Robotics', summary: '评估复杂产线的信号覆盖，保障 AGV/协作机器人低时延高可靠通信。' },
+    { code: 'V6', slug: 'v6-6g', category: 'vertical', title: '6G · 把"整合一切"的愿景落地为可验证的工程', product: 'MetaRadio · 6G Research', summary: '为 6G sub-THz、ISAC、智能超表面等前沿研究提供可验证的电磁孪生底座。' },
+  ],
+  en: [
+    { code: 'L1', slug: 'l1-ray-tracing', category: 'horizontal', title: 'Lauraycs · Deterministic Ray-Tracing Engine', product: 'Lauraycs', summary: 'Reproduce reflection, diffraction and penetration from first principles for high-fidelity channel and coverage data.' },
+    { code: 'L2', slug: 'l2-virtual-drive-test', category: 'horizontal', title: 'Virtual Drive Test & HIL · Bring the field into the lab', product: 'Lauraycs VDT / HIL Suite', summary: 'Recreate real drive-test and hardware-in-the-loop scenarios in the lab — lower cost, faster, repeatable.' },
+    { code: 'L3', slug: 'l3-em-twin', category: 'horizontal', title: 'EM-Twin · The electromagnetic layer of the digital twin', product: 'MetaRadio EM-Twin Platform', summary: 'Add the EM layer to your digital twin, making wireless a knowable, measurable, predictable engineering object.' },
+    { code: 'V1', slug: 'v1-low-altitude', category: 'vertical', title: 'Low-Altitude Economy · EM-twin for urban low-altitude comms', product: 'MetaRadio · Low Altitude', summary: 'Simulate complex low-altitude channels between buildings; plan UAV routes and keep C2 links continuous.' },
+    { code: 'V2', slug: 'v2-satellite-ntn', category: 'vertical', title: 'Satellite NTN · A space-ground EM twin', product: 'MetaRadio · Satellite NTN', summary: 'Model LEO/GEO coverage and penetration through ground clutter; evaluate space-ground terminal performance.' },
+    { code: 'V3', slug: 'v3-isac', category: 'vertical', title: 'ISAC · Sensing and communication on one EM map', product: 'MetaRadio · ISAC', summary: 'Jointly optimize sensing and communication on a unified EM map for ISAC algorithm validation.' },
+    { code: 'V4', slug: 'v4-autonomous-driving', category: 'vertical', title: 'Autonomous Driving · EM twin for V2X and vehicle-road-cloud', product: 'MetaRadio · Autonomous Driving', summary: 'Recreate urban canyons, tunnels and overpasses to validate in-vehicle communication links.' },
+    { code: 'V5', slug: 'v5-robotics', category: 'vertical', title: 'Robotics · Factory-grade EM twin and wireless reliability', product: 'MetaRadio · Robotics', summary: 'Assess coverage across complex production lines for low-latency, high-reliability AGV/cobot comms.' },
+    { code: 'V6', slug: 'v6-6g', category: 'vertical', title: '6G · Turning the "integrate everything" vision into verifiable engineering', product: 'MetaRadio · 6G Research', summary: 'A verifiable EM-twin foundation for 6G sub-THz, ISAC and reconfigurable intelligent surface research.' },
+  ],
+};
+
+const dsSection = (
+  partial: Pick<DatasheetSection, 'id' | 'heading' | 'level'> & Partial<DatasheetSection>,
+): DatasheetSection => ({
+  fields: {},
+  items: [],
+  table: [],
+  bullets: [],
+  text: '',
+  ...partial,
+});
+
+function buildMockDatasheet(seed: DatasheetSeed, index: number): Datasheet {
+  return {
+    id: index + 1,
+    slug: seed.slug,
+    title: seed.title,
+    product: seed.product,
+    category: seed.category,
+    code: seed.code,
+    version: '2026.04',
+    audience: 'technical-decision-maker',
+    keywords: [],
+    body: {
+      sections: [
+        dsSection({
+          id: 'hero',
+          key: 'Hero',
+          heading: 'Hero',
+          level: 1,
+          fields: { Badge: `Datasheet · ${seed.code}`, Headline: seed.title, Sub: seed.summary },
+        }),
+      ],
+    },
+  };
+}
+
+export function mockDatasheets(locale: string): Datasheet[] {
+  return DATASHEET_CATALOG[pick(locale)].map(buildMockDatasheet);
+}
+
+export function mockDatasheetBySlug(slug: string, locale: string): Datasheet | null {
+  const list = DATASHEET_CATALOG[pick(locale)];
+  const idx = list.findIndex((d) => d.slug === slug);
+  return idx >= 0 ? buildMockDatasheet(list[idx], idx) : null;
 }
