@@ -11,17 +11,9 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center text-white">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-teal-600 opacity-90"></div>
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
-        >
-          <source src="https://www.remcom.com/templates/remcom/videos/waves_v2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <section className="relative h-[60vh] flex items-center justify-center text-white overflow-hidden">
+        {/* 自托管渐变背景（原外链 remcom 视频被 ORB 阻断且属盗链，已移除） */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-700 to-teal-600"></div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl font-extrabold mb-4">{t('heroTitle')}</h1>
           <p className="text-xl max-w-3xl mx-auto">{t('heroSubtitle')}</p>
