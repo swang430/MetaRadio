@@ -87,11 +87,32 @@
 
 ## 🚀 快速开始 (Getting Started)
 
-由于是双端项目，你需要分别启动 **CMS** 和 **前端**。
-
 ### 环境要求
 *   **Node.js**: >= 18.0.0
 *   **NPM**: >= 9.0.0
+
+### ⚡ 一键启动（推荐）
+
+在项目根目录用**一条命令**同时拉起 **Strapi CMS** 与 **前端**（基于 `concurrently`，输出带 `cms` / `web` 前缀，`Ctrl+C` 同时退出两者）：
+
+```bash
+# 首次：安装依赖 + 灌入双语示例内容（自动生成 .env、seed、开放公共读）
+npm install
+npm --prefix metaradio-cms install
+npm run seed:cms
+
+# 之后每次：一键启动两端
+npm run dev:all
+```
+
+*   **前端 (Website)**: [http://localhost:3000](http://localhost:3000)
+*   **Strapi Admin**: [http://localhost:1337/admin](http://localhost:1337/admin)
+
+> Strapi 启动较慢；在其就绪前，前端会用 Mock 内容优雅降级，就绪后自动切换为真实数据。
+
+### 分别启动（可选）
+
+如需单独调试某一端，也可分两个终端分别启动：
 
 ### 1. 启动后端 (Strapi CMS)
 

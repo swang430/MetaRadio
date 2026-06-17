@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:cms": "cd metaradio-cms && node scripts/ensure-env.js && npm run develop",
+    "dev:all": "concurrently -k -n cms,web -c magenta,cyan \"npm run dev:cms\" \"npm run dev\"",
+    "seed:cms": "cd metaradio-cms && node scripts/ensure-env.js && npm run seed",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -22,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "concurrently": "^9.2.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "tailwindcss": "^4",
