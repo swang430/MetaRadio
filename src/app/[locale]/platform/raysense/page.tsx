@@ -1,5 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 import React from 'react';
+import SafeImage from '@/components/SafeImage';
 
 const RaySensePage = async ({ params }: { params: Promise<{ locale: string }> }) => {
   const { locale } = await params;
@@ -28,9 +29,8 @@ const RaySensePage = async ({ params }: { params: Promise<{ locale: string }> })
           </ul>
         </div>
         <div>
-          {/* Placeholder for a high-quality product image */}
-          <div className="bg-gray-200 w-full h-80 rounded-lg flex items-center justify-center">
-            <p className="text-gray-500">{t('imagePlaceholder')}</p>
+          <div className="relative w-full h-80 rounded-lg overflow-hidden bg-gray-50">
+            <SafeImage src="/images/product.png" alt={t('aboutTitle')} fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-contain p-6" />
           </div>
         </div>
       </div>

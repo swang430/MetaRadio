@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
 import { getPlatforms, extractTextFromDescription } from '../../../../lib/api';
 
 export default async function PlatformIndexPage({
@@ -26,8 +26,8 @@ export default async function PlatformIndexPage({
             href={`/${locale}/platform/${platform.slug}`}
             className="block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
           >
-            <Image
-              src={'/images/product.png'} // Placeholder image
+            <SafeImage
+              src={'/images/product.png'}
               alt={platform.name}
               width={120}
               height={120}
