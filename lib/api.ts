@@ -1,6 +1,6 @@
 // This file contains all the functions to interact with the Headless CMS (e.g., Strapi).
 
-import { mockPlatforms, mockSolutions, mockSolutionBySlug, mockResources } from './mock-data';
+import { mockPlatforms, mockSolutions, mockSolutionBySlug, mockResources, mockResourceBySlug } from './mock-data';
 
 // 定义API的基础URL，方便未来修改
 const STRAPI_URL = process.env.STRAPI_URL || 'http://localhost:1337';
@@ -117,4 +117,15 @@ export async function getSolutionBySlug(slug: string, locale: string): Promise<S
     `/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`,
   );
   return data && data.length > 0 ? data[0] : mockSolutionBySlug(slug, locale);
+}
+
+/**
+ * 根据 slug 获取单个资源（资源详情页用）。内容源不可达或未找到时回退 mock/返回 null。
+ */
+export async function getResourceBySlug(slug: string, locale: string): Promise<Resource | null> {
+  const data = await fetchFromStrapi<Resource[]>(
+    `/api/resources?filters[slug][$eq]=${slug}&locale=${locale}`,
+  );
+  if (data && data.length > 0) return data[0];
+  return mockResourceBySlug(slug, locale);
 }

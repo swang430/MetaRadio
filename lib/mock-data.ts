@@ -86,3 +86,7 @@ export function mockSolutionBySlug(slug: string, locale: string): Solution | nul
 export function mockResources(locale: string): Resource[] {
   return RESOURCES[pick(locale)];
 }
+
+export function mockResourceBySlug(slug: string, locale: string): Resource | null {
+  return RESOURCES[pick(locale)].find((r) => r.slug === slug) ?? null;
+}
