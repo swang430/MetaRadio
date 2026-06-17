@@ -125,10 +125,11 @@ function toRecord(filename, raw) {
   const sections = parseBody(body);
   const slug = data.slug || slugify(path.basename(filename, '.md'));
   const code = (data.layer || slug.split('-')[0] || '').toUpperCase();
+  const CATEGORIES = ['horizontal', 'vertical', 'ai-comms'];
   return {
     slug,
     locale: data.language === 'en' ? 'en' : 'zh-CN',
-    shared: { slug, category: data.type === 'vertical' ? 'vertical' : 'horizontal', code, version: data.version || '' },
+    shared: { slug, category: CATEGORIES.includes(data.type) ? data.type : 'horizontal', code, version: data.version || '' },
     localized: {
       title: data.title || slug,
       product: data.product || '',

@@ -8,21 +8,25 @@ export const dynamic = 'force-dynamic';
 const COPY = {
   'zh-CN': {
     eyebrow: '产品与解决方案',
-    title: '电磁空间数字孪生，从共性技术到行业方案',
-    sub: '以确定性射线跟踪为底座（L1-L3 共性技术），向低空、卫星、通感、自动驾驶、机器人、6G 等场景延伸（V1-V6 行业方案）。',
+    title: '从电磁孪生到 AI-Native 通信',
+    sub: '以确定性射线跟踪为底座（L1-L3 共性技术），向低空、卫星、通感、自动驾驶、机器人、6G 等场景延伸（V1-V6 行业方案），并面向高算力终端探索下一代 AI-Native 通信（Liquid RF）。',
     horizontal: '共性技术平台',
     horizontalSub: 'L1-L3 · 可被所有行业方案复用的底层能力',
     vertical: '行业解决方案',
     verticalSub: 'V1-V6 · 面向具体场景的端到端方案',
+    aiComms: 'AI-Native 通信',
+    aiCommsSub: 'Liquid RF · 面向高算力终端的下一代通信',
   },
   en: {
     eyebrow: 'Products & Solutions',
-    title: 'An EM-space digital twin, from foundations to verticals',
-    sub: 'Built on deterministic ray tracing (L1-L3 foundations), extended to low-altitude, satellite, ISAC, autonomous driving, robotics and 6G (V1-V6 verticals).',
+    title: 'From EM digital twin to AI-Native communication',
+    sub: 'Built on deterministic ray tracing (L1-L3 foundations), extended to low-altitude, satellite, ISAC, autonomous driving, robotics and 6G (V1-V6 verticals), and reaching toward next-generation AI-Native communication for high-compute terminals (Liquid RF).',
     horizontal: 'Foundational Platforms',
     horizontalSub: 'L1-L3 · core capabilities reused across every vertical',
     vertical: 'Industry Solutions',
     verticalSub: 'V1-V6 · end-to-end solutions for specific scenarios',
+    aiComms: 'AI-Native Communication',
+    aiCommsSub: 'Liquid RF · next-generation communication for high-compute terminals',
   },
 } as const;
 
@@ -51,6 +55,7 @@ export default async function DatasheetsPage({ params }: { params: Promise<{ loc
   const datasheets = await getDatasheets(locale);
   const horizontal = datasheets.filter((d) => d.category === 'horizontal');
   const vertical = datasheets.filter((d) => d.category === 'vertical');
+  const aiComms = datasheets.filter((d) => d.category === 'ai-comms');
 
   const Group = ({ heading, sub, list }: { heading: string; sub: string; list: Datasheet[] }) =>
     list.length ? (
@@ -85,6 +90,7 @@ export default async function DatasheetsPage({ params }: { params: Promise<{ loc
       <div className="container mx-auto px-6 py-16">
         <Group heading={t.horizontal} sub={t.horizontalSub} list={horizontal} />
         <Group heading={t.vertical} sub={t.verticalSub} list={vertical} />
+        <Group heading={t.aiComms} sub={t.aiCommsSub} list={aiComms} />
       </div>
     </div>
   );

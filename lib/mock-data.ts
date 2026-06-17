@@ -98,7 +98,7 @@ export function mockResourceBySlug(slug: string, locale: string): Resource | nul
 type DatasheetSeed = {
   code: string;
   slug: string;
-  category: 'horizontal' | 'vertical';
+  category: 'horizontal' | 'vertical' | 'ai-comms';
   title: string;
   product: string;
   summary: string;
@@ -115,6 +115,7 @@ const DATASHEET_CATALOG: Record<MockLocale, DatasheetSeed[]> = {
     { code: 'V4', slug: 'v4-autonomous-driving', category: 'vertical', title: '自动驾驶 · V2X 与车路云通信的电磁孪生', product: 'MetaRadio · Autonomous Driving', summary: '复现城市峡谷、隧道、立交桥的复杂车路场景，验证车载通信链路。' },
     { code: 'V5', slug: 'v5-robotics', category: 'vertical', title: '机器人 · 工厂级电磁孪生与无线可靠性', product: 'MetaRadio · Robotics', summary: '评估复杂产线的信号覆盖，保障 AGV/协作机器人低时延高可靠通信。' },
     { code: 'V6', slug: 'v6-6g', category: 'vertical', title: '6G · 把"整合一切"的愿景落地为可验证的工程', product: 'MetaRadio · 6G Research', summary: '为 6G sub-THz、ISAC、智能超表面等前沿研究提供可验证的电磁孪生底座。' },
+    { code: 'LRF', slug: 'liquid-rf', category: 'ai-comms', title: 'Liquid RF · 面向高算力终端的下一代通信', product: 'Liquid RF', summary: '当感知、推理、控制都在算力平台上重构时，通信也会从独立模组走向系统能力。Liquid RF 是这个过渡期的入口。' },
   ],
   en: [
     { code: 'L1', slug: 'l1-ray-tracing', category: 'horizontal', title: 'Lauraycs · Deterministic Ray-Tracing Engine', product: 'Lauraycs', summary: 'Reproduce reflection, diffraction and penetration from first principles for high-fidelity channel and coverage data.' },
@@ -126,6 +127,7 @@ const DATASHEET_CATALOG: Record<MockLocale, DatasheetSeed[]> = {
     { code: 'V4', slug: 'v4-autonomous-driving', category: 'vertical', title: 'Autonomous Driving · EM twin for V2X and vehicle-road-cloud', product: 'MetaRadio · Autonomous Driving', summary: 'Recreate urban canyons, tunnels and overpasses to validate in-vehicle communication links.' },
     { code: 'V5', slug: 'v5-robotics', category: 'vertical', title: 'Robotics · Factory-grade EM twin and wireless reliability', product: 'MetaRadio · Robotics', summary: 'Assess coverage across complex production lines for low-latency, high-reliability AGV/cobot comms.' },
     { code: 'V6', slug: 'v6-6g', category: 'vertical', title: '6G · Turning the "integrate everything" vision into verifiable engineering', product: 'MetaRadio · 6G Research', summary: 'A verifiable EM-twin foundation for 6G sub-THz, ISAC and reconfigurable intelligent surface research.' },
+    { code: 'LRF', slug: 'liquid-rf', category: 'ai-comms', title: 'Liquid RF · Next-Generation Communication for High-Compute Terminals', product: 'Liquid RF', summary: 'Once sensing, inference, and control are rebuilt on the compute platform, communication too moves from a standalone module to a system capability. Liquid RF is the entry point.' },
   ],
 };
 

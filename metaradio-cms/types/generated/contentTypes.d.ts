@@ -401,7 +401,9 @@ export interface ApiDatasheetDatasheet extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    category: Schema.Attribute.Enumeration<['horizontal', 'vertical']> &
+    category: Schema.Attribute.Enumeration<
+      ['horizontal', 'vertical', 'ai-comms']
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;

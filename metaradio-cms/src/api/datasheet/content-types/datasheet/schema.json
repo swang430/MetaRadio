@@ -30,7 +30,7 @@
     },
     "category": {
       "type": "enumeration",
-      "enum": ["horizontal", "vertical"],
+      "enum": ["horizontal", "vertical", "ai-comms"],
       "pluginOptions": { "i18n": { "localized": false } }
     },
     "code": {
