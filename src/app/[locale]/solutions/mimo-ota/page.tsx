@@ -1,6 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 
-const MimoOtaPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+const MimoOtaPage = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'MimoOta'});
 
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { getTranslations, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState, useRef } from 'react';
 
 const MvsWorkflowPage = () => {

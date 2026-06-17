@@ -1,6 +1,7 @@
 import {getTranslations} from 'next-intl/server';
 
-const HyperRtPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+const HyperRtPage = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'HyperRT'});
 
   return (

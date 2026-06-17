@@ -18,7 +18,8 @@ const notoSansSC = Noto_Sans_SC({
   subsets: ['latin'],
 });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'Layout'});
  
   return {
@@ -33,11 +34,12 @@ export function generateStaticParams() {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   let messages;
   try {
     messages = (await import(`../../../messages/${locale}.json`)).default;

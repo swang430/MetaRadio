@@ -4,10 +4,11 @@ import { getSolutions, extractTextFromDescription } from '../../../../lib/api';
 import type { Solution } from '../../../../lib/api';
 
 export default async function SolutionsPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'SolutionsIndex' });
   const solutions = await getSolutions(locale);
 

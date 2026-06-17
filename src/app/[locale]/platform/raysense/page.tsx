@@ -1,7 +1,8 @@
 import {getTranslations} from 'next-intl/server';
 import React from 'react';
 
-const RaySensePage = async ({ params: { locale } }: { params: { locale: string } }) => {
+const RaySensePage = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
   const t = await getTranslations({locale, namespace: 'RaySense'});
 
   return (
