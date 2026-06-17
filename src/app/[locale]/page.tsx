@@ -27,19 +27,19 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* HyperRT */}
             <Link href={`/${locale}/platform/hyperrt`} className="block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
-              <SafeImage src="/images/product.png" alt="HyperRT" width={120} height={120} className="mx-auto mb-6" />
+              <SafeImage src="/images/product.png" alt="HyperRT" width={120} height={85} className="mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-2">{t('hyperRtTitle')}</h3>
               <p className="text-gray-600">{t('hyperRtDescription')}</p>
             </Link>
             {/* RaySense */}
             <Link href={`/${locale}/platform/raysense`} className="block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
-              <SafeImage src="/images/product.png" alt="RaySense" width={120} height={120} className="mx-auto mb-6" />
+              <SafeImage src="/images/product.png" alt="RaySense" width={120} height={85} className="mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-2">{t('raysenseTitle')}</h3>
               <p className="text-gray-600">{t('raysenseDescription')}</p>
             </Link>
             {/* CSI-based Positioning and Sensing */}
             <Link href={`/${locale}/platform/csi-sensing`} className="block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow duration-300">
-              <SafeImage src="/images/product.png" alt="CSI Sensing" width={120} height={120} className="mx-auto mb-6" />
+              <SafeImage src="/images/product.png" alt="CSI Sensing" width={120} height={85} className="mx-auto mb-6" />
               <h3 className="text-2xl font-bold mb-2">{t('csiSensingTitle')}</h3>
               <p className="text-gray-600">{t('csiSensingDescription')}</p>
             </Link>
