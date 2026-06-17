@@ -30,7 +30,7 @@ export default async function PlatformIndexPage({
               src={'/images/product.png'}
               alt={platform.name}
               width={120}
-              height={120}
+              height={85}
               className="mx-auto mb-6"
             />
             <h3 className="text-2xl font-bold mb-2">{platform.name}</h3>

@@ -33,7 +33,7 @@ const Header = () => {
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link href={`/${locale}`}>
-            <Image src="/images/logo.png" alt="Metaradio Logo" width={150} height={40} />
+            <Image src="/images/logo.png" alt="Metaradio Logo" width={71} height={40} className="h-10 w-auto" priority />
           </Link>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
