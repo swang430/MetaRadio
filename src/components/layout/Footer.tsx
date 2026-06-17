@@ -37,8 +37,8 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg">{t('followUs')}</h3>
             <div className="mt-2 flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">{t('twitter')}</a>
-              <a href="#" className="text-gray-400 hover:text-white">{t('linkedIn')}</a>
+              <a href="https://x.com/metaradio" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">{t('twitter')}</a>
+              <a href="https://www.linkedin.com/company/metaradio" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">{t('linkedIn')}</a>
             </div>
           </div>
         </div>

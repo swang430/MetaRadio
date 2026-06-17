@@ -193,6 +193,7 @@
     "CaseStudy": "案例研究",
     "BlogPost": "博客文章",
     "readMore": "阅读更多",
+    "backToList": "返回资源列表",
     "whitepaper1Title": "第一份白皮书的标题",
     "whitepaper1Desc": "第一份白皮书的简要说明。",
     "caseStudy1Title": "第一个案例研究的标题",
@@ -213,5 +214,15 @@
   "SolutionsIndex": {
     "pageTitle": "我们的端到端解决方案",
     "pageDescription": "从虚拟路测到 MIMO OTA，探索我们如何利用核心平台解决行业最紧迫的挑战。"
+  },
+  "Contact": {
+    "pageTitle": "联系我们",
+    "description": "联系我们以申请演示，或探讨 Horizon One 如何解决您的测试挑战。",
+    "emailTitle": "邮箱",
+    "email": "contact@metaradio.tech",
+    "phoneTitle": "电话",
+    "phone": "+86 010-0000-0000",
+    "ctaTitle": "请求演示",
+    "ctaDescription": "告诉我们您的场景，我们的团队会尽快与您联系。"
   }
 }
