@@ -1,5 +1,7 @@
 // This file contains all the functions to interact with the Headless CMS (e.g., Strapi).
 
+import { mockPlatforms, mockSolutions, mockSolutionBySlug, mockResources } from './mock-data';
+
 // 定义API的基础URL，方便未来修改
 const STRAPI_URL = process.env.STRAPI_URL || 'http://localhost:1337';
 // 单次请求超时：内容源慢/卡时快速失败并降级，避免渲染挂起。
@@ -52,7 +54,8 @@ export interface Solution {
  * @param {string} locale - The locale to fetch.
  */
 export async function getSolutions(locale: string): Promise<Solution[]> {
-  return (await fetchFromStrapi<Solution[]>(`/api/solutions?locale=${locale}`)) ?? [];
+  const data = await fetchFromStrapi<Solution[]>(`/api/solutions?locale=${locale}`);
+  return data && data.length > 0 ? data : mockSolutions(locale);
 }
 
 /**
@@ -79,7 +82,8 @@ export interface Platform {
  * 从Strapi获取所有平台。内容源不可达时降级为空数组。
  */
 export async function getPlatforms(locale: string): Promise<Platform[]> {
-  return (await fetchFromStrapi<Platform[]>(`/api/platforms?locale=${locale}`)) ?? [];
+  const data = await fetchFromStrapi<Platform[]>(`/api/platforms?locale=${locale}`);
+  return data && data.length > 0 ? data : mockPlatforms(locale);
 }
 
 // 定义Resource接口并导出
@@ -98,8 +102,8 @@ export interface Resource {
  */
 export async function getResources(locale: string): Promise<Resource[]> {
   const data = await fetchFromStrapi<Resource[]>(`/api/resources?locale=${locale}`);
-  if (!data) return [];
-  return [...data].sort(
+  const list = data && data.length > 0 ? data : mockResources(locale);
+  return [...list].sort(
     (a, b) => new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime(),
   );
 }
@@ -112,5 +116,5 @@ export async function getSolutionBySlug(slug: string, locale: string): Promise<S
   const data = await fetchFromStrapi<Solution[]>(
     `/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`,
   );
-  return data && data.length > 0 ? data[0] : null;
+  return data && data.length > 0 ? data[0] : mockSolutionBySlug(slug, locale);
 }
