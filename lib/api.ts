@@ -170,7 +170,7 @@ export interface Datasheet {
   slug: string;
   title: string;
   product?: string;
-  category?: 'horizontal' | 'vertical';
+  category?: 'horizontal' | 'vertical' | 'ai-comms';
   code?: string;
   version?: string;
   audience?: string;
