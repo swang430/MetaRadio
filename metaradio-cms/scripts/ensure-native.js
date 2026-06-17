@@ -13,7 +13,8 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 try {
-  require('better-sqlite3');
+  const Database = require('better-sqlite3');
+  new Database(':memory:').close(); // 实例化以触发原生 .node 加载，才能探出 ABI 不匹配
 } catch (err) {
   const msg = err && err.message ? String(err.message) : String(err);
   const abiMismatch =
@@ -28,6 +29,7 @@ try {
     cwd: path.resolve(__dirname, '..'),
   });
   delete require.cache[require.resolve('better-sqlite3')];
-  require('better-sqlite3'); // 重建后复验，失败则抛出
+  const Reloaded = require('better-sqlite3');
+  new Reloaded(':memory:').close(); // 重建后复验，失败则抛出
   console.log('[ensure-native] better-sqlite3 重建完成 ✓');
 }
