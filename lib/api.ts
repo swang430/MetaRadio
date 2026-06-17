@@ -1,9 +1,6 @@
 // This file contains all the functions to interact with the Headless CMS (e.g., Strapi).
 
 import {
-  mockPlatforms,
-  mockSolutions,
-  mockSolutionBySlug,
   mockResources,
   mockResourceBySlug,
   mockDatasheets,
@@ -43,55 +40,15 @@ async function fetchFromStrapi<T = unknown>(path: string): Promise<T | null> {
   }
 }
 
-// 定义Solution接口并导出
-export interface Solution {
-  id: number;
-  name: string;
-  description: any;
-  slug: string;
-  challenge?: any;
-  solution_details?: any;
-  benefits?: any;
-  challenge_title?: string;
-  solution_details_title?: string;
-  benefits_title?: string;
-}
-
 /**
- * 从Strapi获取所有解决方案。内容源不可达时降级为空数组。
- * @param {string} locale - The locale to fetch.
- */
-export async function getSolutions(locale: string): Promise<Solution[]> {
-  const data = await fetchFromStrapi<Solution[]>(`/api/solutions?locale=${locale}`);
-  return data && data.length > 0 ? data : mockSolutions(locale);
-}
-
-/**
- * 从Strapi的富文本格式中提取纯文本
+ * 从 Strapi 的富文本（blocks）格式中提取首段纯文本。
  * @param description - The rich text object from Strapi.
- * @returns {string} - The extracted plain text.
  */
 export function extractTextFromDescription(description: any): string {
   if (Array.isArray(description) && description[0]?.children[0]?.text) {
     return description[0].children[0].text;
   }
   return 'Description not available.';
-}
-
-// 定义Platform接口并导出
-export interface Platform {
-  id: number;
-  name: string;
-  description: any;
-  slug: string;
-}
-
-/**
- * 从Strapi获取所有平台。内容源不可达时降级为空数组。
- */
-export async function getPlatforms(locale: string): Promise<Platform[]> {
-  const data = await fetchFromStrapi<Platform[]>(`/api/platforms?locale=${locale}`);
-  return data && data.length > 0 ? data : mockPlatforms(locale);
 }
 
 // 定义Resource接口并导出
@@ -114,17 +71,6 @@ export async function getResources(locale: string): Promise<Resource[]> {
   return [...list].sort(
     (a, b) => new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime(),
   );
-}
-
-/**
- * 根据 slug 从 Strapi 获取单个解决方案。内容源不可达或未找到时返回 null。
- * @param {string} slug - The slug of the solution to fetch.
- */
-export async function getSolutionBySlug(slug: string, locale: string): Promise<Solution | null> {
-  const data = await fetchFromStrapi<Solution[]>(
-    `/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`,
-  );
-  return data && data.length > 0 ? data[0] : mockSolutionBySlug(slug, locale);
 }
 
 /**
