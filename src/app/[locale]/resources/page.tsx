@@ -2,7 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { getResources } from '../../../../lib/api';
 import ResourceList from '../../../components/resources/ResourceList';
 
-export default async function ResourcesPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function ResourcesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Resources' });
   const resources = await getResources(locale);
 

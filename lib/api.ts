@@ -2,6 +2,36 @@
 
 // 定义API的基础URL，方便未来修改
 const STRAPI_URL = process.env.STRAPI_URL || 'http://localhost:1337';
+// 单次请求超时：内容源慢/卡时快速失败并降级，避免渲染挂起。
+const REQUEST_TIMEOUT_MS = Number(process.env.STRAPI_TIMEOUT_MS || 8000);
+
+/**
+ * 容错的 Strapi GET。
+ *
+ * 网络失败 / 非 2xx / 超时一律捕获并返回 null（同时告警），由调用方降级为
+ * 空列表或 null。这样当 Strapi（内容源）不可用时，整站只显示空内容而不是崩溃，
+ * 延续“优雅降级”的核心理念（自 legacy 融合而来）。
+ */
+async function fetchFromStrapi<T = unknown>(path: string): Promise<T | null> {
+  try {
+    const res = await fetch(`${STRAPI_URL}${path}`, {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    });
+    if (!res.ok) {
+      console.warn(`[strapi] ${res.status} ${res.statusText} when fetching ${path}`);
+      return null;
+    }
+    const json = await res.json();
+    return (json?.data ?? null) as T | null;
+  } catch (error) {
+    console.warn(
+      `[strapi] fetch failed for ${path} (内容源不可达，已降级):`,
+      error instanceof Error ? error.message : error,
+    );
+    return null;
+  }
+}
 
 // 定义Solution接口并导出
 export interface Solution {
@@ -18,21 +48,11 @@ export interface Solution {
 }
 
 /**
- * 从Strapi获取所有解决方案
+ * 从Strapi获取所有解决方案。内容源不可达时降级为空数组。
  * @param {string} locale - The locale to fetch.
- * @returns {Promise<Solution[]>} - A promise that resolves to an array of solutions.
  */
 export async function getSolutions(locale: string): Promise<Solution[]> {
-  const res = await fetch(`${STRAPI_URL}/api/solutions?locale=${locale}`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch solutions from Strapi');
-  }
-
-  const json = await res.json();
-  return json.data;
+  return (await fetchFromStrapi<Solution[]>(`/api/solutions?locale=${locale}`)) ?? [];
 }
 
 /**
@@ -55,17 +75,11 @@ export interface Platform {
   slug: string;
 }
 
+/**
+ * 从Strapi获取所有平台。内容源不可达时降级为空数组。
+ */
 export async function getPlatforms(locale: string): Promise<Platform[]> {
-  const res = await fetch(`${STRAPI_URL}/api/platforms?locale=${locale}`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch platforms from Strapi');
-  }
-
-  const json = await res.json();
-  return json.data;
+  return (await fetchFromStrapi<Platform[]>(`/api/platforms?locale=${locale}`)) ?? [];
 }
 
 // 定义Resource接口并导出
@@ -79,43 +93,24 @@ export interface Resource {
 }
 
 /**
- * 从Strapi获取所有资源
+ * 从Strapi获取所有资源（按发布日期降序）。内容源不可达时降级为空数组。
  * @param {string} locale - The locale to fetch.
- * @returns {Promise<Resource[]>} - A promise that resolves to an array of resources.
  */
 export async function getResources(locale: string): Promise<Resource[]> {
-  const res = await fetch(`${STRAPI_URL}/api/resources?locale=${locale}`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch resources from Strapi');
-  }
-
-  const json = await res.json();
-  // 按发布日期降序排序
-  return json.data.sort((a: Resource, b: Resource) => 
-    new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime()
+  const data = await fetchFromStrapi<Resource[]>(`/api/resources?locale=${locale}`);
+  if (!data) return [];
+  return [...data].sort(
+    (a, b) => new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime(),
   );
 }
 
-
 /**
- * 根据 slug 从 Strapi 获取单个解决方案
+ * 根据 slug 从 Strapi 获取单个解决方案。内容源不可达或未找到时返回 null。
  * @param {string} slug - The slug of the solution to fetch.
- * @returns {Promise<Solution | null>} - A promise that resolves to a single solution or null if not found.
  */
 export async function getSolutionBySlug(slug: string, locale: string): Promise<Solution | null> {
-  const res = await fetch(`${STRAPI_URL}/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch solution from Strapi');
-  }
-
-  const json = await res.json();
-  if (json.data && json.data.length > 0) {
-    return json.data[0]; // 返回数组中的第一个元素
-  }
-
-  return null;
+  const data = await fetchFromStrapi<Solution[]>(
+    `/api/solutions?filters[slug][$eq]=${slug}&locale=${locale}`,
+  );
+  return data && data.length > 0 ? data[0] : null;
 }

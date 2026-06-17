@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { getPlatforms, extractTextFromDescription } from '../../../../lib/api';
 
 export default async function PlatformIndexPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'PlatformIndex' });
   const platforms = await getPlatforms(locale);
 

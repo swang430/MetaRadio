@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
-export default async function SolutionDetailPage({ params: { locale, slug } }: { params: { locale: string, slug: string } }) {
+export default async function SolutionDetailPage({ params }: { params: Promise<{ locale: string, slug: string }> }) {
+  const { locale, slug } = await params;
   const solution = await getSolutionBySlug(slug, locale);
 
   if (!solution) {
