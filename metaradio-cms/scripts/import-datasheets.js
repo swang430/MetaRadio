@@ -163,16 +163,28 @@ async function grantPublicRead(strapi) {
   }
 }
 
-async function upsert(strapi, rec) {
+/**
+ * 同一 slug 的多 locale 记录一起 upsert：先建基底 locale（zh-CN）拿到 documentId，
+ * 其余 locale 用同一 documentId update，从而在 Strapi i18n 下互为本地化版本（中英同步）。
+ */
+async function upsertGroup(strapi, slug, recs) {
+  // zh-CN 作为基底排在最前。
+  recs.sort((a, b) => (a.locale === 'zh-CN' ? -1 : b.locale === 'zh-CN' ? 1 : 0));
   // 直接删底层行：deleteMany 清掉该 slug 的所有底层条目（含 draft/published 与各 locale），
   // 避免 Documents API 默认状态只删单一变体、残留 draft 触发 slug 唯一性冲突。
-  await strapi.db.query(UID).deleteMany({ where: { slug: rec.slug } });
-  await strapi.documents(UID).create({
-    locale: rec.locale,
-    status: 'published',
-    data: { ...rec.shared, ...rec.localized },
-  });
-  console.log(`  ✓ ${rec.shared.code} ${rec.slug} (${rec.localized.title})`);
+  await strapi.db.query(UID).deleteMany({ where: { slug } });
+  let documentId = null;
+  for (const rec of recs) {
+    const data = { ...rec.shared, ...rec.localized };
+    if (!documentId) {
+      const doc = await strapi.documents(UID).create({ locale: rec.locale, status: 'published', data });
+      documentId = doc.documentId;
+    } else {
+      // 关联到同一 documentId，作为该文档的另一 locale 版本。
+      await strapi.documents(UID).update({ documentId, locale: rec.locale, status: 'published', data });
+    }
+    console.log(`  ✓ ${rec.shared.code} ${slug} [${rec.locale}] ${rec.localized.title}`);
+  }
 }
 
 async function run() {
@@ -194,8 +206,14 @@ async function run() {
   const app = await createStrapi(await compileStrapi()).load();
   app.log.level = 'error';
 
-  console.log(`🌱 导入 ${records.length} 个 datasheet`);
-  for (const r of records) await upsert(app, r);
+  // 按 slug 分组：同一 slug 的多语言文件（如 L1-ray-tracing.md + L1-ray-tracing.en.md）合并为一个文档的多 locale。
+  const groups = new Map();
+  for (const r of records) {
+    if (!groups.has(r.slug)) groups.set(r.slug, []);
+    groups.get(r.slug).push(r);
+  }
+  console.log(`🌱 导入 ${groups.size} 个 datasheet（${records.length} 条 locale 记录）`);
+  for (const [slug, recs] of groups) await upsertGroup(app, slug, recs);
   await grantPublicRead(app);
   console.log('✅ datasheet 导入完成');
   await app.destroy();
