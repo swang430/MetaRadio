@@ -4,11 +4,11 @@ import { BaseCard } from './base-card';
 
 type PostCardProps = {
   title: string;
-  excerpt?: string | null;
+  excerpt?: string | null | undefined;
   href: string;
-  category?: string | null;
-  estimateLabel?: string | null;
-  readMoreLabel?: string | null;
+  category?: string | null | undefined;
+  estimateLabel?: string | null | undefined;
+  readMoreLabel?: string | null | undefined;
   theme?: 'dark' | 'light';
 };
 

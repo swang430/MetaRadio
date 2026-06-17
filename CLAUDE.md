@@ -38,7 +38,7 @@ metaradio/
 ├── lib/
 │   ├── strapi.ts          # 单一数据源，自动 Strapi/Mock 降级
 │   ├── strapi-types.ts    # Strapi 实体的 TypeScript 类型
-│   ├── mock-data.js       # CommonJS 模拟数据（必须与 Strapi schemas 保持同步）
+│   ├── mock-data.ts       # TypeScript 模拟数据（必须与 Strapi schemas 保持同步）
 │   └── i18n/              # 国际化工具
 │       ├── config.ts      # 语言定义（zh, en）
 │       ├── dictionaries.ts # UI 翻译
@@ -55,7 +55,7 @@ metaradio/
 ### 数据流架构
 
 1. **页面**（`app/[locale]/`）通过 `lib/strapi.ts` 函数获取数据
-2. **`lib/strapi.ts`** 首先尝试 Strapi API，失败则降级到 `lib/mock-data.js`
+2. **`lib/strapi.ts`** 首先尝试 Strapi API，失败则降级到 `lib/mock-data.ts`
 3. **所有数据源** 都记录到 `datasource.log` 用于调试
 4. **BlocksRenderer**（`components/blocks/renderer.tsx`）转换数据并渲染相应组件
 
@@ -96,7 +96,7 @@ case 'sections.your-block':
 ```
 
 ### 5. 更新模拟数据
-在 `lib/mock-data.js` 中同步结构以匹配 Strapi schema
+在 `lib/mock-data.ts` 中同步结构以匹配 Strapi schema
 
 ### 6. 更新 Seed 脚本
 扩展 `scripts/seed-strapi.js` 以填充新字段
@@ -184,15 +184,13 @@ const BLOCK_POPULATE_PATHS = [
 - **模拟环境**：测试使用空 Strapi 环境变量运行，强制使用模拟数据
 - **添加测试**：放在 `tests/` 目录中，镜像源结构
 
-**已知限制**：ESLint 未完全配置 - TypeScript 严格检查通过 `tsconfig.json` 配置 `module: nodenext` 和 `verbatimModuleSyntax: true`。
+**已知限制**：构建期 ESLint 因 Next 14.2 与 ESLint 9 不兼容而跳过（`next.config.js` 的 `eslint.ignoreDuringBuilds`，待对齐版本后恢复）；TypeScript 严格检查由 `tsconfig.json` 提供（`strict`、`exactOptionalPropertyTypes`、`noUncheckedIndexedAccess`、`verbatimModuleSyntax` 等），`npm run build` 会执行完整类型检查。
 
 ## TypeScript 配置说明
 
-- **模块系统**：使用 `"module": "nodenext"` 配合 `verbatimModuleSyntax`
-- **混合 CJS/ESM**：
-  - `lib/mock-data.js` 是 CommonJS（seed 脚本需要）
-  - 前端代码是 ESM
-  - 在脚本中使用 `require()` 导入 CJS，其他地方使用标准导入
+- **模块系统**：`"module": "esnext"` + `"moduleResolution": "bundler"`（Next 推荐），配合 `verbatimModuleSyntax`（类型导入必须用 `import type`）
+- **动态区块类型**：运行时构造/传入 `BlocksRenderer` 的松散区块用 `BlockInput`（容忍额外字段），结构化实体（`PageAttributes` 等）保持严格类型
+- **混合 CJS/ESM**：前端代码与 `lib/mock-data.ts` 为 ESM；`scripts/*.js` seed 脚本为 CommonJS（用 `require()`）
 - **路径别名**：`@/` 映射到项目根目录（在 `tsconfig.json` 和 `vitest.config.ts` 中配置）
 
 ## 常见开发工作流程
@@ -211,7 +209,7 @@ const BLOCK_POPULATE_PATHS = [
 2. 检查 `cms/src/components/` 中的 Strapi schema
 3. 如添加字段，更新 schema JSON
 4. 修改组件属性和渲染
-5. 将更改同步到 `lib/mock-data.js`
+5. 将更改同步到 `lib/mock-data.ts`
 6. 如受影响，更新 `scripts/seed-strapi.js`
 
 ### 调试数据源问题

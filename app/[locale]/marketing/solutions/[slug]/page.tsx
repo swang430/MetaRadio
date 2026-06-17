@@ -54,7 +54,7 @@ function pickAttributes<T>(input: T | { attributes?: T | null } | null | undefin
 }
 
 function normalizeLink(link: LinkLike) {
-  const data = pickAttributes(link);
+  const data = pickAttributes<{ name?: string | null; url?: string | null; id?: string | number | null }>(link as any);
   if (!data || !data.url || !data.name) return undefined;
   return {
     id: (link as any)?.id ?? data.url,
@@ -68,7 +68,7 @@ function normalizeLinks(links: LinkLike[] | null | undefined) {
   const seen = new Set<string>();
   return links
     .map((link) => normalizeLink(link))
-    .filter((link): link is { id?: string | number | null; name: string; url: string } => Boolean(link?.name && link?.url))
+    .filter((link): link is NonNullable<typeof link> => Boolean(link?.name && link?.url))
     .filter((link) => {
       if (seen.has(link.url)) return false;
       seen.add(link.url);
@@ -112,7 +112,7 @@ function normalizeCaseList(items: CaseEntry[] | null | undefined) {
         summary: attrs.summary ?? null,
       };
     })
-    .filter((entry): entry is { id?: string | number | null; title: string; slug: string; client?: string | null; summary?: string | null } => !!entry)
+    .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
     .filter((entry) => {
       if (seen.has(entry.slug)) return false;
       seen.add(entry.slug);
@@ -242,7 +242,7 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
     : solution.attributes.relatedCases?.data || [];
   const normalizedBlocks = normalizeBlocks(
     attrs.blocks,
-    { title: attrs.title, excerpt: attrs.excerpt },
+    { title: attrs.title, excerpt: attrs.excerpt ?? null },
     relatedCases,
     dictionary.pages.solutions.relatedCasesHeading
   );
@@ -263,13 +263,13 @@ export async function generateMetadata({ params }: SolutionPageProps): Promise<M
   if (!solution) return { title: 'MetaRadio' };
   const seo = solution.attributes.seo;
   const title = seo?.metaTitle || `${solution.attributes.title} · MetaRadio`;
-  const description = seo?.metaDescription || solution.attributes.excerpt || undefined;
+  const description = seo?.metaDescription || solution.attributes.excerpt || null;
   return {
     title,
     description,
     openGraph: {
       title,
-      description,
+      ...(description ? { description } : {}),
     },
     alternates: {
       languages: Object.fromEntries(

@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug, listSolutions } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 
 export const revalidate = 120;
 
@@ -15,7 +16,7 @@ export default async function SolutionsIndex({ params }: { params: { locale?: st
   const copy = dictionary.pages.solutions;
 
   const strapiBlocks = Array.isArray(page?.attributes?.blocks) ? page?.attributes?.blocks : [];
-  const baseBlocks = [...(strapiBlocks || [])];
+  const baseBlocks: BlockInput[] = [...(strapiBlocks || [])];
   const ensureHero = () => ({
     __component: 'hero.hero',
     theme: 'dark',
@@ -58,7 +59,7 @@ export default async function SolutionsIndex({ params }: { params: { locale?: st
       items: solutionCards,
     };
     if (placeholderIndex >= 0) {
-      const existing = baseBlocks[placeholderIndex] || {};
+      const existing = (baseBlocks[placeholderIndex] ?? {}) as BlockInput;
       baseBlocks[placeholderIndex] = {
         ...existing,
         items: solutionCards,

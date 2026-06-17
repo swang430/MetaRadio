@@ -37,3 +37,6 @@ Thumbs.db
 # Misc
 *.tsbuildinfo
 
+# Claude Code 本地配置（settings.local.json / launch.json 等，仅本地使用）
+.claude/
+

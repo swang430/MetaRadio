@@ -80,7 +80,7 @@ metaradio/
 ├── lib/
 │   ├── strapi.ts          # 数据层核心（Strapi/Mock 降级）
 │   ├── strapi-types.ts    # TypeScript 类型定义
-│   ├── mock-data.js       # Mock 数据
+│   ├── mock-data.ts       # Mock 数据（TypeScript）
 │   └── i18n/              # 国际化工具
 │       ├── config.ts      # 语言配置
 │       ├── dictionaries.ts # UI 翻译
@@ -90,7 +90,7 @@ metaradio/
 │       ├── api/           # 内容类型 Schemas
 │       └── components/    # 组件 Schemas
 ├── scripts/
-│   ├── seed-strapi-v2.js  # Strapi 数据填充脚本
+│   ├── seed-strapi.js     # Strapi 数据填充脚本
 │   ├── export-strapi.js   # 内容导出脚本
 │   └── seed-data/         # Seed 数据源
 └── tests/                 # 测试文件
@@ -104,7 +104,7 @@ metaradio/
 - ✅ 所有 Strapi Schema 通过 JSON 文件管理（`cms/src/`）
 - ✅ 永远不要通过 Strapi Admin UI 修改 Schema
 - ✅ 内容通过 `export-strapi.js` 导出到代码仓库
-- ✅ 迁移环境时通过 `seed-strapi-v2.js` 导入内容
+- ✅ 迁移环境时通过 `seed-strapi.js` 导入内容
 
 ### 优雅降级策略
 
@@ -161,7 +161,7 @@ metaradio/
 2. 在 `lib/strapi-types.ts` 中添加 TypeScript 类型
 3. 在 `components/blocks/` 中创建组件
 4. 在 `components/blocks/renderer.tsx` 中注册
-5. 在 `lib/mock-data.js` 中同步示例数据
+5. 在 `lib/mock-data.ts` 中同步示例数据
 
 ## 📊 数据管理
 

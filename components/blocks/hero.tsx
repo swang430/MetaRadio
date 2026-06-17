@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SafeImage } from './safe-image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -118,7 +118,7 @@ export function Hero({
             )}
           >
             {media?.url ? (
-              <Image
+              <SafeImage
                 src={media.url}
                 alt={media.alt || `Illustration for ${headline}`}
                 fill

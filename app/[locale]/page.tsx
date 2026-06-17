@@ -3,11 +3,12 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 import { Nav } from '@/components/nav';
 
 export const revalidate = 60;
 
-function enhanceHomeBlocks(blocks: Array<Record<string, any>> | undefined) {
+function enhanceHomeBlocks(blocks: BlockInput[] | undefined): BlockInput[] {
   if (!blocks?.length) return [];
   const themeByComponent: Record<string, 'dark' | 'light'> = {
     'hero.hero': 'dark',

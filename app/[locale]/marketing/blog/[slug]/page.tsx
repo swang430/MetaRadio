@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const attrs = article.attributes || article;
   const seo = attrs.seo;
   const title = seo?.metaTitle || `${attrs.title} · MetaRadio`;
-  const description = seo?.metaDescription || attrs.excerpt || undefined;
+  const description = seo?.metaDescription || attrs.excerpt || null;
   return {
     title,
     description,

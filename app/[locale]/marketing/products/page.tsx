@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 
 export const revalidate = 120;
 
@@ -25,7 +26,7 @@ export default async function ProductsPage({ params }: { params: { locale?: stri
         : '覆盖通信仿真、动态 OTA 与虚拟路测的一体化产品组合。'),
   });
 
-  const blocksWithTheme =
+  const blocksWithTheme: BlockInput[] =
     rawBlocks.length > 0
       ? rawBlocks.map((block, index) => {
           if (block?.theme) return block;

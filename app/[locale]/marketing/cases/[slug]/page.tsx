@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getCaseStudyBySlug, listCaseStudies } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 import { notFound } from 'next/navigation';
 
 type CasePageProps = {
@@ -22,7 +23,7 @@ export default async function CasePage({ params }: CasePageProps) {
   const { title, client, summary, challenge, approach, result, kpi } = attrs;
 
   // Transform the page data into a blocks array
-  const blocks = [
+  const blocks: BlockInput[] = [
     {
       __component: 'hero.hero',
       theme: 'dark',
@@ -84,7 +85,7 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
 
   return {
     title: locale === 'en' ? `${title} · Case Study` : `${title} · 成功案例`,
-    description: summary || undefined,
+    description: summary || null,
     alternates: {
       languages: Object.fromEntries(
         SUPPORTED_LOCALES.map((loc) => [loc, loc === 'zh' ? `/marketing/cases/${attrs.slug}` : `/${loc}/marketing/cases/${attrs.slug}`])

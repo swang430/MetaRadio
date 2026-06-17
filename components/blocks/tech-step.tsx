@@ -3,7 +3,7 @@ import clsx from 'clsx';
 export type TechStepProps = {
   index: number;
   title: string;
-  description?: string | null;
+  description?: string | null | undefined;
   theme?: 'dark' | 'light';
 };
 
