@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug, listCaseStudies } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 
 export const revalidate = 120;
 
@@ -15,7 +16,7 @@ export default async function CasesPage({ params }: { params: { locale?: string 
   const copy = dictionary.pages.cases;
 
   const pageBlocks = Array.isArray(page?.attributes?.blocks) ? page.attributes.blocks : [];
-  const blocks = [...pageBlocks];
+  const blocks: BlockInput[] = [...pageBlocks];
 
   const ensureHero = () => ({
     __component: 'hero.hero',
@@ -38,7 +39,7 @@ export default async function CasesPage({ params }: { params: { locale?: string 
 
   const existingShowcaseIndex = blocks.findIndex((block) => block?.__component === 'sections.case-showcase');
   if (existingShowcaseIndex >= 0) {
-    const existing = blocks[existingShowcaseIndex] || {};
+    const existing = (blocks[existingShowcaseIndex] ?? {}) as BlockInput;
     blocks[existingShowcaseIndex] = {
       ...existing,
       theme: existing.theme || showcaseBlock.theme,

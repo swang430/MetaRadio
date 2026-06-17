@@ -7,10 +7,10 @@ import { BaseCard } from './base-card';
 type CaseCardProps = {
   title: string;
   href: string;
-  locale?: Locale;
-  client?: string | null;
-  summary?: string | null;
-  viewDetailLabel?: string | null;
+  locale?: Locale | undefined;
+  client?: string | null | undefined;
+  summary?: string | null | undefined;
+  viewDetailLabel?: string | null | undefined;
   theme?: 'dark' | 'light';
 };
 

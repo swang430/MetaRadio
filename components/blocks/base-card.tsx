@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 export type BaseCardProps = {
   children: ReactNode;
-  href?: string | null;
+  href?: string | null | undefined;
   theme?: 'dark' | 'light';
   className?: string;
 };

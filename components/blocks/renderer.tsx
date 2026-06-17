@@ -9,13 +9,13 @@ import { MediaBlock } from './media-block';
 import { PostList } from './post-list';
 import { StatGroup } from './stat-group';
 import { TechFlow } from './tech-flow';
-import { DynamicZoneBlock } from '@/lib/strapi-types';
+import type { BlockInput } from '@/lib/strapi-types';
 import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n/dictionaries';
 import { localizeHref } from '@/lib/i18n/navigation';
 
 type BlocksRendererProps = {
-  blocks?: DynamicZoneBlock[] | null;
+  blocks?: BlockInput[] | null;
   locale?: Locale;
   dictionary?: Dictionary;
 };
@@ -144,7 +144,7 @@ function mapLinks(links?: LinkInput[] | null, locale?: Locale) {
   const seen = new Set<string>();
   return links
     .map((link) => normalizeLink(link, locale))
-    .filter((link): link is { id?: string | number | null; name: string; url: string } => Boolean(link?.name && link?.url))
+    .filter((link): link is NonNullable<typeof link> => Boolean(link?.name && link?.url))
     .filter((link) => {
       if (seen.has(link.url)) return false;
       seen.add(link.url);
@@ -186,7 +186,7 @@ function mapCases(cases?: CaseInput[]) {
         summary: attrs.summary ?? null,
       };
     })
-    .filter((item): item is { id?: string | number | null; title: string; slug: string; client?: string | null; summary?: string | null } => !!item)
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
     .filter((item) => {
       if (seen.has(item.slug)) return false;
       seen.add(item.slug);
@@ -215,7 +215,7 @@ function mapPosts(posts?: PostInput[]) {
         estimate: attrs.estimate ?? null,
       };
     })
-    .filter((post): post is { id?: string | number | null; title: string; slug: string; excerpt?: string | null; category?: string | null; estimate?: number | null } => !!post);
+    .filter((post): post is NonNullable<typeof post> => Boolean(post));
 }
 
 export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererProps) {
@@ -235,7 +235,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <Hero
                 key={`hero-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 primaryAction={toAction((block as any)?.ctaPrimary, locale)}
                 secondaryAction={toAction((block as any)?.ctaSecondary, locale)}
                 media={toMedia((block as any)?.bgMedia || (block as any)?.media)}
@@ -246,7 +246,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <FeatureGridSection
                 key={`feature-grid-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 items={mapFeatureItems((block as any)?.items, locale, featureCardLearnMore)}
               />
             );
@@ -255,7 +255,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <StatGroup
                 key={`stat-group-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 metrics={(block as any)?.metrics?.map((metric: any) => ({
                   ...metric,
                   suffix: metric.suffix || metric.unit,
@@ -267,7 +267,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <BulletList
                 key={`bullet-list-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 items={(block as any)?.items?.map((item: any) => ({
                   ...item,
                   icon: toMedia(item.icon),
@@ -279,7 +279,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <TechFlow
                 key={`tech-flow-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 steps={(block as any)?.steps?.map((step: any) => ({
                   ...step,
                 }))}
@@ -290,7 +290,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <CaseShowcase
                 key={`case-showcase-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 cases={mapCases((block as any)?.cases)}
                 locale={locale}
                 viewDetailLabel={dictionary?.pages.cases.viewDetail}
@@ -301,7 +301,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <PostList
                 key={`post-list-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 posts={mapPosts((block as any)?.posts)}
                 readMoreLabel={postCardReadMore}
                 locale={locale}
@@ -312,7 +312,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <BeforeAfterSection
                 key={`before-after-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 items={(block as any)?.items?.map((item: any) => ({
                   ...item,
                   beforeMedia: toMedia(item.beforeMedia),
@@ -325,7 +325,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <CTABanner
                 key={`cta-banner-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 description={(block as any)?.body}
                 items={mapLinks((block as any)?.links, locale)}
               />
@@ -335,7 +335,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <MediaBlock
                 key={`media-block-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 media={toMedia((block as any)?.media)}
                 actions={mapLinks((block as any)?.actions, locale)}
               />
@@ -345,7 +345,7 @@ export function BlocksRenderer({ blocks, locale, dictionary }: BlocksRendererPro
               <CTABanner
                 key={`cta-${index}`}
                 theme={theme}
-                {...block}
+                {...(block as any)}
                 description={(block as any)?.body}
                 items={mapLinks((block as any)?.links, locale)}
               />

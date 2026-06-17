@@ -145,8 +145,10 @@ export type MediaContentBlock = {
   actions?: ActionField[] | null;
 };
 
-// Union type of all possible blocks
-export type DynamicZoneBlock =
+// Union type of all possible blocks.
+// 页面会给区块注入 theme（dark/light）作为展示提示，统一在联合类型上声明为可选，
+// 这样 block?.theme 与 { ...block, theme } 等用法都能通过类型检查。
+export type DynamicZoneBlock = (
   | HeroBlock
   | FeatureGridBlock
   | StatGroupBlock
@@ -156,12 +158,21 @@ export type DynamicZoneBlock =
   | CaseShowcaseBlock
   | PostListBlock
   | CtaBannerBlock
-  | MediaContentBlock;
+  | MediaContentBlock
+) & { theme?: 'dark' | 'light' | null };
+
+/**
+ * 动态区块的"输入"形态：来自 Strapi 或页面在运行时构造的松散区块。
+ * BlocksRenderer 按 __component 防御式归一化后再渲染，因此输入容忍额外字段
+ * （如页面注入的 intro、emoji 字符串 icon 等）。结构化的 *Attributes 类型仍保持严格。
+ */
+export type BlockInput = { __component: string } & Record<string, any>;
 
 export type PageAttributes = {
   title: string;
   slug: string;
   locale?: string;
+  excerpt?: string | null;
   seo?: SeoData | null;
   blocks: DynamicZoneBlock[];
 };

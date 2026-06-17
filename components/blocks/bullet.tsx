@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SafeImage } from './safe-image';
 import clsx from 'clsx';
 import { BaseCard } from './base-card';
 
@@ -19,7 +19,7 @@ export function Bullet({ title, description, icon, theme = 'dark' }: BulletProps
     <BaseCard theme={theme} className="p-6">
       <div className="relative flex h-full gap-4">
         {icon?.url ? (
-          <Image
+          <SafeImage
             src={icon.url}
             alt={icon.alt || `Icon for ${title}`}
             width={icon.width || 48}

@@ -4,10 +4,12 @@ import type {
   PageEntity,
   ResourceEntity,
   SiteSettingEntity,
+  SolutionAttributes,
   SolutionEntity,
   StrapiResponse,
 } from './strapi-types';
 import path from 'path';
+import { unstable_cache } from 'next/cache';
 import {
   mockArticles,
   mockCaseStudies,
@@ -21,6 +23,8 @@ import { DEFAULT_LOCALE, resolveLocale, type Locale } from './i18n/config';
 const STRAPI_URL = process.env.STRAPI_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
 const TOKEN = process.env.STRAPI_API_TOKEN;
 const REVALIDATE_SECONDS = Number(process.env.REVALIDATE_SECONDS || 120);
+// 单次 Strapi 请求超时：后端慢/卡时快速失败并被 catch 降级到 Mock，避免渲染挂起。
+const REQUEST_TIMEOUT_MS = Number(process.env.STRAPI_TIMEOUT_MS || 8000);
 const DEBUG_DATA_SOURCE = process.env.NODE_ENV === 'development'; // Only log in development
 const LOG_FILE_PATH = typeof process !== 'undefined' ? path.resolve(process.cwd(), 'datasource.log') : 'datasource.log';
 
@@ -93,7 +97,7 @@ function appendPopulatePaths(params: URLSearchParams, paths: string[]) {
   }
 }
 
-async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefined> {
+async function apiUncached<T>(path: string, init: RequestInit = {}): Promise<T | undefined> {
   if (!STRAPI_URL) {
     // No need to log here, the calling function will log the fallback.
     return undefined;
@@ -105,7 +109,10 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefin
     ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
     ...(init.headers || {}),
   } as Record<string, string>;
-  const { next: nextConfig, ...rest } = init as RequestInit & { next?: Record<string, unknown> };
+  // 剥离调用方可能传入的 next（缓存改由下方 unstable_cache 在结果层负责），
+  // fetch 本身走 no-store，避免 Next 对陈旧条目做"够不着 try/catch 的后台重验证"。
+  const rest: RequestInit = { ...init };
+  delete (rest as RequestInit & { next?: unknown }).next;
   const method = typeof rest.method === 'string' ? rest.method.toUpperCase() : 'GET';
   const slugFromQuery = urlObj.searchParams.get('filters[slug][$eq]') || urlObj.searchParams.get('slug') || null;
   const localeFromQuery = urlObj.searchParams.get('locale') || null;
@@ -125,7 +132,8 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefin
     const res = await fetch(url, {
       ...rest,
       headers,
-      next: { revalidate: REVALIDATE_SECONDS, ...(nextConfig || {}) },
+      cache: 'no-store',
+      signal: rest.signal ?? AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
     const responseText = await res.text();
     if (DEBUG_DATA_SOURCE) {
@@ -161,6 +169,25 @@ async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefin
   }
 }
 
+// 结果层缓存：保留 REVALIDATE_SECONDS 的基于时间的 ISR 语义，但缓存的是
+// apiUncached 的返回值。后台重验证只会重跑 apiUncached——它对任何错误都返回
+// undefined、永不抛错——因此后端宕机时只会回退到 Mock/陈旧内容，而不会产生
+// Next 够不着的未捕获 rejection 去冲垮渲染流。
+async function api<T>(path: string, init: RequestInit = {}): Promise<T | undefined> {
+  if (!STRAPI_URL) return undefined;
+  const method = typeof init.method === 'string' ? init.method.toUpperCase() : 'GET';
+  // 仅缓存幂等 GET 读取；其它请求直连。
+  if (method !== 'GET') {
+    return apiUncached<T>(path, init);
+  }
+  const cached = unstable_cache(
+    () => apiUncached<T>(path, init),
+    ['strapi-api', path],
+    { revalidate: REVALIDATE_SECONDS },
+  );
+  return cached();
+}
+
 function resolveMockLocale(locale?: string): Locale {
   return resolveLocale(locale);
 }
@@ -191,8 +218,8 @@ function filterByLocale<T>(items: T[] | undefined, locale: Locale): T[] {
 type WithAttributes<T> = T & { attributes: Record<string, unknown> };
 
 function normalizeEntity<T>(entity: T | undefined): WithAttributes<T> | undefined {
-  if (!entity) return entity as undefined;
-  if (typeof entity !== 'object' || entity === null) return entity as undefined;
+  if (!entity) return undefined;
+  if (typeof entity !== 'object' || entity === null) return undefined;
 
   const record = entity as Record<string, unknown>;
   if ('attributes' in record && record.attributes) {

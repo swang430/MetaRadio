@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SafeImage } from './safe-image';
 
 type BeforeAfterItem = {
   id?: number | string;
@@ -23,7 +23,7 @@ type BeforeAfterSectionProps = {
   items: BeforeAfterItem[];
 };
 
-function MediaPanel({ label, media, itemTitle }: { label: string; media?: BeforeAfterItem['beforeMedia']; itemTitle?: string | null }) {
+function MediaPanel({ label, media, itemTitle }: { label: string; media?: BeforeAfterItem['beforeMedia']; itemTitle?: string | null | undefined }) {
   return (
     <div className="flex flex-col gap-4">
       <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-200/80">
@@ -31,7 +31,7 @@ function MediaPanel({ label, media, itemTitle }: { label: string; media?: Before
       </span>
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-card">
         {media?.url ? (
-          <Image
+          <SafeImage
             src={media.url}
             alt={media.alt || (itemTitle ? `${label}: ${itemTitle}` : `${label} illustration`)}
             fill

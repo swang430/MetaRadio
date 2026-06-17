@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 
 export const revalidate = 180;
 
@@ -23,7 +24,7 @@ export default async function AboutPage({ params }: { params: { locale?: string 
         : '以射线跟踪与电磁仿真为核心，服务通信、汽车与新兴行业的连接体验。'),
   });
 
-  const blocksWithTheme =
+  const blocksWithTheme: BlockInput[] =
     rawBlocks.length > 0
       ? rawBlocks.map((block, index) => {
           if (block?.theme) return block;

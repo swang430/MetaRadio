@@ -4,6 +4,7 @@ import { getDictionary } from '@/lib/i18n/dictionaries';
 import { SUPPORTED_LOCALES, resolveLocale, type Locale } from '@/lib/i18n/config';
 import { getPageBySlug } from '@/lib/strapi';
 import type { Metadata } from 'next';
+import type { BlockInput } from '@/lib/strapi-types';
 
 export const revalidate = 120;
 
@@ -25,7 +26,7 @@ export default async function CapabilitiesPage({ params }: { params: { locale?: 
         : '从材质参数化到 AI 闭环的电磁数字孪生核心能力。'),
   });
 
-  const blocksWithTheme =
+  const blocksWithTheme: BlockInput[] =
     rawBlocks.length > 0
       ? rawBlocks.map((block, index) => {
           if (block?.theme) return block;

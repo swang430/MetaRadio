@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SafeImage } from './safe-image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import DOMPurify from 'isomorphic-dompurify';
@@ -51,7 +51,7 @@ export function MediaBlock({
       {theme === 'dark' && (
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(400px_circle_at_25%_0%,rgba(14,165,233,0.15),transparent)]" />
       )}
-      <Image
+      <SafeImage
         src={media.url}
         alt={media.alt || `Illustration for ${title}`}
         fill
