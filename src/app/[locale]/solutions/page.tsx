@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { getSolutions, extractTextFromDescription } from '../../../../lib/api';
-import type { Solution } from '../../../../lib/api';
 
 export default async function SolutionsPage({
   params,
