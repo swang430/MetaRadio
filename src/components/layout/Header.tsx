@@ -30,8 +30,8 @@ const Header = () => {
   const switchLocaleHref = `/${otherLocale}${pathWithoutLocale}`;
 
   const navLinks = [
-    { href: `/${locale}/platform`, label: t('platform') },
-    { href: `/${locale}/solutions`, label: t('solutions') },
+    { href: `/${locale}/datasheets`, label: t('products') },
+    { href: `/${locale}/foundations`, label: t('foundations') },
     { href: `/${locale}/resources`, label: t('resources') },
   ];
   const contactHref = `/${locale}/contact`;
