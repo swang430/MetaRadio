@@ -44,7 +44,7 @@ const Header = () => {
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link href={`/${locale}`} onClick={closeMenu}>
-            <Image src="/images/logo.png" alt="Metaradio Logo" width={71} height={40} className="h-10 w-auto" priority />
+            <Image src="/images/logo.png" alt="乾径科技 MetaRadio Logo" width={213} height={120} className="h-[120px] w-auto" priority />
           </Link>
         </div>
 
