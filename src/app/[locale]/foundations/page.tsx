@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import { getPage, type Page } from '../../../../lib/api';
 
-// 共性技术 / Foundations —— 设计纲要 §3.2 的"轴心页"。
-// 把"电磁世界观 + GPU 加速栈 + AI-Native 方法论 + 数据飞轮"四项共性能力显性化，
-// 说明它们同时支撑数字世界（Lauraycs/MetaRadio）与物理世界（Liquid RF）——
-// 这是"为什么乾径是一家公司而不是两家"的关键页。纯静态，可预渲染。
+// 共性技术 / Foundations —— 设计纲要 §3.2 的"轴心页"。四项共性能力显性化，
+// 说明它们同时支撑数字世界（Lauraycs/MetaRadio）与物理世界（Liquid RF）。
+// 文案由 Strapi page（seed-data/pages/foundations.md）提供，内容源不可达时降级到内联 COPY。
+export const dynamic = 'force-dynamic';
 
 type Locale = 'zh-CN' | 'en';
 const pick = (l: string): Locale => (l === 'en' ? 'en' : 'zh-CN');
@@ -79,11 +80,29 @@ const COPY = {
     ctaPrimary: 'Explore products & solutions',
     ctaSecondary: 'Book an R&D consult',
   },
-} as const;
+};
+
+/** Strapi page 分节 → COPY 形状；缺关键分节则回退内联 COPY。 */
+function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
+  const secs = page.body?.sections ?? [];
+  const S = (id: string) => secs.find((s) => s.id === id);
+  const f = (id: string, k: string) => S(id)?.fields?.[k] ?? '';
+  const caps = ['capability-1', 'capability-2', 'capability-3', 'capability-4']
+    .map((id) => S(id))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s))
+    .map((s) => ({ n: s.fields['N'], title: s.fields['Title'], lede: s.fields['Lede'], points: s.bullets }));
+  if (!S('hero') || caps.length < 4) return COPY[pick(locale)];
+  return {
+    eyebrow: f('hero', 'Eyebrow'), title: f('hero', 'Title'), sub: f('hero', 'Sub'),
+    dualBadge: f('hero', 'DualBadge'), capabilities: caps,
+    ctaTitle: f('hero', 'CtaTitle'), ctaPrimary: f('hero', 'CtaPrimary'), ctaSecondary: f('hero', 'CtaSecondary'),
+  };
+}
 
 export default async function FoundationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = COPY[pick(locale)];
+  const page = await getPage('foundations', locale);
+  const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
   return (
     <div className="flex flex-col">
