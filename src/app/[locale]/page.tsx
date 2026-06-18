@@ -189,22 +189,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <div className="flex flex-col">
       {/* 第一屏 · Hero */}
       <section className="relative overflow-hidden bg-brand-navy text-white">
-        {/* 背景照（工程师 + 全息界面，来自 BP 素材）—— 低透明度作底纹，上覆 navy 渐变保证文字可读。 */}
-        <Image
-          src="/images/hero-lab.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-25"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/90 via-brand-navy/85 to-brand-navy/70" aria-hidden />
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(1000px 600px at 75% -15%, rgba(0,209,255,0.25), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(16,185,129,0.16), transparent 60%)' }}
+          style={{ background: 'radial-gradient(1000px 600px at 80% -10%, rgba(0,209,255,0.22), transparent 60%), radial-gradient(700px 500px at 0% 110%, rgba(16,185,129,0.14), transparent 60%)' }}
           aria-hidden
         />
-        <div className="container relative mx-auto px-6 py-24 md:py-32">
+        <div className="container relative mx-auto px-6 py-20 md:py-28">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
           <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.hero.eyebrow}</p>
           <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
             {t.hero.title}
@@ -218,6 +210,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
               {t.hero.ctaSecondary}
             </Link>
+          </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/hero-emtwin.jpg"
+                alt="EM-twin 验证：射线追踪波束 · RSRP 覆盖热图 · 路测 · 仿真-实测对比"
+                width={2556}
+                height={1438}
+                priority
+                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+              />
+            </div>
           </div>
           <div className="mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
             {t.hero.pillars.map((p) => (
