@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { getPage, type Page } from '../../../lib/api';
 
 // 首页五屏叙事（设计纲要 §3.1）：Hero（首句方案 C）→ 双重基础设施 → 数据飞轮 →
 // 客户与场景 → 进入路径。回扣 §0 立意「一份电磁，两端基础设施」，面向投资人 + 大客户。
-// 纯静态叙事（不依赖 Strapi），可被静态预渲染；场景卡链接到已建的 V1-V6 datasheet。
+// 文案由 Strapi page 内容类型提供（seed-data/pages/home.md 导入，后台可编辑、中英同步），
+// 内容源不可达时降级到内联 COPY 兜底；版式 / 链接 / 视觉逻辑留在本组件。
+export const dynamic = 'force-dynamic';
 
 type Locale = 'zh-CN' | 'en';
 const pick = (l: string): Locale => (l === 'en' ? 'en' : 'zh-CN');
@@ -138,11 +141,48 @@ const COPY = {
       cta: 'Book a consult',
     },
   },
-} as const;
+};
+
+/** 把 Strapi page 的分节映射回 COPY 形状；任一关键分节缺失则整体回退到内联 COPY。 */
+function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
+  const secs = page.body?.sections ?? [];
+  const S = (id: string) => secs.find((s) => s.id === id);
+  const f = (id: string, k: string) => S(id)?.fields?.[k] ?? '';
+  const table = (id: string) => S(id)?.table ?? [];
+  const bullets = (id: string) => S(id)?.bullets ?? [];
+  if (!S('hero') || !S('dual') || !S('flywheel') || !S('scenarios') || !S('ladder')) return COPY[pick(locale)];
+  return {
+    hero: {
+      eyebrow: f('hero', 'Eyebrow'), title: f('hero', 'Title'), titleEm: f('hero', 'TitleEm'),
+      sub: f('hero', 'Sub'), ctaPrimary: f('hero', 'CtaPrimary'), ctaSecondary: f('hero', 'CtaSecondary'),
+      pillars: table('pillars').map((r) => ({ k: r.Key, v: r.Value })),
+    },
+    dual: {
+      eyebrow: f('dual', 'Eyebrow'), title: f('dual', 'Title'), sub: f('dual', 'Sub'),
+      digital: { tag: f('digital', 'Tag'), name: f('digital', 'Name'), desc: f('digital', 'Desc'), cta: f('digital', 'Cta'), href: f('digital', 'Href') },
+      physical: { tag: f('physical', 'Tag'), name: f('physical', 'Name'), desc: f('physical', 'Desc'), cta: f('physical', 'Cta'), href: f('physical', 'Href') },
+      bridge: bullets('bridge'),
+    },
+    flywheel: {
+      eyebrow: f('flywheel', 'Eyebrow'), title: f('flywheel', 'Title'), sub: f('flywheel', 'Sub'),
+      steps: bullets('flywheel-steps'),
+    },
+    scenarios: {
+      eyebrow: f('scenarios', 'Eyebrow'), title: f('scenarios', 'Title'), sub: f('scenarios', 'Sub'),
+      items: table('items').map((r) => ({ icon: r.Icon, name: r.Name, line: r.Line, slug: r.Slug })),
+    },
+    ladder: {
+      eyebrow: f('ladder', 'Eyebrow'), title: f('ladder', 'Title'), sub: f('ladder', 'Sub'),
+      steps: table('ladder-steps').map((r) => ({ step: r.Step, name: r.Name, meta: r.Meta, desc: r.Desc })),
+      cta: f('ladder', 'Cta'),
+    },
+  };
+}
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = COPY[pick(locale)];
+  const page = await getPage('home', locale);
+  const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
   return (
     <div className="flex flex-col">

@@ -143,3 +143,24 @@ export async function getDatasheetBySlug(slug: string, locale: string): Promise<
   if (data && data.length > 0) return data[0];
   return mockDatasheetBySlug(slug, locale);
 }
+
+// ---------- Page（叙事页文案：首页 / Foundations / 服务 / 关于）----------
+// 复用 DatasheetSection 的分节结构。无 mock：内容源不可达时调用方降级到内联 COPY。
+
+export interface Page {
+  id: number;
+  documentId?: string;
+  slug: string;
+  title: string;
+  body?: { sections: DatasheetSection[] } | null;
+  locale?: string;
+}
+
+/**
+ * 按 slug 获取一个叙事页的内容（分节）。内容源不可达或未找到时返回 null，
+ * 由前端组件降级到内联 COPY 兜底（保证页面始终好看）。
+ */
+export async function getPage(slug: string, locale: string): Promise<Page | null> {
+  const data = await fetchFromStrapi<Page[]>(`/api/pages?filters[slug][$eq]=${slug}&locale=${locale}`);
+  return data && data.length > 0 ? data[0] : null;
+}
