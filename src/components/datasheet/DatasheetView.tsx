@@ -4,8 +4,31 @@
 // 分派到对应版式：Hero / 指标 / 卡片 / 工作流 / 规格表 / 差异化 / CTA。
 // 这样同一套渲染器即可覆盖 L1-L3、V1-V6 以及未来新增的 datasheet，无需逐个写页面。
 import Link from 'next/link';
+import Image from 'next/image';
 import type { ReactNode } from 'react';
 import type { Datasheet, DatasheetSection } from '../../../lib/api';
+
+// datasheet slug → hero 配图（静态 public/，模型 C）。仅映射有强相关、可直接用的素材，
+// 其余 datasheet 维持纯文字 hero（优雅降级）。图为「图卡」形式置于 hero 右栏，与 navy 协调。
+type HeroImage = { src: string; width: number; height: number; alt: { 'zh-CN': string; en: string } };
+const HERO_IMAGES: Record<string, HeroImage> = {
+  'l1-ray-tracing': {
+    src: '/images/ds-l1-ray-tracing.jpg', width: 1200, height: 922,
+    alt: { 'zh-CN': '射线-探针几何：Probe 与 Target 簇角分布', en: 'Ray-probe geometry: probe & target cluster angles' },
+  },
+  'l2-virtual-drive-test': {
+    src: '/images/ds-l2-virtual-drive-test.jpg', width: 1200, height: 897,
+    alt: { 'zh-CN': '微波暗室：虚拟路测与硬件在环验证', en: 'Microwave anechoic chamber: virtual drive test & hardware-in-the-loop' },
+  },
+  'l3-em-twin': {
+    src: '/images/ds-l3-em-twin.jpg', width: 1200, height: 675,
+    alt: { 'zh-CN': '电磁孪生验证：射线追踪波束 · RSRP 覆盖热图 · 路测 · 仿真-实测对比', en: 'EM-twin validation: ray-traced beams · RSRP coverage · drive test · sim-vs-measured' },
+  },
+  'liquid-rf': {
+    src: '/images/ds-liquid-rf.jpg', width: 1200, height: 482,
+    alt: { 'zh-CN': 'Liquid RF：天线经 GPUDirect 以 1–2ms 直连 GPU', en: 'Liquid RF: antenna to GPU via GPUDirect at 1–2 ms' },
+  },
+};
 
 type Row = Record<string, string>;
 
@@ -197,9 +220,26 @@ function SectionPayload({ section, dark }: { section: DatasheetSection; dark?: b
 
 // ---------- band 版式 ----------
 
-function HeroBand({ band }: { band: Band }) {
+function HeroBand({ band, heroImage, locale }: { band: Band; heroImage?: HeroImage; locale: string }) {
   const f = band.lead.fields;
   const metrics = band.parts.find((p) => hasCols(tableCols(p.table), 'Value', 'Label'));
+  const text = (
+    <div>
+      {f['Badge'] && (
+        <span className="inline-block rounded-full border border-brand-cyan/40 px-4 py-1 text-xs font-medium text-brand-cyan">
+          {f['Badge']}
+        </span>
+      )}
+      {f['Eyebrow'] && (
+        <p className="mt-6 text-sm font-medium uppercase tracking-widest text-slate-300">{f['Eyebrow']}</p>
+      )}
+      <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
+        {f['Headline']}
+        {f['Headline-em'] && <span className="mt-2 block text-brand-cyan">{f['Headline-em']}</span>}
+      </h1>
+      {f['Sub'] && <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{f['Sub']}</p>}
+    </div>
+  );
   return (
     <section className="relative overflow-hidden bg-brand-navy text-white">
       <div
@@ -208,19 +248,23 @@ function HeroBand({ band }: { band: Band }) {
         aria-hidden
       />
       <div className="container relative mx-auto px-6 py-20 md:py-28">
-        {f['Badge'] && (
-          <span className="inline-block rounded-full border border-brand-cyan/40 px-4 py-1 text-xs font-medium text-brand-cyan">
-            {f['Badge']}
-          </span>
+        {heroImage ? (
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {text}
+            <div className="relative">
+              <Image
+                src={heroImage.src}
+                alt={locale === 'en' ? heroImage.alt.en : heroImage.alt['zh-CN']}
+                width={heroImage.width}
+                height={heroImage.height}
+                priority
+                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+              />
+            </div>
+          </div>
+        ) : (
+          text
         )}
-        {f['Eyebrow'] && (
-          <p className="mt-6 text-sm font-medium uppercase tracking-widest text-slate-300">{f['Eyebrow']}</p>
-        )}
-        <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
-          {f['Headline']}
-          {f['Headline-em'] && <span className="mt-2 block text-brand-cyan">{f['Headline-em']}</span>}
-        </h1>
-        {f['Sub'] && <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{f['Sub']}</p>}
         {metrics && (
           <div className="mt-12 max-w-3xl">
             <MetricGrid rows={metrics.table} dark />
@@ -302,7 +346,7 @@ export default function DatasheetView({ datasheet, locale }: { datasheet: Datash
         </div>
       </div>
       {bands.map((band, i) => {
-        if (band.lead.id === 'hero') return <HeroBand key={i} band={band} />;
+        if (band.lead.id === 'hero') return <HeroBand key={i} band={band} heroImage={HERO_IMAGES[datasheet.slug]} locale={locale} />;
         if (isCta(band.lead)) return <CtaBand key={i} band={band} locale={locale} />;
         const alt = altIndex++ % 2 === 1;
         return <ContentBand key={i} band={band} alt={alt} />;
