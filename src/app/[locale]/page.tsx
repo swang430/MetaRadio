@@ -214,10 +214,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
             <div className="relative">
               <Image
-                src="/images/hero-emtwin.jpg"
-                alt="EM-twin 验证：射线追踪波束 · RSRP 覆盖热图 · 路测 · 仿真-实测对比"
-                width={2556}
-                height={1438}
+                src="/images/hero-silicon.jpg"
+                alt={locale === 'en' ? 'The compute foundation for AI-Native wireless: GPU-accelerated electromagnetic computation' : 'AI-Native 无线的算力底座：GPU 加速的电磁计算'}
+                width={1600}
+                height={900}
                 priority
                 className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
               />
