@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPage, type Page } from '../../../lib/api';
 
 // 首页五屏叙事（设计纲要 §3.1）：Hero（首句方案 C）→ 双重基础设施 → 数据飞轮 →
@@ -227,6 +228,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.dual.title}</h2>
             <p className="mt-4 text-slate-600">{t.dual.sub}</p>
           </header>
+          {/* 双重基础设施主图（设计 §3.1 第二屏）—— 静态品牌视觉，来自 MWC 物料「产品战略图」。 */}
+          <div className="mx-auto mb-12 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+            <Image
+              src="/images/dual-infrastructure.png"
+              alt="MetaRadio + Lauraycs 双引擎产品体系：终端连接底座与无线世界模型训练平台"
+              width={2016}
+              height={926}
+              className="h-auto w-full"
+              priority
+            />
+          </div>
           <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
             <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8 transition hover:border-brand-cyan hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.digital.tag}</span>
