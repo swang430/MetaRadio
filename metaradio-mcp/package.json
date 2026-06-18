@@ -1,0 +1,16 @@
+{
+  "name": "metaradio-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP server exposing the MetaRadio (乾径科技) product library — L1-L3 foundations, V1-V6 verticals, Liquid RF — to AI agents.",
+  "bin": {
+    "metaradio-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
+  }
+}
