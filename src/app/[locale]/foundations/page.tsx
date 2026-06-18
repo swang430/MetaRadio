@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPage, type Page } from '../../../../lib/api';
 
 // 共性技术 / Foundations —— 设计纲要 §3.2 的"轴心页"。四项共性能力显性化，
@@ -114,9 +115,23 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
           aria-hidden
         />
         <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
+              <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/foundations-hero.jpg"
+                alt={locale === 'en' ? 'The electromagnetic world as measurable data: a cluster-to-probe power contribution matrix (dB)' : '把电磁世界变成可测的数据：簇-探针功率贡献矩阵（dB）'}
+                width={1200}
+                height={727}
+                priority
+                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
