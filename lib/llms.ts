@@ -45,7 +45,8 @@ export async function buildLlmsText(full: boolean): Promise<string> {
   L.push(`- [About](${BASE}/en/about) · [Contact](${BASE}/en/contact)`);
   L.push('');
   L.push('## For machines');
-  L.push(`- [Datasheets API](${BASE}/api/datasheets): public read-only JSON (no auth). Append \`?locale=en\` or \`?locale=zh-CN\`.`);
+  L.push(`- [Products API](${BASE}/api/v1/products): clean public read-only JSON (specs, differentiators, applications). Append \`?locale=en\` or \`?category=horizontal\`. Single: \`/api/v1/products/{slug}\`.`);
+  L.push(`- [OpenAPI spec](${BASE}/api/openapi.yaml) · [Datasheets API (raw Strapi)](${BASE}/api/datasheets)`);
   L.push(`- [Sitemap](${BASE}/sitemap.xml)`);
 
   if (full) {
