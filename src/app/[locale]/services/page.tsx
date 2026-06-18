@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { getPage, type Page } from '../../../../lib/api';
+
+export const dynamic = 'force-dynamic';
 
 // 研发服务 / R&D Services — 设计纲要 §3.3：把战略文档的"五类标准服务包"产品化。
+// 文案由 Strapi page（seed-data/pages/services.md）提供，内容源不可达时降级到内联 COPY。
 // 每个服务包：一句话价值（减少几轮样机/外场返工）+ 客户画像 + 交付物 + 周期/报价区间 + 典型场景。
 // 单设 Customization & Co-development 栏，把定制正面定位为"年度框架的最高形态"。纯静态、中英双语。
 
@@ -120,11 +124,33 @@ const COPY = {
     ctaPrimary: 'Book an R&D consult',
     ctaSecondary: 'Explore products & solutions',
   },
-} as const;
+};
+
+/** Strapi page 分节 → COPY 形状；缺关键分节则回退内联 COPY。 */
+function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
+  const secs = page.body?.sections ?? [];
+  const S = (id: string) => secs.find((s) => s.id === id);
+  const f = (id: string, k: string) => S(id)?.fields?.[k] ?? '';
+  const pkgs = ['package-1', 'package-2', 'package-3', 'package-4', 'package-5']
+    .map((id) => S(id))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s))
+    .map((s) => ({
+      tier: s.fields['Tier'], name: s.fields['Name'], value: s.fields['Value'], persona: s.fields['Persona'],
+      deliverables: s.bullets, cadence: s.fields['Cadence'], price: s.fields['Price'], story: s.fields['Story'],
+    }));
+  if (!S('hero') || pkgs.length < 5 || !S('custom')) return COPY[pick(locale)];
+  return {
+    eyebrow: f('hero', 'Eyebrow'), title: f('hero', 'Title'), sub: f('hero', 'Sub'), priceNote: f('hero', 'PriceNote'),
+    packages: pkgs,
+    custom: { eyebrow: f('custom', 'Eyebrow'), title: f('custom', 'Title'), body: f('custom', 'Body') },
+    ctaTitle: f('hero', 'CtaTitle'), ctaPrimary: f('hero', 'CtaPrimary'), ctaSecondary: f('hero', 'CtaSecondary'),
+  };
+}
 
 export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = COPY[pick(locale)];
+  const page = await getPage('services', locale);
+  const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
   return (
     <div className="flex flex-col">
