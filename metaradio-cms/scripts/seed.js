@@ -15,8 +15,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const SUPPORTED_LOCALES = ['en', 'zh-CN']; // en 优先，确保 documentId 稳定
 const COLLECTIONS = [
-  { key: 'platforms', uid: 'api::platform.platform', api: 'platform', label: 'Platform' },
-  { key: 'solutions', uid: 'api::solution.solution', api: 'solution', label: 'Solution' },
+  // platform / solution 内容类型已随命名迁移退役（前端走 datasheet）；此处仅保留 resource。
   { key: 'resources', uid: 'api::resource.resource', api: 'resource', label: 'Resource' },
 ];
 
