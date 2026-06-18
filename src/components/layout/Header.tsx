@@ -33,6 +33,7 @@ const Header = () => {
     { href: `/${locale}/datasheets`, label: t('products') },
     { href: `/${locale}/foundations`, label: t('foundations') },
     { href: `/${locale}/services`, label: t('services') },
+    { href: `/${locale}/tools`, label: t('tools') },
     { href: `/${locale}/resources`, label: t('resources') },
   ];
   const contactHref = `/${locale}/contact`;
