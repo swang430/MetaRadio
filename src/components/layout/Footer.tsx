@@ -28,6 +28,7 @@ const Footer = () => {
             <ul className="mt-2 space-y-2">
               <li><Link href={`/${locale}/datasheets`} className="hover:text-blue-400">{t_nav('products')}</Link></li>
               <li><Link href={`/${locale}/foundations`} className="hover:text-blue-400">{t_nav('foundations')}</Link></li>
+              <li><Link href={`/${locale}/services`} className="hover:text-blue-400">{t_nav('services')}</Link></li>
               <li><Link href={`/${locale}/resources`} className="hover:text-blue-400">{t_nav('resources')}</Link></li>
               <li><Link href={`/${locale}/contact`} className="hover:text-blue-400">{t('contact')}</Link></li>
             </ul>
