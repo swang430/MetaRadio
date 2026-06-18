@@ -8,8 +8,9 @@ export default createMiddleware({
 });
 
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  // 匹配除以下之外的所有路径：
+  // - `/api`、`/_next`、`/_vercel`
+  // - 任何含点的路径（如 favicon.ico、llms.txt、sitemap.xml、robots.txt）——
+  //   这些根文件由专用 route/metadata 处理，绝不能被 i18n 重定向。
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

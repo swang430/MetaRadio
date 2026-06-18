@@ -17,7 +17,35 @@ export default async function DatasheetDetailPage({
     notFound();
   }
 
-  return <DatasheetView datasheet={datasheet} locale={locale} />;
+  // 结构化数据：把规格表暴露为 schema.org Product.additionalProperty，便于 LLM/搜索精确摘取。
+  const base = process.env.SITE_URL || 'https://metaradio.tech';
+  const hero = datasheet.body?.sections?.find((s) => s.id === 'hero');
+  const specs = datasheet.body?.sections?.find((s) => s.id === 'specs-table');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: datasheet.title,
+    description: hero?.fields['Sub'] || datasheet.product || '',
+    category: datasheet.category,
+    sku: datasheet.code,
+    brand: { '@type': 'Brand', name: 'MetaRadio' },
+    url: `${base}/${locale}/datasheets/${datasheet.slug}`,
+    ...(specs?.table?.length
+      ? {
+          additionalProperty: specs.table.map((row) => {
+            const cols = Object.keys(row);
+            return { '@type': 'PropertyValue', name: row[cols[0]], value: row[cols[1]] };
+          }),
+        }
+      : {}),
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <DatasheetView datasheet={datasheet} locale={locale} />
+    </>
+  );
 }
 
 export async function generateMetadata({

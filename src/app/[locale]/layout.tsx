@@ -52,6 +52,22 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} ${notoSansSC.variable} font-sans antialiased flex flex-col min-h-screen`}
       >
+        {/* 结构化数据：让 Google 与 LLM 都能精确摘出乾径的核心信息（§4.2）。 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'MetaRadio (乾径科技)',
+              alternateName: 'MetaRadio',
+              url: process.env.SITE_URL || 'https://metaradio.tech',
+              description:
+                'The dual infrastructure for AI-Native wireless: an EM-twin R&D base (Lauraycs/MetaRadio) in the digital world and a neural-network soft-baseband terminal base (Liquid RF) in the physical world.',
+              sameAs: ['https://x.com/metaradio', 'https://www.linkedin.com/company/metaradio'],
+            }),
+          }}
+        />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           <main className="flex-grow">{children}</main>
