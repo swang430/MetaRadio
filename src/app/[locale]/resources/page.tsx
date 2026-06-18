@@ -48,6 +48,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
                   alt={p.title[en ? 'en' : 'zh-CN']}
                   width={900}
                   height={2250}
+                  sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
                   className="h-full w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]"
                 />
               </div>

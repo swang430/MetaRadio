@@ -258,6 +258,7 @@ function HeroBand({ band, heroImage, locale }: { band: Band; heroImage?: HeroIma
                 width={heroImage.width}
                 height={heroImage.height}
                 priority
+                sizes="(min-width: 1024px) 600px, 100vw"
                 className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
               />
             </div>

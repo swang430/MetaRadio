@@ -128,6 +128,7 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
                 width={1200}
                 height={727}
                 priority
+                sizes="(min-width: 1024px) 600px, 100vw"
                 className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
               />
             </div>
