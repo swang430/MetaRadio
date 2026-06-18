@@ -99,6 +99,8 @@ async function run() {
   await ensureLocales(app);
   for (const c of COLLECTIONS) {
     console.log(`\n→ ${c.label}`);
+    // 清空该集合旧条目（含已迁移命名的残留），保证 seed 是干净的全量重建。
+    await app.db.query(c.uid).deleteMany({ where: {} });
     for (const entry of seedData[c.key] || []) {
       await seedEntry(app, c.uid, c.label, entry.slug, entry.locales);
     }
