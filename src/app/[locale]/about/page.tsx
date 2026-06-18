@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { getPage, type Page } from '../../../../lib/api';
+
+export const dynamic = 'force-dynamic';
 
 // 关于乾径 / About — 设计纲要 §6 + §1.1「底牌」三幕。
+// 文案由 Strapi page（seed-data/pages/about.md）提供，内容源不可达时降级到内联 COPY。
 // 回扣立意：一支同时拥有电磁第一性原理与 GPU 工程能力的团队，一套贯穿仿真到终端的
 // GPU 加速电磁计算栈，一组与晶泰/高通同构的混合商业模式。纯静态、中英双语。
 // 具体融资/奖项数字与团队人像待业务侧素材，先以"敬请期待"占位。
@@ -63,13 +67,35 @@ const COPY = {
     ctaPrimary: 'Book a strategy call',
     ctaSecondary: 'Explore products & solutions',
   },
-} as const;
+};
 
 const ACCENT: Record<string, string> = { cyan: 'text-brand-cyan', emerald: 'text-brand-emerald', amber: 'text-brand-amber' };
 
+/** Strapi page 分节 → COPY 形状；缺关键分节则回退内联 COPY。 */
+function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
+  const secs = page.body?.sections ?? [];
+  const S = (id: string) => secs.find((s) => s.id === id);
+  const f = (id: string, k: string) => S(id)?.fields?.[k] ?? '';
+  const cards = (S('cards')?.table ?? []).map((r) => ({ accent: r['Accent'], tag: r['Tag'], title: r['Title'], body: r['Body'] }));
+  const milestones = (S('milestones')?.table ?? []).map((r) => ({ k: r['Key'], v: r['Value'] }));
+  const partners = S('partners')?.bullets ?? [];
+  const locations = S('locations')?.bullets ?? [];
+  if (!S('hero') || cards.length < 3) return COPY[pick(locale)];
+  return {
+    eyebrow: f('hero', 'Eyebrow'), title: f('hero', 'Title'), sub: f('hero', 'Sub'),
+    cardsTitle: f('hero', 'CardsTitle'), cards,
+    teamTitle: f('hero', 'TeamTitle'), teamBody: f('hero', 'TeamBody'), teamNote: f('hero', 'TeamNote'),
+    milestonesTitle: f('hero', 'MilestonesTitle'), milestones,
+    partnersTitle: f('hero', 'PartnersTitle'), partners,
+    locationsTitle: f('hero', 'LocationsTitle'), locations,
+    ctaTitle: f('hero', 'CtaTitle'), ctaPrimary: f('hero', 'CtaPrimary'), ctaSecondary: f('hero', 'CtaSecondary'),
+  };
+}
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = COPY[pick(locale)];
+  const page = await getPage('about', locale);
+  const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
   return (
     <div className="flex flex-col">
