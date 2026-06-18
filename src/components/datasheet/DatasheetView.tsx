@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import type { Datasheet, DatasheetSection } from '../../../lib/api';
+import VerticalScene, { hasScene } from './VerticalScene';
 
 // datasheet slug → hero 配图（静态 public/，模型 C）。仅映射有强相关、可直接用的素材，
 // 其余 datasheet 维持纯文字 hero（优雅降级）。图为「图卡」形式置于 hero 右栏，与 navy 协调。
@@ -220,7 +221,7 @@ function SectionPayload({ section, dark }: { section: DatasheetSection; dark?: b
 
 // ---------- band 版式 ----------
 
-function HeroBand({ band, heroImage, locale }: { band: Band; heroImage?: HeroImage; locale: string }) {
+function HeroBand({ band, media }: { band: Band; media?: ReactNode }) {
   const f = band.lead.fields;
   const metrics = band.parts.find((p) => hasCols(tableCols(p.table), 'Value', 'Label'));
   const text = (
@@ -248,20 +249,10 @@ function HeroBand({ band, heroImage, locale }: { band: Band; heroImage?: HeroIma
         aria-hidden
       />
       <div className="container relative mx-auto px-6 py-20 md:py-28">
-        {heroImage ? (
+        {media ? (
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             {text}
-            <div className="relative">
-              <Image
-                src={heroImage.src}
-                alt={locale === 'en' ? heroImage.alt.en : heroImage.alt['zh-CN']}
-                width={heroImage.width}
-                height={heroImage.height}
-                priority
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
-              />
-            </div>
+            <div className="relative">{media}</div>
           </div>
         ) : (
           text
@@ -347,7 +338,23 @@ export default function DatasheetView({ datasheet, locale }: { datasheet: Datash
         </div>
       </div>
       {bands.map((band, i) => {
-        if (band.lead.id === 'hero') return <HeroBand key={i} band={band} heroImage={HERO_IMAGES[datasheet.slug]} locale={locale} />;
+        if (band.lead.id === 'hero') {
+          const img = HERO_IMAGES[datasheet.slug];
+          const media = img ? (
+            <Image
+              src={img.src}
+              alt={locale === 'en' ? img.alt.en : img.alt['zh-CN']}
+              width={img.width}
+              height={img.height}
+              priority
+              sizes="(min-width: 1024px) 600px, 100vw"
+              className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+            />
+          ) : hasScene(datasheet.slug) ? (
+            <VerticalScene slug={datasheet.slug} locale={locale} />
+          ) : null;
+          return <HeroBand key={i} band={band} media={media} />;
+        }
         if (isCta(band.lead)) return <CtaBand key={i} band={band} locale={locale} />;
         const alt = altIndex++ % 2 === 1;
         return <ContentBand key={i} band={band} alt={alt} />;
