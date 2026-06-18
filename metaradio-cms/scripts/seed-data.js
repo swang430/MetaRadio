@@ -6,63 +6,7 @@
 const rich = (text) => [{ type: 'paragraph', children: [{ type: 'text', text }] }];
 
 module.exports = {
-  platforms: [
-    {
-      slug: 'hyperrt',
-      locales: {
-        en: { name: 'HyperRT Simulation Engine', description: rich('High-fidelity, real-time ray-tracing for the most demanding simulation scenarios.') },
-        'zh-CN': { name: 'HyperRT 仿真引擎', description: rich('高保真、实时的射线追踪引擎，支撑最复杂的无线仿真场景。') },
-      },
-    },
-    {
-      slug: 'raysense',
-      locales: {
-        en: { name: 'RaySense Sensing Equipment', description: rich('Portable, high-resolution channel sounder capturing the ground truth of wireless environments.') },
-        'zh-CN': { name: 'RaySense 感知设备', description: rich('便携式高分辨率信道探测仪，捕获无线环境的地面实况。') },
-      },
-    },
-    {
-      slug: 'csi-sensing',
-      locales: {
-        en: { name: 'CSI-based Positioning & Sensing', description: rich('Leverage Channel State Information (CSI) for high-precision positioning and sensing.') },
-        'zh-CN': { name: 'CSI 定位与感知', description: rich('利用信道状态信息（CSI）实现高精度定位与环境感知。') },
-      },
-    },
-  ],
-  solutions: [
-    {
-      slug: 'virtual-drive-testing',
-      locales: {
-        en: {
-          name: 'Virtual Drive Testing',
-          description: rich('Recreate real-world drive-test scenarios in the lab — lower cost, higher efficiency and repeatability.'),
-          challenge_title: 'The Challenge',
-          challenge: rich('Physical drive testing is expensive, slow and hard to repeat.'),
-          solution_details_title: 'The Solution',
-          solution_details: rich('Horizon One delivers an end-to-end virtual drive-testing workflow, from data acquisition to lab recreation.'),
-          benefits_title: 'Key Benefits',
-          benefits: rich('Significant cost reduction, faster R&D, and wider scenario coverage.'),
-        },
-        'zh-CN': {
-          name: '虚拟路测',
-          description: rich('在实验室中重现真实路测场景，降低成本、提升效率与可重复性。'),
-          challenge_title: '挑战',
-          challenge: rich('物理路测成本高、效率低、且难以重复。'),
-          solution_details_title: '方案',
-          solution_details: rich('Horizon One 提供从数据采集到实验室重建的端到端虚拟路测方案。'),
-          benefits_title: '收益',
-          benefits: rich('显著降本、提速研发、并覆盖更多极端场景。'),
-        },
-      },
-    },
-    {
-      slug: 'mimo-ota',
-      locales: {
-        en: { name: 'MIMO OTA Testing', description: rich('End-to-end MIMO OTA solution from channel modeling to physical test.') },
-        'zh-CN': { name: 'MIMO OTA 测试', description: rich('从信道建模到物理测试的端到端 MIMO OTA 解决方案。') },
-      },
-    },
-  ],
+  // platform / solution 已随命名迁移退役（前端走 datasheet）；仅保留 resource seed。
   resources: [
     {
       slug: 'mvs-whitepaper',
