@@ -25,8 +25,8 @@ const HERO_IMAGES: Record<string, HeroImage> = {
     alt: { 'zh-CN': '电磁孪生验证：射线追踪波束 · RSRP 覆盖热图 · 路测 · 仿真-实测对比', en: 'EM-twin validation: ray-traced beams · RSRP coverage · drive test · sim-vs-measured' },
   },
   'liquid-rf': {
-    src: '/images/ds-liquid-rf.jpg', width: 1200, height: 482,
-    alt: { 'zh-CN': 'Liquid RF：天线经 GPUDirect 以 1–2ms 直连 GPU', en: 'Liquid RF: antenna to GPU via GPUDirect at 1–2 ms' },
+    src: '/images/ds-liquid-rf.webp', width: 1600, height: 980,
+    alt: { 'zh-CN': 'MetaRadio · Liquid RF 产品板：终端通算一体引擎、Runtime 架构与六大场景', en: 'MetaRadio · Liquid RF product board: the compute-comms runtime architecture and six scenarios' },
   },
 };
 

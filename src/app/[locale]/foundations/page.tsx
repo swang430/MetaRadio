@@ -123,10 +123,10 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
             </div>
             <div className="relative">
               <Image
-                src="/images/foundations-hero.jpg"
+                src="/images/foundations-hero.webp"
                 alt={locale === 'en' ? 'The electromagnetic world as measurable data: a cluster-to-probe power contribution matrix (dB)' : '把电磁世界变成可测的数据：簇-探针功率贡献矩阵（dB）'}
                 width={1200}
-                height={727}
+                height={651}
                 priority
                 sizes="(min-width: 1024px) 600px, 100vw"
                 className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
