@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Car, Bot, PlaneTakeoff, Satellite, Radar, RadioTower, Radio, type LucideIcon } from 'lucide-react';
 import { getPage, type Page } from '../../../lib/api';
 
 // 首页五屏叙事（设计纲要 §3.1）：Hero（首句方案 C）→ 双重基础设施 → 数据飞轮 →
@@ -7,6 +8,16 @@ import { getPage, type Page } from '../../../lib/api';
 // 文案由 Strapi page 内容类型提供（seed-data/pages/home.md 导入，后台可编辑、中英同步），
 // 内容源不可达时降级到内联 COPY 兜底；版式 / 链接 / 视觉逻辑留在本组件。
 export const dynamic = 'force-dynamic';
+
+// 场景卡图标：按 slug 映射到统一的 Lucide stroke 图标（§6.3 统一图标系统，取代 emoji）。
+const SCENARIO_ICONS: Record<string, LucideIcon> = {
+  'v4-autonomous-driving': Car,
+  'v5-robotics': Bot,
+  'v1-low-altitude': PlaneTakeoff,
+  'v2-satellite-ntn': Satellite,
+  'v3-isac': Radar,
+  'v6-6g': RadioTower,
+};
 
 type Locale = 'zh-CN' | 'en';
 const pick = (l: string): Locale => (l === 'en' ? 'en' : 'zh-CN');
@@ -303,13 +314,18 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <p className="mt-4 text-slate-600">{t.scenarios.sub}</p>
           </header>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {t.scenarios.items.map((it) => (
-              <Link key={it.slug} href={`/${locale}/datasheets/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
-                <div className="mb-3 text-3xl">{it.icon}</div>
-                <h3 className="mb-2 text-lg font-semibold text-brand-navy group-hover:text-brand-cyan">{it.name}</h3>
-                <p className="text-sm leading-relaxed text-slate-600">{it.line}</p>
-              </Link>
-            ))}
+            {t.scenarios.items.map((it) => {
+              const Icon = SCENARIO_ICONS[it.slug] ?? Radio;
+              return (
+                <Link key={it.slug} href={`/${locale}/datasheets/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-navy transition group-hover:bg-brand-cyan/20 group-hover:text-brand-cyan">
+                    <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold text-brand-navy group-hover:text-brand-cyan">{it.name}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600">{it.line}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
