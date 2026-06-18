@@ -14,14 +14,18 @@ const pick = (locale: string): MockLocale => (locale === 'en' ? 'en' : 'zh-CN');
 
 const RESOURCES: Record<MockLocale, Resource[]> = {
   'zh-CN': [
-    { id: 1, slug: 'mvs-whitepaper', Title: '测量验证仿真（MVS）白皮书', Description: rich('深入解读 MVS 方法论如何将真实测量与高保真仿真相结合。'), type: 'White Paper', publicationDate: '2025-09-01' },
-    { id: 2, slug: 'automotive-case-study', Title: '某车企虚拟路测案例研究', Description: rich('某头部车企采用 Horizon One 将路测成本降低约 60%。'), type: 'Case Study', publicationDate: '2025-08-15' },
-    { id: 3, slug: 'csi-sensing-blog', Title: '博客：CSI 感知的未来', Description: rich('为什么基于 CSI 的无源感知将重塑无线网络的运维方式。'), type: 'Blog Post', publicationDate: '2025-07-20' },
+    { id: 1, slug: 'low-altitude-em-twin-whitepaper', Title: '《2026 低空通信电磁孪生白皮书》', Description: rich('确定性电磁孪生如何为城市低空的 C2、图传与定位链路降风险。'), type: 'White Paper', publicationDate: '2026-03-10' },
+    { id: 2, slug: 'soft-baseband-engineering-whitepaper', Title: '《神经网络软基带工程化：从 PoC 到量产》', Description: rich('在 GPU/NPU 上工程化 AI-Native 软基带——OTA 演进、灰度发布、安全回滚。'), type: 'White Paper', publicationDate: '2026-02-18' },
+    { id: 3, slug: 'v2x-validation-case-study', Title: '城市峡谷与隧道中的 V2X 链路验证', Description: rich('电磁孪生 + HIL 工作流把 V2X 偶发掉线定位到多径遮挡，并固化为可回归用例。'), type: 'Case Study', publicationDate: '2026-01-22' },
+    { id: 4, slug: 'robotics-factory-case-study', Title: 'AGV/协作机器人的工厂级无线可靠性', Description: rich('产线级电磁孪生评估覆盖、驯服金属反射，保障 AGV 控制链路低时延。'), type: 'Case Study', publicationDate: '2025-12-12' },
+    { id: 5, slug: 'isac-one-beam-blog', Title: '通感一体：同一束电磁波的两件事', Description: rich('为什么"在同一份电磁图上同时做感知与通信"是 5G-A/6G 最具想象力的方向，以及如何验证它。'), type: 'Blog Post', publicationDate: '2026-04-08' },
   ],
   en: [
-    { id: 1, slug: 'mvs-whitepaper', Title: 'Measurement-Validated Simulation (MVS) Whitepaper', Description: rich('A deep dive into how MVS merges real-world measurement with high-fidelity simulation.'), type: 'White Paper', publicationDate: '2025-09-01' },
-    { id: 2, slug: 'automotive-case-study', Title: 'Automotive Virtual Drive-Test Case Study', Description: rich('A leading automaker cut drive-test cost by ~60% with Horizon One.'), type: 'Case Study', publicationDate: '2025-08-15' },
-    { id: 3, slug: 'csi-sensing-blog', Title: 'Blog: The Future of CSI Sensing', Description: rich('Why CSI-based passive sensing will reshape how wireless networks are operated.'), type: 'Blog Post', publicationDate: '2025-07-20' },
+    { id: 1, slug: 'low-altitude-em-twin-whitepaper', Title: '2026 Low-Altitude Communication EM-Twin Whitepaper', Description: rich('How a deterministic EM twin de-risks C2, video-downlink and positioning links in urban low-altitude airspace.'), type: 'White Paper', publicationDate: '2026-03-10' },
+    { id: 2, slug: 'soft-baseband-engineering-whitepaper', Title: 'Neural-Network Soft Baseband: From PoC to Mass Production', Description: rich('Engineering an AI-Native soft baseband on GPU/NPU — OTA evolution, staged rollout, safe rollback.'), type: 'White Paper', publicationDate: '2026-02-18' },
+    { id: 3, slug: 'v2x-validation-case-study', Title: 'V2X Link Validation in Canyons & Tunnels', Description: rich('An EM-twin + HIL workflow root-caused intermittent V2X drops to multipath blockage and hardened a regression suite.'), type: 'Case Study', publicationDate: '2026-01-22' },
+    { id: 4, slug: 'robotics-factory-case-study', Title: 'Factory-Grade Wireless Reliability for AGV/Cobots', Description: rich('A production-line EM twin assessed coverage and tamed metal reflection to keep AGV control links low-latency.'), type: 'Case Study', publicationDate: '2025-12-12' },
+    { id: 5, slug: 'isac-one-beam-blog', Title: 'ISAC: Two Jobs for One Beam of Waves', Description: rich('Why sensing and communication on one EM map is the most imaginative direction of 5G-A/6G — and how to validate it.'), type: 'Blog Post', publicationDate: '2026-04-08' },
   ],
 };
 
