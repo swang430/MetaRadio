@@ -189,6 +189,16 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <div className="flex flex-col">
       {/* 第一屏 · Hero */}
       <section className="relative overflow-hidden bg-brand-navy text-white">
+        {/* 背景照（工程师 + 全息界面，来自 BP 素材）—— 低透明度作底纹，上覆 navy 渐变保证文字可读。 */}
+        <Image
+          src="/images/hero-lab.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/90 via-brand-navy/85 to-brand-navy/70" aria-hidden />
         <div
           className="pointer-events-none absolute inset-0"
           style={{ background: 'radial-gradient(1000px 600px at 75% -15%, rgba(0,209,255,0.25), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(16,185,129,0.16), transparent 60%)' }}
