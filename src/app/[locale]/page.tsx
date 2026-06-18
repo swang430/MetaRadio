@@ -230,6 +230,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 width={1600}
                 height={900}
                 priority
+                sizes="(min-width: 1024px) 600px, 100vw"
                 className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
               />
             </div>
@@ -256,11 +257,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {/* 双重基础设施主图（设计 §3.1 第二屏）—— 静态品牌视觉，来自 MWC 物料「产品战略图」。 */}
           <div className="mx-auto mb-12 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
             <Image
-              src="/images/dual-infrastructure.png"
+              src="/images/dual-infrastructure.webp"
               alt="MetaRadio + Lauraycs 双引擎产品体系：终端连接底座与无线世界模型训练平台"
               width={2016}
               height={926}
               className="h-auto w-full"
+              sizes="(min-width: 1024px) 1024px, 100vw"
               priority
             />
           </div>
