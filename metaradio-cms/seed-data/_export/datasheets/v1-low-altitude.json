@@ -1,0 +1,893 @@
+{
+  "slug": "v1-low-altitude",
+  "en": {
+    "title": "Low-Altitude Economy · The EM Twin for Urban Low-Altitude Communications",
+    "slug": "v1-low-altitude",
+    "product": "MetaRadio · Low Altitude Solution",
+    "category": "vertical",
+    "code": "V1",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "low-altitude economy",
+      "UAV",
+      "eVTOL",
+      "UAM",
+      "UTM",
+      "C2 link",
+      "video downlink",
+      "EM twin"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Vertical Datasheet · 低空 / Low Altitude",
+            "Eyebrow": "Industry Vertical Market Solution",
+            "Headline": "The EM Twin for Urban Low-Altitude Communications",
+            "Headline-em": "Let the drone's \"invisible airways\" prove out in simulation first",
+            "Sub": "The core tension of the low-altitude economy lies between the complex electromagnetic environment a few hundred meters up and the near-zero-interruption demands placed on C2, video downlink, and positioning. With a three-tier solution of ray tracing + virtual drive test + EM twin, MetaRadio turns this invisible low-altitude electromagnetic map into engineering infrastructure that can be simulated, tested, and operated across urban buildings, tower clutter, and air-ground integrated networks."
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Vertical Datasheet · 低空 / Low Altitude"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "Industry Vertical Market Solution"
+            },
+            {
+              "title": "Headline",
+              "text": "The EM Twin for Urban Low-Altitude Communications"
+            },
+            {
+              "title": "Headline-em",
+              "text": "Let the drone's \"invisible airways\" prove out in simulation first"
+            },
+            {
+              "title": "Sub",
+              "text": "The core tension of the low-altitude economy lies between the complex electromagnetic environment a few hundred meters up and the near-zero-interruption demands placed on C2, video downlink, and positioning. With a three-tier solution of ray tracing + virtual drive test + EM twin, MetaRadio turns this invisible low-altitude electromagnetic map into engineering infrastructure that can be simulated, tested, and operated across urban buildings, tower clutter, and air-ground integrated networks."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "0–600 m",
+              "Label": "Full coverage across urban low-altitude heights"
+            },
+            {
+              "Value": "C2 / video downlink / 5G-A",
+              "Label": "Joint multi-link simulation"
+            },
+            {
+              "Value": "UTM integration",
+              "Label": "Interworking with UAV management platforms"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "Electromagnetic Challenges of Low-Altitude Scenarios",
+          "heading": "Challenge · Electromagnetic Challenges of Low-Altitude Scenarios",
+          "level": 1,
+          "fields": {
+            "Title": "Urban low altitude is the most uncertain stretch of space for wireless signals",
+            "Description": "The low-altitude band of 50–600 m sits between the ground cellular main lobe and satellite coverage—precisely the most uncertain \"interlayer\" of electromagnetic coverage. UAV logistics, urban inspection, eVTOL commuting, and similar use cases demand near-aviation-grade communication continuity, yet the underlying electromagnetic environment is almost a blank slate."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🏙",
+              "Title": "Building and tower-clutter reflections",
+              "Text": "Urban building clusters create dense reflections and blockage at low altitude; with ground cellular main lobes pointing downward, low-altitude coverage forms \"funnel-shaped\" caves."
+            },
+            {
+              "Icon": "📡",
+              "Title": "High-reliability C2 link",
+              "Text": "Control links require millisecond-level latency and ≥ 99.999% availability—conditions on which traditional statistical models cannot deliver deterministic conclusions."
+            },
+            {
+              "Icon": "🛂",
+              "Title": "UTM regulatory coordination",
+              "Text": "Low-altitude management needs \"electromagnetic airway\" semantics, yet current UTM systems generally lack electromagnetic-layer data."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "Deploying the Three Tiers in Low Altitude",
+          "heading": "Solution · Deploying the Three Tiers in Low Altitude",
+          "level": 1,
+          "fields": {
+            "Title": "Ray tracing → virtual drive test → EM twin, a closed loop serving low altitude",
+            "Description": "The three-tier solution maps step by step onto the three stages of low-altitude R&D, testing, and operations. From simulated airways and ground station planning, to UAV C2/video-downlink HIL testing, to a real-time EM twin interworking with UTM, it forms an end-to-end low-altitude electromagnetic toolchain."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "stack-layers",
+          "key": "Stack Layers",
+          "label": "",
+          "heading": "Stack Layers",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Layer": "L1",
+              "Layer Name": "Ray tracing / Lauraycs",
+              "Description": "Urban low-altitude 3D channel simulation: buildings + tower clutter + multiple base stations, outputting RSRP/SINR/multipath and Doppler along the route."
+            },
+            {
+              "Layer": "L2",
+              "Layer Name": "Virtual drive test / HIL",
+              "Description": "Simulated channels drive the channel emulator and UAV communication test bench, running HIL regression on C2, video downlink, and 5G-A modules."
+            },
+            {
+              "Layer": "L3",
+              "Layer Name": "EM twin / EM-Twin",
+              "Description": "An urban low-altitude EM twin interworking with the UTM platform, delivering real-time route recommendations and anomaly alerts."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "End-to-End Workflow",
+          "heading": "Architecture · End-to-End Workflow",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "Urban low-altitude modeling",
+              "Desc": "High-precision 3D city model + live-network base station configuration + planned routes/takeoff-and-landing points."
+            },
+            {
+              "Step": "02",
+              "Title": "Airway electromagnetic simulation",
+              "Desc": "The RT engine generates time-varying multipath, coverage blind spots, Doppler, and handover risk maps along the route."
+            },
+            {
+              "Step": "03",
+              "Title": "C2/video-downlink HIL",
+              "Desc": "The channel emulator drives real UAV modules/ground stations to run link-loss/jitter/handover regression."
+            },
+            {
+              "Step": "04",
+              "Title": "UTM closed-loop operations",
+              "Desc": "Real-time electromagnetic situational awareness feeds into UTM, dynamically adjusting airways and takeoff/landing time windows."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "Industry-Specific Specs",
+          "heading": "Specifications · Industry-Specific Specs",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Item": "Height range",
+              "Spec": "0 – 600 m (including the complex near-ground electromagnetic field zone for takeoff and landing)"
+            },
+            {
+              "Item": "Frequency bands",
+              "Spec": "C2: cellular FR1 / FR2 / 5G-A, dedicated C2 bands, Wi-Fi 6/7; video downlink: 5.8 GHz, mmWave"
+            },
+            {
+              "Item": "Use-case models",
+              "Spec": "Urban logistics, inspection, police, emergency response, eVTOL UAM, crop protection, surveying and mapping"
+            },
+            {
+              "Item": "Channel output",
+              "Spec": "Along-route CIR/PDP, coverage holes, Doppler, multi-base-station joint SINR time series"
+            },
+            {
+              "Item": "HIL targets",
+              "Spec": "UAV modules, ground stations, 5G-A high-band modules, mesh self-organizing networks"
+            },
+            {
+              "Item": "UTM integration",
+              "Spec": "Mainstream UTM data formats already supported (USS/UAS Service Supplier)"
+            },
+            {
+              "Item": "Regulatory alignment",
+              "Spec": "Coordinated with regional low-altitude operating procedures; can output an evidence chain for electromagnetic airway approval"
+            },
+            {
+              "Item": "Deployment",
+              "Spec": "Public/private cloud, edge nodes; supports pilot city-scale clusters"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "Core Differentiation",
+          "heading": "Differentiators · Core Differentiation",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "Dedicated \"low-altitude interlayer\" EM modeling": "Simultaneously accounts for the downtilted ground cellular main lobe, building reflections, and tower-clutter blockage.",
+            "Deterministic KPIs for the C2 link": "Goes beyond coverage maps to provide millisecond-level latency, packet-loss probability, and handover paths.",
+            "HIL directly driving real UAV modules": "Reproduces \"instant loss-of-link\" scenarios rarely encountered in the field.",
+            "UTM data compatibility": "Outputs an \"electromagnetic airway\" information layer that interworks with UAV traffic management platforms.",
+            "Air-ground integrated planning": "A single engine supports coordinated evaluation of ground networks, low-altitude networks, and satellite NTN.",
+            "Visual delivery": "3D electromagnetic airways, risk heatmaps, and beam shadows visualized in a single view."
+          },
+          "items": [
+            {
+              "title": "Dedicated \"low-altitude interlayer\" EM modeling",
+              "text": "Simultaneously accounts for the downtilted ground cellular main lobe, building reflections, and tower-clutter blockage."
+            },
+            {
+              "title": "Deterministic KPIs for the C2 link",
+              "text": "Goes beyond coverage maps to provide millisecond-level latency, packet-loss probability, and handover paths."
+            },
+            {
+              "title": "HIL directly driving real UAV modules",
+              "text": "Reproduces \"instant loss-of-link\" scenarios rarely encountered in the field."
+            },
+            {
+              "title": "UTM data compatibility",
+              "text": "Outputs an \"electromagnetic airway\" information layer that interworks with UAV traffic management platforms."
+            },
+            {
+              "title": "Air-ground integrated planning",
+              "text": "A single engine supports coordinated evaluation of ground networks, low-altitude networks, and satellite NTN."
+            },
+            {
+              "title": "Visual delivery",
+              "text": "3D electromagnetic airways, risk heatmaps, and beam shadows visualized in a single view."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "Typical Scenarios",
+          "heading": "Applications · Typical Scenarios",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "📦",
+              "Title": "Urban UAV logistics",
+              "Text": "Route planning and C2-link SLA design for logistics companies."
+            },
+            {
+              "Icon": "🛫",
+              "Title": "eVTOL / UAM",
+              "Text": "Electromagnetic coverage of commuter routes and multi-base-station handover reliability verification."
+            },
+            {
+              "Icon": "🚓",
+              "Title": "Police and emergency response",
+              "Text": "On-demand electromagnetic airway generation and emergency backhaul for incident areas."
+            },
+            {
+              "Icon": "🛠",
+              "Title": "Urban inspection",
+              "Text": "Video-downlink link assurance for bridge, power, and gas inspection routes."
+            },
+            {
+              "Icon": "🌾",
+              "Title": "Agricultural crop protection",
+              "Text": "Cellular coverage and video-downlink reliability prediction for field operations."
+            },
+            {
+              "Icon": "🛰",
+              "Title": "Air-ground integration",
+              "Text": "Fused planning of ground + satellite + low-altitude multi-link."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "Customers and Ecosystem",
+          "heading": "Proof · Customers and Ecosystem",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "Multiple",
+              "Label": "Pilot city low-altitude EM twin projects"
+            },
+            {
+              "Value": "Leading",
+              "Label": "Partnerships with UAV/eVTOL OEMs and operators"
+            },
+            {
+              "Value": "UTM",
+              "Label": "Integrated with multiple UAV management platforms"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "Contact",
+          "heading": "CTA · Contact",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "Request the low-altitude EM twin solution",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "Let the low-altitude economy prove out in the EM twin first.",
+            "Sub": "乾径科技 MetaRadio · Low-Altitude Vertical Solution"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "Request the low-altitude EM twin solution"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "Let the low-altitude economy prove out in the EM twin first."
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · Low-Altitude Vertical Solution"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  },
+  "zh-CN": {
+    "title": "低空经济 · 城市低空通信的电磁孪生",
+    "slug": "v1-low-altitude",
+    "product": "MetaRadio · Low Altitude Solution",
+    "category": "vertical",
+    "code": "V1",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "低空经济",
+      "无人机",
+      "eVTOL",
+      "UAM",
+      "UTM",
+      "C2 链路",
+      "图传",
+      "电磁孪生"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Vertical Datasheet · 低空 / Low Altitude",
+            "Eyebrow": "行业垂直市场解决方案",
+            "Headline": "城市低空通信的电磁孪生",
+            "Headline-em": "让无人机的\"看不见的航道\"先在仿真里跑通",
+            "Sub": "低空经济的核心矛盾，是几百米高度的复杂电磁环境与对 C2、图传、定位\"零中断\"的极高要求之间的张力。乾径以射线跟踪 + 虚拟路测 + 电磁孪生三层方案，在城市楼宇、塔林与空地一体网络中，把这张看不见的低空电磁图，变成可仿真、可测试、可运营的工程基础设施。"
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Vertical Datasheet · 低空 / Low Altitude"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "行业垂直市场解决方案"
+            },
+            {
+              "title": "Headline",
+              "text": "城市低空通信的电磁孪生"
+            },
+            {
+              "title": "Headline-em",
+              "text": "让无人机的\"看不见的航道\"先在仿真里跑通"
+            },
+            {
+              "title": "Sub",
+              "text": "低空经济的核心矛盾，是几百米高度的复杂电磁环境与对 C2、图传、定位\"零中断\"的极高要求之间的张力。乾径以射线跟踪 + 虚拟路测 + 电磁孪生三层方案，在城市楼宇、塔林与空地一体网络中，把这张看不见的低空电磁图，变成可仿真、可测试、可运营的工程基础设施。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "0–600 m",
+              "Label": "城市低空高度全覆盖"
+            },
+            {
+              "Value": "C2 / 图传 / 5G-A",
+              "Label": "多链路联合仿真"
+            },
+            {
+              "Value": "UTM 对接",
+              "Label": "与无人机管理平台联动"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "低空场景的电磁挑战",
+          "heading": "Challenge · 低空场景的电磁挑战",
+          "level": 1,
+          "fields": {
+            "Title": "城市低空，是无线信号最不确定的一段空间",
+            "Description": "低空 50–600 m 区间，介于地面蜂窝主瓣与卫星覆盖之间，恰好是电磁覆盖最不确定的\"夹层\"。无人机物流、城市巡检、eVTOL 通勤等业务对通信连续性要求接近航空级，但底层电磁环境却几乎是空白。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🏙",
+              "Title": "楼宇与塔林反射",
+              "Text": "城市建筑群在低空形成密集反射与遮挡，地面蜂窝主瓣朝下，低空覆盖呈\"漏斗状\"洞穴。"
+            },
+            {
+              "Icon": "📡",
+              "Title": "C2 链路高可靠",
+              "Text": "控制链路要求毫秒级时延、≥ 99.999% 可用性，传统统计模型给不出确定性结论。"
+            },
+            {
+              "Icon": "🛂",
+              "Title": "UTM 监管协同",
+              "Text": "低空管理需要\"电磁航道\"语义，但当前 UTM 系统普遍缺失电磁层数据。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "三层产品在低空的部署",
+          "heading": "Solution · 三层产品在低空的部署",
+          "level": 1,
+          "fields": {
+            "Title": "射线跟踪 → 虚拟路测 → 电磁孪生，闭环服务低空",
+            "Description": "三层方案逐级映射低空研发、测试与运营三个阶段。从仿真航道、地面台站规划，到无人机 C2/图传 HIL 测试，再到与 UTM 联动的实时电磁孪生，形成端到端低空电磁工具链。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "stack-layers",
+          "key": "Stack Layers",
+          "label": "",
+          "heading": "Stack Layers",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Layer": "L1",
+              "Layer Name": "射线跟踪 / Lauraycs",
+              "Description": "城市低空 3D 信道仿真：楼宇 + 塔林 + 多基站，输出航线沿线 RSRP/SINR/多径与 Doppler。"
+            },
+            {
+              "Layer": "L2",
+              "Layer Name": "虚拟路测 / HIL",
+              "Description": "仿真信道驱动信道仿真仪与 UAV 通信测试台，对 C2、图传、5G-A 模组开展 HIL 回归。"
+            },
+            {
+              "Layer": "L3",
+              "Layer Name": "电磁孪生 / EM-Twin",
+              "Description": "与 UTM 平台对接的城市低空电磁孪生，实时输出航线推荐与异常预警。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "端到端工作流",
+          "heading": "Architecture · 端到端工作流",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "城市低空建模",
+              "Desc": "高精度 3D 城市模型 + 现网基站配置 + 计划航线/起降点。"
+            },
+            {
+              "Step": "02",
+              "Title": "航道电磁仿真",
+              "Desc": "RT 引擎沿航线生成时变多径、覆盖盲区、多普勒与切换风险图。"
+            },
+            {
+              "Step": "03",
+              "Title": "C2/图传 HIL",
+              "Desc": "信道仿真仪驱动真实 UAV 模组/地面站，做断链/抖动/切换回归。"
+            },
+            {
+              "Step": "04",
+              "Title": "UTM 闭环运营",
+              "Desc": "实时电磁态势接入 UTM，动态调整航道与起降时间窗口。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "行业特定规格",
+          "heading": "Specifications · 行业特定规格",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "项目": "高度范围",
+              "规格": "0 – 600 m（含起降近地复杂电磁场区域）"
+            },
+            {
+              "项目": "频段",
+              "规格": "C2: 蜂窝 FR1 / FR2 / 5G-A、专用 C2 频段、Wi-Fi 6/7；图传：5.8 GHz、毫米波"
+            },
+            {
+              "项目": "业务模型",
+              "规格": "城市物流、巡检、警用、应急、eVTOL UAM、植保、测绘"
+            },
+            {
+              "项目": "信道输出",
+              "规格": "沿航线 CIR/PDP、覆盖洞、Doppler、多基站联合 SINR 时序"
+            },
+            {
+              "项目": "HIL 对象",
+              "规格": "无人机模组、地面站、5G-A 高频模组、Mesh 自组网"
+            },
+            {
+              "项目": "UTM 对接",
+              "规格": "已支持主流 UTM 数据格式 (USS/UAS Service Supplier)"
+            },
+            {
+              "项目": "监管对齐",
+              "规格": "与各地低空运行规程协同，可输出电磁航道审批证据链"
+            },
+            {
+              "项目": "部署",
+              "规格": "公有/私有云、边缘节点；支持试点城市级集群"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "核心差异化",
+          "heading": "Differentiators · 核心差异化",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "\"低空夹层\"专项电磁建模": "同时考虑地面蜂窝下倾主瓣、楼宇反射与塔林遮挡。",
+            "C2 链路的确定性 KPI": "不只给覆盖图，给出毫秒级时延、丢包概率与切换路径。",
+            "HIL 直驱 UAV 真实模组": "复现外场难以遇见的\"瞬间失联\"场景。",
+            "UTM 数据兼容": "输出可与无人机交通管理平台对接的\"电磁航道\"信息层。",
+            "空地一体规划": "同一引擎支持地面网络、低空网络、卫星 NTN 协同评估。",
+            "可视化交付": "3D 电磁航道、风险热力、波束阴影一图可视。"
+          },
+          "items": [
+            {
+              "title": "\"低空夹层\"专项电磁建模",
+              "text": "同时考虑地面蜂窝下倾主瓣、楼宇反射与塔林遮挡。"
+            },
+            {
+              "title": "C2 链路的确定性 KPI",
+              "text": "不只给覆盖图，给出毫秒级时延、丢包概率与切换路径。"
+            },
+            {
+              "title": "HIL 直驱 UAV 真实模组",
+              "text": "复现外场难以遇见的\"瞬间失联\"场景。"
+            },
+            {
+              "title": "UTM 数据兼容",
+              "text": "输出可与无人机交通管理平台对接的\"电磁航道\"信息层。"
+            },
+            {
+              "title": "空地一体规划",
+              "text": "同一引擎支持地面网络、低空网络、卫星 NTN 协同评估。"
+            },
+            {
+              "title": "可视化交付",
+              "text": "3D 电磁航道、风险热力、波束阴影一图可视。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "典型场景",
+          "heading": "Applications · 典型场景",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "📦",
+              "Title": "城市无人机物流",
+              "Text": "物流公司航线规划与 C2 链路 SLA 设计。"
+            },
+            {
+              "Icon": "🛫",
+              "Title": "eVTOL / UAM",
+              "Text": "通勤航线电磁覆盖与多基站切换可靠性验证。"
+            },
+            {
+              "Icon": "🚓",
+              "Title": "警用与应急",
+              "Text": "突发事件区域临时电磁航道生成与应急回传。"
+            },
+            {
+              "Icon": "🛠",
+              "Title": "城市巡检",
+              "Text": "桥梁、电力、燃气巡检航线的图传链路保障。"
+            },
+            {
+              "Icon": "🌾",
+              "Title": "农业植保",
+              "Text": "大田作业蜂窝覆盖与图传可靠性预测。"
+            },
+            {
+              "Icon": "🛰",
+              "Title": "空地一体",
+              "Text": "地面 + 卫星 + 低空多链路融合规划。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "客户与生态",
+          "heading": "Proof · 客户与生态",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "多个",
+              "Label": "试点城市低空电磁孪生项目"
+            },
+            {
+              "Value": "头部",
+              "Label": "UAV/eVTOL OEM 与运营方合作"
+            },
+            {
+              "Value": "UTM",
+              "Label": "与多家无人机管理平台对接"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "联系方式",
+          "heading": "CTA · 联系方式",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "申请低空电磁孪生方案",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "让低空经济，先在电磁孪生里跑通。",
+            "Sub": "乾径科技 MetaRadio · 低空垂直解决方案"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "申请低空电磁孪生方案"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "让低空经济，先在电磁孪生里跑通。"
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · 低空垂直解决方案"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  }
+}

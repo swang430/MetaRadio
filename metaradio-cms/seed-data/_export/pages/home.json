@@ -1,0 +1,783 @@
+{
+  "slug": "home",
+  "en": {
+    "slug": "home",
+    "title": "Home",
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "MetaRadio · AI-Native Wireless",
+            "Title": "AI-Native Wireless",
+            "TitleEm": "Starts Here",
+            "Sub": "In the digital world, an EM twin as the R&D foundation; in the physical world, a neural-network soft baseband as the terminal foundation. One electromagnetic reality, two infrastructures.",
+            "CtaPrimary": "Explore products & solutions",
+            "CtaSecondary": "Book an R&D consult"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "MetaRadio · AI-Native Wireless"
+            },
+            {
+              "title": "Title",
+              "text": "AI-Native Wireless"
+            },
+            {
+              "title": "TitleEm",
+              "text": "Starts Here"
+            },
+            {
+              "title": "Sub",
+              "text": "In the digital world, an EM twin as the R&D foundation; in the physical world, a neural-network soft baseband as the terminal foundation. One electromagnetic reality, two infrastructures."
+            },
+            {
+              "title": "CtaPrimary",
+              "text": "Explore products & solutions"
+            },
+            {
+              "title": "CtaSecondary",
+              "text": "Book an R&D consult"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "pillars",
+          "key": "Pillars",
+          "label": "",
+          "heading": "Pillars",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Key": "L1–L3",
+              "Value": "Foundations · simulation to twin"
+            },
+            {
+              "Key": "V1–V6",
+              "Value": "Verticals · six terminal classes"
+            },
+            {
+              "Key": "Liquid RF",
+              "Value": "AI-Native terminal runtime"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "dual",
+          "key": "Dual",
+          "label": "",
+          "heading": "Dual",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "Dual Infrastructure",
+            "Title": "One EM reality, two infrastructures",
+            "Sub": "One GPU-accelerated electromagnetic compute stack spanning both ends — from R&D to terminal."
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "Dual Infrastructure"
+            },
+            {
+              "title": "Title",
+              "text": "One EM reality, two infrastructures"
+            },
+            {
+              "title": "Sub",
+              "text": "One GPU-accelerated electromagnetic compute stack spanning both ends — from R&D to terminal."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "digital",
+          "key": "Digital",
+          "label": "",
+          "heading": "Digital",
+          "level": 2,
+          "fields": {
+            "Tag": "Digital world",
+            "Name": "Lauraycs / MetaRadio",
+            "Desc": "The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3).",
+            "Cta": "View foundations →",
+            "Href": "datasheets"
+          },
+          "items": [
+            {
+              "title": "Tag",
+              "text": "Digital world"
+            },
+            {
+              "title": "Name",
+              "text": "Lauraycs / MetaRadio"
+            },
+            {
+              "title": "Desc",
+              "text": "The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3)."
+            },
+            {
+              "title": "Cta",
+              "text": "View foundations →"
+            },
+            {
+              "title": "Href",
+              "text": "datasheets"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "physical",
+          "key": "Physical",
+          "label": "",
+          "heading": "Physical",
+          "level": 2,
+          "fields": {
+            "Tag": "Physical world",
+            "Name": "Liquid RF",
+            "Desc": "The neural-network soft-baseband terminal foundation: communication moves from module to system capability.",
+            "Cta": "Explore Liquid RF →",
+            "Href": "datasheets/liquid-rf"
+          },
+          "items": [
+            {
+              "title": "Tag",
+              "text": "Physical world"
+            },
+            {
+              "title": "Name",
+              "text": "Liquid RF"
+            },
+            {
+              "title": "Desc",
+              "text": "The neural-network soft-baseband terminal foundation: communication moves from module to system capability."
+            },
+            {
+              "title": "Cta",
+              "text": "Explore Liquid RF →"
+            },
+            {
+              "title": "Href",
+              "text": "datasheets/liquid-rf"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bridge",
+          "key": "Bridge",
+          "label": "",
+          "heading": "Bridge",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [
+            "GPU-accelerated EM compute stack",
+            "AI-Native methodology",
+            "EM-twin data"
+          ],
+          "text": ""
+        },
+        {
+          "id": "flywheel",
+          "key": "Flywheel",
+          "label": "",
+          "heading": "Flywheel",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "The Data Flywheel",
+            "Title": "Two halves of one flywheel",
+            "Sub": "Not two parallel product lines, but two halves of one flywheel — each turn brings simulation closer to reality."
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "The Data Flywheel"
+            },
+            {
+              "title": "Title",
+              "text": "Two halves of one flywheel"
+            },
+            {
+              "title": "Sub",
+              "text": "Not two parallel product lines, but two halves of one flywheel — each turn brings simulation closer to reality."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "flywheel-steps",
+          "key": "Flywheel Steps",
+          "label": "",
+          "heading": "Flywheel Steps",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [
+            "Simulate channels",
+            "Train soft baseband",
+            "Run on terminals",
+            "Feed back the twin",
+            "Channels closer to reality"
+          ],
+          "text": ""
+        },
+        {
+          "id": "scenarios",
+          "key": "Scenarios",
+          "label": "",
+          "heading": "Scenarios",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "Customers & Scenarios",
+            "Title": "Six high-compute terminal classes, one EM foundation",
+            "Sub": "Value is released first where the wireless link directly determines the business outcome."
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "Customers & Scenarios"
+            },
+            {
+              "title": "Title",
+              "text": "Six high-compute terminal classes, one EM foundation"
+            },
+            {
+              "title": "Sub",
+              "text": "Value is released first where the wireless link directly determines the business outcome."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "items",
+          "key": "Items",
+          "label": "",
+          "heading": "Items",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚗",
+              "Name": "Autonomous Driving · V2X",
+              "Line": "Validate vehicle-road-cloud comms in canyons, tunnels and overpasses.",
+              "Slug": "v4-autonomous-driving"
+            },
+            {
+              "Icon": "🤖",
+              "Name": "Robotics & Smart Factory",
+              "Line": "Production-line EM twin for reliable AGV/cobot communication.",
+              "Slug": "v5-robotics"
+            },
+            {
+              "Icon": "🛩",
+              "Name": "Low-Altitude Economy",
+              "Line": "Low-altitude channels between buildings and C2-link continuity.",
+              "Slug": "v1-low-altitude"
+            },
+            {
+              "Icon": "🛰",
+              "Name": "Satellite NTN",
+              "Line": "Space-ground coverage and terminal link assurance.",
+              "Slug": "v2-satellite-ntn"
+            },
+            {
+              "Icon": "📡",
+              "Name": "ISAC",
+              "Line": "One beam of waves serving communication and sensing at once.",
+              "Slug": "v3-isac"
+            },
+            {
+              "Icon": "🌐",
+              "Name": "6G Research",
+              "Line": "A verifiable base for sub-THz, ISAC and RIS.",
+              "Slug": "v6-6g"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "ladder",
+          "key": "Ladder",
+          "label": "",
+          "heading": "Ladder",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "How to Engage",
+            "Title": "From trial to co-build, a three-step ladder",
+            "Sub": "Whether you are an investor assessing the direction or an R&D lead ready to deploy, there is a clear next step.",
+            "Cta": "Book a consult"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "How to Engage"
+            },
+            {
+              "title": "Title",
+              "text": "From trial to co-build, a three-step ladder"
+            },
+            {
+              "title": "Sub",
+              "text": "Whether you are an investor assessing the direction or an R&D lead ready to deploy, there is a clear next step."
+            },
+            {
+              "title": "Cta",
+              "text": "Book a consult"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "ladder-steps",
+          "key": "Ladder Steps",
+          "label": "",
+          "heading": "Ladder Steps",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Name": "Trial",
+              "Meta": "30 min · free",
+              "Desc": "Try the products and channel demos online to judge fit fast."
+            },
+            {
+              "Step": "02",
+              "Name": "Evaluate",
+              "Meta": "One week · validation Sprint",
+              "Desc": "Run one end-to-end validation on your real scenario, with quantified results."
+            },
+            {
+              "Step": "03",
+              "Name": "Co-build",
+              "Meta": "One year · service packages / joint lab",
+              "Desc": "From R&D services to platform licensing — co-build the EM and communication base of next-gen terminals."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  },
+  "zh-CN": {
+    "slug": "home",
+    "title": "首页",
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "乾径科技 MetaRadio · AI-Native Wireless",
+            "Title": "AI-Native 无线，",
+            "TitleEm": "从这里开始",
+            "Sub": "在数字世界用电磁孪生做研发底座，在物理世界用神经网络软基带做终端底座。一份电磁，两端基础设施。",
+            "CtaPrimary": "浏览产品与方案",
+            "CtaSecondary": "预约研发咨询"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "乾径科技 MetaRadio · AI-Native Wireless"
+            },
+            {
+              "title": "Title",
+              "text": "AI-Native 无线，"
+            },
+            {
+              "title": "TitleEm",
+              "text": "从这里开始"
+            },
+            {
+              "title": "Sub",
+              "text": "在数字世界用电磁孪生做研发底座，在物理世界用神经网络软基带做终端底座。一份电磁，两端基础设施。"
+            },
+            {
+              "title": "CtaPrimary",
+              "text": "浏览产品与方案"
+            },
+            {
+              "title": "CtaSecondary",
+              "text": "预约研发咨询"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "pillars",
+          "key": "Pillars",
+          "label": "",
+          "heading": "Pillars",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Key": "L1–L3",
+              "Value": "共性技术 · 仿真到孪生"
+            },
+            {
+              "Key": "V1–V6",
+              "Value": "行业方案 · 六类高算力终端"
+            },
+            {
+              "Key": "Liquid RF",
+              "Value": "AI-Native 终端运行时"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "dual",
+          "key": "Dual",
+          "label": "",
+          "heading": "Dual",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "双重基础设施 · Dual Infrastructure",
+            "Title": "一份电磁，两端基础设施",
+            "Sub": "同一套 GPU 加速电磁计算栈，贯穿从研发到终端的两端。"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "双重基础设施 · Dual Infrastructure"
+            },
+            {
+              "title": "Title",
+              "text": "一份电磁，两端基础设施"
+            },
+            {
+              "title": "Sub",
+              "text": "同一套 GPU 加速电磁计算栈，贯穿从研发到终端的两端。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "digital",
+          "key": "Digital",
+          "label": "",
+          "heading": "Digital",
+          "level": 2,
+          "fields": {
+            "Tag": "数字世界",
+            "Name": "Lauraycs / MetaRadio",
+            "Desc": "电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。",
+            "Cta": "查看共性技术 →",
+            "Href": "datasheets"
+          },
+          "items": [
+            {
+              "title": "Tag",
+              "text": "数字世界"
+            },
+            {
+              "title": "Name",
+              "text": "Lauraycs / MetaRadio"
+            },
+            {
+              "title": "Desc",
+              "text": "电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。"
+            },
+            {
+              "title": "Cta",
+              "text": "查看共性技术 →"
+            },
+            {
+              "title": "Href",
+              "text": "datasheets"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "physical",
+          "key": "Physical",
+          "label": "",
+          "heading": "Physical",
+          "level": 2,
+          "fields": {
+            "Tag": "物理世界",
+            "Name": "Liquid RF",
+            "Desc": "神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。",
+            "Cta": "了解 Liquid RF →",
+            "Href": "datasheets/liquid-rf"
+          },
+          "items": [
+            {
+              "title": "Tag",
+              "text": "物理世界"
+            },
+            {
+              "title": "Name",
+              "text": "Liquid RF"
+            },
+            {
+              "title": "Desc",
+              "text": "神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。"
+            },
+            {
+              "title": "Cta",
+              "text": "了解 Liquid RF →"
+            },
+            {
+              "title": "Href",
+              "text": "datasheets/liquid-rf"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bridge",
+          "key": "Bridge",
+          "label": "",
+          "heading": "Bridge",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [
+            "GPU 加速电磁计算栈",
+            "AI-Native 方法论",
+            "电磁孪生数据"
+          ],
+          "text": ""
+        },
+        {
+          "id": "flywheel",
+          "key": "Flywheel",
+          "label": "",
+          "heading": "Flywheel",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "数据飞轮 · The Data Flywheel",
+            "Title": "同一个飞轮的两半",
+            "Sub": "这不是两条产品线的并行，而是同一个飞轮的两半——每一圈都让仿真更逼近现实。"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "数据飞轮 · The Data Flywheel"
+            },
+            {
+              "title": "Title",
+              "text": "同一个飞轮的两半"
+            },
+            {
+              "title": "Sub",
+              "text": "这不是两条产品线的并行，而是同一个飞轮的两半——每一圈都让仿真更逼近现实。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "flywheel-steps",
+          "key": "Flywheel Steps",
+          "label": "",
+          "heading": "Flywheel Steps",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [
+            "仿真生成信道",
+            "训练软基带",
+            "终端实跑数据",
+            "反哺电磁孪生",
+            "更逼近现实的信道"
+          ],
+          "text": ""
+        },
+        {
+          "id": "scenarios",
+          "key": "Scenarios",
+          "label": "",
+          "heading": "Scenarios",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "客户与场景 · Customers & Scenarios",
+            "Title": "六类高算力终端，一份电磁底座",
+            "Sub": "无线链路直接决定业务结果的地方，正是价值最先释放的地方。"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "客户与场景 · Customers & Scenarios"
+            },
+            {
+              "title": "Title",
+              "text": "六类高算力终端，一份电磁底座"
+            },
+            {
+              "title": "Sub",
+              "text": "无线链路直接决定业务结果的地方，正是价值最先释放的地方。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "items",
+          "key": "Items",
+          "label": "",
+          "heading": "Items",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚗",
+              "Name": "自动驾驶 · V2X",
+              "Line": "城市峡谷、隧道、立交的车路云通信验证。",
+              "Slug": "v4-autonomous-driving"
+            },
+            {
+              "Icon": "🤖",
+              "Name": "机器人与智能工厂",
+              "Line": "产线级电磁孪生，保障 AGV/协作机器人可靠通信。",
+              "Slug": "v5-robotics"
+            },
+            {
+              "Icon": "🛩",
+              "Name": "低空经济",
+              "Line": "城市楼宇间的低空信道与 C2 链路连续性。",
+              "Slug": "v1-low-altitude"
+            },
+            {
+              "Icon": "🛰",
+              "Name": "卫星 NTN",
+              "Line": "星地一体覆盖与终端链路保障。",
+              "Slug": "v2-satellite-ntn"
+            },
+            {
+              "Icon": "📡",
+              "Name": "通感一体 ISAC",
+              "Line": "同一束电磁波，同时服务通信与感知。",
+              "Slug": "v3-isac"
+            },
+            {
+              "Icon": "🌐",
+              "Name": "6G 前沿研究",
+              "Line": "sub-THz、ISAC、智能超表面的可验证底座。",
+              "Slug": "v6-6g"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "ladder",
+          "key": "Ladder",
+          "label": "",
+          "heading": "Ladder",
+          "level": 1,
+          "fields": {
+            "Eyebrow": "进入路径 · How to Engage",
+            "Title": "从试用到共建，三级阶梯",
+            "Sub": "无论你是评估方向的投资人，还是要落地的研发负责人，都有清晰的下一步。",
+            "Cta": "预约咨询"
+          },
+          "items": [
+            {
+              "title": "Eyebrow",
+              "text": "进入路径 · How to Engage"
+            },
+            {
+              "title": "Title",
+              "text": "从试用到共建，三级阶梯"
+            },
+            {
+              "title": "Sub",
+              "text": "无论你是评估方向的投资人，还是要落地的研发负责人，都有清晰的下一步。"
+            },
+            {
+              "title": "Cta",
+              "text": "预约咨询"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "ladder-steps",
+          "key": "Ladder Steps",
+          "label": "",
+          "heading": "Ladder Steps",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Name": "试用",
+              "Meta": "30 分钟 · 免费",
+              "Desc": "在线体验产品与信道演示，快速判断是否契合你的场景。"
+            },
+            {
+              "Step": "02",
+              "Name": "评估",
+              "Meta": "一周 · 研发验证 Sprint",
+              "Desc": "用你的真实场景跑通一次端到端验证，拿到可量化的结果。"
+            },
+            {
+              "Step": "03",
+              "Name": "共建",
+              "Meta": "一年 · 标准服务包 / 联合实验室",
+              "Desc": "从研发服务到平台许可，深度共建下一代终端的电磁与通信底座。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  }
+}

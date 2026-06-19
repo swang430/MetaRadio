@@ -1,0 +1,37 @@
+{
+  "slug": "isac-one-beam-blog",
+  "en": {
+    "title": "ISAC: Two Jobs for One Beam of Waves",
+    "description": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "Why sensing and communication on one EM map is the most imaginative direction of 5G-A/6G — and how to validate it."
+          }
+        ]
+      }
+    ],
+    "slug": "isac-one-beam-blog",
+    "type": "Blog Post",
+    "publication_date": "2026-04-08"
+  },
+  "zh-CN": {
+    "title": "通感一体：同一束电磁波的两件事",
+    "description": [
+      {
+        "type": "paragraph",
+        "children": [
+          {
+            "type": "text",
+            "text": "为什么\"在同一份电磁图上同时做感知与通信\"是 5G-A/6G 最具想象力的方向，以及如何验证它。"
+          }
+        ]
+      }
+    ],
+    "slug": "isac-one-beam-blog",
+    "type": "Blog Post",
+    "publication_date": "2026-04-08"
+  }
+}
