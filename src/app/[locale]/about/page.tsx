@@ -103,9 +103,67 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <section className="relative overflow-hidden bg-brand-navy text-white">
         <div className="pointer-events-none absolute inset-0 opacity-70" style={{ background: 'radial-gradient(900px 520px at 78% -12%, rgba(0,209,255,0.2), transparent 60%)' }} aria-hidden />
         <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
+              <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+            </div>
+            <div className="relative">
+              {/* 一份电磁，两端基础设施：中心电磁核 → 左数字世界(仿真) / 右物理世界(终端算力)。与 V1-V6 场景同系。 */}
+              <svg
+                viewBox="0 0 480 320"
+                role="img"
+                aria-label={locale === 'en' ? 'About MetaRadio: one electromagnetic core serving both the digital world (simulation) and the physical world (terminal compute)' : '关于乾径：一份电磁，两端基础设施——中心电磁核同时服务数字世界（仿真）与物理世界（终端算力）'}
+                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+              >
+                <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+                <circle cx="240" cy="160" r="180" fill="#00D1FF" opacity="0.07" />
+                <g stroke="#00D1FF" strokeWidth="1" opacity="0.35" fill="none">
+                  <circle cx="240" cy="160" r="30" />
+                  <circle cx="240" cy="160" r="46" />
+                </g>
+                <circle cx="240" cy="160" r="15" fill="#1b2950" stroke="#00D1FF" strokeWidth="1.6" />
+                <path d="M233 160 a7 7 0 0 1 14 0" fill="none" stroke="#00D1FF" strokeWidth="1.4" />
+                <circle cx="240" cy="160" r="3" fill="#00D1FF" />
+                <g stroke="#00D1FF" strokeWidth="1.4" opacity="0.55" fill="none">
+                  <path d="M212 150 Q150 130 104 150" />
+                  <path d="M212 170 Q150 190 104 170" />
+                </g>
+                <g stroke="#F59E0B" strokeWidth="1.4" opacity="0.55" fill="none">
+                  <path d="M268 150 Q330 130 376 150" />
+                  <path d="M268 170 Q330 190 376 170" />
+                </g>
+                <g transform="translate(104,160)">
+                  <rect x="-34" y="-34" width="68" height="68" rx="8" fill="#16223f" stroke="#00D1FF" strokeWidth="1.3" />
+                  <g stroke="#00D1FF" strokeWidth="0.9" opacity="0.5">
+                    <line x1="-34" y1="-12" x2="34" y2="-12" />
+                    <line x1="-34" y1="10" x2="34" y2="10" />
+                    <line x1="-12" y1="-34" x2="-12" y2="34" />
+                    <line x1="10" y1="-34" x2="10" y2="34" />
+                  </g>
+                  <circle cx="-23" cy="-23" r="3.5" fill="#00D1FF" opacity="0.85" />
+                  <circle cx="21" cy="-1" r="3.5" fill="#00D1FF" opacity="0.6" />
+                  <circle cx="-1" cy="21" r="3.5" fill="#00D1FF" opacity="0.7" />
+                </g>
+                <g transform="translate(376,160)">
+                  <rect x="-30" y="-30" width="60" height="60" rx="8" fill="#16223f" stroke="#F59E0B" strokeWidth="1.3" />
+                  <rect x="-15" y="-15" width="30" height="30" rx="3" fill="#0A1740" stroke="#F59E0B" strokeWidth="1.2" />
+                  <text x="0" y="5" textAnchor="middle" fill="#F59E0B" fontFamily="sans-serif" fontSize="13" fontWeight="500">AI</text>
+                  <g stroke="#F59E0B" strokeWidth="1.1" opacity="0.7">
+                    <line x1="-22" y1="-9" x2="-30" y2="-9" />
+                    <line x1="-22" y1="0" x2="-30" y2="0" />
+                    <line x1="-22" y1="9" x2="-30" y2="9" />
+                    <line x1="22" y1="-9" x2="30" y2="-9" />
+                    <line x1="22" y1="0" x2="30" y2="0" />
+                    <line x1="22" y1="9" x2="30" y2="9" />
+                  </g>
+                </g>
+                <text x="104" y="232" textAnchor="middle" fill="#9fd9ff" fontFamily="sans-serif" fontSize="13">{locale === 'en' ? 'Digital world' : '数字世界 · 仿真'}</text>
+                <text x="376" y="232" textAnchor="middle" fill="#f5c47a" fontFamily="sans-serif" fontSize="13">{locale === 'en' ? 'Physical world' : '物理世界 · 终端'}</text>
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
