@@ -24,8 +24,8 @@ const nextConfig = {
                 ...(strapiHost.port ? { port: strapiHost.port } : {}),
                 pathname: '/uploads/**',
             },
-            // 生产用 S3 时在此补桶域名，例如：
-            // { protocol: 'https', hostname: '<bucket>.s3.<region>.amazonaws.com', pathname: '/**' },
+            // 生产用阿里云 OSS 时在此补桶/CDN 域名，例如：
+            // { protocol: 'https', hostname: '<bucket>.oss-cn-hangzhou.aliyuncs.com', pathname: '/**' },
         ],
     },
     async redirects() {
