@@ -117,8 +117,7 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
         />
         <div className="container relative z-10 mx-auto px-6 py-20">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
-            <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{t.title}</h1>
+            <h1 className="text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{t.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{t.sub}</p>
           </div>
         </div>

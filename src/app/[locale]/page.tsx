@@ -206,8 +206,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="pointer-events-none absolute inset-0" aria-hidden style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }} />
         <div className="container relative z-10 mx-auto px-6 py-24 md:py-28">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.hero.eyebrow}</p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight md:text-6xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
+            <h1 className="text-4xl font-bold leading-tight md:text-6xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
               {t.hero.title}
               <span className="block text-brand-cyan">{t.hero.titleEm}</span>
             </h1>

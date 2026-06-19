@@ -366,7 +366,7 @@ export default function VerticalScene({ slug, locale }: { slug: string; locale: 
       viewBox="0 0 480 320"
       role="img"
       aria-label={label}
-      className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+      className="h-auto w-full rounded-xl border border-white/10 shadow-md"
     >
       {scene}
     </svg>
