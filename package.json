@@ -14,7 +14,7 @@
   "dependencies": {
     "@strapi/blocks-react-renderer": "^1.0.2",
     "lucide-react": "^1.20.0",
-    "next": "^15.5.2",
+    "next": "^15.5.19",
     "next-intl": "^4.3.6",
     "puppeteer": "^24.22.3",
     "react": "^19.1.1",
@@ -28,7 +28,7 @@
     "@types/react-dom": "^18.2.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^15.5.3",
+    "eslint-config-next": "^15.5.19",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
