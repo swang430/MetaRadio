@@ -2,8 +2,32 @@ import withNextIntl from 'next-intl/plugin';
 
 const withNextIntlConfig = withNextIntl('./src/i18n.ts');
 
+// next/image 远程域名白名单：允许从 Strapi 媒体库（PR-IMG-3 的 heroImage）取图。
+// 由 STRAPI_URL 推导（默认本地 :1337）；生产用 S3 时在 remotePatterns 里补桶域名。
+const strapiUrl = process.env.STRAPI_URL || 'http://localhost:1337';
+const strapiHost = (() => {
+    try {
+        const u = new URL(strapiUrl);
+        return { protocol: u.protocol.replace(':', ''), hostname: u.hostname, port: u.port };
+    } catch {
+        return { protocol: 'http', hostname: 'localhost', port: '1337' };
+    }
+})();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                protocol: strapiHost.protocol,
+                hostname: strapiHost.hostname,
+                ...(strapiHost.port ? { port: strapiHost.port } : {}),
+                pathname: '/uploads/**',
+            },
+            // 生产用 S3 时在此补桶域名，例如：
+            // { protocol: 'https', hostname: '<bucket>.s3.<region>.amazonaws.com', pathname: '/**' },
+        ],
+    },
     async redirects() {
         return [
             {
