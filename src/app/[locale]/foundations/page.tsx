@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
 import { getPage, type Page } from '../../../../lib/api';
 
 // 共性技术 / Foundations —— 设计纲要 §3.2 的"轴心页"。四项共性能力显性化，
@@ -107,31 +107,19 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-brand-navy text-white">
+      {/* Hero（满幅影院射线场，与全站统一） */}
+      <section className="relative isolate flex min-h-[62vh] items-center overflow-hidden text-white" style={{ backgroundColor: '#060B1A' }}>
+        <HeroFieldBg className="absolute inset-0 h-full w-full" />
         <div
-          className="pointer-events-none absolute inset-0 opacity-70"
-          style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(0,209,255,0.22), transparent 60%)' }}
+          className="pointer-events-none absolute inset-0"
           aria-hidden
+          style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }}
         />
-        <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
-              <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/foundations-hero.webp"
-                alt={locale === 'en' ? 'The electromagnetic world as measurable data: a cluster-to-probe power contribution matrix (dB)' : '把电磁世界变成可测的数据：簇-探针功率贡献矩阵（dB）'}
-                width={1200}
-                height={651}
-                priority
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
-              />
-            </div>
+        <div className="container relative z-10 mx-auto px-6 py-20">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
+            <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{t.title}</h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{t.sub}</p>
           </div>
         </div>
       </section>
