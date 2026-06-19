@@ -27,7 +27,7 @@ export default async function ToolsPage({ params }: { params: Promise<{ locale: 
           </div>
         </div>
       </section>
-      <section className="bg-slate-50">
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-16">
           <ToolsClient locale={locale} />
         </div>
