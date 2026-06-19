@@ -43,7 +43,8 @@ function toRecord(filename, raw) {
 }
 
 function loadAll() {
-  const files = fs.readdirSync(DATASHEET_DIR).filter((f) => f.endsWith('.md'));
+  // 跳过 _ 前缀文件（如 _TEMPLATE.md：模板/局部，非真实内容）
+  const files = fs.readdirSync(DATASHEET_DIR).filter((f) => f.endsWith('.md') && !f.startsWith('_'));
   return files
     .filter((f) => !ONLY || f.toLowerCase().includes(ONLY.toLowerCase()))
     .map((f) => toRecord(f, fs.readFileSync(path.join(DATASHEET_DIR, f), 'utf8')));
