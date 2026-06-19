@@ -45,10 +45,8 @@ const Header = () => {
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link href={`/${locale}`} onClick={closeMenu} className="inline-flex">
-            {/* logo.png 为白底图，深色 Header 上裹一层圆角白徽章使其成为有意的 logo 锁版（待替换为透明底/反白 logo 后可去掉）。 */}
-            <span className="inline-flex overflow-hidden rounded-xl bg-white">
-              <Image src="/images/logo.png" alt="乾径科技 MetaRadio Logo" width={213} height={120} className="h-[96px] w-auto" priority />
-            </span>
+            {/* 反白 logo（白字 + 透明底），直接落在深色 Header 上。 */}
+            <Image src="/images/logo-white.png" alt="乾径科技 MetaRadio Logo" width={4000} height={2250} className="h-[104px] w-auto" priority />
           </Link>
         </div>
 
