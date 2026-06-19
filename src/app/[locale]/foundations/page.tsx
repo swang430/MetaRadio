@@ -126,16 +126,16 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
 
       {/* 四项共性能力 */}
       {t.capabilities.map((c, i) => (
-        <section key={c.n} className={i % 2 ? 'bg-slate-50' : 'bg-white'}>
+        <section key={c.n} className={i % 2 ? 'bg-brand-ink-2' : 'bg-brand-ink'}>
           <div className="container mx-auto px-6 py-16 md:py-20">
             <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:gap-12">
               <div className="text-5xl font-bold text-brand-cyan md:text-6xl">{c.n}</div>
               <div>
-                <h2 className="text-2xl font-bold text-brand-navy md:text-3xl">{c.title}</h2>
-                <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-600">{c.lede}</p>
+                <h2 className="text-2xl font-bold text-white md:text-3xl">{c.title}</h2>
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300">{c.lede}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {c.points.map((p) => (
-                    <span key={p} className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-navy">
+                    <span key={p} className="rounded-lg border border-white/10 bg-brand-surface px-4 py-2 text-sm font-medium text-slate-200">
                       {p}
                     </span>
                   ))}
