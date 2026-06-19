@@ -5,8 +5,8 @@ import ResourceList from '../../../components/resources/ResourceList';
 
 // 宣传海报（MWC 成品设计，静态 public/，模型 C）。缩略展示 top，点击看完整图。
 const POSTERS = [
-  { src: '/images/poster-l1l3-stack.jpg', title: { 'zh-CN': 'Lauraycs L1–L3 电磁孪生栈', en: 'Lauraycs L1–L3 EM-Twin Stack' }, tag: { 'zh-CN': '技术海报', en: 'Tech Poster' } },
   { src: '/images/poster-verticals.jpg', title: { 'zh-CN': 'V1–V6 六大行业场景', en: 'V1–V6 Six Vertical Scenarios' }, tag: { 'zh-CN': '行业海报', en: 'Verticals Poster' } },
+  { src: '/images/poster-l1l3-stack.jpg', title: { 'zh-CN': 'Lauraycs L1–L3 电磁孪生栈', en: 'Lauraycs L1–L3 EM-Twin Stack' }, tag: { 'zh-CN': '技术海报', en: 'Tech Poster' } },
   { src: '/images/poster-liquid-rf.jpg', title: { 'zh-CN': 'MetaRadio · Liquid RF 终端通算一体', en: 'MetaRadio · Liquid RF Compute-Comms' }, tag: { 'zh-CN': '产品海报', en: 'Product Poster' } },
 ] as const;
 
