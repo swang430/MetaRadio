@@ -127,6 +127,16 @@ export interface Datasheet {
   locale?: string;
 }
 
+/** 路由分组：产品（横向共性技术 L1-L3 + AI-Native 通信 Liquid RF）归 /products；行业方案（纵向 V1-V6）归 /solutions。 */
+export function datasheetGroup(category?: Datasheet['category']): 'products' | 'solutions' {
+  return category === 'vertical' ? 'solutions' : 'products';
+}
+
+/** datasheet 详情页 URL：按 category 归入 /products/<slug> 或 /solutions/<slug>。 */
+export function datasheetHref(locale: string, d: Pick<Datasheet, 'slug' | 'category'>): string {
+  return `/${locale}/${datasheetGroup(d.category)}/${d.slug}`;
+}
+
 /** 把 Strapi media 的相对 url 绝对化（本地 /uploads/... → STRAPI_URL；S3 已是 http 直接用）。 */
 function absHeroImage(d: Datasheet): Datasheet {
   const u = d.heroImage?.url;

@@ -167,7 +167,7 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
         <div className="container mx-auto px-6 py-20 text-center">
           <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight md:text-4xl">{t.ctaTitle}</h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href={`/${locale}/datasheets`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
+            <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
               {t.ctaPrimary}
             </Link>
             <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">

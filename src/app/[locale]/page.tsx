@@ -46,14 +46,14 @@ const COPY = {
         name: 'Lauraycs / MetaRadio',
         desc: '电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。',
         cta: '查看共性技术 →',
-        href: 'datasheets',
+        href: 'products',
       },
       physical: {
         tag: '物理世界',
         name: 'Liquid RF',
         desc: '神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。',
         cta: '了解 Liquid RF →',
-        href: 'datasheets/liquid-rf',
+        href: 'products/liquid-rf',
       },
       bridge: ['GPU 加速电磁计算栈', 'AI-Native 方法论', '电磁孪生数据'],
     },
@@ -111,14 +111,14 @@ const COPY = {
         name: 'Lauraycs / MetaRadio',
         desc: 'The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3).',
         cta: 'View foundations →',
-        href: 'datasheets',
+        href: 'products',
       },
       physical: {
         tag: 'Physical world',
         name: 'Liquid RF',
         desc: 'The neural-network soft-baseband terminal foundation: communication moves from module to system capability.',
         cta: 'Explore Liquid RF →',
-        href: 'datasheets/liquid-rf',
+        href: 'products/liquid-rf',
       },
       bridge: ['GPU-accelerated EM compute stack', 'AI-Native methodology', 'EM-twin data'],
     },
@@ -215,7 +215,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.hero.sub}</p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={`/${locale}/datasheets`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
+            <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
               {t.hero.ctaPrimary}
             </Link>
             <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
@@ -319,7 +319,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {t.scenarios.items.map((it) => {
               const Icon = SCENARIO_ICONS[it.slug] ?? Radio;
               return (
-                <Link key={it.slug} href={`/${locale}/datasheets/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
+                <Link key={it.slug} href={`/${locale}/solutions/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
                   <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-navy transition group-hover:bg-brand-cyan/20 group-hover:text-brand-cyan">
                     <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
                   </div>
