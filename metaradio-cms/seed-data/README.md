@@ -42,8 +42,19 @@
 
 ## 不在文字同源内
 
-- **图片**：不在 Strapi（部署模型 C），是 `public/images/` 的静态资源（git 管理）、代码里按 `slug→图` 映射引用。要让非编程人员在后台也能换图，需另上 Strapi media + S3。
+- **图片（二进制）**：不走 `.md` 文字同源。分两类：
+  - **datasheet hero 图**：可在 Strapi 后台 GUI 管理（`heroImage` media 字段，PR-IMG-3）——见下「datasheet 配图」。
+  - **其余图**（首页 Hero / Foundations / 资源海报 / 场景 SVG）：`public/images/` 静态资源 + 代码 `slug→图` 映射（git，非 GUI）。
 - **/tools 交互工具**：交互逻辑，文案内联在前端代码（设计边界：逻辑留代码）。
+
+## datasheet 配图（Strapi 媒体 / heroImage）
+
+datasheet 的 hero 图走 Strapi `heroImage`（media 字段），后台 GUI 可换图。前端渲染优先级（叠加式）：
+**heroImage（Strapi 媒体）→ 代码侧静态 `HERO_IMAGES` → `VerticalScene` SVG**（不传则回退静态/场景）。
+
+- **预填现有图**：`npm run upload:images`（把 `public/images/ds-*.jpg` 灌进媒体库并挂到对应 datasheet；需先停 develop，脚本会自己 boot Strapi）。
+- 之后非编程人员在后台 Media Library / `datasheet.heroImage` 直接换图。
+- **存储**：dev = 本地 provider（`public/uploads/`，git 忽略；云端 serverless 上重部署会丢）。**生产 = S3**：`config/plugins.ts` 已按 `AWS_*` 环境变量切换，启用三步——① `npm i @strapi/provider-upload-aws-s3` ② 设 `AWS_BUCKET / AWS_REGION / AWS_ACCESS_KEY_ID / AWS_ACCESS_SECRET`（可选 `AWS_CDN_URL`）③ 在前端 `next.config.mjs` 的 `images.remotePatterns` 加桶/CDN 域名。
 
 ## 恢复
 
