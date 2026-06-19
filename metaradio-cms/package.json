@@ -15,6 +15,7 @@
     "import:datasheets": "node scripts/ensure-env.js && node scripts/ensure-native.js && node scripts/import-datasheets.js",
     "import:pages": "node scripts/ensure-env.js && node scripts/ensure-native.js && node scripts/import-pages.js",
     "backup": "node scripts/backup-content.js",
+    "export": "node scripts/ensure-native.js && node scripts/export-content.js",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },

@@ -1,0 +1,929 @@
+{
+  "slug": "l3-em-twin",
+  "en": {
+    "title": "EM Twin · The Electromagnetic Layer of the Digital Twin",
+    "slug": "l3-em-twin",
+    "product": "MetaRadio EM-Twin Platform",
+    "category": "horizontal",
+    "code": "L3",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "EM Twin",
+      "EM Twin",
+      "Digital Twin",
+      "Digital Twin",
+      "End-to-End Testing",
+      "Electromagnetic Environment",
+      "Communication Infrastructure"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Datasheet · L3 / EM Digital Twin",
+            "Eyebrow": "Three-Tier Product Strategy · Tier Three",
+            "Headline": "EM Twin",
+            "Headline-em": "The Invisible Pillar of the Digital Twin",
+            "Sub": "Backed by the dual foundation of Lauraycs ray tracing channel and hardware-in-the-loop (HIL), it builds a real-time, evolvable EM twin of the electromagnetic environment. It is both the infrastructure for end-to-end testing and the key link that feeds electromagnetic data back into city/factory/low-altitude digital twins—closing the RT loop with reality so it becomes new environmental data once again."
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Datasheet · L3 / EM Digital Twin"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "Three-Tier Product Strategy · Tier Three"
+            },
+            {
+              "title": "Headline",
+              "text": "EM Twin"
+            },
+            {
+              "title": "Headline-em",
+              "text": "The Invisible Pillar of the Digital Twin"
+            },
+            {
+              "title": "Sub",
+              "text": "Backed by the dual foundation of Lauraycs ray tracing channel and hardware-in-the-loop (HIL), it builds a real-time, evolvable EM twin of the electromagnetic environment. It is both the infrastructure for end-to-end testing and the key link that feeds electromagnetic data back into city/factory/low-altitude digital twins—closing the RT loop with reality so it becomes new environmental data once again."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "Real-time",
+              "Label": "Millisecond-level EM field refresh"
+            },
+            {
+              "Value": "End-to-end",
+              "Label": "Full-stack testing from environment to DUT"
+            },
+            {
+              "Value": "Closed loop",
+              "Label": "Reality ↔ simulation ↔ reality data feed back"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "The Missing Link in the Digital Twin",
+          "heading": "Challenge · The Missing Link in the Digital Twin",
+          "level": 1,
+          "fields": {
+            "Title": "Why the Digital Twin Lacks an \"Electromagnetic Layer\"",
+            "Description": "City, campus, factory, and low-altitude digital twin projects are emerging in droves, but the vast majority stop at the geometry and IoT-sensing layers. The moment wireless network planning, ISAC, low-altitude C2, satellite coordination, or intelligent-driving communication is involved, a missing \"electromagnetic layer\" means the twin cannot support end-to-end communication testing or strategic decision-making."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🧱",
+              "Title": "Geometry ≠ Electromagnetics",
+              "Text": "Existing digital twins only describe what is \"visible,\" and are virtually blind to the reflection, diffraction, penetration, and time-varying multipath of electromagnetic waves."
+            },
+            {
+              "Icon": "🔁",
+              "Title": "Broken Reality Feedback",
+              "Text": "Coverage, interference, and packet-loss data from real networks cannot be fed back into simulation, leaving reverse calibration and optimization out of reach."
+            },
+            {
+              "Icon": "🏗",
+              "Title": "No Foundation for End-to-End",
+              "Text": "Without a continuously online electromagnetic environment that devices can access, end-to-end testing for autonomous driving / low-altitude / industrial use can only be fragmentary."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "Solution",
+          "heading": "Solution · Solution",
+          "level": 1,
+          "fields": {
+            "Title": "Turn the Electromagnetic World into a \"Continuously Online\" Twin Platform",
+            "Description": "The EM-Twin platform uses Lauraycs ray tracing as its electromagnetic kernel, overlays real-time data from live networks/factories/low-altitude/satellite-ground, and remains continuously visible to real terminals through its HIL subsystem. It is not a one-off simulation, but an electromagnetic environment service that can be subscribed to, queried, and driven."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution-cards",
+          "key": "Solution Cards",
+          "label": "",
+          "heading": "Solution Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌐",
+              "Title": "Continuously Online",
+              "Text": "7×24 real-time EM field service; geographic scope, frequency band, and time are all subscribable; supports event-triggered replay."
+            },
+            {
+              "Icon": "🔌",
+              "Title": "Drivable",
+              "Text": "Directly drives hardware such as channel simulators, UAV C2 test benches, and satellite simulators via API/Streaming."
+            },
+            {
+              "Icon": "🔄",
+              "Title": "Data Closed Loop",
+              "Text": "Live-network/drive-test/factory operational data is fed back; measured calibration continuously improves twin fidelity, forming a bidirectional closed loop."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "Platform Architecture",
+          "heading": "Architecture · Platform Architecture",
+          "level": 1,
+          "fields": {
+            "Title": "The Four-Layer Architecture of the EM Twin",
+            "Description": "From low-level environment data acquisition, to electromagnetic kernel computation, to outward-facing service interfaces, and on to integration with the upper-layer digital twin, it forms a complete EM twin platform. Every layer provides standard APIs."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "Multi-Source Environment Data",
+              "Desc": "OSM / BIM / oblique photography / laser point cloud / real-time IoT; aligned with city/factory digital twin base maps."
+            },
+            {
+              "Step": "02",
+              "Title": "RT Electromagnetic Kernel",
+              "Desc": "Lauraycs ray tracing continuously computes time-varying multipath and coverage; GPU clusters scale elastically."
+            },
+            {
+              "Step": "03",
+              "Title": "Service-Oriented API",
+              "Desc": "gRPC / REST / Streaming; subscribe to the electromagnetic state of a specified geographic box or time window."
+            },
+            {
+              "Step": "04",
+              "Title": "Upper-Layer Applications and Feed Back",
+              "Desc": "Network planning, ISAC, low-altitude, autonomous driving, HIL, AI training; real-world data is fed back for continuous calibration."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "Platform Specifications",
+          "heading": "Specifications · Platform Specifications",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Item": "Electromagnetic Kernel",
+              "Spec": "Lauraycs cluster deployment; multi-GPU/multi-node parallelism; compute units partitioned by geographic box"
+            },
+            {
+              "Item": "Real-time Performance",
+              "Spec": "Static coverage: second-level; dynamic multipath: ≤ 100 ms local refresh; triggerable millisecond-by-millisecond replay"
+            },
+            {
+              "Item": "Frequency Band",
+              "Spec": "600 MHz – 100 GHz (optional sub-THz extension)"
+            },
+            {
+              "Item": "Service Interfaces",
+              "Spec": "gRPC, REST, WebSocket Streaming, Kafka data streams"
+            },
+            {
+              "Item": "Base Map Data",
+              "Spec": "OSM / CityGML / IFC (BIM) / LAS point cloud / oblique photography; custom integration"
+            },
+            {
+              "Item": "Real-time Data Feed Back",
+              "Spec": "Live-network KPIs (RSRP, SINR, RSRQ, CQI), drive-test PCAP, IoT sensing, vehicle/UAV trajectories"
+            },
+            {
+              "Item": "Digital Twin Integration",
+              "Spec": "Already supports city-level, campus-level, factory-level, and low-altitude management (UTM) digital twin platforms"
+            },
+            {
+              "Item": "Visualization",
+              "Spec": "3D EM field visualization (coverage, shadowing, beams, multipath); timeline replay; event timeline"
+            },
+            {
+              "Item": "AI Training Data",
+              "Spec": "Automatically produces labeled multipath/sensing/positioning datasets, usable for ISAC/AI-native algorithm training"
+            },
+            {
+              "Item": "Deployment",
+              "Spec": "Private cloud / edge / self-controllable cluster (including ARM); supports tenant isolation and compute billing"
+            },
+            {
+              "Item": "Security",
+              "Spec": "Data classification, access control, audit logs; supports MLPS and industry compliance"
+            },
+            {
+              "Item": "Self-Controllable",
+              "Spec": "Kylin / domestic GPU adaptation; the self-controllable stack runs end-to-end"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "Core Differentiation",
+          "heading": "Differentiators · Core Differentiation",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "Filling the electromagnetic gap": "Truly \"completes\" the electromagnetic dimension of the digital twin, rather than statically pasting coverage maps as textures.",
+            "Drivable": "Not just for viewing—it can serve as a channel source to drive HIL/OTA real-hardware testing.",
+            "Real-world closed loop": "Measured data is continuously fed back, so twin fidelity converges over time rather than decaying.",
+            "Subscribable electromagnetic service": "Allows third-party applications to subscribe to the electromagnetic state via API, with the twin serving as public infrastructure.",
+            "Cross-domain base maps": "City, campus, factory, low-altitude, and satellite-ground twin systems can all be unified on a single electromagnetic kernel.",
+            "AI data factory": "Outputs large-scale labeled datasets to support ISAC / 6G AI-native channel and positioning model training."
+          },
+          "items": [
+            {
+              "title": "Filling the electromagnetic gap",
+              "text": "Truly \"completes\" the electromagnetic dimension of the digital twin, rather than statically pasting coverage maps as textures."
+            },
+            {
+              "title": "Drivable",
+              "text": "Not just for viewing—it can serve as a channel source to drive HIL/OTA real-hardware testing."
+            },
+            {
+              "title": "Real-world closed loop",
+              "text": "Measured data is continuously fed back, so twin fidelity converges over time rather than decaying."
+            },
+            {
+              "title": "Subscribable electromagnetic service",
+              "text": "Allows third-party applications to subscribe to the electromagnetic state via API, with the twin serving as public infrastructure."
+            },
+            {
+              "title": "Cross-domain base maps",
+              "text": "City, campus, factory, low-altitude, and satellite-ground twin systems can all be unified on a single electromagnetic kernel."
+            },
+            {
+              "title": "AI data factory",
+              "text": "Outputs large-scale labeled datasets to support ISAC / 6G AI-native channel and positioning model training."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "Typical Applications",
+          "heading": "Applications · Typical Applications",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🏙",
+              "Title": "Smart City",
+              "Text": "Coordinated planning of 5G private/public networks, electromagnetic situational rehearsal for major events, and emergency communication simulation."
+            },
+            {
+              "Icon": "🏭",
+              "Title": "Factory Digital Twin",
+              "Text": "Industrial 5G LAN / Wi-Fi 7 deployment optimization, communication link assurance for AGVs and collaborative robots."
+            },
+            {
+              "Icon": "🛩",
+              "Title": "Low-Altitude Management",
+              "Text": "UTM platform integration with EM-Twin, situational awareness for urban low-altitude C2/video links and route planning."
+            },
+            {
+              "Icon": "🛰",
+              "Title": "Integrated Satellite-Ground Network",
+              "Text": "Joint planning of LEO constellation coverage and ground shadowing, NTN service-level KPI prediction."
+            },
+            {
+              "Icon": "🚗",
+              "Title": "Intelligent Driving Road Network",
+              "Text": "End-to-end electromagnetic testing and strategy validation for roadside RSU/MEC and vehicle-side coordination."
+            },
+            {
+              "Icon": "🤖",
+              "Title": "AI / 6G Training",
+              "Text": "Large-scale, high-fidelity channel and sensing data for AI-native channel models and algorithm training."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "Customers and Ecosystem",
+          "heading": "Proof · Customers and Ecosystem",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "Multiple",
+              "Label": "City-level/campus-level EM twin projects in deployment"
+            },
+            {
+              "Value": "End-to-end",
+              "Label": "Joint validation with operators, equipment vendors, automakers, and low-altitude operators"
+            },
+            {
+              "Value": "Growable",
+              "Label": "Continuously onboarding more base maps and data sources"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "Contact",
+          "heading": "CTA · Contact",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "Request an EM Twin solution consultation",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "Let the digital twin see electromagnetics, and keep reality and simulation in a continuous closed loop.",
+            "Sub": "乾径科技 MetaRadio · EM Twin Platform (EM-Twin)"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "Request an EM Twin solution consultation"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "Let the digital twin see electromagnetics, and keep reality and simulation in a continuous closed loop."
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · EM Twin Platform (EM-Twin)"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  },
+  "zh-CN": {
+    "title": "电磁孪生 · 数字孪生的电磁层",
+    "slug": "l3-em-twin",
+    "product": "MetaRadio EM-Twin Platform",
+    "category": "horizontal",
+    "code": "L3",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "电磁孪生",
+      "EM Twin",
+      "数字孪生",
+      "Digital Twin",
+      "端到端测试",
+      "电磁环境",
+      "通信基础设施"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Datasheet · L3 / EM Digital Twin",
+            "Eyebrow": "产品策略三层结构 · 第三层",
+            "Headline": "电磁孪生",
+            "Headline-em": "数字孪生的隐形支柱",
+            "Sub": "在 Lauraycs 射线跟踪信道与硬件在环 HIL 的双重支撑下，构建实时、可演化的电磁环境孪生体。它既是端到端测试的基础设施，也是把电磁数据回灌进城市/工厂/低空数字孪生的关键一环——让 RT 闭环到现实，再次成为新的环境数据。"
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Datasheet · L3 / EM Digital Twin"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "产品策略三层结构 · 第三层"
+            },
+            {
+              "title": "Headline",
+              "text": "电磁孪生"
+            },
+            {
+              "title": "Headline-em",
+              "text": "数字孪生的隐形支柱"
+            },
+            {
+              "title": "Sub",
+              "text": "在 Lauraycs 射线跟踪信道与硬件在环 HIL 的双重支撑下，构建实时、可演化的电磁环境孪生体。它既是端到端测试的基础设施，也是把电磁数据回灌进城市/工厂/低空数字孪生的关键一环——让 RT 闭环到现实，再次成为新的环境数据。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "实时",
+              "Label": "毫秒级电磁场刷新"
+            },
+            {
+              "Value": "端到端",
+              "Label": "从环境到 DUT 全栈测试"
+            },
+            {
+              "Value": "闭环",
+              "Label": "现实 ↔ 仿真 ↔ 现实的数据回灌"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "数字孪生缺失的一环",
+          "heading": "Challenge · 数字孪生缺失的一环",
+          "level": 1,
+          "fields": {
+            "Title": "数字孪生为何缺一个\"电磁层\"",
+            "Description": "城市、园区、工厂、低空数字孪生项目层出不穷，但绝大多数停留在几何与物联感知层。一旦涉及无线网络规划、ISAC、低空 C2、卫星协同、智能驾驶通信，缺失\"电磁层\"就意味着孪生体无法支撑端到端通信测试与策略决策。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🧱",
+              "Title": "几何 ≠ 电磁",
+              "Text": "已有数字孪生只描述\"看得见的\"，对电磁波的反射、绕射、穿透与时变多径几乎不可见。"
+            },
+            {
+              "Icon": "🔁",
+              "Title": "现实反馈断链",
+              "Text": "真实网络的覆盖、干扰、丢包数据无法回灌仿真，反向校正与优化无从谈起。"
+            },
+            {
+              "Icon": "🏗",
+              "Title": "端到端缺基础",
+              "Text": "没有持续在线、可被设备访问的电磁环境，自动驾驶/低空/工业的端到端测试只能片段化。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "解决方案",
+          "heading": "Solution · 解决方案",
+          "level": 1,
+          "fields": {
+            "Title": "把电磁世界变成\"持续在线\"的孪生平台",
+            "Description": "EM-Twin 平台以 Lauraycs 射线跟踪为电磁内核，叠加来自现网/工厂/低空/星地的实时数据，并通过 HIL 子系统对真实终端持续可见。它不是一次性仿真，而是一个能被订阅、被查询、被驱动的电磁环境服务。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution-cards",
+          "key": "Solution Cards",
+          "label": "",
+          "heading": "Solution Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌐",
+              "Title": "持续在线",
+              "Text": "7×24 实时电磁场服务；地理范围、频段、时间均可订阅；支持事件触发回放。"
+            },
+            {
+              "Icon": "🔌",
+              "Title": "可被驱动",
+              "Text": "通过 API/Streaming 直接驱动信道仿真仪、UAV C2 测试台、卫星仿真器等硬件。"
+            },
+            {
+              "Icon": "🔄",
+              "Title": "数据闭环",
+              "Text": "现网/路测/工厂运行数据回灌；实测校正持续提升孪生体保真度，形成双向闭环。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "平台架构",
+          "heading": "Architecture · 平台架构",
+          "level": 1,
+          "fields": {
+            "Title": "电磁孪生的四层架构",
+            "Description": "从底层环境数据采集，到电磁内核计算，到对外服务接口，再到与上层数字孪生的对接，构成完整电磁孪生平台。每一层均提供标准 API。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "多源环境数据",
+              "Desc": "OSM / BIM / 倾斜摄影 / 激光点云 / 实时 IoT；与城市/工厂数字孪生底图对齐。"
+            },
+            {
+              "Step": "02",
+              "Title": "RT 电磁内核",
+              "Desc": "Lauraycs 射线跟踪持续运算时变多径与覆盖；GPU 集群弹性扩展。"
+            },
+            {
+              "Step": "03",
+              "Title": "服务化 API",
+              "Desc": "gRPC / REST / Streaming；订阅指定地理盒子或时间窗口的电磁状态。"
+            },
+            {
+              "Step": "04",
+              "Title": "上层应用与回灌",
+              "Desc": "网络规划、ISAC、低空、自动驾驶、HIL、AI 训练；现实数据回灌持续校正。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "平台规格",
+          "heading": "Specifications · 平台规格",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "项目": "电磁内核",
+              "规格": "Lauraycs 集群部署；多 GPU/多节点并行；按地理盒子划分计算单元"
+            },
+            {
+              "项目": "实时性",
+              "规格": "静态覆盖：秒级；动态多径：≤ 100 ms 局部刷新；可触发的逐毫秒回放"
+            },
+            {
+              "项目": "频段",
+              "规格": "600 MHz – 100 GHz（可选 sub-THz 扩展）"
+            },
+            {
+              "项目": "服务接口",
+              "规格": "gRPC、REST、WebSocket Streaming、Kafka 数据流"
+            },
+            {
+              "项目": "数据底图",
+              "规格": "OSM / CityGML / IFC（BIM）/ LAS 点云 / 倾斜摄影；自定义对接"
+            },
+            {
+              "项目": "实时数据回灌",
+              "规格": "现网 KPI（RSRP、SINR、RSRQ、CQI）、路测 PCAP、IoT 传感、车辆/UAV 轨迹"
+            },
+            {
+              "项目": "与数字孪生对接",
+              "规格": "已支持城市级、园区级、工厂级、低空管理（UTM）数字孪生平台"
+            },
+            {
+              "项目": "可视化",
+              "规格": "3D 电磁场可视化（覆盖、阴影、波束、多径）；时间轴回放；事件时间线"
+            },
+            {
+              "项目": "AI 训练数据",
+              "规格": "自动产出标注的多径/感知/定位数据集，可用于 ISAC/AI-native 算法训练"
+            },
+            {
+              "项目": "部署",
+              "规格": "私有云 / 边缘 / 国产化集群（含 ARM）；支持租户隔离与算力计费"
+            },
+            {
+              "项目": "安全",
+              "规格": "数据分级、访问控制、审计日志；支持等保与行业合规"
+            },
+            {
+              "项目": "国产化",
+              "规格": "麒麟 / 国产 GPU 适配；信创栈端到端可运行"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "核心差异化",
+          "heading": "Differentiators · 核心差异化",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "电磁层填空": "真正\"补齐\"数字孪生的电磁维度，而非把覆盖图静态贴图。",
+            "可被驱动": "不只是看，更可作为信道源驱动 HIL/OTA 真实硬件测试。",
+            "现实闭环": "实测数据持续回灌，孪生保真度随时间收敛而非衰减。",
+            "可订阅的电磁服务": "允许第三方应用通过 API 订阅电磁状态，孪生作为公共基础设施。",
+            "跨域底图": "城市、园区、工厂、低空、星地多种孪生体系可统一在一个电磁内核上。",
+            "AI 数据工厂": "输出大规模标注数据集，支撑 ISAC / 6G AI-native channel 与定位模型训练。"
+          },
+          "items": [
+            {
+              "title": "电磁层填空",
+              "text": "真正\"补齐\"数字孪生的电磁维度，而非把覆盖图静态贴图。"
+            },
+            {
+              "title": "可被驱动",
+              "text": "不只是看，更可作为信道源驱动 HIL/OTA 真实硬件测试。"
+            },
+            {
+              "title": "现实闭环",
+              "text": "实测数据持续回灌，孪生保真度随时间收敛而非衰减。"
+            },
+            {
+              "title": "可订阅的电磁服务",
+              "text": "允许第三方应用通过 API 订阅电磁状态，孪生作为公共基础设施。"
+            },
+            {
+              "title": "跨域底图",
+              "text": "城市、园区、工厂、低空、星地多种孪生体系可统一在一个电磁内核上。"
+            },
+            {
+              "title": "AI 数据工厂",
+              "text": "输出大规模标注数据集，支撑 ISAC / 6G AI-native channel 与定位模型训练。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "典型应用",
+          "heading": "Applications · 典型应用",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🏙",
+              "Title": "智慧城市",
+              "Text": "5G 私网/公网协同规划，重大事件电磁态势预演与应急通信仿真。"
+            },
+            {
+              "Icon": "🏭",
+              "Title": "工厂数字孪生",
+              "Text": "工业 5G LAN / Wi-Fi 7 部署优化，AGV、协作机器人通信链路保障。"
+            },
+            {
+              "Icon": "🛩",
+              "Title": "低空管理",
+              "Text": "UTM 平台与 EM-Twin 联动，城市低空 C2/图传链路态势与航线规划。"
+            },
+            {
+              "Icon": "🛰",
+              "Title": "星地一体网络",
+              "Text": "LEO 星座覆盖与地面阴影联合规划，NTN 业务级 KPI 预测。"
+            },
+            {
+              "Icon": "🚗",
+              "Title": "智能驾驶路网",
+              "Text": "路侧 RSU/MEC 与车端协同的端到端电磁测试与策略验证。"
+            },
+            {
+              "Icon": "🤖",
+              "Title": "AI / 6G 训练",
+              "Text": "大规模高保真信道与感知数据，用于 AI-native 信道模型与算法训练。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "客户与生态",
+          "heading": "Proof · 客户与生态",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "多个",
+              "Label": "落地中的城市级/园区级电磁孪生项目"
+            },
+            {
+              "Value": "端到端",
+              "Label": "与运营商、设备商、车厂、低空运营方的联合验证"
+            },
+            {
+              "Value": "可生长",
+              "Label": "持续接入更多底图与数据源"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "联系方式",
+          "heading": "CTA · 联系方式",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "申请电磁孪生方案咨询",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "让数字孪生看得见电磁，让现实和仿真持续闭环。",
+            "Sub": "乾径科技 MetaRadio · 电磁孪生平台 (EM-Twin)"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "申请电磁孪生方案咨询"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "让数字孪生看得见电磁，让现实和仿真持续闭环。"
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · 电磁孪生平台 (EM-Twin)"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  }
+}

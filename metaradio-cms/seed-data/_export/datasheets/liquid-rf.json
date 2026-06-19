@@ -1,0 +1,905 @@
+{
+  "slug": "liquid-rf",
+  "en": {
+    "title": "Liquid RF · Next-Generation Communication for High-Compute Terminals",
+    "slug": "liquid-rf",
+    "product": "Liquid RF",
+    "category": "ai-comms",
+    "code": "LRF",
+    "version": "2026.03",
+    "audience": "investor",
+    "keywords": [
+      "Liquid RF",
+      "AI-Native",
+      "communication",
+      "GPU",
+      "Comm-NPU",
+      "ISAC",
+      "compute terminal",
+      "robotics",
+      "MetaRadio"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Concept · Liquid RF / AI-Native Communication",
+            "Eyebrow": "Customer Concept Brief · Next-generation communication for high-compute terminals",
+            "Headline": "When Compute Reshapes Everything",
+            "Headline-em": "Communication moves from a standalone module to a system capability",
+            "Sub": "Once sensing, inference, and control are all rebuilt on the compute platform, communication too will move from a standalone module to a system capability. Liquid RF is the entry point to that transition — the wireless link no longer sits outside the module boundary, but becomes a co-operating layer inside the terminal."
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Concept · Liquid RF / AI-Native Communication"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "Customer Concept Brief · Next-generation communication for high-compute terminals"
+            },
+            {
+              "title": "Headline",
+              "text": "When Compute Reshapes Everything"
+            },
+            {
+              "title": "Headline-em",
+              "text": "Communication moves from a standalone module to a system capability"
+            },
+            {
+              "title": "Sub",
+              "text": "Once sensing, inference, and control are all rebuilt on the compute platform, communication too will move from a standalone module to a system capability. Liquid RF is the entry point to that transition — the wireless link no longer sits outside the module boundary, but becomes a co-operating layer inside the terminal."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "Primary compute plane",
+              "Label": "Communication becomes a co-operating layer inside the terminal"
+            },
+            {
+              "Value": "Same-platform synergy",
+              "Label": "Connectivity · sensing · inference share one body of wireless data"
+            },
+            {
+              "Value": "GPU → Comm-NPU",
+              "Label": "Enter through today's real window, toward AI-Baseband"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "The Inflection Point",
+          "heading": "Challenge · The Inflection Point",
+          "level": 1,
+          "fields": {
+            "Title": "After AI made compute pervasive, communication is the next thing to be rebuilt",
+            "Description": "Sensing, inference, and control have all moved onto the compute platform, yet communication still lives in the old form of deterministic ASICs. The wireless link has therefore become the hardest layer in the whole system to software-define and to co-operate with."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🧠",
+              "Title": "Sensing is already software",
+              "Text": "Vision, speech, mapping, and behavior understanding have fully moved into GPU / NPU and model frameworks."
+            },
+            {
+              "Icon": "⚙️",
+              "Title": "Inference is already compute",
+              "Text": "The terminal is no longer just an actuator; it is becoming an edge node that continuously runs models and policies."
+            },
+            {
+              "Icon": "🔒",
+              "Title": "Only communication is still a hard boundary",
+              "Text": "The wireless link is still carried mainly by dedicated silicon — efficient but closed, hard to couple deeply with the main compute system."
+            },
+            {
+              "Icon": "💎",
+              "Title": "A value gap therefore appears",
+              "Text": "Whoever first brings communication into the compute system gains the system control point of the next-generation terminal earlier."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "The Core Thesis",
+          "heading": "Solution · The Core Thesis",
+          "level": 1,
+          "fields": {
+            "Title": "Communication is the data pipe, compute is the fluid container, sensing is the twin sister",
+            "Description": "This is not a slogan but a real clue in how terminal architecture is evolving. Communication no longer just delivers data into the system — it becomes part of the system itself."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution-cards",
+          "key": "Solution Cards",
+          "label": "",
+          "heading": "Solution Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌊",
+              "Title": "Communication is no longer just connectivity",
+              "Text": "It gradually shifts from a standalone module capability to a native data plane and policy plane inside the terminal."
+            },
+            {
+              "Icon": "📡",
+              "Title": "One beam of waves serves two things",
+              "Text": "It completes communication while also providing spatial sensing and state judgment — the strategic meaning of ISAC."
+            },
+            {
+              "Icon": "🔄",
+              "Title": "The endgame is the dissolution of the Modem",
+              "Text": "Communication will not forever exist as a standalone baseband; it will gradually converge into the heterogeneous compute platform."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "Solution Shape",
+          "heading": "Architecture · Solution Shape",
+          "level": 1,
+          "fields": {
+            "Title": "A system-level communication software layer, not a \"bolt-on feature\"",
+            "Description": "Liquid RF turns the wireless link from a standalone black box into a middle layer that works together with the compute platform, the business system, and environmental sensing: a general RF front-end + a GPU/NPU compute platform + the terminal business system, sitting on the Liquid RF Runtime (communication data plane · link intelligence and policy · system interface and telemetry), output as three capabilities — connectivity, sensing, and system synergy."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "Yesterday",
+              "Title": "The ASIC / DSP era",
+              "Desc": "Deterministic and low-power, but the physical layer is hard-wired; good for mature standards, not for fast evolution."
+            },
+            {
+              "Step": "Today",
+              "Title": "The GPU trial window",
+              "Desc": "With standards unsettled, algorithms shifting, and scenarios diverging, GPU is the only base flexible enough to try and validate."
+            },
+            {
+              "Step": "Tomorrow",
+              "Title": "Comm-NPU / AI-Baseband",
+              "Desc": "Once AI-native air-interface standards converge, communication will be re-hardened into low-power dedicated accelerators."
+            },
+            {
+              "Step": "First-mover",
+              "Title": "Whoever moves first sets the agenda",
+              "Desc": "The scenario data, algorithm experience, and system interfaces built in the window become the first-mover moat of the next platform."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "Capability Specs",
+          "heading": "Specifications · Capability Specs",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Item": "Deployment form",
+              "Spec": "A terminal-side system-level communication software layer (Liquid RF Runtime), between the RF front-end and the business system"
+            },
+            {
+              "Item": "Compute base",
+              "Spec": "NVIDIA Jetson / Orin / Thor, industrial GPUs, and other heterogeneous compute platforms"
+            },
+            {
+              "Item": "Wireless access",
+              "Spec": "Wi-Fi / private network / scenario-specific wireless access; general RF front-end"
+            },
+            {
+              "Item": "Runtime modules",
+              "Spec": "Communication data plane · link intelligence and policy · system interface and telemetry"
+            },
+            {
+              "Item": "Output capabilities",
+              "Spec": "Connectivity (a more stable, definable link) · sensing (ISAC) · system synergy"
+            },
+            {
+              "Item": "ISAC",
+              "Spec": "One beam of electromagnetic waves serves both communication and spatial / motion / environmental sensing"
+            },
+            {
+              "Item": "Evolution path",
+              "Spec": "GPU trial window → Comm-NPU / AI-Baseband"
+            },
+            {
+              "Item": "Target platforms",
+              "Spec": "Last-mile delivery vehicles, campus autonomous driving, AMR / AGV, inspection robots, high-compute special platforms"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "Strategic Value",
+          "heading": "Differentiators · Strategic Value",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "Liquid data link": "In extreme interference or complex mobility, the link no longer passively endures but becomes adaptive and strategic.",
+            "ISAC": "The wireless capability on one platform carries connectivity while also generating understanding of space, motion, and environment.",
+            "VRAM-level synergy": "Communication data no longer bypasses the main controller but enters the main execution plane of sensing, planning, and control directly.",
+            "Connectivity-layer value": "Communication moves from black box to definable — links become observable, capability programmable, complex scenarios easier to iterate.",
+            "Sensing-layer value": "Communication and environmental understanding start to overlap; spatial information enters the main system, giving the device a new sensing entry point.",
+            "Platform-layer value": "Communication becomes part of the compute system, system interfaces accrue as platform assets, leaving an entry point for Comm-NPU."
+          },
+          "items": [
+            {
+              "title": "Liquid data link",
+              "text": "In extreme interference or complex mobility, the link no longer passively endures but becomes adaptive and strategic."
+            },
+            {
+              "title": "ISAC",
+              "text": "The wireless capability on one platform carries connectivity while also generating understanding of space, motion, and environment."
+            },
+            {
+              "title": "VRAM-level synergy",
+              "text": "Communication data no longer bypasses the main controller but enters the main execution plane of sensing, planning, and control directly."
+            },
+            {
+              "title": "Connectivity-layer value",
+              "text": "Communication moves from black box to definable — links become observable, capability programmable, complex scenarios easier to iterate."
+            },
+            {
+              "title": "Sensing-layer value",
+              "text": "Communication and environmental understanding start to overlap; spatial information enters the main system, giving the device a new sensing entry point."
+            },
+            {
+              "title": "Platform-layer value",
+              "text": "Communication becomes part of the compute system, system interfaces accrue as platform assets, leaving an entry point for Comm-NPU."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "Where It Applies",
+          "heading": "Applications · Where It Applies",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚚",
+              "Title": "Last-mile delivery vehicles",
+              "Text": "In complex urban environments, link stability directly determines delivery efficiency and safety."
+            },
+            {
+              "Icon": "🅿️",
+              "Title": "Campus autonomous driving",
+              "Text": "High-compute campus platforms where the wireless link is deeply involved in sensing and decision loops."
+            },
+            {
+              "Icon": "🤖",
+              "Title": "AMR / AGV",
+              "Text": "Factory and warehouse mobile robots, where low-latency high-reliability communication is the premise of continuous operation."
+            },
+            {
+              "Icon": "🛡",
+              "Title": "Inspection robots",
+              "Text": "Keeping video downlink and control links continuous in interference-heavy industrial environments."
+            },
+            {
+              "Icon": "🛰",
+              "Title": "High-compute special platforms",
+              "Text": "Heavy compute platforms where the wireless link directly determines business outcomes."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "Staking the Endgame",
+          "heading": "Proof · Staking the Endgame",
+          "level": 1,
+          "fields": {
+            "Description": "In future terminals, the boundaries between sensing, inference, control, and communication will keep dissolving. What truly matters is not selling one more module today, but who first defines this system capability. Liquid RF lets customers stand on this evolution line early, rather than passively following once standards are fully frozen."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "System capability",
+              "Label": "Communication moves from device capability to system capability"
+            },
+            {
+              "Value": "First-mover moat",
+              "Label": "Scenario data · algorithm experience · system interfaces"
+            },
+            {
+              "Value": "Early position",
+              "Label": "Securing a competitive seat in next-generation high-compute terminals"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "Get in Touch",
+          "heading": "CTA · Get in Touch",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "Explore the Liquid RF concept",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "For next-generation high-compute terminals, communication will inevitably move from device capability to system capability.",
+            "Sub": "乾径科技 MetaRadio · AI-Native Communication"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "Explore the Liquid RF concept"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "For next-generation high-compute terminals, communication will inevitably move from device capability to system capability."
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · AI-Native Communication"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  },
+  "zh-CN": {
+    "title": "Liquid RF · 面向高算力终端的下一代通信",
+    "slug": "liquid-rf",
+    "product": "Liquid RF",
+    "category": "ai-comms",
+    "code": "LRF",
+    "version": "2026.03",
+    "audience": "investor",
+    "keywords": [
+      "Liquid RF",
+      "AI-Native",
+      "通信",
+      "GPU",
+      "Comm-NPU",
+      "通感一体",
+      "算力终端",
+      "机器人",
+      "MetaRadio"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Concept · Liquid RF / AI-Native Communication",
+            "Eyebrow": "客户概念介绍 · 面向高算力终端的下一代通信方向",
+            "Headline": "当算力重构一切",
+            "Headline-em": "通信，从独立模组走向系统能力",
+            "Sub": "当感知、推理、控制都在算力平台上重构时，通信也会从独立模组走向系统能力。Liquid RF 是这个过渡期的入口——让无线链路不再停留在模组边界之外，而成为终端内部可协同的一层能力。"
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Concept · Liquid RF / AI-Native Communication"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "客户概念介绍 · 面向高算力终端的下一代通信方向"
+            },
+            {
+              "title": "Headline",
+              "text": "当算力重构一切"
+            },
+            {
+              "title": "Headline-em",
+              "text": "通信，从独立模组走向系统能力"
+            },
+            {
+              "title": "Sub",
+              "text": "当感知、推理、控制都在算力平台上重构时，通信也会从独立模组走向系统能力。Liquid RF 是这个过渡期的入口——让无线链路不再停留在模组边界之外，而成为终端内部可协同的一层能力。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "主算力面",
+              "Label": "通信进入终端内部、可协同的一层能力"
+            },
+            {
+              "Value": "同平台协同",
+              "Label": "连接 · 感知 · 推理共用同一份无线数据"
+            },
+            {
+              "Value": "GPU → Comm-NPU",
+              "Label": "以现实窗口切入，通向 AI-Baseband"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "拐点",
+          "heading": "Challenge · 拐点",
+          "level": 1,
+          "fields": {
+            "Title": "AI 算力化之后，泛终端下一个被重构的对象就是通信",
+            "Description": "感知、推理与控制都已进入算力平台，通信却仍停留在确定性 ASIC 的旧形态。无线链路因此成了整个系统里最难被软件化、最难被协同的一层。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🧠",
+              "Title": "感知已经软件化",
+              "Text": "视觉、语音、地图与行为理解，已全面进入 GPU / NPU 与模型框架。"
+            },
+            {
+              "Icon": "⚙️",
+              "Title": "推理已经算力化",
+              "Text": "终端不再只是执行器，而正变成持续运行模型与策略的边缘计算节点。"
+            },
+            {
+              "Icon": "🔒",
+              "Title": "唯独通信仍是硬边界",
+              "Text": "无线链路仍主要由专用器件承担，高效但封闭，难与主算力系统深度耦合。"
+            },
+            {
+              "Icon": "💎",
+              "Title": "价值洼地由此出现",
+              "Text": "谁先把通信纳入算力系统，谁就更早掌握下一代终端的系统控制点。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "核心判断",
+          "heading": "Solution · 核心判断",
+          "level": 1,
+          "fields": {
+            "Title": "通信是数据管道，算力是流体容器，感知是孪生姐妹",
+            "Description": "这不是一句口号，而是终端架构正在发生的演进线索。通信不再只是把数据送进系统，它本身会成为系统的一部分。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution-cards",
+          "key": "Solution Cards",
+          "label": "",
+          "heading": "Solution Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌊",
+              "Title": "通信不再只是连接",
+              "Text": "从一个独立模组能力，逐步变成终端内部原生的数据面与策略面。"
+            },
+            {
+              "Icon": "📡",
+              "Title": "同一束电磁波服务两件事",
+              "Text": "既完成通信，也提供空间感知与状态判断——这就是通感一体的战略意义。"
+            },
+            {
+              "Icon": "🔄",
+              "Title": "终局是 Modem 的消融",
+              "Text": "通信不会永远以独立基带存在，而会逐步收敛进异构算力平台之中。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "方案形态",
+          "heading": "Architecture · 方案形态",
+          "level": 1,
+          "fields": {
+            "Title": "一层系统级通信软件层，而非\"外挂功能\"",
+            "Description": "Liquid RF 把无线链路从独立黑盒，变成与算力平台、业务系统和环境感知协同工作的中间层：通用射频前端 + GPU/NPU 算力平台 + 终端业务系统，在 Liquid RF Runtime（通信数据面 · 链路智能与策略 · 系统接口与遥测）之上，输出连接、感知与系统协同三类能力。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "昨天",
+              "Title": "ASIC / DSP 时代",
+              "Desc": "确定性、低功耗，但物理层能力被焊死；适合成熟标准，不适合高速演进。"
+            },
+            {
+              "Step": "今天",
+              "Title": "GPU 试错窗口",
+              "Desc": "标准未定、算法在变、场景发散，GPU 是唯一足够灵活的试错与验证底座。"
+            },
+            {
+              "Step": "明天",
+              "Title": "Comm-NPU / AI-Baseband",
+              "Desc": "一旦 AI 原生空口标准收敛，通信会被重新固化进低功耗专用加速单元。"
+            },
+            {
+              "Step": "先发",
+              "Title": "谁先布局谁掌握话语权",
+              "Desc": "窗口期沉淀的场景数据、算法经验与系统接口，将成为下一代平台的先发壁垒。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "能力规格",
+          "heading": "Specifications · 能力规格",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "项目": "部署形态",
+              "规格": "终端侧系统级通信软件层（Liquid RF Runtime），介于射频前端与业务系统之间"
+            },
+            {
+              "项目": "算力底座",
+              "规格": "NVIDIA Jetson / Orin / Thor、工业级 GPU 等异构算力平台"
+            },
+            {
+              "项目": "无线接入",
+              "规格": "Wi-Fi / 专网 / 场景化无线接入；通用射频前端"
+            },
+            {
+              "项目": "运行时模块",
+              "规格": "通信数据面 · 链路智能与策略 · 系统接口与遥测"
+            },
+            {
+              "项目": "输出能力",
+              "规格": "连接能力（更稳定、可定义的链路）· 感知能力（通感一体）· 系统协同能力"
+            },
+            {
+              "项目": "通感一体",
+              "规格": "同一束电磁波同时服务通信与空间 / 运动 / 环境感知"
+            },
+            {
+              "项目": "演进路线",
+              "规格": "GPU 试错窗口 → Comm-NPU / AI-Baseband"
+            },
+            {
+              "项目": "适用平台",
+              "规格": "无人配送车、园区自动驾驶、AMR / AGV、巡检机器人、高算力特种平台"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "战略价值",
+          "heading": "Differentiators · 战略价值",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "液态数据链": "在极端干扰或复杂移动环境里，链路不再被动承受，而开始具备自适应与策略性。",
+            "通感一体": "同一平台里的无线能力，既承担连接，也生成对空间、运动与环境的理解。",
+            "显存级协同": "通信数据不再绕过主控系统，而直接进入感知、规划与控制的主执行面。",
+            "连接层价值": "通信从黑盒走向可定义——链路更可观察、能力更可编程、复杂场景更易迭代。",
+            "感知层价值": "通信与环境理解开始重合，空间信息进入主系统，设备获得新的环境理解入口。",
+            "平台层价值": "通信成为算力系统的一部分，系统接口沉淀为平台资产，为 Comm-NPU 留下入口。"
+          },
+          "items": [
+            {
+              "title": "液态数据链",
+              "text": "在极端干扰或复杂移动环境里，链路不再被动承受，而开始具备自适应与策略性。"
+            },
+            {
+              "title": "通感一体",
+              "text": "同一平台里的无线能力，既承担连接，也生成对空间、运动与环境的理解。"
+            },
+            {
+              "title": "显存级协同",
+              "text": "通信数据不再绕过主控系统，而直接进入感知、规划与控制的主执行面。"
+            },
+            {
+              "title": "连接层价值",
+              "text": "通信从黑盒走向可定义——链路更可观察、能力更可编程、复杂场景更易迭代。"
+            },
+            {
+              "title": "感知层价值",
+              "text": "通信与环境理解开始重合，空间信息进入主系统，设备获得新的环境理解入口。"
+            },
+            {
+              "title": "平台层价值",
+              "text": "通信成为算力系统的一部分，系统接口沉淀为平台资产，为 Comm-NPU 留下入口。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "适用场景",
+          "heading": "Applications · 适用场景",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚚",
+              "Title": "无人配送车",
+              "Text": "复杂城市环境下，无线链路稳定性直接决定配送效率与安全。"
+            },
+            {
+              "Icon": "🅿️",
+              "Title": "园区自动驾驶",
+              "Text": "园区高算力平台，无线链路深度参与感知与决策闭环。"
+            },
+            {
+              "Icon": "🤖",
+              "Title": "AMR / AGV",
+              "Text": "工厂与仓储移动机器人，低时延高可靠通信是连续作业的前提。"
+            },
+            {
+              "Icon": "🛡",
+              "Title": "巡检机器人",
+              "Text": "在干扰复杂的工业环境中保障图传与控制链路的连续性。"
+            },
+            {
+              "Icon": "🛰",
+              "Title": "高算力特种平台",
+              "Text": "重型算力平台 + 无线链路直接决定业务结果的场景。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "终局占位",
+          "heading": "Proof · 终局占位",
+          "level": 1,
+          "fields": {
+            "Description": "未来终端里，感知、推理、控制与通信之间的边界会不断消融。真正重要的，不是今天多卖一颗模组，而是谁先定义了这层系统能力。Liquid RF 让客户提前站到这条演进线上，而不是等标准完全冻结后再被动跟随。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "系统能力",
+              "Label": "通信从器件能力走向系统能力"
+            },
+            {
+              "Value": "先发壁垒",
+              "Label": "场景数据 · 算法经验 · 系统接口"
+            },
+            {
+              "Value": "提前占位",
+              "Label": "抢占下一代高算力终端的竞争位"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "联系方式",
+          "heading": "CTA · 联系方式",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "了解 Liquid RF 概念",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "下一代高算力终端，通信必然从器件能力走向系统能力。",
+            "Sub": "乾径科技 MetaRadio · AI-Native 通信"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "了解 Liquid RF 概念"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "下一代高算力终端，通信必然从器件能力走向系统能力。"
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · AI-Native 通信"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  }
+}

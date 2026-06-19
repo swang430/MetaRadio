@@ -1,0 +1,893 @@
+{
+  "slug": "v4-autonomous-driving",
+  "en": {
+    "title": "Autonomous Driving · An EM Twin for V2X and Vehicle-Road-Cloud Communication",
+    "slug": "v4-autonomous-driving",
+    "product": "MetaRadio · Autonomous Driving Solution",
+    "category": "vertical",
+    "code": "V4",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "autonomous driving",
+      "V2X",
+      "C-V2X",
+      "PC5",
+      "T-Box",
+      "vehicle-road-cloud",
+      "ADAS",
+      "high-precision positioning"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Vertical Datasheet · Autonomous Driving",
+            "Eyebrow": "Industry Vertical Market Solution",
+            "Headline": "Make Autonomous Driving \"Get Communication Right\"",
+            "Headline-em": "An EM Twin for V2X and Vehicle-Road-Cloud",
+            "Sub": "High-level autonomous driving depends on the coordination of V2X, cellular, satellite, and Wi-Fi multipath links. Yet in complex scenarios such as urban canyons, tunnels, overpasses, and underground garages, the communication link is the most easily overlooked weak point in the ADAS/AD safety closed loop. MetaRadio's three-layer product portfolio delivers V2X channel simulation, HIL testing for T-Box/OBU/RSU, and road-network-scale EM twin capabilities within the vehicle-road-cloud system."
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Vertical Datasheet · Autonomous Driving"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "Industry Vertical Market Solution"
+            },
+            {
+              "title": "Headline",
+              "text": "Make Autonomous Driving \"Get Communication Right\""
+            },
+            {
+              "title": "Headline-em",
+              "text": "An EM Twin for V2X and Vehicle-Road-Cloud"
+            },
+            {
+              "title": "Sub",
+              "text": "High-level autonomous driving depends on the coordination of V2X, cellular, satellite, and Wi-Fi multipath links. Yet in complex scenarios such as urban canyons, tunnels, overpasses, and underground garages, the communication link is the most easily overlooked weak point in the ADAS/AD safety closed loop. MetaRadio's three-layer product portfolio delivers V2X channel simulation, HIL testing for T-Box/OBU/RSU, and road-network-scale EM twin capabilities within the vehicle-road-cloud system."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "C-V2X / NR V2X",
+              "Label": "Uu + PC5 dual link"
+            },
+            {
+              "Value": "Urban / Tunnel / Overpass",
+              "Label": "Full-scenario simulation"
+            },
+            {
+              "Value": "Road-Vehicle-Cloud",
+              "Label": "End-to-end EM twin"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "Communication Challenges for Intelligent Connected Vehicles",
+          "heading": "Challenge · Communication Challenges for Intelligent Connected Vehicles",
+          "level": 1,
+          "fields": {
+            "Title": "A Substantial Share of Autonomous Driving's \"Long-Tail Scenarios\" Hide in Communication",
+            "Description": "The functional-safety evolution of intelligent driving has already extended from perception and decision-making to communication. A single handover failure or one hidden blind spot can disable remote driving, cooperative lane change, and vehicle-road cooperative perception."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌉",
+              "Title": "Overpasses and Tunnels",
+              "Text": "Multipath and handover issues at overpasses and tunnel entrances cannot be precisely characterized by traditional statistical models."
+            },
+            {
+              "Icon": "🏙",
+              "Title": "Urban Canyons",
+              "Text": "GNSS and cellular multipath problems arise simultaneously among high-rise blocks, affecting positioning and communication."
+            },
+            {
+              "Icon": "🅿",
+              "Title": "Garages and Campuses",
+              "Text": "Coverage and handover in indoor parking lots and low-rise campuses are a hidden threshold for high-level AVP automated valet parking."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "Deploying the Three-Layer Portfolio in Autonomous Driving",
+          "heading": "Solution · Deploying the Three-Layer Portfolio in Autonomous Driving",
+          "level": 1,
+          "fields": {
+            "Title": "Run \"That Road\" Ten Thousand Times in Simulation First",
+            "Description": "Lauraycs provides high-fidelity channels that jointly model the road network, vehicles, and RSUs. L2 reproduces real road tests with HIL, and L3 links with vehicle-road cooperative platforms to form a road-network-scale EM twin. The whole stack supports everything from single-vehicle terminal testing to intersection-, segment-, and city-scale road-network validation."
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "stack-layers",
+          "key": "Stack Layers",
+          "label": "",
+          "heading": "Stack Layers",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Layer": "L1",
+              "Layer Name": "Ray Tracing / Lauraycs",
+              "Description": "Joint modeling of road network/tunnel/overpass/campus 3D + vehicle trajectories + multiple RSUs/base stations, outputting V2X Uu/PC5 channels."
+            },
+            {
+              "Layer": "L2",
+              "Layer Name": "Virtual Road Test / HIL",
+              "Description": "Drives T-Box/OBU/RSU HIL with real road-network channels, regressing handover, remote driving, and positioning KPIs."
+            },
+            {
+              "Layer": "L3",
+              "Layer Name": "EM Twin / EM-Twin",
+              "Description": "Intersection- and segment-scale EM twin, linked with vehicle-road cooperative platforms and ETC/MEC."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "End-to-End Workflow",
+          "heading": "Architecture · End-to-End Workflow",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "Road Network and Vehicle Modeling",
+              "Desc": "High-precision map + traffic-flow trajectories + live base station/RSU configuration."
+            },
+            {
+              "Step": "02",
+              "Title": "V2X Channel Simulation",
+              "Desc": "Joint time-varying multipath and handover across Uu (cellular) + PC5 (sidelink) dual links."
+            },
+            {
+              "Step": "03",
+              "Title": "Vehicle-Side / Roadside HIL",
+              "Desc": "The channel simulator drives T-Box/OBU/RSU, regressing handover/packet loss/positioning."
+            },
+            {
+              "Step": "04",
+              "Title": "Road-Network Twin",
+              "Desc": "EM-situation twin of intersections and segments, interfacing with vehicle-road cooperative platforms."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "Industry-Specific Specs",
+          "heading": "Specifications · Industry-Specific Specs",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Item": "Standards Alignment",
+              "Spec": "3GPP C-V2X (Rel-14/15), NR V2X (Rel-16/17/18), IEEE 802.11p/bd, CCSA YD/T"
+            },
+            {
+              "Item": "Frequency Bands",
+              "Spec": "Cellular FR1/FR2, 5.9 GHz sidelink, millimeter wave (long term), satellite-assisted"
+            },
+            {
+              "Item": "Scenario Library",
+              "Spec": "Urban canyon, overpass, tunnel, bridge, campus, garage, highway, rural expressway"
+            },
+            {
+              "Item": "Mobility",
+              "Spec": "Arbitrary programmable vehicle/UAV/RSU trajectories; supports multi-vehicle cooperation and platooning"
+            },
+            {
+              "Item": "HIL Targets",
+              "Spec": "T-Box, OBU, RSU, 4D radar, millimeter-wave modules"
+            },
+            {
+              "Item": "KPI",
+              "Spec": "PER, TPUT, RSRP/SINR, PC5 link stability, remote-driving RTT, AVP handover"
+            },
+            {
+              "Item": "ADAS Integration",
+              "Spec": "Supports interfacing with SiL/HiL autonomous-driving simulation platforms (CARLA/Prescan/VTD)"
+            },
+            {
+              "Item": "Deployment",
+              "Spec": "Lab + intersection/segment pilots; integrated with OEM automated test platforms"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "Core Differentiation",
+          "heading": "Differentiators · Core Differentiation",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "Road-network-scale RT": "Brings an entire intersection/segment into the simulation at once, avoiding single-base-station approximations.",
+            "Uu + PC5 dual link": "A single simulation outputs both cellular and sidelink channels simultaneously.",
+            "ADAS-simulation ready": "\"Plugs\" the communication side into existing autonomous-driving SiL/HiL workflows.",
+            "Rich scenario library": "ADAS long-tail scenarios such as overpasses, tunnels, and garages are ready-built and reusable.",
+            "Repeatable road tests": "Converts a field \"near-miss\" event into a repeatable script.",
+            "Domestically controllable": "Forms a fully domestic V2X HIL solution together with domestic instrument and RSU vendors."
+          },
+          "items": [
+            {
+              "title": "Road-network-scale RT",
+              "text": "Brings an entire intersection/segment into the simulation at once, avoiding single-base-station approximations."
+            },
+            {
+              "title": "Uu + PC5 dual link",
+              "text": "A single simulation outputs both cellular and sidelink channels simultaneously."
+            },
+            {
+              "title": "ADAS-simulation ready",
+              "text": "\"Plugs\" the communication side into existing autonomous-driving SiL/HiL workflows."
+            },
+            {
+              "title": "Rich scenario library",
+              "text": "ADAS long-tail scenarios such as overpasses, tunnels, and garages are ready-built and reusable."
+            },
+            {
+              "title": "Repeatable road tests",
+              "text": "Converts a field \"near-miss\" event into a repeatable script."
+            },
+            {
+              "title": "Domestically controllable",
+              "text": "Forms a fully domestic V2X HIL solution together with domestic instrument and RSU vendors."
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "Typical Scenarios",
+          "heading": "Applications · Typical Scenarios",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚗",
+              "Title": "T-Box / OBU Testing",
+              "Text": "Reproduces real road conditions and runs regression tests on terminal remote driving and cooperative lane change."
+            },
+            {
+              "Icon": "📡",
+              "Title": "RSU Intersection Deployment",
+              "Text": "Simulates intersection coverage and handover performance for different RSU positions/antenna schemes."
+            },
+            {
+              "Icon": "🛣",
+              "Title": "Highway V2X",
+              "Text": "Evaluates link stability for high-speed mobility + handover/platooning in highway scenarios."
+            },
+            {
+              "Icon": "🅿",
+              "Title": "AVP Automated Valet Parking",
+              "Text": "Joint evaluation of EM coverage and positioning accuracy in garages + campuses."
+            },
+            {
+              "Icon": "🚛",
+              "Title": "Commercial Fleets",
+              "Text": "Remote-driving/platooning link assurance for logistics + mining + ports."
+            },
+            {
+              "Icon": "🌐",
+              "Title": "Vehicle-Road-Cloud Cooperation",
+              "Text": "End-to-end KPI simulation across MEC + intersection + vehicle side."
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "Customers and Ecosystem",
+          "heading": "Proof · Customers and Ecosystem",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "Leading OEMs",
+              "Label": "Joint virtual road test / V2X HIL cases"
+            },
+            {
+              "Value": "Roadside RSU",
+              "Label": "Integrated with multiple RSU equipment vendors"
+            },
+            {
+              "Value": "Automated Testing",
+              "Label": "Interfaced with automotive-grade automated test platforms"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "Contact",
+          "heading": "CTA · Contact",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "Request the V2X / Vehicle-Road-Cloud Solution",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "Run autonomous driving's \"communication long tail\" through the EM twin first.",
+            "Sub": "乾径科技 MetaRadio · Autonomous Driving Vertical Solution"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "Request the V2X / Vehicle-Road-Cloud Solution"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "Run autonomous driving's \"communication long tail\" through the EM twin first."
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · Autonomous Driving Vertical Solution"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  },
+  "zh-CN": {
+    "title": "自动驾驶 · V2X 与车路云通信的电磁孪生",
+    "slug": "v4-autonomous-driving",
+    "product": "MetaRadio · Autonomous Driving Solution",
+    "category": "vertical",
+    "code": "V4",
+    "version": "2026.04",
+    "audience": "technical-decision-maker",
+    "keywords": [
+      "自动驾驶",
+      "V2X",
+      "C-V2X",
+      "PC5",
+      "T-Box",
+      "车路云",
+      "ADAS",
+      "高精定位"
+    ],
+    "body": {
+      "sections": [
+        {
+          "id": "hero",
+          "key": "Hero",
+          "label": "",
+          "heading": "Hero",
+          "level": 1,
+          "fields": {
+            "Badge": "Vertical Datasheet · 自动驾驶 / Autonomous Driving",
+            "Eyebrow": "行业垂直市场解决方案",
+            "Headline": "让自动驾驶的\"通信不出错\"",
+            "Headline-em": "V2X 与车路云的电磁孪生",
+            "Sub": "高阶自动驾驶离不开 V2X、蜂窝、卫星、Wi-Fi 多链路协同。但城市峡谷、隧道、立交、地库等复杂场景下，通信链路是 ADAS/AD 安全闭环里最容易被忽视的薄弱环。乾径以三层产品在车路云体系中提供 V2X 信道仿真、T-Box/OBU/RSU 的 HIL 测试，以及路网级电磁孪生能力。"
+          },
+          "items": [
+            {
+              "title": "Badge",
+              "text": "Vertical Datasheet · 自动驾驶 / Autonomous Driving"
+            },
+            {
+              "title": "Eyebrow",
+              "text": "行业垂直市场解决方案"
+            },
+            {
+              "title": "Headline",
+              "text": "让自动驾驶的\"通信不出错\""
+            },
+            {
+              "title": "Headline-em",
+              "text": "V2X 与车路云的电磁孪生"
+            },
+            {
+              "title": "Sub",
+              "text": "高阶自动驾驶离不开 V2X、蜂窝、卫星、Wi-Fi 多链路协同。但城市峡谷、隧道、立交、地库等复杂场景下，通信链路是 ADAS/AD 安全闭环里最容易被忽视的薄弱环。乾径以三层产品在车路云体系中提供 V2X 信道仿真、T-Box/OBU/RSU 的 HIL 测试，以及路网级电磁孪生能力。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "hero-metrics",
+          "key": "Hero Metrics",
+          "label": "",
+          "heading": "Hero Metrics",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "C-V2X / NR V2X",
+              "Label": "Uu + PC5 双链路"
+            },
+            {
+              "Value": "城市/隧道/立交",
+              "Label": "全场景仿真"
+            },
+            {
+              "Value": "路-车-云",
+              "Label": "端到端电磁孪生"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge",
+          "key": "Challenge",
+          "label": "智能网联汽车的通信难题",
+          "heading": "Challenge · 智能网联汽车的通信难题",
+          "level": 1,
+          "fields": {
+            "Title": "自动驾驶的\"长尾场景\"，相当一部分藏在通信里",
+            "Description": "智能驾驶的功能安全演进，已经从感知和决策延伸到通信。一次切换失败、一个隐性盲区，可能就让远程驾驶、协同变道、车路协同感知功能失效。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "challenge-cards",
+          "key": "Challenge Cards",
+          "label": "",
+          "heading": "Challenge Cards",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🌉",
+              "Title": "立交与隧道",
+              "Text": "立交桥、隧道口的多径与切换问题，传统统计模型无法精确刻画。"
+            },
+            {
+              "Icon": "🏙",
+              "Title": "城市峡谷",
+              "Text": "高楼街区下的 GNSS 与蜂窝多径同时出现问题，影响定位与通信。"
+            },
+            {
+              "Icon": "🅿",
+              "Title": "地库与园区",
+              "Text": "室内停车场、园区低层的覆盖与切换是高阶 AVP 自动泊车的隐藏门槛。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "solution",
+          "key": "Solution",
+          "label": "三层产品在自动驾驶的部署",
+          "heading": "Solution · 三层产品在自动驾驶的部署",
+          "level": 1,
+          "fields": {
+            "Title": "把\"那条路\"先在仿真里跑一万遍",
+            "Description": "Lauraycs 提供路网 + 车辆 + RSU 联合的高保真信道，L2 用 HIL 复现真实路测，L3 与车路协同平台联动形成路网级电磁孪生。整体支持从单车终端测试到路口/路段/城市级路网验证。"
+          },
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "stack-layers",
+          "key": "Stack Layers",
+          "label": "",
+          "heading": "Stack Layers",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Layer": "L1",
+              "Layer Name": "射线跟踪 / Lauraycs",
+              "Description": "路网/隧道/立交/园区 3D + 车辆轨迹 + 多 RSU/基站联合，输出 V2X Uu/PC5 信道。"
+            },
+            {
+              "Layer": "L2",
+              "Layer Name": "虚拟路测 / HIL",
+              "Description": "用真实路网信道驱动 T-Box/OBU/RSU HIL，回归切换、远程驾驶、定位 KPI。"
+            },
+            {
+              "Layer": "L3",
+              "Layer Name": "电磁孪生 / EM-Twin",
+              "Description": "路口/路段级电磁孪生，与车路协同平台、ETC/MEC 联动。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "architecture",
+          "key": "Architecture",
+          "label": "端到端工作流",
+          "heading": "Architecture · 端到端工作流",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "workflow",
+          "key": "Workflow",
+          "label": "",
+          "heading": "Workflow",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Step": "01",
+              "Title": "路网与车辆建模",
+              "Desc": "高精地图 + 车流轨迹 + 现网基站/RSU 配置。"
+            },
+            {
+              "Step": "02",
+              "Title": "V2X 信道仿真",
+              "Desc": "Uu (蜂窝) + PC5 (直连) 双链路联合时变多径与切换。"
+            },
+            {
+              "Step": "03",
+              "Title": "车端/路端 HIL",
+              "Desc": "信道仿真仪驱动 T-Box/OBU/RSU，回归切换/丢包/定位。"
+            },
+            {
+              "Step": "04",
+              "Title": "路网孪生",
+              "Desc": "路口/路段电磁态势孪生，与车路协同平台对接。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specifications",
+          "key": "Specifications",
+          "label": "行业特定规格",
+          "heading": "Specifications · 行业特定规格",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "specs-table",
+          "key": "Specs Table",
+          "label": "",
+          "heading": "Specs Table",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "项目": "标准对齐",
+              "规格": "3GPP C-V2X (Rel-14/15)、NR V2X (Rel-16/17/18)、IEEE 802.11p/bd、CCSA YD/T"
+            },
+            {
+              "项目": "频段",
+              "规格": "蜂窝 FR1/FR2、5.9 GHz 直连、毫米波远期、卫星辅助"
+            },
+            {
+              "项目": "场景库",
+              "规格": "城市峡谷、立交、隧道、桥梁、园区、地库、高速、农村快速路"
+            },
+            {
+              "项目": "移动",
+              "规格": "任意可编程车辆/UAV/RSU 轨迹；支持多车协同与编队"
+            },
+            {
+              "项目": "HIL 对象",
+              "规格": "T-Box、OBU、RSU、4D 雷达、毫米波模组"
+            },
+            {
+              "项目": "KPI",
+              "规格": "PER、TPUT、RSRP/SINR、PC5 链路稳定性、远程驾驶 RTT、AVP 切换"
+            },
+            {
+              "项目": "与 ADAS 的对接",
+              "规格": "支持与 SiL/HiL 自动驾驶仿真平台 (CARLA/Prescan/VTD) 对接"
+            },
+            {
+              "项目": "部署",
+              "规格": "实验室 + 路口/路段试点；与车厂自动化测试平台集成"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "differentiators",
+          "key": "Differentiators",
+          "label": "核心差异化",
+          "heading": "Differentiators · 核心差异化",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "bullets",
+          "key": "Bullets",
+          "label": "",
+          "heading": "Bullets",
+          "level": 2,
+          "fields": {
+            "路网级 RT": "把整个路口/路段一次性纳入仿真，避免单基站近似。",
+            "Uu + PC5 双链路": "同一仿真同时输出蜂窝与直连两路信道。",
+            "可对接 ADAS 仿真": "把通信侧\"接入\"现有自动驾驶 SiL/HiL 流程。",
+            "场景库丰富": "立交、隧道、地库等 ADAS 长尾场景已成型并可复用。",
+            "可重复路测": "把外场某次\"差点出事\"的事件转换为可重复脚本。",
+            "国产可控": "配合国产仪器与 RSU 厂商形成全国产 V2X HIL 方案。"
+          },
+          "items": [
+            {
+              "title": "路网级 RT",
+              "text": "把整个路口/路段一次性纳入仿真，避免单基站近似。"
+            },
+            {
+              "title": "Uu + PC5 双链路",
+              "text": "同一仿真同时输出蜂窝与直连两路信道。"
+            },
+            {
+              "title": "可对接 ADAS 仿真",
+              "text": "把通信侧\"接入\"现有自动驾驶 SiL/HiL 流程。"
+            },
+            {
+              "title": "场景库丰富",
+              "text": "立交、隧道、地库等 ADAS 长尾场景已成型并可复用。"
+            },
+            {
+              "title": "可重复路测",
+              "text": "把外场某次\"差点出事\"的事件转换为可重复脚本。"
+            },
+            {
+              "title": "国产可控",
+              "text": "配合国产仪器与 RSU 厂商形成全国产 V2X HIL 方案。"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "applications",
+          "key": "Applications",
+          "label": "典型场景",
+          "heading": "Applications · 典型场景",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Icon": "🚗",
+              "Title": "T-Box / OBU 测试",
+              "Text": "复现真实路况，对终端的远程驾驶、协同变道做回归测试。"
+            },
+            {
+              "Icon": "📡",
+              "Title": "RSU 路口部署",
+              "Text": "不同 RSU 位置/天线方案的路口覆盖与切换性能仿真。"
+            },
+            {
+              "Icon": "🛣",
+              "Title": "高速 V2X",
+              "Text": "高速场景下高速移动 + 切换/编队的链路稳定性评估。"
+            },
+            {
+              "Icon": "🅿",
+              "Title": "AVP 自动泊车",
+              "Text": "地库 + 园区的电磁覆盖与定位精度联合评估。"
+            },
+            {
+              "Icon": "🚛",
+              "Title": "商用车队",
+              "Text": "物流 + 矿山 + 港口的远程驾驶/编队链路保障。"
+            },
+            {
+              "Icon": "🌐",
+              "Title": "车路云协同",
+              "Text": "MEC + 路口 + 车端的端到端 KPI 仿真。"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof",
+          "key": "Proof",
+          "label": "客户与生态",
+          "heading": "Proof · 客户与生态",
+          "level": 1,
+          "fields": {},
+          "items": [],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "proof-stats",
+          "key": "Proof Stats",
+          "label": "",
+          "heading": "Proof Stats",
+          "level": 2,
+          "fields": {},
+          "items": [],
+          "table": [
+            {
+              "Value": "头部车企",
+              "Label": "联合开展虚拟路测/V2X HIL 案例"
+            },
+            {
+              "Value": "路侧 RSU",
+              "Label": "与多家 RSU 设备商集成"
+            },
+            {
+              "Value": "自动化测试",
+              "Label": "与车规级自动化测试平台已对接"
+            }
+          ],
+          "bullets": [],
+          "text": ""
+        },
+        {
+          "id": "cta",
+          "key": "CTA",
+          "label": "联系方式",
+          "heading": "CTA · 联系方式",
+          "level": 1,
+          "fields": {
+            "Primary CTA": "申请 V2X / 车路云方案",
+            "Email": "sales@metaradio.tech",
+            "Tagline": "把自动驾驶的\"通信长尾\"先在电磁孪生里跑通。",
+            "Sub": "乾径科技 MetaRadio · 自动驾驶垂直解决方案"
+          },
+          "items": [
+            {
+              "title": "Primary CTA",
+              "text": "申请 V2X / 车路云方案"
+            },
+            {
+              "title": "Email",
+              "text": "sales@metaradio.tech"
+            },
+            {
+              "title": "Tagline",
+              "text": "把自动驾驶的\"通信长尾\"先在电磁孪生里跑通。"
+            },
+            {
+              "title": "Sub",
+              "text": "乾径科技 MetaRadio · 自动驾驶垂直解决方案"
+            }
+          ],
+          "table": [],
+          "bullets": [],
+          "text": ""
+        }
+      ]
+    }
+  }
+}
