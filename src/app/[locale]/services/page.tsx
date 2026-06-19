@@ -158,9 +158,61 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       <section className="relative overflow-hidden bg-brand-navy text-white">
         <div className="pointer-events-none absolute inset-0 opacity-70" style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(245,158,11,0.18), transparent 60%)' }} aria-hidden />
         <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-amber">{t.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-brand-amber">{t.eyebrow}</p>
+              <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+            </div>
+            <div className="relative">
+              {/* R&D 验证闭环：仿真 → 硬件在环 → 失效定位 → AI 迭代（amber 主调，与 V1-V6 场景同系）。 */}
+              <svg
+                viewBox="0 0 480 320"
+                role="img"
+                aria-label={pick(locale) === 'en' ? 'R&D validation loop: EM-twin simulation, hardware-in-the-loop, failure localization, and AI-methodology iteration' : '研发验证闭环：电磁孪生仿真 → 硬件在环 → 失效定位 → AI 方法论迭代'}
+                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+              >
+                <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+                <circle cx="240" cy="58" r="170" fill="#F59E0B" opacity="0.08" />
+                <circle cx="240" cy="160" r="92" fill="none" stroke="#F59E0B" strokeWidth="1.5" opacity="0.4" />
+                <polygon points="238,61 238,75 250,68" fill="#F59E0B" />
+                <g stroke="#00D1FF" strokeWidth="1" opacity="0.22">
+                  <line x1="240" y1="130" x2="240" y2="86" />
+                  <line x1="270" y1="160" x2="314" y2="160" />
+                  <line x1="240" y1="190" x2="240" y2="234" />
+                  <line x1="210" y1="160" x2="166" y2="160" />
+                </g>
+                <polygon points="240,130 266,145 266,175 240,190 214,175 214,145" fill="#1b2950" stroke="#F59E0B" strokeWidth="1.5" />
+                <circle cx="240" cy="160" r="10" fill="none" stroke="#00D1FF" strokeWidth="1.4" />
+                <circle cx="240" cy="160" r="3.5" fill="#F59E0B" />
+                <g>
+                  <circle cx="240" cy="68" r="17" fill="#233360" stroke="#00D1FF" strokeWidth="1.4" />
+                  <circle cx="240" cy="68" r="4" fill="none" stroke="#00D1FF" strokeWidth="1.2" />
+                  <circle cx="240" cy="68" r="8.5" fill="none" stroke="#00D1FF" strokeWidth="1" opacity="0.65" />
+                </g>
+                <g>
+                  <circle cx="332" cy="160" r="17" fill="#233360" stroke="#00D1FF" strokeWidth="1.4" />
+                  <rect x="326" y="154" width="12" height="12" rx="1.5" fill="none" stroke="#00D1FF" strokeWidth="1.2" />
+                  <line x1="329" y1="151" x2="329" y2="154" stroke="#00D1FF" strokeWidth="1" />
+                  <line x1="335" y1="151" x2="335" y2="154" stroke="#00D1FF" strokeWidth="1" />
+                  <line x1="329" y1="166" x2="329" y2="169" stroke="#00D1FF" strokeWidth="1" />
+                  <line x1="335" y1="166" x2="335" y2="169" stroke="#00D1FF" strokeWidth="1" />
+                </g>
+                <g>
+                  <circle cx="240" cy="252" r="17" fill="#233360" stroke="#F59E0B" strokeWidth="1.4" />
+                  <circle cx="240" cy="252" r="6" fill="none" stroke="#F59E0B" strokeWidth="1.2" />
+                  <line x1="240" y1="242" x2="240" y2="262" stroke="#F59E0B" strokeWidth="1" />
+                  <line x1="230" y1="252" x2="250" y2="252" stroke="#F59E0B" strokeWidth="1" />
+                </g>
+                <g>
+                  <circle cx="148" cy="160" r="17" fill="#233360" stroke="#F59E0B" strokeWidth="1.4" />
+                  <line x1="148" y1="151" x2="148" y2="169" stroke="#F59E0B" strokeWidth="1.2" />
+                  <line x1="140" y1="155" x2="156" y2="165" stroke="#F59E0B" strokeWidth="1.2" />
+                  <line x1="156" y1="155" x2="140" y2="165" stroke="#F59E0B" strokeWidth="1.2" />
+                </g>
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
