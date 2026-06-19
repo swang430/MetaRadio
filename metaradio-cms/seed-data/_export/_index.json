@@ -1,9 +1,0 @@
-{
-  "exportedAt": "2026-06-19T03:19:01.443Z",
-  "source": "strapi sqlite (.tmp/data.db, published only)",
-  "counts": {
-    "datasheets": 10,
-    "pages": 4,
-    "resources": 5
-  }
-}
