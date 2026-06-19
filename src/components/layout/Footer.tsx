@@ -25,7 +25,7 @@ const Footer = () => {
           {/* Links Section */}
           <div>
             <h3 className="font-bold text-lg">{t('quickLinks')}</h3>
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-2 grid grid-cols-2 gap-x-8 gap-y-2">
               <li><Link href={`/${locale}/products`} className="hover:text-blue-400">{t_nav('products')}</Link></li>
               <li><Link href={`/${locale}/solutions`} className="hover:text-blue-400">{t_nav('solutions')}</Link></li>
               <li><Link href={`/${locale}/foundations`} className="hover:text-blue-400">{t_nav('foundations')}</Link></li>
@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg">{t('followUs')}</h3>
             <div className="mt-2 flex space-x-4">
-              <a href="https://x.com/metaradio" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">{t('twitter')}</a>
+              <span className="text-gray-400">{t('wechat')}</span>
               <a href="https://www.linkedin.com/company/metaradio" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">{t('linkedIn')}</a>
             </div>
           </div>

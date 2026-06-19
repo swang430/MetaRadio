@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { CinematicHero } from '@/components/layout/CinematicHero';
 import { getResources } from '../../../../lib/api';
 import ResourceList from '../../../components/resources/ResourceList';
 
@@ -22,13 +23,15 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
   }));
 
   return (
-    <div className="container mx-auto px-6 py-12">
-      <h1 className="text-4xl font-bold text-center mb-4">{t('pageTitle')}</h1>
-      <p className="text-lg text-center text-slate-300 max-w-3xl mx-auto mb-12">
-        {t('description')}
-      </p>
+    <div className="flex flex-col">
+      {/* Hero — 全站统一影院式（满幅电磁射线场） */}
+      <CinematicHero title={t('pageTitle')} sub={t('description')} minHClass="min-h-[48vh]" />
 
-      <ResourceList resources={resources} posters={posters} />
+      <section className="bg-brand-ink">
+        <div className="container mx-auto px-6 py-16">
+          <ResourceList resources={resources} posters={posters} />
+        </div>
+      </section>
     </div>
   );
 }

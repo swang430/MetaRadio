@@ -8,6 +8,7 @@ import Image from 'next/image';
 import type { ReactNode } from 'react';
 import type { Datasheet, DatasheetSection } from '../../../lib/api';
 import VerticalScene, { hasScene } from './VerticalScene';
+import { HeroFieldBg } from '../illustrations/HeroFieldBg';
 import { datasheetGroup } from '../../../lib/api';
 
 // datasheet hero 媒体优先级：Strapi heroImage（后台 GUI 可上传深色图）→ 深色矢量场景（VerticalScene，全 10 款）。
@@ -206,46 +207,48 @@ function SectionPayload({ section, dark }: { section: DatasheetSection; dark?: b
 function HeroBand({ band, media }: { band: Band; media?: ReactNode }) {
   const f = band.lead.fields;
   const metrics = band.parts.find((p) => hasCols(tableCols(p.table), 'Value', 'Label'));
-  const text = (
-    <div>
-      {f['Badge'] && (
-        <span className="inline-block rounded-full border border-brand-cyan/40 px-4 py-1 text-xs font-medium text-brand-cyan">
-          {f['Badge']}
-        </span>
-      )}
-      {f['Eyebrow'] && (
-        <p className="mt-6 text-sm font-medium uppercase tracking-widest text-slate-300">{f['Eyebrow']}</p>
-      )}
-      <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
-        {f['Headline']}
-        {f['Headline-em'] && <span className="mt-2 block text-brand-cyan">{f['Headline-em']}</span>}
-      </h1>
-      {f['Sub'] && <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{f['Sub']}</p>}
-    </div>
-  );
   return (
-    <section className="relative overflow-hidden bg-brand-navy text-white">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(0,209,255,0.22), transparent 60%)' }}
-        aria-hidden
-      />
-      <div className="container relative mx-auto px-6 py-20 md:py-28">
-        {media ? (
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            {text}
-            <div className="relative">{media}</div>
+    <>
+      {/* 全站统一影院式 Hero：满幅电磁射线场 + 左侧渐变压暗 + 文案叠加（与首页/列表页同款）。 */}
+      <section className="relative isolate flex min-h-[62vh] items-center overflow-hidden text-white" style={{ backgroundColor: '#060B1A' }}>
+        <HeroFieldBg className="absolute inset-0 h-full w-full" />
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }}
+        />
+        <div className="container relative z-10 mx-auto px-6 py-20">
+          <div className="max-w-2xl">
+            {f['Badge'] && (
+              <span className="inline-block rounded-full border border-brand-cyan/40 px-4 py-1 text-xs font-medium text-brand-cyan">
+                {f['Badge']}
+              </span>
+            )}
+            {f['Eyebrow'] && (
+              <p className="mt-6 text-sm font-medium uppercase tracking-widest text-brand-cyan">{f['Eyebrow']}</p>
+            )}
+            <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
+              {f['Headline']}
+              {f['Headline-em'] && <span className="mt-2 block text-brand-cyan">{f['Headline-em']}</span>}
+            </h1>
+            {f['Sub'] && <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{f['Sub']}</p>}
           </div>
-        ) : (
-          text
-        )}
-        {metrics && (
-          <div className="mt-12 max-w-3xl">
-            <MetricGrid rows={metrics.table} dark />
+          {metrics && (
+            <div className="mt-12 max-w-3xl">
+              <MetricGrid rows={metrics.table} dark />
+            </div>
+          )}
+        </div>
+      </section>
+      {/* 产品专属矢量场景：保留为 Hero 正下方的居中示意图（不再是右上角小盒子）。 */}
+      {media && (
+        <section className="bg-brand-ink-2">
+          <div className="container mx-auto px-6 py-12 md:py-16">
+            <div className="mx-auto max-w-3xl">{media}</div>
           </div>
-        )}
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }
 

@@ -64,7 +64,7 @@ export default async function RootLayout({
               url: process.env.SITE_URL || 'https://metaradio.tech',
               description:
                 'The dual infrastructure for AI-Native wireless: an EM-twin R&D base (Lauraycs/MetaRadio) in the digital world and a neural-network soft-baseband terminal base (Liquid RF) in the physical world.',
-              sameAs: ['https://x.com/metaradio', 'https://www.linkedin.com/company/metaradio'],
+              sameAs: ['https://www.linkedin.com/company/metaradio'],
             }),
           }}
         />
