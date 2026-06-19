@@ -233,26 +233,26 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第二屏 · 双重基础设施 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.dual.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.dual.title}</h2>
-            <p className="mt-4 text-slate-600">{t.dual.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.dual.title}</h2>
+            <p className="mt-4 text-slate-300">{t.dual.sub}</p>
           </header>
           <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
-            <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8 transition hover:border-brand-cyan hover:shadow-md">
+            <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-white/10 bg-brand-surface p-8 transition hover:border-brand-cyan hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.digital.tag}</span>
-              <span className="mt-2 text-2xl font-bold text-brand-navy">{t.dual.digital.name}</span>
-              <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-600">{t.dual.digital.desc}</span>
+              <span className="mt-2 text-2xl font-bold text-white">{t.dual.digital.name}</span>
+              <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-300">{t.dual.digital.desc}</span>
               <span className="mt-5 text-sm font-medium text-brand-cyan">{t.dual.digital.cta}</span>
             </Link>
             <div className="flex flex-col items-center justify-center gap-3 py-2 lg:px-2">
               {t.dual.bridge.map((b) => (
-                <span key={b} className="rounded-full border border-brand-navy/15 bg-white px-4 py-2 text-center text-xs font-medium text-brand-navy">{b}</span>
+                <span key={b} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-center text-xs font-medium text-slate-200">{b}</span>
               ))}
             </div>
-            <Link href={`/${locale}/${t.dual.physical.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-brand-navy p-8 text-white transition hover:shadow-md">
+            <Link href={`/${locale}/${t.dual.physical.href}`} className="group flex flex-col rounded-2xl border border-white/10 bg-brand-navy p-8 text-white transition hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.physical.tag}</span>
               <span className="mt-2 text-2xl font-bold">{t.dual.physical.name}</span>
               <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-300">{t.dual.physical.desc}</span>
@@ -263,17 +263,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第三屏 · 数据飞轮 */}
-      <section className="bg-slate-50">
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.flywheel.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.flywheel.title}</h2>
-            <p className="mt-4 text-slate-600">{t.flywheel.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.flywheel.title}</h2>
+            <p className="mt-4 text-slate-300">{t.flywheel.sub}</p>
           </header>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {t.flywheel.steps.map((s, i) => (
               <div key={s} className="flex items-center gap-3">
-                <div className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-medium text-brand-navy shadow-sm">{s}</div>
+                <div className="rounded-xl border border-white/10 bg-brand-surface px-5 py-4 text-center text-sm font-medium text-slate-100">{s}</div>
                 <span className="text-xl text-brand-cyan" aria-hidden>{i === t.flywheel.steps.length - 1 ? '↻' : '→'}</span>
               </div>
             ))}
@@ -282,23 +282,23 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第四屏 · 客户与场景 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.scenarios.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.scenarios.title}</h2>
-            <p className="mt-4 text-slate-600">{t.scenarios.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.scenarios.title}</h2>
+            <p className="mt-4 text-slate-300">{t.scenarios.sub}</p>
           </header>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {t.scenarios.items.map((it) => {
               const Icon = SCENARIO_ICONS[it.slug] ?? Radio;
               return (
-                <Link key={it.slug} href={`/${locale}/solutions/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-navy transition group-hover:bg-brand-cyan/20 group-hover:text-brand-cyan">
+                <Link key={it.slug} href={`/${locale}/solutions/${it.slug}`} className="group rounded-xl border border-white/10 bg-brand-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan transition group-hover:bg-brand-cyan/20 group-hover:text-brand-cyan">
                     <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-brand-navy group-hover:text-brand-cyan">{it.name}</h3>
-                  <p className="text-sm leading-relaxed text-slate-600">{it.line}</p>
+                  <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-brand-cyan">{it.name}</h3>
+                  <p className="text-sm leading-relaxed text-slate-300">{it.line}</p>
                 </Link>
               );
             })}

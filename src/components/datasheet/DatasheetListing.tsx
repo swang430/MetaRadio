@@ -42,8 +42,8 @@ export function DatasheetListing({
           g.list.length ? (
             <section key={g.heading} className="mb-16">
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-brand-navy">{g.heading}</h2>
-                <p className="mt-1 text-sm text-slate-500">{g.sub}</p>
+                <h2 className="text-2xl font-bold text-white">{g.heading}</h2>
+                <p className="mt-1 text-sm text-slate-400">{g.sub}</p>
               </div>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {g.list.map((d) => (
