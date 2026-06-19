@@ -42,15 +42,8 @@ fs.mkdirSync(OUT, { recursive: true });
 const counts = {
   datasheets: copyDir(path.join(SRC, 'datasheets'), path.join(OUT, 'datasheets')),
   pages: copyDir(path.join(SRC, 'pages'), path.join(OUT, 'pages')),
+  resources: copyDir(path.join(SRC, 'resources'), path.join(OUT, 'resources')),
 };
-
-// resources 内容在 scripts/seed-data.js（content-as-code，非 .md）——一并快照
-const resSrc = path.join(CMS, 'scripts', 'seed-data.js');
-let resources = '-';
-if (fs.existsSync(resSrc)) {
-  fs.copyFileSync(resSrc, path.join(OUT, 'resources.seed-data.js'));
-  resources = 'scripts/seed-data.js';
-}
 
 // 图片：登记引用（不复制二进制）。真备份靠 git（public/images/）。
 const imgDir = path.join(REPO, 'public', 'images');
@@ -65,15 +58,15 @@ const manifest = `# 内容备份 · ${name}
 - **包含**：
   - datasheets：${counts.datasheets} 个 .md（产品与方案 L1-L3 / V1-V6 / Liquid RF，中英）
   - pages：${counts.pages} 个 .md（home / foundations / services / about，中英）
-  - resources：${resources}
+  - resources：${counts.resources} 个 .md（白皮书 / 案例 / 博客，中英）
 - **图片**：未复制二进制（避免仓库膨胀）。图片不在 Strapi（模型 C），在 \`public/images/\`（git 已备份），共 ${images.length} 个，登记如下：
 ${images.map((f) => `  - public/images/${f}`).join('\n')}
 
 ## 如何恢复
-1. **仅文本内容**：把本目录的 \`datasheets/\` \`pages/\` 覆盖回 \`metaradio-cms/seed-data/\` 对应目录、\`resources.seed-data.js\` 覆盖回 \`seed-data/seed-data.js\`，然后重灌 Strapi：
+1. **仅文本内容**：把本目录的 \`datasheets/\` \`pages/\` \`resources/\` 覆盖回 \`metaradio-cms/seed-data/\` 对应目录，然后重灌 Strapi：
    \`\`\`
    cd metaradio-cms
-   npm run import:datasheets && npm run import:pages && npm run seed
+   npm run seed && npm run import:datasheets && npm run import:pages && npm run import:resources
    \`\`\`
 2. **完整状态（含图片 + 前端代码）**：用 git 恢复点——\`git checkout <tag/commit>\`（推荐给这次拆分前打个标签，如 \`combined-pre-split\`）。
 
@@ -82,4 +75,4 @@ ${images.map((f) => `  - public/images/${f}`).join('\n')}
 fs.writeFileSync(path.join(OUT, 'MANIFEST.md'), manifest);
 
 console.log(`✓ 内容备份完成 → metaradio-cms/backup/${name}/`);
-console.log(`  datasheets:${counts.datasheets}  pages:${counts.pages}  resources:${resources}  images(登记):${images.length}`);
+console.log(`  datasheets:${counts.datasheets}  pages:${counts.pages}  resources:${counts.resources}  images(登记):${images.length}`);

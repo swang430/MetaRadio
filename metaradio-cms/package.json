@@ -14,6 +14,7 @@
     "seed": "node scripts/seed.js",
     "import:datasheets": "node scripts/ensure-env.js && node scripts/ensure-native.js && node scripts/import-datasheets.js",
     "import:pages": "node scripts/ensure-env.js && node scripts/ensure-native.js && node scripts/import-pages.js",
+    "import:resources": "node scripts/ensure-env.js && node scripts/ensure-native.js && node scripts/import-resources.js",
     "backup": "node scripts/backup-content.js",
     "sync:md": "node scripts/ensure-native.js && node scripts/sync-to-md.js",
     "upgrade": "npx @strapi/upgrade latest",
