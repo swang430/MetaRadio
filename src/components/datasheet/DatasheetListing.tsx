@@ -1,4 +1,5 @@
-// 列表页骨架：navy hero（eyebrow/title/sub）+ 若干分组网格。/products 与 /solutions 共用。
+// 列表页骨架：navy hero（eyebrow/title/sub，可选右栏插画 media）+ 若干分组网格。/products 与 /solutions 共用。
+import type { ReactNode } from 'react';
 import type { Datasheet } from '../../../lib/api';
 import { DatasheetCard } from './DatasheetCard';
 
@@ -10,13 +11,23 @@ export function DatasheetListing({
   title,
   sub,
   groups,
+  media,
 }: {
   locale: string;
   eyebrow: string;
   title: string;
   sub: string;
   groups: ListingGroup[];
+  media?: ReactNode;
 }) {
+  const text = (
+    <div>
+      <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{eyebrow}</p>
+      <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{title}</h1>
+      <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{sub}</p>
+    </div>
+  );
+
   return (
     <div>
       <section className="relative overflow-hidden bg-brand-navy text-white">
@@ -26,9 +37,14 @@ export function DatasheetListing({
           aria-hidden
         />
         <div className="container relative mx-auto px-6 py-20">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{sub}</p>
+          {media ? (
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+              {text}
+              <div className="relative">{media}</div>
+            </div>
+          ) : (
+            text
+          )}
         </div>
       </section>
 

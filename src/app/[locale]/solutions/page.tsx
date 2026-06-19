@@ -1,5 +1,6 @@
 import { getDatasheets } from '../../../../lib/api';
 import { DatasheetListing } from '@/components/datasheet/DatasheetListing';
+import { SolutionsHeroArt } from '@/components/illustrations/HeroArt';
 
 // 内容由 Strapi 实时提供（支持后端随时编辑），不在构建期冻结。
 export const dynamic = 'force-dynamic';
@@ -34,6 +35,7 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
       eyebrow={t.eyebrow}
       title={t.title}
       sub={t.sub}
+      media={<SolutionsHeroArt locale={locale} />}
       groups={[{ heading: t.vertical, sub: t.verticalSub, list: vertical }]}
     />
   );
