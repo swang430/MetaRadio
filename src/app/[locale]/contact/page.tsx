@@ -7,18 +7,18 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   return (
     <div className="container mx-auto px-6 py-16 max-w-4xl">
       <h1 className="text-4xl font-bold text-center mb-4">{t('pageTitle')}</h1>
-      <p className="text-lg text-center text-gray-600 max-w-2xl mx-auto mb-12">{t('description')}</p>
+      <p className="text-lg text-center text-slate-300 max-w-2xl mx-auto mb-12">{t('description')}</p>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
+        <div className="bg-brand-surface border border-white/10 p-8 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">{t('emailTitle')}</h2>
-          <a href={`mailto:${t('email')}`} className="text-blue-600 hover:underline break-all">
+          <a href={`mailto:${t('email')}`} className="text-brand-cyan hover:underline break-all">
             {t('email')}
           </a>
         </div>
-        <div className="bg-white p-8 rounded-lg shadow-lg">
+        <div className="bg-brand-surface border border-white/10 p-8 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">{t('phoneTitle')}</h2>
-          <p className="text-gray-700">{t('phone')}</p>
+          <p className="text-slate-300">{t('phone')}</p>
         </div>
       </div>
 

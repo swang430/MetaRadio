@@ -27,7 +27,7 @@ export default function ResourceList({ resources }: ResourceListProps) {
           <button 
             key={type} 
             onClick={() => setFilter(type)}
-            className={`py-2 px-4 rounded-lg font-semibold transition ${filter === type ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
+            className={`py-2 px-4 rounded-lg font-semibold transition ${filter === type ? 'bg-brand-cyan text-brand-navy' : 'bg-white/10 text-slate-300 hover:bg-white/20'}`}>
             {t(type.replace(' ', ''))} {/* e.g., t('WhitePaper') */}
           </button>
         ))}
@@ -35,10 +35,10 @@ export default function ResourceList({ resources }: ResourceListProps) {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredResources.map(resource => (
-          <div key={resource.id} className="bg-white p-6 rounded-lg shadow-lg flex flex-col">
-            <h3 className="text-xl font-bold mb-2">{resource.Title}</h3>
-            <p className="text-gray-700 flex-grow">{extractTextFromDescription(resource.Description)}</p>
-            <a href={`/${locale}/resources/${resource.slug}`} className="text-blue-600 hover:underline mt-4 self-start">{t('readMore')} →</a>
+          <div key={resource.id} className="bg-brand-surface border border-white/10 p-6 rounded-lg flex flex-col">
+            <h3 className="text-xl font-bold mb-2 text-white">{resource.Title}</h3>
+            <p className="text-slate-300 flex-grow">{extractTextFromDescription(resource.Description)}</p>
+            <a href={`/${locale}/resources/${resource.slug}`} className="text-brand-cyan hover:underline mt-4 self-start">{t('readMore')} →</a>
           </div>
         ))}
       </div>

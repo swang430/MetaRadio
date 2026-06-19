@@ -73,9 +73,9 @@ const T = {
   },
 } as const;
 
-const card = 'rounded-2xl border border-slate-200 bg-white p-7 shadow-sm';
-const label = 'block text-sm font-medium text-brand-navy';
-const input = 'mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-cyan focus:outline-none';
+const card = 'rounded-2xl border border-white/10 bg-brand-surface p-7';
+const label = 'block text-sm font-medium text-slate-200';
+const input = 'mt-1 w-full rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-sm text-slate-100 focus:border-brand-cyan focus:outline-none';
 
 function NumberField({ label: l, value, onChange }: { label: string; value: number; onChange: (n: number) => void }) {
   return (
@@ -147,9 +147,9 @@ export default function ToolsClient({ locale }: { locale: string }) {
   };
 
   const stat = (big: string, small: string, accent = 'text-brand-cyan') => (
-    <div className="rounded-xl bg-slate-50 px-5 py-4 text-center">
+    <div className="rounded-xl bg-white/5 px-5 py-4 text-center">
       <div className={`text-2xl font-bold ${accent}`}>{big}</div>
-      <div className="mt-1 text-xs text-slate-500">{small}</div>
+      <div className="mt-1 text-xs text-slate-400">{small}</div>
     </div>
   );
 
@@ -157,8 +157,8 @@ export default function ToolsClient({ locale }: { locale: string }) {
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       {/* Tool 1 */}
       <div className={card}>
-        <h2 className="text-lg font-bold text-brand-navy">{t.budget.title}</h2>
-        <p className="mt-2 text-sm text-slate-600">{t.budget.desc}</p>
+        <h2 className="text-lg font-bold text-white">{t.budget.title}</h2>
+        <p className="mt-2 text-sm text-slate-300">{t.budget.desc}</p>
         <div className="mt-5 grid grid-cols-2 gap-4">
           <NumberField label={t.budget.trips} value={trips} onChange={setTrips} />
           <NumberField label={t.budget.tripCost} value={tripCost} onChange={setTripCost} />
@@ -174,8 +174,8 @@ export default function ToolsClient({ locale }: { locale: string }) {
 
       {/* Tool 2 */}
       <div className={card}>
-        <h2 className="text-lg font-bold text-brand-navy">{t.perf.title}</h2>
-        <p className="mt-2 text-sm text-slate-600">{t.perf.desc}</p>
+        <h2 className="text-lg font-bold text-white">{t.perf.title}</h2>
+        <p className="mt-2 text-sm text-slate-300">{t.perf.desc}</p>
         <div className="mt-5 grid grid-cols-2 gap-4">
           <Select label={t.perf.gpu} value={gpu} options={t.perf.gpus} onChange={setGpu} />
           <Select label={t.perf.waveform} value={wf} options={t.perf.waveforms} onChange={setWf} />
@@ -189,20 +189,20 @@ export default function ToolsClient({ locale }: { locale: string }) {
 
       {/* Tool 3 */}
       <div className={card}>
-        <h2 className="text-lg font-bold text-brand-navy">{t.flow.title}</h2>
-        <p className="mt-2 text-sm text-slate-600">{t.flow.desc}</p>
+        <h2 className="text-lg font-bold text-white">{t.flow.title}</h2>
+        <p className="mt-2 text-sm text-slate-300">{t.flow.desc}</p>
         <div className="mt-5">
           <Select label={t.flow.current} value={flow} options={t.flow.options} onChange={setFlow} />
         </div>
-        <div className="mt-5 rounded-xl border-l-2 border-brand-amber bg-amber-50/40 px-4 py-3 text-sm leading-relaxed text-slate-700">
+        <div className="mt-5 rounded-xl border-l-2 border-brand-amber bg-amber-500/10 px-4 py-3 text-sm leading-relaxed text-slate-200">
           {t.flow.recs[flow]}
         </div>
       </div>
 
       {/* Tool 4 */}
       <div className={card}>
-        <h2 className="text-lg font-bold text-brand-navy">{t.scene.title}</h2>
-        <p className="mt-2 text-sm text-slate-600">{t.scene.desc}</p>
+        <h2 className="text-lg font-bold text-white">{t.scene.title}</h2>
+        <p className="mt-2 text-sm text-slate-300">{t.scene.desc}</p>
         <div className="mt-5 grid grid-cols-3 gap-3">
           <Select label={t.scene.scene} value={scene} options={t.scene.scenes} onChange={setScene} />
           <Select label={t.scene.band} value={band} options={t.scene.bands} onChange={setBand} />

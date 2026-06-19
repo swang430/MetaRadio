@@ -81,11 +81,11 @@ function MetricGrid({ rows, dark }: { rows: Row[]; dark?: boolean }) {
     <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3"
          style={{ background: dark ? 'rgba(255,255,255,0.12)' : 'rgba(10,23,64,0.08)' }}>
       {rows.map((r, i) => (
-        <div key={i} className={`px-6 py-8 text-center ${dark ? 'bg-brand-navy' : 'bg-white'}`}>
-          <div className={`text-3xl font-bold md:text-4xl ${dark ? 'text-brand-cyan' : 'text-brand-navy'}`}>
+        <div key={i} className={`px-6 py-8 text-center ${dark ? 'bg-brand-navy' : 'bg-brand-surface'}`}>
+          <div className={`text-3xl font-bold md:text-4xl ${dark ? 'text-brand-cyan' : 'text-white'}`}>
             {cell(r, 'Value')}
           </div>
-          <div className={`mt-2 text-sm ${dark ? 'text-slate-300' : 'text-slate-500'}`}>
+          <div className={`mt-2 text-sm ${dark ? 'text-slate-300' : 'text-slate-400'}`}>
             {cell(r, 'Label')}
           </div>
         </div>
@@ -98,10 +98,10 @@ function CardGrid({ rows }: { rows: Row[] }) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {rows.map((r, i) => (
-        <div key={i} className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+        <div key={i} className="rounded-xl border border-white/10 bg-brand-surface p-6 transition hover:shadow-md">
           {cell(r, 'Icon') && <div className="mb-3 text-3xl">{cell(r, 'Icon')}</div>}
-          <h3 className="mb-2 text-lg font-semibold text-brand-navy">{cell(r, 'Title')}</h3>
-          <p className="text-sm leading-relaxed text-slate-600">{cell(r, 'Text')}</p>
+          <h3 className="mb-2 text-lg font-semibold text-white">{cell(r, 'Title')}</h3>
+          <p className="text-sm leading-relaxed text-slate-300">{cell(r, 'Text')}</p>
         </div>
       ))}
     </div>
@@ -112,10 +112,10 @@ function WorkflowSteps({ rows }: { rows: Row[] }) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {rows.map((r, i) => (
-        <div key={i} className="relative rounded-xl border border-slate-200 bg-white p-6">
+        <div key={i} className="relative rounded-xl border border-white/10 bg-brand-surface p-6">
           <div className="mb-3 text-2xl font-bold text-brand-cyan">{cell(r, 'Step') || String(i + 1).padStart(2, '0')}</div>
-          <h3 className="mb-2 text-base font-semibold text-brand-navy">{cell(r, 'Title')}</h3>
-          <p className="text-sm leading-relaxed text-slate-600">{cell(r, 'Desc', 'Text')}</p>
+          <h3 className="mb-2 text-base font-semibold text-white">{cell(r, 'Title')}</h3>
+          <p className="text-sm leading-relaxed text-slate-300">{cell(r, 'Desc', 'Text')}</p>
         </div>
       ))}
     </div>
@@ -125,15 +125,15 @@ function WorkflowSteps({ rows }: { rows: Row[] }) {
 function SpecTable({ rows, cols }: { rows: Row[]; cols: string[] }) {
   const [k, v] = cols;
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200">
+    <div className="overflow-hidden rounded-xl border border-white/10">
       <table className="w-full border-collapse text-sm">
         <tbody>
           {rows.map((r, i) => (
-            <tr key={i} className={i % 2 ? 'bg-slate-50' : 'bg-white'}>
-              <th className="w-1/3 border-b border-slate-200 px-5 py-3 text-left align-top font-semibold text-brand-navy">
+            <tr key={i} className={i % 2 ? 'bg-white/5' : ''}>
+              <th className="w-1/3 border-b border-white/10 px-5 py-3 text-left align-top font-semibold text-white">
                 {r[k]}
               </th>
-              <td className="border-b border-slate-200 px-5 py-3 align-top text-slate-700">{r[v]}</td>
+              <td className="border-b border-white/10 px-5 py-3 align-top text-slate-300">{r[v]}</td>
             </tr>
           ))}
         </tbody>
@@ -144,7 +144,7 @@ function SpecTable({ rows, cols }: { rows: Row[]; cols: string[] }) {
 
 function GenericTable({ rows, cols }: { rows: Row[]; cols: string[] }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200">
+    <div className="overflow-x-auto rounded-xl border border-white/10">
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="bg-brand-navy text-white">
@@ -155,9 +155,9 @@ function GenericTable({ rows, cols }: { rows: Row[]; cols: string[] }) {
         </thead>
         <tbody>
           {rows.map((r, i) => (
-            <tr key={i} className={i % 2 ? 'bg-slate-50' : 'bg-white'}>
+            <tr key={i} className={i % 2 ? 'bg-white/5' : ''}>
               {cols.map((c) => (
-                <td key={c} className="border-b border-slate-200 px-5 py-3 align-top text-slate-700">{r[c]}</td>
+                <td key={c} className="border-b border-white/10 px-5 py-3 align-top text-slate-300">{r[c]}</td>
               ))}
             </tr>
           ))}
@@ -174,8 +174,8 @@ function DefinitionList({ items }: { items: { title: string; text: string }[] })
         <div key={i} className="flex gap-4">
           <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-brand-emerald" aria-hidden />
           <div>
-            <h3 className="mb-1 font-semibold text-brand-navy">{it.title}</h3>
-            <p className="text-sm leading-relaxed text-slate-600">{it.text}</p>
+            <h3 className="mb-1 font-semibold text-white">{it.title}</h3>
+            <p className="text-sm leading-relaxed text-slate-300">{it.text}</p>
           </div>
         </div>
       ))}
@@ -187,7 +187,7 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-3">
       {items.map((b, i) => (
-        <li key={i} className="flex gap-3 text-slate-700">
+        <li key={i} className="flex gap-3 text-slate-300">
           <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-cyan" aria-hidden />
           <span className="leading-relaxed">{b}</span>
         </li>
@@ -214,7 +214,7 @@ function SectionPayload({ section, dark }: { section: DatasheetSection; dark?: b
 
   if (!out.length && section.text) {
     out.push(
-      <p key="x" className="max-w-3xl whitespace-pre-line leading-relaxed text-slate-600">{section.text}</p>,
+      <p key="x" className="max-w-3xl whitespace-pre-line leading-relaxed text-slate-300">{section.text}</p>,
     );
   }
   return out.length ? <div className="space-y-6">{out}</div> : null;
@@ -273,14 +273,14 @@ function ContentBand({ band, alt }: { band: Band; alt: boolean }) {
   const title = lead.fields['Title'] || lead.label || lead.key || lead.heading;
   const description = lead.fields['Description'];
   return (
-    <section className={alt ? 'bg-slate-50' : 'bg-white'}>
+    <section className={alt ? 'bg-brand-ink-2' : 'bg-brand-ink'}>
       <div className="container mx-auto px-6 py-16 md:py-20">
         <header className="mb-10 max-w-3xl">
           {lead.label && lead.fields['Title'] && (
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-emerald">{lead.label}</p>
           )}
-          <h2 className="text-2xl font-bold text-brand-navy md:text-3xl">{title}</h2>
-          {description && <p className="mt-4 text-base leading-relaxed text-slate-600">{description}</p>}
+          <h2 className="text-2xl font-bold text-white md:text-3xl">{title}</h2>
+          {description && <p className="mt-4 text-base leading-relaxed text-slate-300">{description}</p>}
         </header>
         <div className="space-y-10">
           <SectionPayload section={lead} />
