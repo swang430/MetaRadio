@@ -219,15 +219,7 @@ function HeroBand({ band }: { band: Band }) {
       />
       <div className="container relative z-10 mx-auto px-6 py-20">
         <div className="max-w-2xl">
-          {f['Badge'] && (
-            <span className="inline-block rounded-full border border-brand-cyan/40 px-4 py-1 text-xs font-medium text-brand-cyan">
-              {f['Badge']}
-            </span>
-          )}
-          {f['Eyebrow'] && (
-            <p className="mt-6 text-sm font-medium uppercase tracking-widest text-brand-cyan">{f['Eyebrow']}</p>
-          )}
-          <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
+          <h1 className="text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
             {f['Headline']}
             {f['Headline-em'] && <span className="mt-2 block text-brand-cyan">{f['Headline-em']}</span>}
           </h1>

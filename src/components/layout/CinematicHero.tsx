@@ -7,7 +7,6 @@ import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
  * children 供页面追加 CTA / 指标等；minHClass 可调高度（列表页 62vh，内容页默认 56vh）。
  */
 export function CinematicHero({
-  eyebrow,
   title,
   sub,
   children,
@@ -29,8 +28,7 @@ export function CinematicHero({
       />
       <div className="container relative z-10 mx-auto px-6 py-20">
         <div className="max-w-2xl">
-          {eyebrow && <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{eyebrow}</p>}
-          <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{title}</h1>
+          <h1 className="text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{title}</h1>
           {sub && <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{sub}</p>}
           {children}
         </div>
