@@ -3,14 +3,14 @@
  * Strapi → .md 同步（OUT，"同源"）。
  *
  * 把 Strapi 已发布内容的改动**外科式逐行回写**进对应 .md：只替换变化的「值」，
- * 其余一律不动（全角冒号 ：、间距、Strapi 没存的 frontmatter 字段都原样保留）。
- * 这样 IN（import）与 OUT（本脚本）共用同一份 .md 真相源，git diff 只显示真正改动。
+ * 其余一律不动（全角冒号 ：/间距/Strapi 没存的 frontmatter 字段都原样保留）。
+ * IN（import:*）与 OUT（本脚本）共用同一份 .md 真相源，git diff 只显示真正改动。
  *
- * 覆盖：
- *   - frontmatter：datasheet 的 version/title/product/audience/keywords；page 的 title
- *   - body：分节内的 **Key:** / - **Key:** 字段值、表格单元格、纯 bullet（按节标题匹配 Strapi 分节）
- * 不覆盖：自由段落 text（这些 .md 基本没有）；resources（在 scripts/seed-data.js，非 .md）；
- *         图片（不在 Strapi，模型 C，是 public/images 静态资源）。
+ * 覆盖（全站文字内容）：
+ *   - datasheet：frontmatter(version/title/product/audience/keywords) + body(分节字段/表格/bullet)
+ *   - page：frontmatter(title) + body(分节)
+ *   - resource：frontmatter(title/type/publicationDate) + 正文(Description blocks→纯文本)
+ * 不覆盖：图片（不在 Strapi，模型 C，是 public/images 静态资源）。
  *
  * 用法：cd metaradio-cms && node scripts/sync-to-md.js   然后 git diff 审阅，再提交。
  */
@@ -22,17 +22,21 @@ const { parseFrontmatter } = require('./md-parser');
 const CMS = path.resolve(__dirname, '..');
 const DB = path.join(CMS, '.tmp', 'data.db');
 
+// 每类型：fm = { Strapi列: .md frontmatter key }；body = 'sections'（分节）| 'description'（resource 正文）
 const TYPES = [
-  { table: 'datasheets', dir: 'datasheets', fmFields: ['version', 'title', 'product', 'audience', 'keywords'] },
-  { table: 'pages', dir: 'pages', fmFields: ['title'] },
+  { table: 'datasheets', dir: 'datasheets', fm: { version: 'version', title: 'title', product: 'product', audience: 'audience', keywords: 'keywords' }, body: 'sections' },
+  { table: 'pages', dir: 'pages', fm: { title: 'title' }, body: 'sections' },
+  { table: 'resources', dir: 'resources', fm: { title: 'title', type: 'type', publication_date: 'publicationDate' }, body: 'description' },
 ];
 
 const fmtVal = (v) => (Array.isArray(v) ? '[' + v.join(', ') + ']' : String(v));
+const blocksToText = (b) => (Array.isArray(b) ? b : []).map((p) => (p.children || []).map((c) => c.text || '').join('')).join('\n\n');
 
 /** slug → { 'zh-CN': path, en: path }，解析目录下每个 .md 的 frontmatter（slug + language）。 */
 function mapMdFiles(dir) {
   const map = {};
   const abs = path.join(CMS, 'seed-data', dir);
+  if (!fs.existsSync(abs)) return map;
   for (const f of fs.readdirSync(abs)) {
     if (!f.endsWith('.md')) continue;
     const p = path.join(abs, f);
@@ -43,7 +47,7 @@ function mapMdFiles(dir) {
   return map;
 }
 
-/** 就地替换 frontmatter 里某 key 的值行。返回新文本（无变化则原样）。 */
+/** 就地替换 frontmatter 里某 key 的值行。 */
 function patchFrontmatter(text, key, newVal) {
   const lines = text.split('\n');
   let s = -1, e = -1;
@@ -78,8 +82,8 @@ function patchBody(text, sections) {
 
     if (line.trim().startsWith('|')) {
       const cells = line.split('|').slice(1, -1).map((c) => c.trim());
-      if (!inTable) { inTable = true; headers = cells; rowIdx = 0; continue; }   // 表头行
-      if (cells.every((c) => /^-+$/.test(c))) continue;                          // 分隔行
+      if (!inTable) { inTable = true; headers = cells; rowIdx = 0; continue; }
+      if (cells.every((c) => /^-+$/.test(c))) continue;
       const row = (cur.table || [])[rowIdx];
       if (row) {
         const nc = cells.map((c, ci) => { const sv = row[headers[ci]]; return sv != null && sv !== c ? sv : c; });
@@ -90,14 +94,12 @@ function patchBody(text, sections) {
     }
     inTable = false; headers = null;
 
-    // **Key:** v  或  - **Key:** v  （冒号半/全角都原样保留）
     const fm = line.match(/^(-\s*)?\*\*(.+?)([:：])\*\*(\s*)(.*)$/);
     if (fm) {
       const sv = cur.fields ? cur.fields[fm[2].trim()] : undefined;
       if (sv != null && sv !== fm[5]) lines[i] = `${fm[1] || ''}**${fm[2]}${fm[3]}**${fm[4]}${sv}`;
       continue;
     }
-    // 纯 bullet（无 **）：按出现顺序对应 cur.bullets
     const b = line.match(/^(\s*[-*]\s+)(.*)$/);
     if (b) {
       const sv = (cur.bullets || [])[bulletIdx];
@@ -107,6 +109,19 @@ function patchBody(text, sections) {
     }
   }
   return lines.join('\n');
+}
+
+/** 替换 frontmatter 之后的正文（resource 的 Description 纯文本）。 */
+function patchDescription(text, newDesc) {
+  const lines = text.split('\n');
+  let s = -1, e = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim() === '---') { if (s < 0) s = i; else { e = i; break; } }
+  }
+  if (s < 0 || e < 0) return text;
+  const body = lines.slice(e + 1).join('\n').trim();
+  if (body === newDesc.trim()) return text;
+  return lines.slice(0, e + 1).join('\n') + '\n\n' + newDesc.trim() + '\n';
 }
 
 function run() {
@@ -128,20 +143,26 @@ function run() {
         if (!row || !p) continue;
         const before = fs.readFileSync(p, 'utf8');
         let text = before;
+        const { data } = parseFrontmatter(text);
 
         // frontmatter
-        const { data } = parseFrontmatter(text);
-        for (const f of t.fmFields) {
-          let sv = row[f];
-          if (f === 'keywords' && typeof sv === 'string') { try { sv = JSON.parse(sv); } catch { /* keep */ } }
+        for (const [col, key] of Object.entries(t.fm)) {
+          let sv = row[col];
+          if (col === 'keywords' && typeof sv === 'string') { try { sv = JSON.parse(sv); } catch { /* keep */ } }
+          if (col === 'publication_date' && sv != null) sv = String(sv).slice(0, 10); // 只取日期部分
           if (sv == null) continue;
-          if (fmtVal(sv) !== (data[f] == null ? '' : fmtVal(data[f]))) text = patchFrontmatter(text, f, sv);
+          if (fmtVal(sv) !== (data[key] == null ? '' : fmtVal(data[key]))) text = patchFrontmatter(text, key, sv);
         }
+
         // body
-        if (row.body) {
-          let sections = row.body;
-          if (typeof sections === 'string') { try { sections = JSON.parse(sections); } catch { sections = null; } }
-          if (sections && sections.sections) text = patchBody(text, sections.sections);
+        if (t.body === 'sections' && row.body) {
+          let sec = row.body;
+          if (typeof sec === 'string') { try { sec = JSON.parse(sec); } catch { sec = null; } }
+          if (sec && sec.sections) text = patchBody(text, sec.sections);
+        } else if (t.body === 'description' && row.description) {
+          let blocks = row.description;
+          if (typeof blocks === 'string') { try { blocks = JSON.parse(blocks); } catch { blocks = null; } }
+          if (blocks) text = patchDescription(text, blocksToText(blocks));
         }
 
         if (text !== before) { fs.writeFileSync(p, text); changed++; report.push(`  ${t.dir}/${path.basename(p)}`); }
