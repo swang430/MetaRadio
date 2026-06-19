@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Car, Bot, PlaneTakeoff, Satellite, Radar, RadioTower, Radio, type LucideIcon } from 'lucide-react';
+import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
 import { getPage, type Page } from '../../../lib/api';
 
 // 首页五屏叙事（设计纲要 §3.1）：Hero（首句方案 C）→ 双重基础设施 → 数据飞轮 →
@@ -198,46 +198,32 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <div className="flex flex-col">
-      {/* 第一屏 · Hero */}
-      <section className="relative overflow-hidden bg-brand-navy text-white">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(1000px 600px at 80% -10%, rgba(0,209,255,0.22), transparent 60%), radial-gradient(700px 500px at 0% 110%, rgba(16,185,129,0.14), transparent 60%)' }}
-          aria-hidden
-        />
-        <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-            {t.hero.title}
-            <span className="block text-brand-cyan">{t.hero.titleEm}</span>
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.hero.sub}</p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
-              {t.hero.ctaPrimary}
-            </Link>
-            <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
-              {t.hero.ctaSecondary}
-            </Link>
-          </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/hero-silicon.jpg"
-                alt={locale === 'en' ? 'The compute foundation for AI-Native wireless: GPU-accelerated electromagnetic computation' : 'AI-Native 无线的算力底座：GPU 加速的电磁计算'}
-                width={1600}
-                height={900}
-                priority
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
-              />
+      {/* 第一屏 · Hero（影院 navy · 满幅实景试点） */}
+      <section className="relative isolate flex min-h-[82vh] items-center overflow-hidden text-white" style={{ backgroundColor: '#060B1A' }}>
+        {/* 满幅程序化电磁射线场背景（图即背景；矢量、可调、完全溶进 #060B1A） */}
+        <HeroFieldBg className="absolute inset-0 h-full w-full" />
+        {/* 左侧加重，保证文字可读 */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }} />
+        <div className="container relative z-10 mx-auto px-6 py-24 md:py-28">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.hero.eyebrow}</p>
+            <h1 className="mt-4 text-4xl font-bold leading-tight md:text-6xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
+              {t.hero.title}
+              <span className="block text-brand-cyan">{t.hero.titleEm}</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{t.hero.sub}</p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
+                {t.hero.ctaPrimary}
+              </Link>
+              <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
+                {t.hero.ctaSecondary}
+              </Link>
             </div>
           </div>
-          <div className="mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
+          <div className="mt-16 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
             {t.hero.pillars.map((p) => (
-              <div key={p.k} className="bg-brand-navy px-6 py-6">
+              <div key={p.k} className="px-6 py-6" style={{ backgroundColor: 'rgba(6,11,26,0.72)' }}>
                 <div className="text-xl font-bold text-brand-cyan">{p.k}</div>
                 <div className="mt-1 text-sm text-slate-300">{p.v}</div>
               </div>
@@ -254,18 +240,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.dual.title}</h2>
             <p className="mt-4 text-slate-600">{t.dual.sub}</p>
           </header>
-          {/* 双重基础设施主图（设计 §3.1 第二屏）—— 静态品牌视觉，来自 MWC 物料「产品战略图」。 */}
-          <div className="mx-auto mb-12 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-            <Image
-              src="/images/dual-infrastructure.webp"
-              alt="MetaRadio + Lauraycs 双引擎产品体系：终端连接底座与无线世界模型训练平台"
-              width={2016}
-              height={926}
-              className="h-auto w-full"
-              sizes="(min-width: 1024px) 1024px, 100vw"
-              priority
-            />
-          </div>
           <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
             <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8 transition hover:border-brand-cyan hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.digital.tag}</span>
