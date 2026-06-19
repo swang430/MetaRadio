@@ -213,7 +213,7 @@ export default function ToolsClient({ locale }: { locale: string }) {
           <button type="button" onClick={copy} className="rounded-lg bg-brand-cyan px-4 py-2 text-sm font-semibold text-brand-navy transition hover:brightness-110">
             {copied ? t.scene.copied : t.scene.copy}
           </button>
-          <Link href={`/${locale}/datasheets/${sceneSlug}`} className="text-sm font-medium text-brand-cyan">→ {sceneSlug}</Link>
+          <Link href={`/${locale}/solutions/${sceneSlug}`} className="text-sm font-medium text-brand-cyan">→ {sceneSlug}</Link>
         </div>
       </div>
 

@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next';
-import { getDatasheets } from '../../lib/api';
+import { getDatasheets, datasheetGroup } from '../../lib/api';
 
 const BASE = process.env.SITE_URL || 'https://metaradio.tech';
 const LOCALES = ['zh-CN', 'en'];
-const STATIC_PATHS = ['', '/datasheets', '/foundations', '/services', '/about', '/resources', '/contact'];
+const STATIC_PATHS = ['', '/products', '/solutions', '/foundations', '/services', '/about', '/resources', '/contact'];
 
 // /sitemap.xml —— 覆盖中英所有静态页 + 每个 datasheet 详情。内容源不可达时仅省略 datasheet 条目。
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
   for (const loc of LOCALES) {
     for (const d of datasheets) {
-      entries.push({ url: `${BASE}/${loc}/datasheets/${d.slug}`, changeFrequency: 'monthly', priority: 0.6 });
+      entries.push({ url: `${BASE}/${loc}/${datasheetGroup(d.category)}/${d.slug}`, changeFrequency: 'monthly', priority: 0.6 });
     }
   }
 

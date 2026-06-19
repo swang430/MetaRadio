@@ -1,7 +1,8 @@
 {
   "Header": {
     "brandName": "Metaradio.tech",
-    "products": "产品与方案",
+    "products": "产品",
+    "solutions": "解决方案",
     "foundations": "共性技术",
     "services": "研发服务",
     "tools": "工具",

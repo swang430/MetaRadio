@@ -8,6 +8,7 @@ import Image from 'next/image';
 import type { ReactNode } from 'react';
 import type { Datasheet, DatasheetSection } from '../../../lib/api';
 import VerticalScene, { hasScene } from './VerticalScene';
+import { datasheetGroup } from '../../../lib/api';
 
 // datasheet slug → hero 配图（静态 public/，模型 C）。仅映射有强相关、可直接用的素材，
 // 其余 datasheet 维持纯文字 hero（优雅降级）。图为「图卡」形式置于 hero 右栏，与 navy 协调。
@@ -326,14 +327,15 @@ function CtaBand({ band, locale }: { band: Band; locale: string }) {
 export default function DatasheetView({ datasheet, locale }: { datasheet: Datasheet; locale: string }) {
   const sections = datasheet.body?.sections ?? [];
   const bands = toBands(sections);
+  const group = datasheetGroup(datasheet.category);
   let altIndex = 0;
 
   return (
     <article>
       <div className="bg-brand-navy">
         <div className="container mx-auto px-6 pt-6">
-          <Link href={`/${locale}/datasheets`} className="text-sm text-slate-300 transition hover:text-brand-cyan">
-            ← {locale === 'en' ? 'All datasheets' : '全部产品方案'}
+          <Link href={`/${locale}/${group}`} className="text-sm text-slate-300 transition hover:text-brand-cyan">
+            ← {group === 'solutions' ? (locale === 'en' ? 'All solutions' : '全部解决方案') : (locale === 'en' ? 'All products' : '全部产品')}
           </Link>
         </div>
       </div>
