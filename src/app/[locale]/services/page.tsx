@@ -217,27 +217,27 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       </section>
 
       {/* 五类服务包 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {t.packages.map((p) => (
-              <div key={p.tier} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:shadow-md">
+              <div key={p.tier} className="flex flex-col rounded-2xl border border-white/10 bg-brand-surface p-7 transition hover:shadow-md">
                 <div className="flex items-baseline gap-3">
                   <span className="text-2xl font-bold text-brand-amber">{p.tier}</span>
-                  <h2 className="text-xl font-bold text-brand-navy">{p.name}</h2>
+                  <h2 className="text-xl font-bold text-white">{p.name}</h2>
                 </div>
-                <p className="mt-3 text-base leading-relaxed text-slate-700">{p.value}</p>
-                <p className="mt-4 text-sm text-slate-500"><span className="font-semibold text-brand-navy">适用 · </span>{p.persona}</p>
+                <p className="mt-3 text-base leading-relaxed text-slate-300">{p.value}</p>
+                <p className="mt-4 text-sm text-slate-400"><span className="font-semibold text-white">适用 · </span>{p.persona}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {p.deliverables.map((d) => (
-                    <span key={d} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-brand-navy">{d}</span>
+                    <span key={d} className="rounded-md border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-200">{d}</span>
                   ))}
                 </div>
                 <div className="mt-5 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                  <span className="text-slate-500">周期 / Cadence：<span className="font-semibold text-brand-navy">{p.cadence}</span></span>
-                  <span className="text-slate-500">报价 / Price：<span className="font-semibold text-brand-emerald">{p.price}</span></span>
+                  <span className="text-slate-400">周期 / Cadence：<span className="font-semibold text-white">{p.cadence}</span></span>
+                  <span className="text-slate-400">报价 / Price：<span className="font-semibold text-brand-emerald">{p.price}</span></span>
                 </div>
-                <p className="mt-4 border-l-2 border-brand-cyan/40 pl-3 text-sm italic leading-relaxed text-slate-500">{p.story}</p>
+                <p className="mt-4 border-l-2 border-brand-cyan/40 pl-3 text-sm italic leading-relaxed text-slate-400">{p.story}</p>
               </div>
             ))}
           </div>
@@ -246,12 +246,12 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
       </section>
 
       {/* Customization & Co-development */}
-      <section className="bg-slate-50">
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-16 md:py-20">
-          <div className="mx-auto max-w-4xl rounded-2xl border border-brand-amber/30 bg-white p-8 md:p-10">
+          <div className="mx-auto max-w-4xl rounded-2xl border border-brand-amber/30 bg-brand-surface p-8 md:p-10">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-amber">{t.custom.eyebrow}</p>
-            <h2 className="mt-2 text-2xl font-bold text-brand-navy md:text-3xl">{t.custom.title}</h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">{t.custom.body}</p>
+            <h2 className="mt-2 text-2xl font-bold text-white md:text-3xl">{t.custom.title}</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-300">{t.custom.body}</p>
           </div>
         </div>
       </section>

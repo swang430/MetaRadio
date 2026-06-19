@@ -19,17 +19,17 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
   return (
     <div className="container mx-auto px-6 py-12">
       <h1 className="text-4xl font-bold text-center mb-4">{t('pageTitle')}</h1>
-      <p className="text-lg text-center text-gray-600 max-w-3xl mx-auto mb-12">
+      <p className="text-lg text-center text-slate-300 max-w-3xl mx-auto mb-12">
         {t('description')}
       </p>
 
       <ResourceList resources={resources} />
 
       {/* 宣传海报墙 */}
-      <section className="mt-16 border-t border-slate-200 pt-12">
+      <section className="mt-16 border-t border-white/10 pt-12">
         <header className="mb-8 text-center">
-          <h2 className="text-2xl font-bold text-brand-navy md:text-3xl">{en ? 'Posters & Boards' : '宣传海报'}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-slate-600">
+          <h2 className="text-2xl font-bold text-white md:text-3xl">{en ? 'Posters & Boards' : '宣传海报'}</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-slate-300">
             {en ? 'Exhibition posters from MWC — the product stack and vertical scenarios at a glance. Click to view full size.' : 'MWC 展会成品海报 —— 一图看懂产品栈与行业场景。点击查看完整海报。'}
           </p>
         </header>
@@ -40,7 +40,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
               href={p.src}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md"
+              className="group block overflow-hidden rounded-xl border border-white/10 bg-brand-surface transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md"
             >
               <div className="aspect-[3/4] overflow-hidden bg-brand-navy">
                 <Image
@@ -55,7 +55,7 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
               <div className="flex items-center justify-between gap-3 px-5 py-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-brand-emerald">{p.tag[en ? 'en' : 'zh-CN']}</p>
-                  <h3 className="mt-1 text-sm font-semibold text-brand-navy group-hover:text-brand-cyan">{p.title[en ? 'en' : 'zh-CN']}</h3>
+                  <h3 className="mt-1 text-sm font-semibold text-white group-hover:text-brand-cyan">{p.title[en ? 'en' : 'zh-CN']}</h3>
                 </div>
                 <span className="shrink-0 text-brand-cyan opacity-0 transition group-hover:opacity-100" aria-hidden>→</span>
               </div>

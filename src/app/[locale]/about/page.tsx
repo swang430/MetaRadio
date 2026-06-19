@@ -168,15 +168,15 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* 底牌 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-16 md:py-20">
-          <h2 className="mb-10 text-2xl font-bold text-brand-navy md:text-3xl">{t.cardsTitle}</h2>
+          <h2 className="mb-10 text-2xl font-bold text-white md:text-3xl">{t.cardsTitle}</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {t.cards.map((c) => (
-              <div key={c.tag} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+              <div key={c.tag} className="flex flex-col rounded-2xl border border-white/10 bg-brand-surface p-7">
                 <span className={`text-xs font-semibold uppercase tracking-widest ${ACCENT[c.accent]}`}>{c.tag}</span>
-                <h3 className="mt-2 text-lg font-bold text-brand-navy">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{c.body}</p>
+                <h3 className="mt-2 text-lg font-bold text-white">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-300">{c.body}</p>
               </div>
             ))}
           </div>
@@ -184,42 +184,42 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* 团队 */}
-      <section className="bg-slate-50">
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-bold text-brand-navy md:text-3xl">{t.teamTitle}</h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">{t.teamBody}</p>
+            <h2 className="text-2xl font-bold text-white md:text-3xl">{t.teamTitle}</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-300">{t.teamBody}</p>
             <p className="mt-6 inline-block rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-400">{t.teamNote}</p>
           </div>
         </div>
       </section>
 
       {/* 进展 + 合作 + 据点 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div>
-              <h2 className="text-xl font-bold text-brand-navy">{t.milestonesTitle}</h2>
+              <h2 className="text-xl font-bold text-white">{t.milestonesTitle}</h2>
               <ul className="mt-4 space-y-3">
                 {t.milestones.map((m) => (
                   <li key={m.k} className="flex justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
-                    <span className="text-slate-500">{m.k}</span>
-                    <span className="text-right font-medium text-brand-navy">{m.v}</span>
+                    <span className="text-slate-400">{m.k}</span>
+                    <span className="text-right font-medium text-white">{m.v}</span>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-brand-navy">{t.partnersTitle}</h2>
+              <h2 className="text-xl font-bold text-white">{t.partnersTitle}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {t.partners.map((p) => (
-                  <span key={p} className="rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-brand-navy">{p}</span>
+                  <span key={p} className="rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-slate-200">{p}</span>
                 ))}
               </div>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-brand-navy">{t.locationsTitle}</h2>
-              <ul className="mt-4 space-y-2 text-sm text-slate-600">
+              <h2 className="text-xl font-bold text-white">{t.locationsTitle}</h2>
+              <ul className="mt-4 space-y-2 text-sm text-slate-300">
                 {t.locations.map((l) => (
                   <li key={l} className="flex items-start gap-2">
                     <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-cyan" aria-hidden />
