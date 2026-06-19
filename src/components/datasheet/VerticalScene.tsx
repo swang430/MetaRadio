@@ -31,6 +31,22 @@ const ALT: Record<string, Record<Locale, string>> = {
     'zh-CN': '6G 场景：融合一切的多频段连接中枢',
     en: '6G scene: a multi-band hub connecting everything',
   },
+  'l1-ray-tracing': {
+    'zh-CN': 'L1 射线跟踪场景：发射点的多径射线在建筑与地面间反射到终端',
+    en: 'L1 ray-tracing scene: multipath rays reflecting among buildings and ground to a terminal',
+  },
+  'l2-virtual-drive-test': {
+    'zh-CN': 'L2 虚拟路测 / HIL 场景：暗室探头环包围车辆做 OTA 与硬件在环',
+    en: 'L2 virtual drive test / HIL scene: an MPAC probe ring around a vehicle for OTA & hardware-in-the-loop',
+  },
+  'l3-em-twin': {
+    'zh-CN': 'L3 电磁孪生场景：真实城市与其数字孪生镜像 + 覆盖等值线',
+    en: 'L3 EM-twin scene: a real city mirrored as its digital twin with coverage contours',
+  },
+  'liquid-rf': {
+    'zh-CN': 'Liquid RF 场景：神经网络软基带芯片向终端发射 RF',
+    en: 'Liquid RF scene: a neural-network soft-baseband chip emitting RF to a terminal',
+  },
 };
 
 const SCENES: Record<string, ReactNode> = {
@@ -221,6 +237,116 @@ const SCENES: Record<string, ReactNode> = {
       </g>
       <g transform="translate(128,226)">
         <path d="M0 -14 L12 8 L-12 8 Z" fill="#233360" stroke="#9fd9ff" strokeWidth="1.2" />
+      </g>
+    </>
+  ),
+  // L1 射线跟踪：发射塔 → 多径（直射/建筑反射/地面反射）→ 终端
+  'l1-ray-tracing': (
+    <>
+      <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+      <circle cx="380" cy="64" r="160" fill="#00D1FF" opacity="0.08" />
+      <line x1="30" y1="256" x2="450" y2="256" stroke="#2a3a63" strokeWidth="1.5" />
+      <rect x="300" y="118" width="98" height="138" rx="4" fill="#1b2950" stroke="#33457a" strokeWidth="1" />
+      <g fill="#00D1FF" opacity="0.4">
+        <rect x="316" y="134" width="9" height="9" rx="1" /><rect x="340" y="134" width="9" height="9" rx="1" /><rect x="364" y="134" width="9" height="9" rx="1" />
+        <rect x="316" y="160" width="9" height="9" rx="1" /><rect x="364" y="160" width="9" height="9" rx="1" />
+        <rect x="316" y="186" width="9" height="9" rx="1" /><rect x="340" y="186" width="9" height="9" rx="1" />
+      </g>
+      <g transform="translate(74,150)">
+        <line x1="0" y1="0" x2="0" y2="106" stroke="#33457a" strokeWidth="2" />
+        <line x1="-12" y1="-2" x2="12" y2="-2" stroke="#9fd9ff" strokeWidth="2" />
+        <circle cx="0" cy="-11" r="3" fill="#00D1FF" />
+      </g>
+      <g transform="translate(150,222)">
+        <rect x="-12" y="0" width="24" height="34" rx="3" fill="#233360" stroke="#9fd9ff" strokeWidth="1.2" />
+        <rect x="-8" y="5" width="16" height="20" rx="1.5" fill="#0A1740" />
+      </g>
+      <g stroke="#00D1FF" strokeWidth="1.5" opacity="0.65" fill="none">
+        <path d="M76 144 L300 152" />
+        <path d="M300 152 L158 220" />
+        <path d="M76 150 L150 220" opacity="0.4" />
+      </g>
+      <path d="M80 150 L238 256 L154 224" stroke="#00D1FF" strokeWidth="1.2" opacity="0.3" strokeDasharray="4 5" fill="none" />
+      <circle cx="300" cy="152" r="3" fill="#9fd9ff" />
+      <circle cx="238" cy="256" r="3" fill="#9fd9ff" opacity="0.7" />
+    </>
+  ),
+  // L2 虚拟路测 / HIL：MPAC 探头环包围车辆，硬件在环回路接机柜
+  'l2-virtual-drive-test': (
+    <>
+      <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+      <circle cx="200" cy="150" r="170" fill="#00D1FF" opacity="0.07" />
+      <circle cx="200" cy="168" r="110" fill="none" stroke="#33457a" strokeWidth="1.4" strokeDasharray="3 7" opacity="0.8" />
+      <g stroke="#00D1FF" strokeWidth="1.2" opacity="0.5" fill="none">
+        <line x1="105" y1="223" x2="200" y2="168" /><line x1="90" y1="168" x2="200" y2="168" /><line x1="105" y1="113" x2="200" y2="168" />
+        <line x1="295" y1="113" x2="200" y2="168" /><line x1="310" y1="168" x2="200" y2="168" /><line x1="295" y1="223" x2="200" y2="168" />
+      </g>
+      <g fill="#00D1FF" opacity="0.85">
+        <circle cx="105" cy="223" r="3.4" /><circle cx="90" cy="168" r="3.4" /><circle cx="105" cy="113" r="3.4" />
+        <circle cx="295" cy="113" r="3.4" /><circle cx="310" cy="168" r="3.4" /><circle cx="295" cy="223" r="3.4" />
+      </g>
+      <ellipse cx="200" cy="212" rx="64" ry="15" fill="#16223f" stroke="#33457a" strokeWidth="1" />
+      <g transform="translate(200,184)">
+        <rect x="-30" y="-2" width="60" height="20" rx="7" fill="#233360" stroke="#9fd9ff" strokeWidth="1.2" />
+        <path d="M-18 -2 L-10 -13 L12 -13 L20 -2 Z" fill="#233360" stroke="#9fd9ff" strokeWidth="1.2" />
+        <circle cx="-16" cy="18" r="5" fill="#0A1740" stroke="#9fd9ff" strokeWidth="1.2" />
+        <circle cx="16" cy="18" r="5" fill="#0A1740" stroke="#9fd9ff" strokeWidth="1.2" />
+      </g>
+      <g transform="translate(404,206)">
+        <rect x="-20" y="-34" width="40" height="68" rx="4" fill="#16223f" stroke="#33457a" strokeWidth="1" />
+        <g stroke="#10B981" strokeWidth="1.4" opacity="0.7"><line x1="-12" y1="-22" x2="12" y2="-22" /><line x1="-12" y1="-8" x2="12" y2="-8" /><line x1="-12" y1="6" x2="12" y2="6" /></g>
+      </g>
+      <path d="M262 188 Q345 150 384 186" stroke="#10B981" strokeWidth="1.4" opacity="0.6" strokeDasharray="5 5" fill="none" />
+      <path d="M384 218 Q330 244 248 210" stroke="#10B981" strokeWidth="1.4" opacity="0.45" strokeDasharray="5 5" fill="none" />
+    </>
+  ),
+  // L3 电磁孪生：真实城市 | 镜像数字孪生（cyan 线框）+ 覆盖等值线
+  'l3-em-twin': (
+    <>
+      <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+      <circle cx="330" cy="60" r="150" fill="#00D1FF" opacity="0.07" />
+      <line x1="30" y1="256" x2="450" y2="256" stroke="#2a3a63" strokeWidth="1.5" />
+      <line x1="240" y1="78" x2="240" y2="256" stroke="#00D1FF" strokeWidth="1" strokeDasharray="5 6" opacity="0.5" />
+      <g fill="#1b2950" stroke="#33457a" strokeWidth="1">
+        <rect x="60" y="182" width="46" height="74" /><rect x="118" y="148" width="44" height="108" /><rect x="174" y="198" width="40" height="58" />
+      </g>
+      <g fill="none" stroke="#00D1FF" strokeWidth="1.1" opacity="0.75">
+        <rect x="266" y="182" width="46" height="74" /><rect x="324" y="148" width="44" height="108" /><rect x="380" y="198" width="40" height="58" />
+      </g>
+      <g stroke="#10B981" strokeWidth="1.2" opacity="0.55" fill="none">
+        <path d="M346 132 A34 34 0 0 1 346 200" /><path d="M356 120 A48 48 0 0 1 356 212" />
+      </g>
+      <circle cx="346" cy="166" r="3" fill="#10B981" />
+      <g fill="#9fd9ff" opacity="0.8"><circle cx="226" cy="120" r="2.4" /><circle cx="254" cy="120" r="2.4" /></g>
+    </>
+  ),
+  // Liquid RF：神经网络软基带芯片 → 向终端发射 RF
+  'liquid-rf': (
+    <>
+      <rect x="0" y="0" width="480" height="320" rx="16" fill="#0A1740" />
+      <circle cx="170" cy="160" r="160" fill="#10B981" opacity="0.06" />
+      <g transform="translate(176,168)">
+        <g stroke="#10B981" strokeWidth="1.2" opacity="0.7">
+          <line x1="-56" y1="-24" x2="-46" y2="-24" /><line x1="-56" y1="0" x2="-46" y2="0" /><line x1="-56" y1="24" x2="-46" y2="24" />
+          <line x1="46" y1="-24" x2="56" y2="-24" /><line x1="46" y1="0" x2="56" y2="0" /><line x1="46" y1="24" x2="56" y2="24" />
+          <line x1="-24" y1="-56" x2="-24" y2="-46" /><line x1="0" y1="-56" x2="0" y2="-46" /><line x1="24" y1="-56" x2="24" y2="-46" />
+          <line x1="-24" y1="46" x2="-24" y2="56" /><line x1="0" y1="46" x2="0" y2="56" /><line x1="24" y1="46" x2="24" y2="56" />
+        </g>
+        <rect x="-46" y="-46" width="92" height="92" rx="12" fill="#16223f" stroke="#10B981" strokeWidth="1.5" />
+        <g stroke="#00D1FF" strokeWidth="0.9" opacity="0.55">
+          <line x1="-28" y1="-24" x2="0" y2="-9" /><line x1="-28" y1="0" x2="0" y2="-9" /><line x1="-28" y1="24" x2="0" y2="9" /><line x1="-28" y1="0" x2="0" y2="9" />
+          <line x1="0" y1="-9" x2="28" y2="0" /><line x1="0" y1="9" x2="28" y2="0" />
+        </g>
+        <g fill="#10B981"><circle cx="-28" cy="-24" r="3" /><circle cx="-28" cy="0" r="3" /><circle cx="-28" cy="24" r="3" /><circle cx="28" cy="0" r="3.4" /></g>
+        <g fill="#00D1FF"><circle cx="0" cy="-9" r="3.2" /><circle cx="0" cy="9" r="3.2" /></g>
+      </g>
+      <g stroke="#00D1FF" strokeWidth="1.3" opacity="0.5" fill="none">
+        <path d="M250 134 A40 40 0 0 1 250 202" /><path d="M268 122 A56 56 0 0 1 268 214" /><path d="M286 110 A72 72 0 0 1 286 226" />
+      </g>
+      <g transform="translate(388,168)">
+        <rect x="-15" y="-26" width="30" height="52" rx="4" fill="#233360" stroke="#9fd9ff" strokeWidth="1.2" />
+        <rect x="-10" y="-20" width="20" height="34" rx="2" fill="#0A1740" />
+        <circle cx="0" cy="20" r="1.8" fill="#9fd9ff" />
       </g>
     </>
   ),

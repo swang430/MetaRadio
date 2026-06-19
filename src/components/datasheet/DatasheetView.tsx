@@ -10,27 +10,8 @@ import type { Datasheet, DatasheetSection } from '../../../lib/api';
 import VerticalScene, { hasScene } from './VerticalScene';
 import { datasheetGroup } from '../../../lib/api';
 
-// datasheet slug → hero 配图（静态 public/，模型 C）。仅映射有强相关、可直接用的素材，
-// 其余 datasheet 维持纯文字 hero（优雅降级）。图为「图卡」形式置于 hero 右栏，与 navy 协调。
-type HeroImage = { src: string; width: number; height: number; alt: { 'zh-CN': string; en: string } };
-const HERO_IMAGES: Record<string, HeroImage> = {
-  'l1-ray-tracing': {
-    src: '/images/ds-l1-ray-tracing.jpg', width: 1200, height: 922,
-    alt: { 'zh-CN': '射线-探针几何：Probe 与 Target 簇角分布', en: 'Ray-probe geometry: probe & target cluster angles' },
-  },
-  'l2-virtual-drive-test': {
-    src: '/images/ds-l2-virtual-drive-test.jpg', width: 1200, height: 897,
-    alt: { 'zh-CN': '微波暗室：虚拟路测与硬件在环验证', en: 'Microwave anechoic chamber: virtual drive test & hardware-in-the-loop' },
-  },
-  'l3-em-twin': {
-    src: '/images/ds-l3-em-twin.jpg', width: 1200, height: 675,
-    alt: { 'zh-CN': '电磁孪生验证：射线追踪波束 · RSRP 覆盖热图 · 路测 · 仿真-实测对比', en: 'EM-twin validation: ray-traced beams · RSRP coverage · drive test · sim-vs-measured' },
-  },
-  'liquid-rf': {
-    src: '/images/ds-liquid-rf.webp', width: 1600, height: 980,
-    alt: { 'zh-CN': 'MetaRadio · Liquid RF 产品板：终端通算一体引擎、Runtime 架构与六大场景', en: 'MetaRadio · Liquid RF product board: the compute-comms runtime architecture and six scenarios' },
-  },
-};
+// datasheet hero 媒体优先级：Strapi heroImage（后台 GUI 可上传深色图）→ 深色矢量场景（VerticalScene，全 10 款）。
+// 历史白底静态图卡（ds-*.jpg）已下线——深色站上白图不协调，统一改用深色矢量场景示意图。
 
 type Row = Record<string, string>;
 
@@ -341,9 +322,12 @@ export default function DatasheetView({ datasheet, locale }: { datasheet: Datash
       </div>
       {bands.map((band, i) => {
         if (band.lead.id === 'hero') {
-          const cms = datasheet.heroImage; // Strapi media（后台 GUI 上传）优先
-          const img = HERO_IMAGES[datasheet.slug];
-          const media = cms?.url ? (
+          // 深色矢量场景优先（全 10 款 datasheet 均有，保证深色站上无白图）；
+          // 仅无场景的新品才回退到 Strapi heroImage（后台 GUI 上传，需为深色图）。
+          const cms = datasheet.heroImage;
+          const media = hasScene(datasheet.slug) ? (
+            <VerticalScene slug={datasheet.slug} locale={locale} />
+          ) : cms?.url ? (
             <Image
               src={cms.url}
               alt={cms.alternativeText || datasheet.title}
@@ -353,18 +337,6 @@ export default function DatasheetView({ datasheet, locale }: { datasheet: Datash
               sizes="(min-width: 1024px) 600px, 100vw"
               className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
             />
-          ) : img ? (
-            <Image
-              src={img.src}
-              alt={locale === 'en' ? img.alt.en : img.alt['zh-CN']}
-              width={img.width}
-              height={img.height}
-              priority
-              sizes="(min-width: 1024px) 600px, 100vw"
-              className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
-            />
-          ) : hasScene(datasheet.slug) ? (
-            <VerticalScene slug={datasheet.slug} locale={locale} />
           ) : null;
           return <HeroBand key={i} band={band} media={media} />;
         }
