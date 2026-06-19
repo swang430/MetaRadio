@@ -339,8 +339,19 @@ export default function DatasheetView({ datasheet, locale }: { datasheet: Datash
       </div>
       {bands.map((band, i) => {
         if (band.lead.id === 'hero') {
+          const cms = datasheet.heroImage; // Strapi media（后台 GUI 上传）优先
           const img = HERO_IMAGES[datasheet.slug];
-          const media = img ? (
+          const media = cms?.url ? (
+            <Image
+              src={cms.url}
+              alt={cms.alternativeText || datasheet.title}
+              width={cms.width || 1600}
+              height={cms.height || 900}
+              priority
+              sizes="(min-width: 1024px) 600px, 100vw"
+              className="h-auto w-full rounded-2xl border border-white/10 shadow-2xl"
+            />
+          ) : img ? (
             <Image
               src={img.src}
               alt={locale === 'en' ? img.alt.en : img.alt['zh-CN']}

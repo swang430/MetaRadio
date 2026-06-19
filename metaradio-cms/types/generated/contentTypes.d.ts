@@ -418,6 +418,12 @@ export interface ApiDatasheetDatasheet extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    heroImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     keywords: Schema.Attribute.JSON &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
