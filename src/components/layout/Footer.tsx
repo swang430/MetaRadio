@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
+import { isHidden } from '../../../lib/nav';
 
 const Footer = () => {
   const t = useTranslations('Footer');
@@ -27,14 +28,22 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg">{t('quickLinks')}</h3>
             <ul className="mt-2 grid grid-cols-3 gap-x-6 gap-y-2">
-              <li><Link href={`/${locale}/products`} className="hover:text-blue-400">{t_nav('products')}</Link></li>
-              <li><Link href={`/${locale}/solutions`} className="hover:text-blue-400">{t_nav('solutions')}</Link></li>
-              <li><Link href={`/${locale}/foundations`} className="hover:text-blue-400">{t_nav('foundations')}</Link></li>
-              <li><Link href={`/${locale}/services`} className="hover:text-blue-400">{t_nav('services')}</Link></li>
-              <li><Link href={`/${locale}/tools`} className="hover:text-blue-400">{t_nav('tools')}</Link></li>
-              <li><Link href={`/${locale}/resources`} className="hover:text-blue-400">{t_nav('resources')}</Link></li>
-              <li><Link href={`/${locale}/about`} className="hover:text-blue-400">{t_nav('about')}</Link></li>
-              <li><Link href={`/${locale}/contact`} className="hover:text-blue-400">{t('contact')}</Link></li>
+              {[
+                { key: 'products', label: t_nav('products') },
+                { key: 'solutions', label: t_nav('solutions') },
+                { key: 'foundations', label: t_nav('foundations') },
+                { key: 'services', label: t_nav('services') },
+                { key: 'tools', label: t_nav('tools') },
+                { key: 'resources', label: t_nav('resources') },
+                { key: 'about', label: t_nav('about') },
+                { key: 'contact', label: t('contact') },
+              ]
+                .filter((l) => !isHidden(l.key))
+                .map((l) => (
+                  <li key={l.key}>
+                    <Link href={`/${locale}/${l.key}`} className="hover:text-blue-400">{l.label}</Link>
+                  </li>
+                ))}
             </ul>
           </div>
 

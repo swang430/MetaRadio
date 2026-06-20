@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { isHidden } from '../../../lib/nav';
 
 const Header = () => {
   const t = useTranslations('Header');
@@ -30,13 +31,13 @@ const Header = () => {
   const switchLocaleHref = `/${otherLocale}${pathWithoutLocale}`;
 
   const navLinks = [
-    { href: `/${locale}/products`, label: t('products') },
-    { href: `/${locale}/solutions`, label: t('solutions') },
-    { href: `/${locale}/foundations`, label: t('foundations') },
-    { href: `/${locale}/services`, label: t('services') },
-    { href: `/${locale}/tools`, label: t('tools') },
-    { href: `/${locale}/resources`, label: t('resources') },
-  ];
+    { key: 'products', href: `/${locale}/products`, label: t('products') },
+    { key: 'solutions', href: `/${locale}/solutions`, label: t('solutions') },
+    { key: 'foundations', href: `/${locale}/foundations`, label: t('foundations') },
+    { key: 'services', href: `/${locale}/services`, label: t('services') },
+    { key: 'tools', href: `/${locale}/tools`, label: t('tools') },
+    { key: 'resources', href: `/${locale}/resources`, label: t('resources') },
+  ].filter((l) => !isHidden(l.key));
   const contactHref = `/${locale}/contact`;
   const closeMenu = () => setIsMenuOpen(false);
 

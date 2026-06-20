@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { assertVisible } from '../../../../lib/page-visibility';
 import { CinematicHero } from '@/components/layout/CinematicHero';
 import { getPage, type Page } from '../../../../lib/api';
 
@@ -95,6 +96,7 @@ function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('about');
   const page = await getPage('about', locale);
   const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
