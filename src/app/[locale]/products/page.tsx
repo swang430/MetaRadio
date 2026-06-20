@@ -42,8 +42,8 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       title={t.title}
       sub={t.sub}
       groups={[
-        { heading: t.horizontal, sub: t.horizontalSub, list: horizontal },
-        { heading: t.aiComms, sub: t.aiCommsSub, list: aiComms },
+        { heading: t.aiComms, sub: t.aiCommsSub, list: aiComms, center: true },
+        { heading: t.horizontal, sub: t.horizontalSub, list: horizontal, center: true },
       ]}
     />
   );

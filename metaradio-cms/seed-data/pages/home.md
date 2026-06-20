@@ -30,7 +30,7 @@ language: zh-CN
 ## Digital
 
 - **Tag:** 数字世界
-- **Name:** Lauraycs / MetaRadio
+- **Name:** Lauraycs
 - **Desc:** 电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。
 - **Cta:** 查看共性技术 →
 - **Href:** datasheets
@@ -38,7 +38,7 @@ language: zh-CN
 ## Physical
 
 - **Tag:** 物理世界
-- **Name:** Liquid RF
+- **Name:** Liquid RF / MetaRadio
 - **Desc:** 神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。
 - **Cta:** 了解 Liquid RF →
 - **Href:** datasheets/liquid-rf
@@ -59,7 +59,7 @@ language: zh-CN
 
 - 仿真生成信道
 - 训练软基带
-- 终端实跑数据
+- 终端测试数据
 - 反哺电磁孪生
 - 更逼近现实的信道
 

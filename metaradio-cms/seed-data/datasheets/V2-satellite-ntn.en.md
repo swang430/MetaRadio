@@ -104,16 +104,6 @@ design_hint: 主色 navy/cyan + 深空蓝；强调"星-地"双侧
 | 🏙 | Emergency Communications | Temporary NTN coverage in disaster zones and service planning for urban re-entry. |
 | 🛰 | Constellation Planning | Comparative end-to-end service capability simulation under different constellation configurations. |
 
-# Proof · Customers and Ecosystem
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| Leading | Collaboration with domestic LEO constellation institutes / satellite operators |
-| Standards | Synchronized tracking of 3GPP NTN standards |
-| End-to-End | Joint HIL case studies across satellite + gNB + terminal |
-
 # CTA · Contact
 
 - **Primary CTA:** Request the NTN End-to-End Solution

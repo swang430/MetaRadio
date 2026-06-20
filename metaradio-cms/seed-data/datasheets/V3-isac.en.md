@@ -104,16 +104,6 @@ design_hint: 主色 navy/blue + emerald；强调"双输出"信道
 | 🌳 | Urban Situation | Density of people and vehicle flow and abnormal-behavior sensing in key areas. |
 | 🤖 | 6G AI Training | Large-scale high-fidelity ISAC data used for AI-native algorithm training. |
 
-# Proof · Customers and Ecosystem
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| Leading | Joint validation with domestic ISAC research institutes and equipment vendors |
-| Papers | Backed by publicly published ISAC simulation cases |
-| 6G | Entering the mainstream toolchain of 6G integrated sensing and communication research |
-
 # CTA · Contact
 
 - **Primary CTA:** Request an ISAC Joint Simulation Solution

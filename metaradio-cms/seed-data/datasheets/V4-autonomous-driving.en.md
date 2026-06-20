@@ -103,16 +103,6 @@ design_hint: 主色 navy/blue + amber 强调"路-车-云"三方
 | 🚛 | Commercial Fleets | Remote-driving/platooning link assurance for logistics + mining + ports. |
 | 🌐 | Vehicle-Road-Cloud Cooperation | End-to-end KPI simulation across MEC + intersection + vehicle side. |
 
-# Proof · Customers and Ecosystem
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| Leading OEMs | Joint virtual road test / V2X HIL cases |
-| Roadside RSU | Integrated with multiple RSU equipment vendors |
-| Automated Testing | Interfaced with automotive-grade automated test platforms |
-
 # CTA · Contact
 
 - **Primary CTA:** Request the V2X / Vehicle-Road-Cloud Solution

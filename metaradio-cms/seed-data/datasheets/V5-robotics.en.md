@@ -104,16 +104,6 @@ design_hint: 主色 navy/blue + emerald 强调"产线"与"机器人"
 | 🚢 | Ports | Remote driving and platooning control links for port cranes / IGVs. |
 | ⛏ | Mines | 5G private-network coverage and equipment coordination in complex underground/open-pit environments. |
 
-# Proof · Customers & Ecosystem
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| Leading | Deployment cases at leading domestic automotive/electronics/logistics factories |
-| Multi-protocol | Joint 5G LAN + Wi-Fi 7 + TSN validation |
-| Localization | Working with domestic industrial wireless equipment vendors |
-
 # CTA · Contact
 
 - **Primary CTA:** Request a Factory EM Twin Solution

@@ -103,16 +103,6 @@ design_hint: 主色 cyan/blue + sky；体现城市楼宇 + 低空航线
 | 🌾 | Agricultural crop protection | Cellular coverage and video-downlink reliability prediction for field operations. |
 | 🛰 | Air-ground integration | Fused planning of ground + satellite + low-altitude multi-link. |
 
-# Proof · Customers and Ecosystem
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| Multiple | Pilot city low-altitude EM twin projects |
-| Leading | Partnerships with UAV/eVTOL OEMs and operators |
-| UTM | Integrated with multiple UAV management platforms |
-
 # CTA · Contact
 
 - **Primary CTA:** Request the low-altitude EM twin solution
