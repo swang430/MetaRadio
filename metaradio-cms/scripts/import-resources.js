@@ -18,13 +18,48 @@ const UID = 'api::resource.resource';
 const args = process.argv.slice(2);
 const DRY = args.includes('--dry');
 
-/** 纯文本 → Strapi blocks 富文本（按空行分段）。 */
-const rich = (text) =>
-  String(text)
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean)
-    .map((p) => ({ type: 'paragraph', children: [{ type: 'text', text: p }] }));
+/** 行内 **加粗** → text 节点（bold:true / 普通）。 */
+const inlineNodes = (s) => {
+  const out = [];
+  const re = /\*\*(.+?)\*\*/g;
+  let last = 0, m;
+  while ((m = re.exec(s))) {
+    if (m.index > last) out.push({ type: 'text', text: s.slice(last, m.index) });
+    out.push({ type: 'text', text: m[1], bold: true });
+    last = m.index + m[0].length;
+  }
+  if (last < s.length) out.push({ type: 'text', text: s.slice(last) });
+  return out.length ? out : [{ type: 'text', text: s }];
+};
+
+/** Markdown → Strapi blocks 富文本：支持 #..###### 标题、- / * 无序列表、1. 有序列表、**加粗**、空行分段。 */
+const rich = (text) => {
+  const lines = String(text).replace(/\r\n/g, '\n').split('\n');
+  const blocks = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim()) { i++; continue; }
+    const h = /^(#{1,6})\s+(.*)$/.exec(line);
+    if (h) { blocks.push({ type: 'heading', level: h[1].length, children: inlineNodes(h[2].trim()) }); i++; continue; }
+    if (/^[-*]\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^[-*]\s+/.test(lines[i])) { items.push({ type: 'list-item', children: inlineNodes(lines[i].replace(/^[-*]\s+/, '').trim()) }); i++; }
+      blocks.push({ type: 'list', format: 'unordered', children: items });
+      continue;
+    }
+    if (/^\d+\.\s+/.test(line)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i])) { items.push({ type: 'list-item', children: inlineNodes(lines[i].replace(/^\d+\.\s+/, '').trim()) }); i++; }
+      blocks.push({ type: 'list', format: 'ordered', children: items });
+      continue;
+    }
+    const para = [];
+    while (i < lines.length && lines[i].trim() && !/^(#{1,6}\s|[-*]\s|\d+\.\s)/.test(lines[i])) { para.push(lines[i].trim()); i++; }
+    blocks.push({ type: 'paragraph', children: inlineNodes(para.join(' ')) });
+  }
+  return blocks.length ? blocks : [{ type: 'paragraph', children: [{ type: 'text', text: '' }] }];
+};
 
 /** resource .md → Strapi 记录。 */
 function toRecord(filename, raw) {

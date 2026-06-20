@@ -1,7 +1,7 @@
 import { getResourceBySlug } from '../../../../../lib/api';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import ResourceBody from '@/components/resources/ResourceBody';
 import { getTranslations } from 'next-intl/server';
 
 export default async function ResourceDetailPage({
@@ -19,24 +19,22 @@ export default async function ResourceDetailPage({
 
   return (
     <div className="container mx-auto px-6 py-12 max-w-3xl">
-      <Link href={`/${locale}/resources`} className="text-blue-600 hover:underline">
+      <Link href={`/${locale}/resources`} className="text-brand-cyan hover:underline">
         ← {t('backToList')}
       </Link>
 
       <div className="mt-6 mb-2 flex items-center gap-3">
-        <span className="inline-block bg-blue-100 text-blue-700 text-sm font-semibold px-3 py-1 rounded-full">
+        <span className="inline-block rounded-full border border-brand-cyan/30 bg-brand-cyan/10 px-3 py-1 text-sm font-semibold text-brand-cyan">
           {t(resource.type.replace(' ', ''))}
         </span>
         {resource.publicationDate && (
-          <span className="text-gray-500 text-sm">{resource.publicationDate}</span>
+          <span className="text-slate-400 text-sm">{resource.publicationDate}</span>
         )}
       </div>
 
-      <h1 className="text-4xl font-bold mb-8">{resource.Title}</h1>
+      <h1 className="text-4xl font-bold mb-8 text-white">{resource.Title}</h1>
 
-      <div className="prose max-w-none">
-        {resource.Description && <BlocksRenderer content={resource.Description} />}
-      </div>
+      {resource.Description && <ResourceBody content={resource.Description} />}
     </div>
   );
 }
