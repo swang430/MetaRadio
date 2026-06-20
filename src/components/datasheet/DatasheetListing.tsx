@@ -4,7 +4,7 @@ import type { Datasheet } from '../../../lib/api';
 import { DatasheetCard } from './DatasheetCard';
 import { CinematicHero } from '../layout/CinematicHero';
 
-export type ListingGroup = { heading: string; sub: string; list: Datasheet[] };
+export type ListingGroup = { heading: string; sub: string; list: Datasheet[]; center?: boolean };
 
 export function DatasheetListing({
   locale,
@@ -27,11 +27,11 @@ export function DatasheetListing({
         {groups.map((g) =>
           g.list.length ? (
             <section key={g.heading} className="mb-16">
-              <div className="mb-8">
+              <div className={g.center ? 'mb-8 text-center' : 'mb-8'}>
                 <h2 className="text-2xl font-bold text-white">{g.heading}</h2>
                 <p className="mt-1 text-sm text-slate-400">{g.sub}</p>
               </div>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className={g.center && g.list.length === 1 ? 'mx-auto grid max-w-sm grid-cols-1 gap-6' : 'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'}>
                 {g.list.map((d) => (
                   <DatasheetCard key={d.slug} d={d} locale={locale} />
                 ))}

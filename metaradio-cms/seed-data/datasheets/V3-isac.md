@@ -104,16 +104,6 @@ design_hint: 主色 navy/blue + emerald；强调"双输出"信道
 | 🌳 | 城市态势 | 重点区域人车流密度与异常行为感知。 |
 | 🤖 | 6G AI 训练 | 大规模高保真 ISAC 数据用于 AI-native 算法训练。 |
 
-# Proof · 客户与生态
-
-## Proof Stats
-
-| Value | Label |
-| --- | --- |
-| 头部 | 国内 ISAC 研究院与设备商联合验证 |
-| 论文 | 公开发表的 ISAC 仿真案例支撑 |
-| 6G | 进入 6G 通感一体研究主流工具链 |
-
 # CTA · 联系方式
 
 - **Primary CTA:** 申请 ISAC 联合仿真方案

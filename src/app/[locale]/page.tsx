@@ -43,14 +43,14 @@ const COPY = {
       sub: '同一套 GPU 加速电磁计算栈，贯穿从研发到终端的两端。',
       digital: {
         tag: '数字世界',
-        name: 'Lauraycs / MetaRadio',
+        name: 'Lauraycs',
         desc: '电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。',
         cta: '查看共性技术 →',
         href: 'products',
       },
       physical: {
         tag: '物理世界',
-        name: 'Liquid RF',
+        name: 'Liquid RF / MetaRadio',
         desc: '神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。',
         cta: '了解 Liquid RF →',
         href: 'products/liquid-rf',
@@ -61,7 +61,7 @@ const COPY = {
       eyebrow: '数据飞轮 · The Data Flywheel',
       title: '同一个飞轮的两半',
       sub: '这不是两条产品线的并行，而是同一个飞轮的两半——每一圈都让仿真更逼近现实。',
-      steps: ['仿真生成信道', '训练软基带', '终端实跑数据', '反哺电磁孪生', '更逼近现实的信道'],
+      steps: ['仿真生成信道', '训练软基带', '终端测试数据', '反哺电磁孪生', '更逼近现实的信道'],
     },
     scenarios: {
       eyebrow: '客户与场景 · Customers & Scenarios',
@@ -108,14 +108,14 @@ const COPY = {
       sub: 'One GPU-accelerated electromagnetic compute stack spanning both ends — from R&D to terminal.',
       digital: {
         tag: 'Digital world',
-        name: 'Lauraycs / MetaRadio',
+        name: 'Lauraycs',
         desc: 'The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3).',
         cta: 'View foundations →',
         href: 'products',
       },
       physical: {
         tag: 'Physical world',
-        name: 'Liquid RF',
+        name: 'Liquid RF / MetaRadio',
         desc: 'The neural-network soft-baseband terminal foundation: communication moves from module to system capability.',
         cta: 'Explore Liquid RF →',
         href: 'products/liquid-rf',
@@ -126,7 +126,7 @@ const COPY = {
       eyebrow: 'The Data Flywheel',
       title: 'Two halves of one flywheel',
       sub: 'Not two parallel product lines, but two halves of one flywheel — each turn brings simulation closer to reality.',
-      steps: ['Simulate channels', 'Train soft baseband', 'Run on terminals', 'Feed back the twin', 'Channels closer to reality'],
+      steps: ['Simulate channels', 'Train soft baseband', 'Test on terminals', 'Feed back the twin', 'Channels closer to reality'],
     },
     scenarios: {
       eyebrow: 'Customers & Scenarios',
