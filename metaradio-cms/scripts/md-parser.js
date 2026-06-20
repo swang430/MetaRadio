@@ -9,13 +9,22 @@ function parseFrontmatter(raw) {
   const m = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!m) return { data: {}, body: raw };
   const data = {};
+  // 脱掉成对的首尾引号（'…' 或 "…"）。扁平解析器不是 YAML，含冒号的值会用引号包裹以保持
+  // YAML 合法（如 en 标题 'ISAC: Two Jobs…'），若不脱引号会把引号当作字面值导入。
+  const unquote = (s) =>
+    s.length >= 2 &&
+    ((s[0] === '"' && s[s.length - 1] === '"') || (s[0] === "'" && s[s.length - 1] === "'"))
+      ? s.slice(1, -1)
+      : s;
   for (const line of m[1].split('\n')) {
     const kv = line.match(/^([A-Za-z0-9_]+):\s*(.*)$/);
     if (!kv) continue;
     const key = kv[1];
     let val = kv[2].trim();
     if (val.startsWith('[') && val.endsWith(']')) {
-      val = val.slice(1, -1).split(',').map((s) => s.trim()).filter(Boolean);
+      val = val.slice(1, -1).split(',').map((s) => unquote(s.trim())).filter(Boolean);
+    } else {
+      val = unquote(val);
     }
     data[key] = val;
   }
