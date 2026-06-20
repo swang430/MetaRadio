@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { CinematicHero } from '@/components/layout/CinematicHero';
+import { assertVisible } from '../../../../lib/page-visibility';
 import { getResources } from '../../../../lib/api';
 import ResourceList from '../../../components/resources/ResourceList';
 
@@ -12,6 +13,7 @@ const POSTERS = [
 
 export default async function ResourcesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('resources');
   const t = await getTranslations({ locale, namespace: 'Resources' });
   const resources = await getResources(locale);
   const en = locale === 'en';

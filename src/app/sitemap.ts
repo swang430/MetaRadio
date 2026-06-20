@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getDatasheets, datasheetGroup } from '../../lib/api';
+import { isHiddenPath } from '../../lib/nav';
 
 const BASE = process.env.SITE_URL || 'https://metaradio.tech';
 const LOCALES = ['zh-CN', 'en'];
@@ -10,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const loc of LOCALES) {
-    for (const p of STATIC_PATHS) {
+    for (const p of STATIC_PATHS.filter((sp) => !isHiddenPath(sp))) {
       entries.push({ url: `${BASE}/${loc}${p}`, changeFrequency: 'weekly', priority: p === '' ? 1 : 0.7 });
     }
   }

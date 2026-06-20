@@ -1,8 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import { CinematicHero } from '@/components/layout/CinematicHero';
+import { assertVisible } from '../../../../lib/page-visibility';
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('contact');
   const t = await getTranslations({ locale, namespace: 'Contact' });
 
   return (

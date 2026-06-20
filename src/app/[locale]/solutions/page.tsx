@@ -1,4 +1,5 @@
 import { getDatasheets } from '../../../../lib/api';
+import { assertVisible } from '../../../../lib/page-visibility';
 import { DatasheetListing } from '@/components/datasheet/DatasheetListing';
 
 // 内容由 Strapi 实时提供（支持后端随时编辑），不在构建期冻结。
@@ -24,6 +25,7 @@ const COPY = {
 
 export default async function SolutionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('solutions');
   const t = COPY[locale === 'en' ? 'en' : 'zh-CN'];
   const datasheets = await getDatasheets(locale);
   const vertical = datasheets.filter((d) => d.category === 'vertical');

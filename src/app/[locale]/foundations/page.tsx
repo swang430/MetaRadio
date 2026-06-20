@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { assertVisible } from '../../../../lib/page-visibility';
 import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
 import { getPage, type Page } from '../../../../lib/api';
 
@@ -102,6 +103,7 @@ function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
 
 export default async function FoundationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('foundations');
   const page = await getPage('foundations', locale);
   const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
