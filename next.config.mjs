@@ -4,6 +4,8 @@ const withNextIntlConfig = withNextIntl('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
+
     async redirects() {
         return [
             {
