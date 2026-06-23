@@ -19,7 +19,11 @@
     "followUs": "关注我们",
     "wechat": "微信",
     "linkedIn": "领英",
-    "copyright": "© {year} Metaradio.tech. 保留所有权利。"
+    "copyright": "© {year} Metaradio.tech. 保留所有权利。",
+    "icp": {
+      "putOnRecord": "京ICP备2025110175号-1",
+      "preparedness": "京公网安备11010602201549号"
+    }
   },
   "Layout": {
     "title": "Metaradio.tech",

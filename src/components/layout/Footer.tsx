@@ -67,6 +67,15 @@ const Footer = () => {
 
         <div className="mt-8 border-t border-gray-700 pt-6 text-center text-gray-500">
           <p>{t('copyright', { year: currentYear })}</p>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
+              {t('icp.putOnRecord')}
+            </a>
+            <a href="http://www.beian.gov.cn/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-gray-300">
+              <span aria-hidden className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-gray-500 text-[10px] leading-none">安</span>
+              {t('icp.preparedness')}
+            </a>
+          </div>
         </div>
       </div>
     </footer>
