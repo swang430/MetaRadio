@@ -19,7 +19,11 @@
     "followUs": "Follow Us",
     "wechat": "WeChat",
     "linkedIn": "LinkedIn",
-    "copyright": "© {year} Metaradio.tech. All rights reserved."
+    "copyright": "© {year} Metaradio.tech. All rights reserved.",
+    "icp": {
+      "putOnRecord": "Beijing ICP No. 2025110175-1",
+      "preparedness": "Beijing Public Security Bureau Network Security No. 11010602201549"
+    }
   },
   "Layout": {
     "title": "Metaradio.tech",

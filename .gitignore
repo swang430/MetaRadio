@@ -11,10 +11,13 @@
 
 # next.js
 /.next/
+/.next.bak*/
 /out/
 
 # production
 /build
+/deploy-web/
+*.tar.gz
 
 # misc
 .DS_Store
