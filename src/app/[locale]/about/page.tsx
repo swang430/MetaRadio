@@ -25,16 +25,10 @@ const COPY = {
       { accent: 'emerald', tag: '技术栈', title: '贯穿仿真到终端的 GPU 加速电磁计算栈', body: 'Lauraycs（仿真）↔ Liquid RF（终端运行时）共享同一套 GPU 加速电磁计算栈与 AI-Native 方法论——一份电磁，两端基础设施。' },
       { accent: 'amber', tag: '商业模式', title: '研发基础设施 + 终端连接平台', body: '与晶泰同构——做 AI for Wireless 的研发基础设施；与高通同构——做下一代终端的连接平台。从研发服务到平台许可的混合模式。' },
     ],
-    teamTitle: '团队',
+    teamTitle: '公司与团队',
     teamBody: '乾径由一支跨学科团队组成：一端是深耕电磁理论与信道建模的高校教授，另一端是来自头部通信与出行企业、做过大规模 GPU 与系统工程的实战派。我们相信，下一代无线的突破，恰恰发生在"电磁第一性原理"与"通用算力工程"的交叉点上。',
     teamNote: '团队成员介绍与人像 · 敬请期待',
-    milestonesTitle: '进展',
-    milestones: [
-      { k: '融资', v: '敬请期待' },
-      { k: '标准与论文', v: '持续推进中' },
-      { k: '行业实验室', v: '重庆 / 东莞 / 昆山（分阶段建设）' },
-    ],
-    partnersTitle: '学术与产业合作',
+    partnersTitle: '客户与合作伙伴',
     partners: ['北京交通大学', '北京理工大学', '中国信通院', '上海物理智能与机器人研究院'],
     locationsTitle: '据点',
     locations: ['北京', '上海', '行业实验室：重庆 · 东莞 · 昆山'],
@@ -52,16 +46,10 @@ const COPY = {
       { accent: 'emerald', tag: 'Tech stack', title: 'A GPU-accelerated EM compute stack from simulation to terminal', body: 'Lauraycs (simulation) ↔ Liquid RF (terminal runtime) share one GPU-accelerated EM compute stack and AI-Native methodology — one EM reality, two infrastructures.' },
       { accent: 'amber', tag: 'Business model', title: 'R&D infrastructure + terminal connectivity platform', body: 'Like XtalPi — R&D infrastructure for AI-for-Wireless; like Qualcomm — the connectivity platform for next-gen terminals. A hybrid model from R&D services to platform licensing.' },
     ],
-    teamTitle: 'Team',
+    teamTitle: 'Company & Team',
     teamBody: 'MetaRadio is an interdisciplinary team: on one end, university professors deep in electromagnetic theory and channel modeling; on the other, practitioners from leading comms and mobility companies who have shipped large-scale GPU and systems engineering. We believe the next wireless breakthrough happens precisely at the intersection of EM first principles and general-compute engineering.',
     teamNote: 'Team bios and portraits · coming soon',
-    milestonesTitle: 'Progress',
-    milestones: [
-      { k: 'Funding', v: 'Coming soon' },
-      { k: 'Standards & papers', v: 'In progress' },
-      { k: 'Industry labs', v: 'Chongqing / Dongguan / Kunshan (phased)' },
-    ],
-    partnersTitle: 'Academic & industry partners',
+    partnersTitle: 'Customers & partners',
     partners: ['Beijing Jiaotong University', 'Beijing Institute of Technology', 'CAICT', 'Shanghai Inst. of Physical Intelligence & Robotics'],
     locationsTitle: 'Locations',
     locations: ['Beijing', 'Shanghai', 'Industry labs: Chongqing · Dongguan · Kunshan'],
@@ -79,7 +67,6 @@ function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
   const S = (id: string) => secs.find((s) => s.id === id);
   const f = (id: string, k: string) => S(id)?.fields?.[k] ?? '';
   const cards = (S('cards')?.table ?? []).map((r) => ({ accent: r['Accent'], tag: r['Tag'], title: r['Title'], body: r['Body'] }));
-  const milestones = (S('milestones')?.table ?? []).map((r) => ({ k: r['Key'], v: r['Value'] }));
   const partners = S('partners')?.bullets ?? [];
   const locations = S('locations')?.bullets ?? [];
   if (!S('hero') || cards.length < 3) return COPY[pick(locale)];
@@ -87,7 +74,6 @@ function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
     eyebrow: f('hero', 'Eyebrow'), title: f('hero', 'Title'), sub: f('hero', 'Sub'),
     cardsTitle: f('hero', 'CardsTitle'), cards,
     teamTitle: f('hero', 'TeamTitle'), teamBody: f('hero', 'TeamBody'), teamNote: f('hero', 'TeamNote'),
-    milestonesTitle: f('hero', 'MilestonesTitle'), milestones,
     partnersTitle: f('hero', 'PartnersTitle'), partners,
     locationsTitle: f('hero', 'LocationsTitle'), locations,
     ctaTitle: f('hero', 'CtaTitle'), ctaPrimary: f('hero', 'CtaPrimary'), ctaSecondary: f('hero', 'CtaSecondary'),
@@ -105,8 +91,19 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       {/* Hero — 全站统一影院式（满幅电磁射线场） */}
       <CinematicHero eyebrow={t.eyebrow} title={t.title} sub={t.sub} />
 
-      {/* 底牌 */}
+      {/* 公司与团队（移到「底牌」之前） */}
       <section className="bg-brand-ink">
+        <div className="container mx-auto px-6 py-16 md:py-20">
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-bold text-white md:text-3xl">{t.teamTitle}</h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-300">{t.teamBody}</p>
+            <p className="mt-6 inline-block rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-400">{t.teamNote}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 底牌 */}
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <h2 className="mb-10 text-2xl font-bold text-white md:text-3xl">{t.cardsTitle}</h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -121,32 +118,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      {/* 团队 */}
-      <section className="bg-brand-ink-2">
-        <div className="container mx-auto px-6 py-16 md:py-20">
-          <div className="max-w-3xl">
-            <h2 className="text-2xl font-bold text-white md:text-3xl">{t.teamTitle}</h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-300">{t.teamBody}</p>
-            <p className="mt-6 inline-block rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-400">{t.teamNote}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 进展 + 合作 + 据点 */}
+      {/* 客户与合作伙伴 + 据点 */}
       <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-16 md:py-20">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            <div>
-              <h2 className="text-xl font-bold text-white">{t.milestonesTitle}</h2>
-              <ul className="mt-4 space-y-3">
-                {t.milestones.map((m) => (
-                  <li key={m.k} className="flex justify-between gap-4 border-b border-slate-100 pb-2 text-sm">
-                    <span className="text-slate-400">{m.k}</span>
-                    <span className="text-right font-medium text-white">{m.v}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <h2 className="text-xl font-bold text-white">{t.partnersTitle}</h2>
               <div className="mt-4 flex flex-wrap gap-2">
