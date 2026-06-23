@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { assertVisible } from '../../../../lib/page-visibility';
+import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
 import { getPage, type Page } from '../../../../lib/api';
 
 // 共性技术 / Foundations —— 设计纲要 §3.2 的"轴心页"。四项共性能力显性化，
@@ -101,37 +103,40 @@ function fromSections(page: Page, locale: string): typeof COPY['zh-CN'] {
 
 export default async function FoundationsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  assertVisible('foundations');
   const page = await getPage('foundations', locale);
   const t = page ? fromSections(page, locale) : COPY[pick(locale)];
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-brand-navy text-white">
+      {/* Hero（满幅影院射线场，与全站统一） */}
+      <section className="relative isolate flex min-h-[62vh] items-center overflow-hidden text-white" style={{ backgroundColor: '#060B1A' }}>
+        <HeroFieldBg className="absolute inset-0 h-full w-full" />
         <div
-          className="pointer-events-none absolute inset-0 opacity-70"
-          style={{ background: 'radial-gradient(900px 500px at 80% -10%, rgba(0,209,255,0.22), transparent 60%)' }}
+          className="pointer-events-none absolute inset-0"
           aria-hidden
+          style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }}
         />
-        <div className="container relative mx-auto px-6 py-20 md:py-28">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.eyebrow}</p>
-          <h1 className="mt-3 max-w-4xl text-4xl font-bold leading-tight md:text-5xl">{t.title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.sub}</p>
+        <div className="container relative z-10 mx-auto px-6 py-20">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold leading-tight md:text-5xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>{t.title}</h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{t.sub}</p>
+          </div>
         </div>
       </section>
 
       {/* 四项共性能力 */}
       {t.capabilities.map((c, i) => (
-        <section key={c.n} className={i % 2 ? 'bg-slate-50' : 'bg-white'}>
+        <section key={c.n} className={i % 2 ? 'bg-brand-ink-2' : 'bg-brand-ink'}>
           <div className="container mx-auto px-6 py-16 md:py-20">
             <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:gap-12">
               <div className="text-5xl font-bold text-brand-cyan md:text-6xl">{c.n}</div>
               <div>
-                <h2 className="text-2xl font-bold text-brand-navy md:text-3xl">{c.title}</h2>
-                <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-600">{c.lede}</p>
+                <h2 className="text-2xl font-bold text-white md:text-3xl">{c.title}</h2>
+                <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300">{c.lede}</p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   {c.points.map((p) => (
-                    <span key={p} className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-brand-navy">
+                    <span key={p} className="rounded-lg border border-white/10 bg-brand-surface px-4 py-2 text-sm font-medium text-slate-200">
                       {p}
                     </span>
                   ))}
@@ -151,7 +156,7 @@ export default async function FoundationsPage({ params }: { params: Promise<{ lo
         <div className="container mx-auto px-6 py-20 text-center">
           <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight md:text-4xl">{t.ctaTitle}</h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href={`/${locale}/datasheets`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
+            <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
               {t.ctaPrimary}
             </Link>
             <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">

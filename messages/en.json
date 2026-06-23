@@ -1,7 +1,8 @@
 {
   "Header": {
     "brandName": "Metaradio.tech",
-    "products": "Products & Solutions",
+    "products": "Products",
+    "solutions": "Solutions",
     "foundations": "Foundations",
     "services": "R&D Services",
     "tools": "Tools",
@@ -16,9 +17,13 @@
     "quickLinks": "Quick Links",
     "contact": "Contact",
     "followUs": "Follow Us",
-    "twitter": "Twitter",
+    "wechat": "WeChat",
     "linkedIn": "LinkedIn",
-    "copyright": "© {year} Metaradio.tech. All rights reserved."
+    "copyright": "© {year} Metaradio.tech. All rights reserved.",
+    "icp": {
+      "putOnRecord": "Beijing ICP No. 2025110175-1",
+      "preparedness": "Beijing Public Security Bureau Network Security No. 11010602201549"
+    }
   },
   "Layout": {
     "title": "Metaradio.tech",
@@ -35,6 +40,8 @@
     "WhitePaper": "White Papers",
     "CaseStudy": "Case Studies",
     "BlogPost": "Blog Posts",
+    "Poster": "Posters",
+    "viewPoster": "View poster",
     "readMore": "Read More",
     "backToList": "Back to Resources",
     "whitepaper1Title": "Title of the first whitepaper",
@@ -50,9 +57,9 @@
     "pageTitle": "Contact Us",
     "description": "Get in touch to request a demo or discuss how Lauraycs / MetaRadio can solve your testing challenges.",
     "emailTitle": "Email",
-    "email": "contact@metaradio.tech",
+    "email": "sales@metaradio.tech",
     "phoneTitle": "Phone",
-    "phone": "+86 010-0000-0000",
+    "phone": "+86 18611360215",
     "ctaTitle": "Request a Demo",
     "ctaDescription": "Tell us about your scenario and our team will get back to you shortly."
   }

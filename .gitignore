@@ -28,7 +28,11 @@ pnpm-debug.log*
 *.log
 
 # local env files
+.env
 .env*.local
+
+# 第二个 Strapi 实例（cms/，本地副本，不入库；含 .env 与 node_modules）
+/cms/
 
 # vercel
 .vercel

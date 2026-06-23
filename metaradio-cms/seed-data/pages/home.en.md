@@ -30,7 +30,7 @@ language: en
 ## Digital
 
 - **Tag:** Digital world
-- **Name:** Lauraycs / MetaRadio
+- **Name:** Lauraycs
 - **Desc:** The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3).
 - **Cta:** View foundations →
 - **Href:** datasheets
@@ -38,7 +38,7 @@ language: en
 ## Physical
 
 - **Tag:** Physical world
-- **Name:** Liquid RF
+- **Name:** Liquid RF / MetaRadio
 - **Desc:** The neural-network soft-baseband terminal foundation: communication moves from module to system capability.
 - **Cta:** Explore Liquid RF →
 - **Href:** datasheets/liquid-rf
@@ -59,7 +59,7 @@ language: en
 
 - Simulate channels
 - Train soft baseband
-- Run on terminals
+- Test on terminals
 - Feed back the twin
 - Channels closer to reality
 

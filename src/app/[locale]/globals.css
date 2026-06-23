@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+/* 全站影院深色：画布固定为 brand-ink，前景浅色（不随系统亮/暗切换）。 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060b1a;
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -19,13 +20,10 @@
   --color-brand-cyan: #00d1ff;
   --color-brand-emerald: #10b981;
   --color-brand-amber: #f59e0b;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* 影院深色系（全站深色皮肤） */
+  --color-brand-ink: #060b1a;      /* 画布 / 深色基底 */
+  --color-brand-ink-2: #0a1228;    /* 交替区 / 略升一档 */
+  --color-brand-surface: #0e1a33;  /* 卡片 / 面板表面 */
 }
 
 body {

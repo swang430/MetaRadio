@@ -122,15 +122,34 @@ export interface Datasheet {
   audience?: string;
   keywords?: string[];
   body?: { sections: DatasheetSection[] } | null;
+  /** Strapi media 管理的 hero 图（后台 GUI 可换）。空则前端回退到代码侧静态图/场景。url 已绝对化。 */
+  heroImage?: { url: string; alternativeText?: string | null; width?: number | null; height?: number | null } | null;
   locale?: string;
+}
+
+/** 路由分组：产品（横向共性技术 L1-L3 + AI-Native 通信 Liquid RF）归 /products；行业方案（纵向 V1-V6）归 /solutions。 */
+export function datasheetGroup(category?: Datasheet['category']): 'products' | 'solutions' {
+  return category === 'vertical' ? 'solutions' : 'products';
+}
+
+/** datasheet 详情页 URL：按 category 归入 /products/<slug> 或 /solutions/<slug>。 */
+export function datasheetHref(locale: string, d: Pick<Datasheet, 'slug' | 'category'>): string {
+  return `/${locale}/${datasheetGroup(d.category)}/${d.slug}`;
+}
+
+/** 把 Strapi media 的相对 url 绝对化（本地 /uploads/... → STRAPI_URL；S3 已是 http 直接用）。 */
+function absHeroImage(d: Datasheet): Datasheet {
+  const u = d.heroImage?.url;
+  if (u && !u.startsWith('http')) d.heroImage = { ...d.heroImage!, url: `${STRAPI_URL}${u}` };
+  return d;
 }
 
 /**
  * 获取全部 datasheet（按 code 升序：L1-L3、V1-V6）。内容源不可达时降级为 mock。
  */
 export async function getDatasheets(locale: string): Promise<Datasheet[]> {
-  const data = await fetchFromStrapi<Datasheet[]>(`/api/datasheets?locale=${locale}&sort=code:asc`);
-  return data && data.length > 0 ? data : mockDatasheets(locale);
+  const data = await fetchFromStrapi<Datasheet[]>(`/api/datasheets?locale=${locale}&sort=code:asc&populate=heroImage`);
+  return data && data.length > 0 ? data.map(absHeroImage) : mockDatasheets(locale);
 }
 
 /**
@@ -138,9 +157,9 @@ export async function getDatasheets(locale: string): Promise<Datasheet[]> {
  */
 export async function getDatasheetBySlug(slug: string, locale: string): Promise<Datasheet | null> {
   const data = await fetchFromStrapi<Datasheet[]>(
-    `/api/datasheets?filters[slug][$eq]=${slug}&locale=${locale}`,
+    `/api/datasheets?filters[slug][$eq]=${slug}&locale=${locale}&populate=heroImage`,
   );
-  if (data && data.length > 0) return data[0];
+  if (data && data.length > 0) return absHeroImage(data[0]);
   return mockDatasheetBySlug(slug, locale);
 }
 

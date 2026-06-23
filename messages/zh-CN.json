@@ -1,7 +1,8 @@
 {
   "Header": {
     "brandName": "Metaradio.tech",
-    "products": "产品与方案",
+    "products": "产品",
+    "solutions": "解决方案",
     "foundations": "共性技术",
     "services": "研发服务",
     "tools": "工具",
@@ -16,9 +17,13 @@
     "quickLinks": "快速链接",
     "contact": "联系我们",
     "followUs": "关注我们",
-    "twitter": "推特",
+    "wechat": "微信",
     "linkedIn": "领英",
-    "copyright": "© {year} Metaradio.tech. 保留所有权利。"
+    "copyright": "© {year} Metaradio.tech. 保留所有权利。",
+    "icp": {
+      "putOnRecord": "京ICP备2025110175号-1",
+      "preparedness": "京公网安备11010602201549号"
+    }
   },
   "Layout": {
     "title": "Metaradio.tech",
@@ -35,6 +40,8 @@
     "WhitePaper": "白皮书",
     "CaseStudy": "案例研究",
     "BlogPost": "博客文章",
+    "Poster": "宣传海报",
+    "viewPoster": "查看海报",
     "readMore": "阅读更多",
     "backToList": "返回资源列表",
     "whitepaper1Title": "第一份白皮书的标题",
@@ -50,9 +57,9 @@
     "pageTitle": "联系我们",
     "description": "联系我们以申请演示，或探讨 Lauraycs / MetaRadio 如何解决您的测试挑战。",
     "emailTitle": "邮箱",
-    "email": "contact@metaradio.tech",
+    "email": "sales@metaradio.tech",
     "phoneTitle": "电话",
-    "phone": "+86 010-0000-0000",
+    "phone": "+86 18611360215",
     "ctaTitle": "请求演示",
     "ctaDescription": "告诉我们您的场景，我们的团队会尽快与您联系。"
   }

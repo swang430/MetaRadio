@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { Car, Bot, PlaneTakeoff, Satellite, Radar, RadioTower, Radio, type LucideIcon } from 'lucide-react';
+import { HeroFieldBg } from '@/components/illustrations/HeroFieldBg';
 import { getPage, type Page } from '../../../lib/api';
 
 // 首页五屏叙事（设计纲要 §3.1）：Hero（首句方案 C）→ 双重基础设施 → 数据飞轮 →
@@ -7,6 +8,16 @@ import { getPage, type Page } from '../../../lib/api';
 // 文案由 Strapi page 内容类型提供（seed-data/pages/home.md 导入，后台可编辑、中英同步），
 // 内容源不可达时降级到内联 COPY 兜底；版式 / 链接 / 视觉逻辑留在本组件。
 export const dynamic = 'force-dynamic';
+
+// 场景卡图标：按 slug 映射到统一的 Lucide stroke 图标（§6.3 统一图标系统，取代 emoji）。
+const SCENARIO_ICONS: Record<string, LucideIcon> = {
+  'v4-autonomous-driving': Car,
+  'v5-robotics': Bot,
+  'v1-low-altitude': PlaneTakeoff,
+  'v2-satellite-ntn': Satellite,
+  'v3-isac': Radar,
+  'v6-6g': RadioTower,
+};
 
 type Locale = 'zh-CN' | 'en';
 const pick = (l: string): Locale => (l === 'en' ? 'en' : 'zh-CN');
@@ -32,17 +43,17 @@ const COPY = {
       sub: '同一套 GPU 加速电磁计算栈，贯穿从研发到终端的两端。',
       digital: {
         tag: '数字世界',
-        name: 'Lauraycs / MetaRadio',
+        name: 'Lauraycs',
         desc: '电磁孪生研发底座：确定性射线跟踪、虚拟路测与硬件在环、电磁孪生（L1–L3）。',
         cta: '查看共性技术 →',
-        href: 'datasheets',
+        href: 'products',
       },
       physical: {
         tag: '物理世界',
-        name: 'Liquid RF',
+        name: 'Liquid RF / MetaRadio',
         desc: '神经网络软基带终端底座：让通信从独立模组走向系统能力（AI-Native 通信）。',
         cta: '了解 Liquid RF →',
-        href: 'datasheets/liquid-rf',
+        href: 'products/liquid-rf',
       },
       bridge: ['GPU 加速电磁计算栈', 'AI-Native 方法论', '电磁孪生数据'],
     },
@@ -50,7 +61,7 @@ const COPY = {
       eyebrow: '数据飞轮 · The Data Flywheel',
       title: '同一个飞轮的两半',
       sub: '这不是两条产品线的并行，而是同一个飞轮的两半——每一圈都让仿真更逼近现实。',
-      steps: ['仿真生成信道', '训练软基带', '终端实跑数据', '反哺电磁孪生', '更逼近现实的信道'],
+      steps: ['仿真生成信道', '训练软基带', '终端测试数据', '反哺电磁孪生', '更逼近现实的信道'],
     },
     scenarios: {
       eyebrow: '客户与场景 · Customers & Scenarios',
@@ -97,17 +108,17 @@ const COPY = {
       sub: 'One GPU-accelerated electromagnetic compute stack spanning both ends — from R&D to terminal.',
       digital: {
         tag: 'Digital world',
-        name: 'Lauraycs / MetaRadio',
+        name: 'Lauraycs',
         desc: 'The EM-twin R&D foundation: deterministic ray tracing, virtual drive test & HIL, EM twin (L1–L3).',
         cta: 'View foundations →',
-        href: 'datasheets',
+        href: 'products',
       },
       physical: {
         tag: 'Physical world',
-        name: 'Liquid RF',
+        name: 'Liquid RF / MetaRadio',
         desc: 'The neural-network soft-baseband terminal foundation: communication moves from module to system capability.',
         cta: 'Explore Liquid RF →',
-        href: 'datasheets/liquid-rf',
+        href: 'products/liquid-rf',
       },
       bridge: ['GPU-accelerated EM compute stack', 'AI-Native methodology', 'EM-twin data'],
     },
@@ -115,7 +126,7 @@ const COPY = {
       eyebrow: 'The Data Flywheel',
       title: 'Two halves of one flywheel',
       sub: 'Not two parallel product lines, but two halves of one flywheel — each turn brings simulation closer to reality.',
-      steps: ['Simulate channels', 'Train soft baseband', 'Run on terminals', 'Feed back the twin', 'Channels closer to reality'],
+      steps: ['Simulate channels', 'Train soft baseband', 'Test on terminals', 'Feed back the twin', 'Channels closer to reality'],
     },
     scenarios: {
       eyebrow: 'Customers & Scenarios',
@@ -187,31 +198,31 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <div className="flex flex-col">
-      {/* 第一屏 · Hero */}
-      <section className="relative overflow-hidden bg-brand-navy text-white">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(1000px 600px at 75% -15%, rgba(0,209,255,0.25), transparent 60%), radial-gradient(700px 500px at 10% 110%, rgba(16,185,129,0.16), transparent 60%)' }}
-          aria-hidden
-        />
-        <div className="container relative mx-auto px-6 py-24 md:py-32">
-          <p className="text-sm font-medium uppercase tracking-widest text-brand-cyan">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-            {t.hero.title}
-            <span className="block text-brand-cyan">{t.hero.titleEm}</span>
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">{t.hero.sub}</p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={`/${locale}/datasheets`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
-              {t.hero.ctaPrimary}
-            </Link>
-            <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
-              {t.hero.ctaSecondary}
-            </Link>
+      {/* 第一屏 · Hero（影院 navy · 满幅实景试点） */}
+      <section className="relative isolate flex min-h-[82vh] items-center overflow-hidden text-white" style={{ backgroundColor: '#060B1A' }}>
+        {/* 满幅程序化电磁射线场背景（图即背景；矢量、可调、完全溶进 #060B1A） */}
+        <HeroFieldBg className="absolute inset-0 h-full w-full" />
+        {/* 左侧加重，保证文字可读 */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden style={{ background: 'linear-gradient(90deg, rgba(6,11,26,0.92) 0%, rgba(6,11,26,0.55) 42%, rgba(6,11,26,0) 78%)' }} />
+        <div className="container relative z-10 mx-auto px-6 py-24 md:py-28">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold leading-tight md:text-6xl" style={{ textShadow: '0 2px 28px rgba(0,0,0,0.55)' }}>
+              {t.hero.title}
+              <span className="block text-brand-cyan">{t.hero.titleEm}</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-200">{t.hero.sub}</p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Link href={`/${locale}/products`} className="rounded-lg bg-brand-cyan px-7 py-3 font-semibold text-brand-navy transition hover:brightness-110">
+                {t.hero.ctaPrimary}
+              </Link>
+              <Link href={`/${locale}/contact`} className="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
+                {t.hero.ctaSecondary}
+              </Link>
+            </div>
           </div>
-          <div className="mt-14 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
+          <div className="mt-16 grid max-w-3xl grid-cols-1 gap-px overflow-hidden rounded-xl sm:grid-cols-3" style={{ background: 'rgba(255,255,255,0.12)' }}>
             {t.hero.pillars.map((p) => (
-              <div key={p.k} className="bg-brand-navy px-6 py-6">
+              <div key={p.k} className="px-6 py-6" style={{ backgroundColor: 'rgba(6,11,26,0.72)' }}>
                 <div className="text-xl font-bold text-brand-cyan">{p.k}</div>
                 <div className="mt-1 text-sm text-slate-300">{p.v}</div>
               </div>
@@ -221,37 +232,26 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第二屏 · 双重基础设施 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.dual.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.dual.title}</h2>
-            <p className="mt-4 text-slate-600">{t.dual.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.dual.title}</h2>
+            <p className="mt-4 text-slate-300">{t.dual.sub}</p>
           </header>
-          {/* 双重基础设施主图（设计 §3.1 第二屏）—— 静态品牌视觉，来自 MWC 物料「产品战略图」。 */}
-          <div className="mx-auto mb-12 max-w-5xl overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-            <Image
-              src="/images/dual-infrastructure.png"
-              alt="MetaRadio + Lauraycs 双引擎产品体系：终端连接底座与无线世界模型训练平台"
-              width={2016}
-              height={926}
-              className="h-auto w-full"
-              priority
-            />
-          </div>
           <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
-            <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8 transition hover:border-brand-cyan hover:shadow-md">
+            <Link href={`/${locale}/${t.dual.digital.href}`} className="group flex flex-col rounded-2xl border border-white/10 bg-brand-surface p-8 transition hover:border-brand-cyan hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.digital.tag}</span>
-              <span className="mt-2 text-2xl font-bold text-brand-navy">{t.dual.digital.name}</span>
-              <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-600">{t.dual.digital.desc}</span>
+              <span className="mt-2 text-2xl font-bold text-white">{t.dual.digital.name}</span>
+              <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-300">{t.dual.digital.desc}</span>
               <span className="mt-5 text-sm font-medium text-brand-cyan">{t.dual.digital.cta}</span>
             </Link>
             <div className="flex flex-col items-center justify-center gap-3 py-2 lg:px-2">
               {t.dual.bridge.map((b) => (
-                <span key={b} className="rounded-full border border-brand-navy/15 bg-white px-4 py-2 text-center text-xs font-medium text-brand-navy">{b}</span>
+                <span key={b} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-center text-xs font-medium text-slate-200">{b}</span>
               ))}
             </div>
-            <Link href={`/${locale}/${t.dual.physical.href}`} className="group flex flex-col rounded-2xl border border-slate-200 bg-brand-navy p-8 text-white transition hover:shadow-md">
+            <Link href={`/${locale}/${t.dual.physical.href}`} className="group flex flex-col rounded-2xl border border-white/10 bg-brand-navy p-8 text-white transition hover:shadow-md">
               <span className="text-xs font-semibold uppercase tracking-widest text-brand-cyan">{t.dual.physical.tag}</span>
               <span className="mt-2 text-2xl font-bold">{t.dual.physical.name}</span>
               <span className="mt-3 flex-grow text-sm leading-relaxed text-slate-300">{t.dual.physical.desc}</span>
@@ -262,17 +262,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第三屏 · 数据飞轮 */}
-      <section className="bg-slate-50">
+      <section className="bg-brand-ink-2">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.flywheel.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.flywheel.title}</h2>
-            <p className="mt-4 text-slate-600">{t.flywheel.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.flywheel.title}</h2>
+            <p className="mt-4 text-slate-300">{t.flywheel.sub}</p>
           </header>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {t.flywheel.steps.map((s, i) => (
               <div key={s} className="flex items-center gap-3">
-                <div className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-center text-sm font-medium text-brand-navy shadow-sm">{s}</div>
+                <div className="rounded-xl border border-white/10 bg-brand-surface px-5 py-4 text-center text-sm font-medium text-slate-100">{s}</div>
                 <span className="text-xl text-brand-cyan" aria-hidden>{i === t.flywheel.steps.length - 1 ? '↻' : '→'}</span>
               </div>
             ))}
@@ -281,21 +281,26 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* 第四屏 · 客户与场景 */}
-      <section className="bg-white">
+      <section className="bg-brand-ink">
         <div className="container mx-auto px-6 py-20">
           <header className="mx-auto mb-12 max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-brand-emerald">{t.scenarios.eyebrow}</p>
-            <h2 className="mt-2 text-3xl font-bold text-brand-navy md:text-4xl">{t.scenarios.title}</h2>
-            <p className="mt-4 text-slate-600">{t.scenarios.sub}</p>
+            <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">{t.scenarios.title}</h2>
+            <p className="mt-4 text-slate-300">{t.scenarios.sub}</p>
           </header>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {t.scenarios.items.map((it) => (
-              <Link key={it.slug} href={`/${locale}/datasheets/${it.slug}`} className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
-                <div className="mb-3 text-3xl">{it.icon}</div>
-                <h3 className="mb-2 text-lg font-semibold text-brand-navy group-hover:text-brand-cyan">{it.name}</h3>
-                <p className="text-sm leading-relaxed text-slate-600">{it.line}</p>
-              </Link>
-            ))}
+            {t.scenarios.items.map((it) => {
+              const Icon = SCENARIO_ICONS[it.slug] ?? Radio;
+              return (
+                <Link key={it.slug} href={`/${locale}/solutions/${it.slug}`} className="group rounded-xl border border-white/10 bg-brand-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-cyan hover:shadow-md">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-cyan/10 text-brand-cyan transition group-hover:bg-brand-cyan/20 group-hover:text-brand-cyan">
+                    <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-brand-cyan">{it.name}</h3>
+                  <p className="text-sm leading-relaxed text-slate-300">{it.line}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
